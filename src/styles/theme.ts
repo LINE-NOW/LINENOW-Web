@@ -1,3 +1,5 @@
+import { DISABLE_SPEEDY } from "styled-components/dist/constants";
+
 const fontGenerator = (
   fontFamily = "Pretendard",
   fontSize = "1.6rem",
@@ -55,13 +57,47 @@ const theme = {
     background: {
       white: colorScale.white,
       black: colorScale.gray900,
-      grayLight: colorScale.gray075,
+      grayLight: colorScale.gray050,
 
-      blue: colorScale.blue500,
       blueLight: colorScale.blue050,
+    },
 
-      lime: colorScale.lime400,
-      limeLight: colorScale.lime200,
+    scheme: {
+      blue: {
+        background: colorScale.blue500,
+        font: colorScale.white,
+        border: colorScale.blue500,
+      },
+
+      blueLight: {
+        background: colorScale.blue050,
+        font: colorScale.blue500,
+        border: colorScale.blue050,
+      },
+
+      lime: {
+        background: colorScale.lime400,
+        font: colorScale.gray800,
+        border: colorScale.lime400,
+      },
+
+      limeLight: {
+        background: colorScale.lime200,
+        font: colorScale.gray600,
+        border: colorScale.lime200,
+      },
+
+      grayLight: {
+        background: colorScale.gray050,
+        font: colorScale.gray300,
+        border: colorScale.gray100,
+      },
+
+      disable: {
+        background: colorScale.gray050,
+        font: colorScale.gray300,
+        border: colorScale.gray050,
+      },
     },
   },
 
