@@ -1,53 +1,54 @@
-const colorScale = {
-  // blue
-  blue050: "#E8EDFF",
-  blue500: "#1851FF",
+import { createGlobalStyle } from "styled-components";
 
-  // lime
-  lime200: "#E5FF87",
-  lime400: "#D1FF25",
+const global = createGlobalStyle`
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
 
-  // gray
-  white: "#ffffff",
-  gray050: "#F0F2F8",
-  gray075: "#ECF0F9",
-  gray100: "#E2E6EF",
-  gray200: "#C9CDD6",
-  gray300: "#B0B4BD",
-  gray400: "#979BA4",
-  gray500: "#7E828B",
-  gray600: "#656972",
-  gray700: "#4C5059",
-  gray800: "#333740",
-  gray900: "#1A1E27",
-};
-const theme = {
-  colors: {
-    font: {
-      white: colorScale.white,
-      blue: colorScale.blue500,
+@font-face {
+    font-family:"Pretendard";
+    src: url("../assets/PretendardVariable.woff2");
+}
+`;
 
-      black: colorScale.gray800,
-      blackLight: colorScale.gray600,
-
-      gray: colorScale.gray300,
-    },
-
-    stroke: {
-      gray075: colorScale.gray075,
-      gray100: colorScale.gray100,
-    },
-
-    background: {
-      white: colorScale.white,
-      black: colorScale.gray900,
-      grayLight: colorScale.gray075,
-
-      blue: colorScale.blue500,
-      blueLight: colorScale.blue050,
-
-      lime: colorScale.lime400,
-      limeLight: colorScale.lime200,
-    },
-  },
-};
+export default global;
