@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle`
 // 폰트설정
 @font-face {
     font-family:"Pretendard";
-    src: url("../assets/fonts/PretendardVariable.woff2");
+    src: url("src/assets/fonts/PretendardVariable.woff2");
 }
 
 // 초기 html 설정

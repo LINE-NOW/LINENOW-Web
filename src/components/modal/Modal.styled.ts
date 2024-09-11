@@ -2,11 +2,13 @@ import styled from "styled-components";
 
 export const ModalBackground = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
 
   z-index: 30;
   width: 100%;
+  max-width: 540px;
   height: 100%;
   background-color: rgb(15 15 15 / 70%);
 

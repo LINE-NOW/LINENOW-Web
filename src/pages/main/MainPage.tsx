@@ -1,6 +1,11 @@
-import { modalAtom } from "@atoms/modal";
+// component
+import ButtonLayout from "@components/button/ButtonLayout";
 import Button from "@components/button/Button";
+
+// atom
 import { useSetAtom } from "jotai";
+import { modalAtom } from "@atoms/modal";
+import { bottomsheetAtom } from "@atoms/bottomsheet";
 
 const MainPage = () => {
   const setModal = useSetAtom(modalAtom);
@@ -13,10 +18,27 @@ const MainPage = () => {
       primaryButton: { children: "안녕", disabled: true },
     });
   };
+
+  const setBottomsheet = useSetAtom(bottomsheetAtom);
+  const openBottomsheet = () => {
+    setBottomsheet({
+      isOpen: true,
+      children: <Content />,
+    });
+  };
+
+  const Content = () => {
+    return (
+      <ButtonLayout $col={1}>
+        <Button onClick={openModal}>모달 오픈 버튼</Button>
+      </ButtonLayout>
+    );
+  };
   return (
     <div>
-      <Button onClick={openModal}>모달 오픈 버튼</Button>
-      <Button scheme="lime">바텀시트 오픈 버튼</Button>
+      <Button onClick={openBottomsheet} scheme="lime">
+        바텀시트 오픈 버튼
+      </Button>
     </div>
   );
 };

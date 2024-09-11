@@ -27,6 +27,7 @@ const Modal = () => {
   const colseModal = () => {
     setModal({ isOpen: false });
   };
+
   return modal.isOpen ? (
     <ModalBackground>
       <ModalContainer>
