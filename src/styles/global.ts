@@ -1,6 +1,36 @@
 import { createGlobalStyle } from "styled-components";
 
-const global = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
+// 폰트설정
+@font-face {
+    font-family:"Pretendard";
+    src: url("../assets/fonts/PretendardVariable.woff2");
+}
+
+// 초기 html 설정
+html {
+	background-color: ${({ theme }) => theme.colors.background.blueLight};
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	-webkit-touch-callout: none;
+    -webkit-tap-highlight-color:rgb(0 0 0 / 0%);
+    scroll-behavior: smooth; 
+}
+
+body {
+	width: 100%;
+	max-width: 540px;
+
+	min-height: 100vh;
+
+	overflow-x: hidden;
+
+	background-color: ${({ theme }) => theme.colors.background.white};
+	color: ${({ theme }) => theme.colors.font.black};
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -45,10 +75,7 @@ table {
 	border-spacing: 0;
 }
 
-@font-face {
-    font-family:"Pretendard";
-    src: url("../assets/PretendardVariable.woff2");
-}
+
 `;
 
-export default global;
+export default GlobalStyle;
