@@ -1,5 +1,11 @@
+import Button from "@components/button/Button";
+
 const MainPage = () => {
-  return <div>메인페이지</div>;
+  return (
+    <div>
+      <Button>버튼</Button>
+    </div>
+  );
 };
 
 export default MainPage;

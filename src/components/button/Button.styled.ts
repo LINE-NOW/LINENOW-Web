@@ -1,18 +1,20 @@
+import React from "react";
 import styled, { css } from "styled-components";
 import {
   ButtonSizeType,
   ButtonSchemeType,
-  ButtonVarientType,
+  ButtonShapeType,
 } from "@components/button/Button";
-import React from "react";
 
 interface DefaultButtonProps {
   $isDisabled?: boolean;
   $size: ButtonSizeType;
   $scheme: ButtonSchemeType;
-  $varient: ButtonVarientType;
+  $shape: ButtonShapeType;
 }
 export const DefaultButton = styled.button<DefaultButtonProps>`
+  ${({ theme }) => theme.fonts.btn};
+
   border: none;
 
   display: flex;
@@ -79,8 +81,8 @@ export const DefaultButton = styled.button<DefaultButtonProps>`
   }}
   
   // 버튼의 스타일이 outline일때
-  ${({ $varient }) => {
-    if ($varient == "outline") {
+  ${({ $shape }) => {
+    if ($shape == "outline") {
       return css`
         border: 1px;
         background-color: clear;
