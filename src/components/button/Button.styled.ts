@@ -84,8 +84,8 @@ export const DefaultButton = styled.button<DefaultButtonProps>`
   ${({ $shape }) => {
     if ($shape == "outline") {
       return css`
-        border: 1px;
-        background-color: clear;
+        border: 1px solid;
+        background-color: transparent;
       `;
     }
   }}
