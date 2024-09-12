@@ -15,20 +15,15 @@ const IconLabel = ({
   gap,
   icon,
   iconSize,
-
   children,
 }: IconLabelProps) => {
   return (
     <IconLabelWrapper $gap={gap} $iconSize={iconSize}>
-      {iconPosition == "left" ? (
-        <img src={`/assets/icon/icon_${icon}.svg`} />
-      ) : null}
+      {iconPosition == "left" ? <img src={`/icons/icon_${icon}.svg`} /> : null}
 
       {children}
 
-      {iconPosition == "right" ? (
-        <img src={`/assets/icon/icon_${icon}.svg`} />
-      ) : null}
+      {iconPosition == "right" ? <img src={`/icons/icon_${icon}.svg`} /> : null}
     </IconLabelWrapper>
   );
 };

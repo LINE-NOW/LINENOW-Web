@@ -11,10 +11,9 @@ export const IconLabelWrapper = styled.span<IconLabelWrapperProps>`
     return css`
       gap: ${$gap};
 
-      &:img {
+      & img {
         width: ${$iconSize};
         height: ${$iconSize};
-        background-color: red;
       }
     `;
   }}

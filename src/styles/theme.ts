@@ -40,6 +40,7 @@ const theme = {
     font: {
       white: colorScale.white,
       blue: colorScale.blue500,
+      lime: colorScale.lime400,
 
       black: colorScale.gray800,
       blackLight: colorScale.gray600,

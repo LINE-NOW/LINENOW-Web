@@ -24,7 +24,7 @@ const WaitingCard = () => {
             <span>부스 -A</span>
           </S.BoothInformationNameLabel>
 
-          <IconLabel icon="position-lightgray" iconSize="1rem" gap="0.12rem">
+          <IconLabel icon="location_gray_light" iconSize="1rem" gap="0.12rem">
             <S.BoothInformationPositionLabel>
               멋쟁이 사자처럼
             </S.BoothInformationPositionLabel>
