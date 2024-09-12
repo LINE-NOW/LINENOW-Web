@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
 // components
-import Layout from "@components/layout/Layout";
+import PageLayout from "@components/layout/PageLayout";
 
 // pages
 import MainPage from "@pages/main/MainPage";
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
   { path: "/", children: [{ path: "", element: <MainPage /> }] },
   {
     path: "/",
-    element: <Layout />,
+    element: <PageLayout />,
     children: [
       { path: "", element: <MainPage /> },
       { path: "booth/:boothID", element: <BoothDetailPage /> },

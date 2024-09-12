@@ -21,7 +21,7 @@ export interface ButtonProps
   size?: ButtonSizeType;
   scheme?: ButtonSchemeType;
   shape?: ButtonShapeType;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const Button = ({

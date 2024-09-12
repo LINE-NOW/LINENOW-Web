@@ -1,5 +1,3 @@
-import { DISABLE_SPEEDY } from "styled-components/dist/constants";
-
 const fontGenerator = (
   fontFamily = "Pretendard",
   fontSize = "1.6rem",
