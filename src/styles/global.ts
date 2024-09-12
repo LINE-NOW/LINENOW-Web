@@ -75,7 +75,11 @@ table {
 	border-spacing: 0;
 }
 
-
+#root {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
 `;
 
 export default GlobalStyle;
