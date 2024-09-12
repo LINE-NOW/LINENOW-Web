@@ -5,6 +5,9 @@ export const BoothCardWrapper = styled.section`
   flex-direction: column;
   gap: 0.5rem;
 
+  width: 100%;
+  box-sizing: border-box;
+
   padding: 0.75rem 0.25rem 1rem 0.25rem;
 
   border-bottom: 1px solid;

@@ -30,8 +30,8 @@ const BoothCard = () => {
       </S.BoothCardInformationWrapper>
 
       <S.BoothCardChipListWrapper>
-        <Chip>대기 중</Chip>
-        <Chip>대기 12 팀</Chip>
+        <Chip scheme="lime">대기중</Chip>
+        <Chip scheme="blueLight">대기 12 팀</Chip>
       </S.BoothCardChipListWrapper>
     </S.BoothCardWrapper>
   );
