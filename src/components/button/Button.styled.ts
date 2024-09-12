@@ -1,18 +1,16 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import {
-  ButtonSizeType,
-  ButtonSchemeType,
-  ButtonShapeType,
-} from "@components/button/Button";
 
-interface DefaultButtonProps {
+// type
+import * as T from "@components/button/Button";
+
+interface ButtonWrapperProps {
   $isDisabled?: boolean;
-  $size: ButtonSizeType;
-  $scheme: ButtonSchemeType;
-  $shape: ButtonShapeType;
+  $size: T.ButtonSizeType;
+  $scheme: T.ButtonSchemeType;
+  $shape: T.ButtonShapeType;
 }
-export const DefaultButton = styled.button<DefaultButtonProps>`
+export const ButtonWrapper = styled.button<ButtonWrapperProps>`
   ${({ theme }) => theme.fonts.btn};
 
   border: none;
@@ -59,8 +57,6 @@ export const DefaultButton = styled.button<DefaultButtonProps>`
         `;
     }
   }}
-
-
 
   ${({ $scheme, theme }) => {
     return css`

@@ -1,0 +1,36 @@
+import { ReactNode } from "react";
+import { IconLabelWrapper } from "./IconLable.styled";
+
+interface IconLabelProps {
+  iconPosition?: "left" | "right";
+  gap: string;
+  icon: string;
+  iconSize: string;
+
+  children: ReactNode;
+}
+
+const IconLabel = ({
+  iconPosition = "left",
+  gap,
+  icon,
+  iconSize,
+
+  children,
+}: IconLabelProps) => {
+  return (
+    <IconLabelWrapper $gap={gap} $iconSize={iconSize}>
+      {iconPosition == "left" ? (
+        <img src={`/assets/icon/icon_${icon}.svg`} />
+      ) : null}
+
+      {children}
+
+      {iconPosition == "right" ? (
+        <img src={`/assets/icon/icon_${icon}.svg`} />
+      ) : null}
+    </IconLabelWrapper>
+  );
+};
+
+export default IconLabel;

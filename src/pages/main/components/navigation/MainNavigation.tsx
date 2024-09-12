@@ -1,6 +1,14 @@
 import * as S from "./MainNavigation.styled";
 
+//component
+import WaitingCard from "@components/waitingCard/WaitingCard";
+
 const MainNavigation = () => {
-  return <S.MainNavigationWrapper>메인 네비게이션</S.MainNavigationWrapper>;
+  return (
+    <S.MainNavigationWrapper>
+      <h1>나의 대기</h1>
+      <WaitingCard />
+    </S.MainNavigationWrapper>
+  );
 };
 export default MainNavigation;

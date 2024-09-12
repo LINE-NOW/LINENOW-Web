@@ -47,7 +47,7 @@ const theme = {
       gray: colorScale.gray300,
     },
 
-    stroke: {
+    border: {
       gray075: colorScale.gray075,
       gray100: colorScale.gray100,
     },
@@ -120,8 +120,8 @@ const theme = {
     b3_b: fontGenerator("Pretendard", "0.75rem", "600", "1rem"),
 
     // etc
-    btn: fontGenerator("Pretendard", "1rem", "700", "1.5rem", "-0.0125rem"),
-    chip: fontGenerator("Pretendard", "0.75rem", "700", "1rem", "-0.03125re"),
+    btn: fontGenerator("Pretendard", "1rem", "700", "1.5rem", "-0.2px"),
+    chip: fontGenerator("Pretendard", "0.75rem", "700", "1rem", "-0.03125rem"),
     caption: fontGenerator("Pretendard", "0.625rem", "500", "0.75rem", ""),
   },
 };
