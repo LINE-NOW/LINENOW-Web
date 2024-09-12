@@ -5,6 +5,7 @@ export const WaitingCardWrapper = styled.section`
   padding: 1.25rem 1rem;
 
   border-radius: 0.75rem;
+
   border: 1px solid;
   border-color: ${({ theme }) => theme.colors.border.gray100};
 `;
@@ -13,8 +14,9 @@ export const WaitingCardWrapper = styled.section`
 export const WaitingCardTitleWrapper = styled.div`
   padding: 0 0.25rem;
   padding-bottom: 0.75rem;
-  border-bottom: 1px solid;
-  border-color: ${({ theme }) => theme.colors.border.gray100};
+
+  box-shadow: 0 -1px 0 0 ${({ theme }) => theme.colors.border.gray100} inset;
+
   margin-bottom: 0.75rem;
   display: flex;
   justify-content: space-between;

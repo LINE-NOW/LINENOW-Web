@@ -10,7 +10,9 @@ const WaitingCard = () => {
   return (
     <S.WaitingCardWrapper>
       <S.WaitingCardTitleWrapper>
-        <S.WaitingCardTitleLabel>내 앞으로 3팀남았어요</S.WaitingCardTitleLabel>
+        <S.WaitingCardTitleLabel>
+          내 앞으로 3팀 남았어요
+        </S.WaitingCardTitleLabel>
         <Chip scheme="grayLight" shape="outline">
           취소하기
         </Chip>

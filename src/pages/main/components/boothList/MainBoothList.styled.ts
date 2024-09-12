@@ -1,38 +1,27 @@
+import { MAIN_NAVIGATION_HEIGHT } from "@constants/style";
 import styled from "styled-components";
 
-export const MainBoothListWrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  flex-grow: 1;
-
-  overflow-y: hidden;
-
-  padding: 1rem;
-  padding-bottom: 0rem;
-
-  background-color: ${({ theme }) => theme.colors.background.white};
-  border-radius: 0.625rem 0.625rem 0rem 0rem;
-`;
-
 // 상단 타이틀
-export const MainBoothListTitleWrapper = styled.div`
+export const MainBoothListHeaderWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 
-  padding: 1.5rem 0rem 1rem 0rem;
+  padding: 2.5rem 1rem 1rem 1rem;
 
+  border-radius: 0.625rem 0.625rem 0rem 0rem;
   border-bottom: 1px solid;
   border-color: ${({ theme }) => theme.colors.border.gray075};
+
+  background-color: ${({ theme }) => theme.colors.background.white};
 `;
 
-export const MainBoothListTitleLabel = styled.h2`
+export const MainBoothListHeaderTitleLabel = styled.h2`
   ${({ theme }) => theme.fonts.h2};
   color: ${({ theme }) => theme.colors.font.black};
 `;
 
-export const MainBoothListTitleOptionWrapper = styled.div`
+export const MainBoothListHeaderOptionWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 
@@ -44,9 +33,8 @@ export const MainBoothListTitleOptionWrapper = styled.div`
 export const MainBoothListScrollContainer = styled.section`
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
 
-  // TODO: overflow-x 적용 안됨 absolute 등 다른 방법 찾기
-  overflow-x: visible;
-  overflow-y: auto;
+  min-height: calc(100vh - ${MAIN_NAVIGATION_HEIGHT.fold} + 2px);
+  padding: 0 1rem;
+  background-color: ${({ theme }) => theme.colors.background.white};
 `;

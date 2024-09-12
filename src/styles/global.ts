@@ -22,7 +22,7 @@ html {
 body {
 	width: 100%;
 	max-width: 540px;
-	min-height: 100vh;
+	/* min-height: 100vh; */
 	overflow-x: hidden;
 	background-color: ${({ theme }) => theme.colors.background.white};
 	color: ${({ theme }) => theme.colors.font.black};
@@ -48,6 +48,7 @@ time, mark, audio, video, button {
 	font: inherit;
 	vertical-align: baseline;
 	background-color: transparent;
+	box-sizing: border-box;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -77,7 +78,6 @@ table {
 #root {
 	display: flex;
 	flex-direction: column;
-	height: 100vh;
 	overflow: hidden;
 }
 

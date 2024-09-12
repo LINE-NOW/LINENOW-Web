@@ -1,13 +1,27 @@
-import IconLabel from "@components/label/IconLabel";
 import * as S from "./MainNavigation.styled";
 
 //component
-import WaitingCard from "@components/waitingCard/WaitingCard";
+import IconLabel from "@components/label/IconLabel";
 import { IconButton } from "@components/button/CustomButton";
+import WaitingCard from "@components/waitingCard/WaitingCard";
 
-const MainNavigation = () => {
+// comstant
+import { MAIN_NAVIGATION_HEIGHT } from "@constants/style";
+
+interface MainNavigationProps {
+  isFold: boolean;
+}
+
+const MainNavigation = ({ isFold }: MainNavigationProps) => {
   return (
-    <S.MainNavigationWrapper>
+    <S.MainNavigationWrapper
+      style={{
+        height: `${
+          isFold ? MAIN_NAVIGATION_HEIGHT.fold : MAIN_NAVIGATION_HEIGHT.unfold
+        }`,
+        paddingBottom: `${isFold ? "1rem" : "1.5rem"}`,
+      }}
+    >
       <S.MainNavigationTitleWrapper>
         <IconLabel
           iconPosition="right"
@@ -15,7 +29,7 @@ const MainNavigation = () => {
           icon="right_white"
           iconSize="1rem"
         >
-          <S.MainNavigationTitleLabel>
+          <S.MainNavigationTitleLabel className={isFold ? "fold" : "unfold"}>
             <p>나의 대기</p>
             <p className="lime">3개</p>
           </S.MainNavigationTitleLabel>
@@ -23,8 +37,7 @@ const MainNavigation = () => {
 
         <IconButton icon="setting_white" iconSize="1.5rem" />
       </S.MainNavigationTitleWrapper>
-
-      <WaitingCard />
+      {isFold ? null : <WaitingCard />}
     </S.MainNavigationWrapper>
   );
 };
