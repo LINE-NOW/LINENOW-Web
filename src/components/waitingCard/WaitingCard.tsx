@@ -1,5 +1,5 @@
 // component
-import * as S from "./WaitinCard.styled";
+import * as S from "./WaitingCard.styled";
 import IconLabel from "@components/label/IconLabel";
 import Chip from "@components/chip/Chip";
 import Button from "@components/button/Button";

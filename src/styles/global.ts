@@ -22,11 +22,8 @@ html {
 body {
 	width: 100%;
 	max-width: 540px;
-
 	min-height: 100vh;
-
 	overflow-x: hidden;
-
 	background-color: ${({ theme }) => theme.colors.background.white};
 	color: ${({ theme }) => theme.colors.font.black};
 }
@@ -81,6 +78,7 @@ table {
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
+	overflow: hidden;
 }
 
 `;
