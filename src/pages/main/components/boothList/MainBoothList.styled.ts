@@ -49,6 +49,4 @@ export const MainBoothListScrollContainer = styled.section`
   // TODO: overflow-x 적용 안됨 absolute 등 다른 방법 찾기
   overflow-x: visible;
   overflow-y: auto;
-
-  border: 1px solid brown;
 `;
