@@ -10,23 +10,19 @@ import {
 import Button, { ButtonProps } from "@components/button/Button";
 import ButtonLayout from "@components/button/ButtonLayout";
 
-// atom
-import { useAtom } from "jotai";
-import { modalAtom } from "@atoms/modal";
+// hook
+import useModal from "@hooks/useModal";
 
 export interface ModalProps {
   isOpen: boolean;
   title?: string;
   sub?: string;
-  secondButton?: ButtonProps;
-  primaryButton?: ButtonProps;
+  secondButton?: Omit<ButtonProps, "size" | "scheme" | "shape">;
+  primaryButton?: Omit<ButtonProps, "size" | "scheme" | "shape">;
 }
 
 const Modal = () => {
-  const [modal, setModal] = useAtom(modalAtom);
-  const colseModal = () => {
-    setModal({ isOpen: false });
-  };
+  const { closeModal, modal } = useModal();
 
   return modal.isOpen ? (
     <ModalBackground>
@@ -40,23 +36,23 @@ const Modal = () => {
         {/* 버튼 부분 */}
         <ButtonLayout $col={2}>
           <Button
-            onClick={colseModal}
+            onClick={closeModal}
             size="large"
             scheme="grayLight"
             shape="outline"
             {...modal.secondButton}
           >
-            {modal.secondButton?.children}
+            {modal.secondButton?.children || "이전으로"}
           </Button>
 
           <Button
-            onClick={colseModal}
+            onClick={closeModal}
             size="large"
             scheme="blue"
             shape="fill"
             {...modal.primaryButton}
           >
-            {modal.primaryButton?.children}
+            {modal.primaryButton?.children || "확인"}
           </Button>
         </ButtonLayout>
       </ModalContainer>

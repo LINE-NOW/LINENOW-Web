@@ -6,9 +6,8 @@ import {
   BottomsheetContainer,
 } from "./Bottomsheet.styled";
 
-// atom
-import { useAtomValue } from "jotai";
-import { bottomsheetAtom } from "@atoms/bottomsheet";
+// hook
+import useBottomsheet from "@hooks/useBottomsheet";
 
 export interface BottomsheetProps {
   isOpen: boolean;
@@ -16,7 +15,7 @@ export interface BottomsheetProps {
 }
 
 const Bottomsheet = () => {
-  const bottomsheet = useAtomValue(bottomsheetAtom);
+  const { bottomsheet } = useBottomsheet();
 
   return bottomsheet.isOpen ? (
     <BottomsheetBackground>
