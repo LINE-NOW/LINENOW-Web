@@ -1,34 +1,24 @@
-import React from "react";
 import styled, { css } from "styled-components";
 
 // type
-import { ButtonSizeType } from "./Button";
 import { SchemeType, ShapeType } from "@components/type/style";
 
-interface ButtonWrapperProps {
+interface ChipWrapperProps {
   $isDisabled?: boolean;
-  $size: ButtonSizeType;
   $scheme: SchemeType;
   $shape: ShapeType;
 }
-export const ButtonWrapper = styled.button<ButtonWrapperProps>`
-  ${({ theme }) => theme.fonts.btn};
+
+export const ChipWrapper = styled.button<ChipWrapperProps>`
+  ${({ theme }) => theme.fonts.chip};
 
   border: none;
+  border-radius: 0.25rem;
+
+  padding: 0.25rem 0.5rem;
 
   display: flex;
   align-items: center;
-
-  // 자식노드가 1개면 중앙 정렬, 2개 이상이면 양끝 정렬
-  ${(props) => css`
-    ${props.children && React.Children.count(props.children) === 1
-      ? `
-      justify-content: center;
-    `
-      : `
-      justify-content: space-between;
-    `}
-  `}
 
   // onClick이 있고 비활성 상태가 아닐 때만 hover 스타일 적용
   ${(props) =>
@@ -41,23 +31,6 @@ export const ButtonWrapper = styled.button<ButtonWrapperProps>`
         transform: scale(1.05);
       }
     `}
-
-  ${({ $size, theme }) => {
-    switch ($size) {
-      case "large":
-        return css`
-          ${theme.fonts.btn}
-          width: 100%;
-          height: 3.5rem;
-          padding: 0 1.25rem;
-          border-radius: 0.5rem;
-        `;
-      default:
-        return css`
-          ${theme.fonts.btn}
-        `;
-    }
-  }}
 
   ${({ $scheme, theme }) => {
     return css`

@@ -1,13 +1,19 @@
-import IconLabel from "@components/label/IconLabel";
+// component
 import * as S from "./WaitinCard.styled";
+import IconLabel from "@components/label/IconLabel";
+import Chip from "@components/chip/Chip";
 import Button from "@components/button/Button";
+
+// hook
 
 const WaitingCard = () => {
   return (
     <S.WaitingCardWrapper>
       <S.WaitingCardTitleWrapper>
         <S.WaitingCardTitleLabel>내 앞으로 3팀남았어요</S.WaitingCardTitleLabel>
-        <button>취소 버튼</button>
+        <Chip scheme="grayLight" shape="outline">
+          취소하기
+        </Chip>
       </S.WaitingCardTitleWrapper>
       <S.BoothInformationWrapper>
         <S.BoothInformationImage />

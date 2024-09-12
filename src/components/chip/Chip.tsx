@@ -1,41 +1,40 @@
 import { ReactNode } from "react";
-import { ButtonWrapper } from "@components/button/Button.styled";
+
+// type
 import { SchemeType, ShapeType } from "@components/type/style";
 
-// 버튼의 크기 type
-export type ButtonSizeType = "large" | { width: string; height: string };
+//component
+import { ChipWrapper } from "./Chip.styled";
 
-export interface ButtonProps
+export interface ChipProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  size?: ButtonSizeType;
+
   scheme?: SchemeType;
   shape?: ShapeType;
   children?: ReactNode;
 }
 
-const Button = ({
+const Chip = ({
   disabled,
   onClick,
-  size = "large",
   scheme = "blue",
   shape = "fill",
   children,
   ...props
-}: ButtonProps) => {
+}: ChipProps) => {
   return (
-    <ButtonWrapper
+    <ChipWrapper
       onClick={onClick}
       disabled={disabled}
       $isDisabled={disabled}
-      $size={size}
       $scheme={scheme}
       $shape={shape}
       {...props}
     >
       {children}
-    </ButtonWrapper>
+    </ChipWrapper>
   );
 };
 
-export default Button;
+export default Chip;
