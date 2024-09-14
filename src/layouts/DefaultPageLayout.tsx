@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-const PageLayout = () => {
+const DefaultPageLayout = () => {
   return (
     <section>
       <header>네비게이션</header>
@@ -12,4 +12,4 @@ const PageLayout = () => {
   );
 };
 
-export default PageLayout;
+export default DefaultPageLayout;

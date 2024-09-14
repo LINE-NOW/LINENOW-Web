@@ -1,12 +1,12 @@
 import { useRef } from "react";
 
 import * as S from "./MainPage.styled";
-import MainNavigation from "./components/navigation/MainNavigation";
-import MainBoothListHeader from "./components/boothList/MinaBoothListHeader";
-import MainBoothList from "./components/boothList/MainBoothList";
+import MainNavigation from "./_components/navigation/MainNavigation";
+import MainBoothListHeader from "./_components/boothList/MinaBoothListHeader";
+import MainBoothList from "./_components/boothList/MainBoothList";
 
 // hook
-import useMainNavigation from "@hooks/useMainNavigation";
+import useMainNavigation from "@pages/main/_hooks/useMainNavigation";
 
 // constant
 import { MAIN_FIXED_COMPONENTS_HEIGHT } from "@constants/style";
