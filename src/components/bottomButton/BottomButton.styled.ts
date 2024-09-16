@@ -1,10 +1,40 @@
 import styled from "styled-components";
 
 export const BottomButtonWrapper = styled.section`
+  display: flex;
+  gap: 0.75rem;
+
   position: fixed;
   transform: translate(-50%, 0%);
   bottom: 0;
   left: 50%;
-  width: 200px;
-  height: 200px;
+
+  width: 100%;
+  max-width: 540px;
+
+  padding: 1rem;
+  padding-bottom: 0.5rem;
+  border-radius: 12px 12px 0px 0px;
+
+  background-color: ${({ theme }) => theme.colors.background.white};
+  box-shadow: 0px 0px 4px 4px rgba(26, 30, 39, 0.1);
+
+  flex-direction: column;
+`;
+
+export const BottomButtonInformationWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 0.5rem;
+
+  height: 1.25rem;
+  padding: 0 0.25rem;
+  ${({ theme }) => theme.fonts.chip}
+  color: ${({ theme }) => theme.colors.font.black};
+
+  .blue {
+    ${({ theme }) => theme.fonts.b2_b}
+    color: ${({ theme }) => theme.colors.font.blue};
+  }
 `;
