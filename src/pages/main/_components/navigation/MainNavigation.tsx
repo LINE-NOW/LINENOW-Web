@@ -2,7 +2,10 @@ import * as S from "./MainNavigation.styled";
 
 //component
 import IconLabel from "@components/label/IconLabel";
-import { IconButton } from "@components/button/CustomButton";
+import {
+  IconLabelLinkButton,
+  IconLinkButton,
+} from "@components/button/CustomButton";
 import WaitingCard from "@components/waitingCard/WaitingCard";
 
 // comstant
@@ -23,7 +26,8 @@ const MainNavigation = ({ isFold }: MainNavigationProps) => {
       }}
     >
       <S.MainNavigationTitleWrapper>
-        <IconLabel
+        <IconLabelLinkButton
+          to="my-waiting"
           iconPosition="right"
           gap="0.25rem"
           icon="right_white"
@@ -33,9 +37,9 @@ const MainNavigation = ({ isFold }: MainNavigationProps) => {
             <p>나의 대기</p>
             <p className="lime">3개</p>
           </S.MainNavigationTitleLabel>
-        </IconLabel>
+        </IconLabelLinkButton>
 
-        <IconButton icon="setting_white" iconSize="1.5rem" />
+        <IconLinkButton to="/setting" icon="setting_white" iconSize="1.5rem" />
       </S.MainNavigationTitleWrapper>
       {isFold ? null : <WaitingCard />}
     </S.MainNavigationWrapper>

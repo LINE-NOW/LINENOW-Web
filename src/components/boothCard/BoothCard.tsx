@@ -4,7 +4,7 @@ import Chip from "@components/chip/Chip";
 
 const BoothCard = () => {
   return (
-    <S.BoothCardWrapper>
+    <S.BoothCardWrapper to="booth/1">
       <S.BoothCardInformationWrapper>
         <S.BoothCardInformationImage />
         <S.BoothCardInformationLabelWrapper>

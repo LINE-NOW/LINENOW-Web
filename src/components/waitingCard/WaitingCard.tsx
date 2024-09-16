@@ -1,21 +1,28 @@
 // component
 import * as S from "./WaitingCard.styled";
 import IconLabel from "@components/label/IconLabel";
-import Chip from "@components/chip/Chip";
 import Button from "@components/button/Button";
+import { ChipButton } from "@components/button/CustomButton";
 
 // hook
 
 const WaitingCard = () => {
+  const handleOnClickCancelButton = () => {
+    alert("취소하시겠습니까?");
+  };
   return (
-    <S.WaitingCardWrapper>
+    <S.WaitingCardWrapper to="/waiting/1">
       <S.WaitingCardTitleWrapper>
         <S.WaitingCardTitleLabel>
           내 앞으로 3팀 남았어요
         </S.WaitingCardTitleLabel>
-        <Chip scheme="grayLight" shape="outline">
+        <ChipButton
+          onClick={handleOnClickCancelButton}
+          scheme="grayLight"
+          shape="outline"
+        >
           취소하기
-        </Chip>
+        </ChipButton>
       </S.WaitingCardTitleWrapper>
       <S.BoothInformationWrapper>
         <S.BoothInformationImage />

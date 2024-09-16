@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { IconLabelWrapper } from "./IconLable.styled";
 
-interface IconLabelProps {
+export interface IconLabelProps {
   iconPosition?: "left" | "right";
   gap: string;
   icon: string;

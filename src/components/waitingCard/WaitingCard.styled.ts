@@ -1,12 +1,16 @@
 import styled from "styled-components";
+import * as A from "@styles/animation";
+import { Link } from "react-router-dom";
 
-export const WaitingCardWrapper = styled.section`
+export const WaitingCardWrapper = styled(Link)`
   padding: 1.25rem 1rem;
   border: 1px solid;
   border-color: ${({ theme }) => theme.colors.border.gray100};
   border-radius: 0.75rem;
 
   background-color: ${({ theme }) => theme.colors.background.white};
+
+  ${A.onClickButtonAnimation}
 `;
 
 // WaitingCardTitle

@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import * as A from "@styles/animation";
 
-export const BoothCardWrapper = styled.section`
+import { Link } from "react-router-dom";
+
+export const BoothCardWrapper = styled(Link)`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;

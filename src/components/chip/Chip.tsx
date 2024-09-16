@@ -1,37 +1,20 @@
 import { ReactNode } from "react";
 
 // type
-import { SchemeType, ShapeType } from "@components/type/style";
+import { SchemeType, ShapeType } from "@types/style";
 
 //component
 import { ChipWrapper } from "./Chip.styled";
 
-export interface ChipProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-
+export interface ChipProps {
   scheme?: SchemeType;
   shape?: ShapeType;
   children?: ReactNode;
 }
 
-const Chip = ({
-  disabled,
-  onClick,
-  scheme = "blue",
-  shape = "fill",
-  children,
-  ...props
-}: ChipProps) => {
+const Chip = ({ scheme = "blue", shape = "fill", children }: ChipProps) => {
   return (
-    <ChipWrapper
-      onClick={onClick}
-      disabled={disabled}
-      $isDisabled={disabled}
-      $scheme={scheme}
-      $shape={shape}
-      {...props}
-    >
+    <ChipWrapper $scheme={scheme} $shape={shape}>
       {children}
     </ChipWrapper>
   );
