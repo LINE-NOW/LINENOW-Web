@@ -1,4 +1,4 @@
-import { mainFoldTransitionAnimation } from "@styles/animation";
+import { changeFoldStateAnimation } from "@styles/animation";
 import styled from "styled-components";
 
 export const MainFixedComponentsWrapper = styled.section`
@@ -19,5 +19,5 @@ export const MainFixedComponentsWrapper = styled.section`
 export const MainFixedComponentBackgorund = styled.div`
   width: 100%;
 
-  ${mainFoldTransitionAnimation};
+  ${changeFoldStateAnimation};
 `;

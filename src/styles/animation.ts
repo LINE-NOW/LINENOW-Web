@@ -1,6 +1,6 @@
 import { css } from "styled-components";
 
-export const mainFoldTransitionAnimation = css`
+export const changeFoldStateAnimation = css`
   transition: height 0.5s ease;
 `;
 

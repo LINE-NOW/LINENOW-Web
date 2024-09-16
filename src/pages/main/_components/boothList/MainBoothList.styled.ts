@@ -35,6 +35,7 @@ export const MainBoothListScrollContainer = styled.section`
   flex-direction: column;
 
   min-height: calc(100vh - ${MAIN_NAVIGATION_HEIGHT.fold} + 2px);
+
   padding: 0 1rem;
   background-color: ${({ theme }) => theme.colors.background.white};
 `;
