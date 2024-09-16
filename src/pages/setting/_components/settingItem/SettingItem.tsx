@@ -8,7 +8,7 @@ export interface SettingItemProps
 
 const SettingItem = ({ onClick, title }: SettingItemProps) => {
   return (
-    <S.SettingItemComponentWrapper>
+    <S.SettingItemComponentWrapper onClick={onClick}>
       <S.SettingItemComponentText>{title}</S.SettingItemComponentText>
     </S.SettingItemComponentWrapper>
   );
