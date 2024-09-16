@@ -34,8 +34,8 @@ const MainNavigation = ({ isFold }: MainNavigationProps) => {
           iconSize="1rem"
         >
           <S.MainNavigationTitleLabel className={isFold ? "fold" : "unfold"}>
-            <p>나의 대기</p>
-            <p className="lime">3개</p>
+            <span>나의 대기</span>
+            <span className="lime">3개</span>
           </S.MainNavigationTitleLabel>
         </IconLabelLinkButton>
 

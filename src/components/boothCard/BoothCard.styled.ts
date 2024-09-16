@@ -46,6 +46,7 @@ export const BoothCardInformationNameLabel = styled.div`
   white-space: nowrap;
   text-overflow: ellipsis;
 
+  padding-bottom: 0.125rem;
   ${({ theme }) => theme.fonts.h3}
   color:${({ theme }) => theme.colors.font.black};
 `;
