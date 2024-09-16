@@ -1,15 +1,22 @@
 import { Outlet } from "react-router-dom";
 
+import Navigation from "@components/navigation/Navigation";
+import styled from "styled-components";
+
 const DefaultPageLayout = () => {
   return (
-    <section>
-      <header>네비게이션</header>
-      <section>
+    <>
+      <Navigation />
+      <OutletWrapper>
         <Outlet />
-      </section>
-      <footer>바텀 버튼</footer>
-    </section>
+      </OutletWrapper>
+    </>
   );
 };
 
 export default DefaultPageLayout;
+
+const OutletWrapper = styled.section`
+  flex-grow: 1;
+  background-color: ${({ theme }) => theme.colors.background.white};
+`;

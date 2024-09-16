@@ -12,14 +12,14 @@ interface LinkButtonProps {
   to: string;
 }
 
-interface IconButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+// IconButton
+interface IconProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon: string;
   iconSize: string;
   touchSize?: string;
 }
 
-type IconLinkButtonProps = IconButtonProps & LinkButtonProps;
+type IconLinkButtonProps = IconProps & LinkButtonProps;
 export const IconLinkButton = ({
   to,
   icon,
@@ -35,6 +35,23 @@ export const IconLinkButton = ({
   );
 };
 
+type IconButtonProps = IconProps & CommonButtonProps;
+export const IconButton = ({
+  onClick,
+  icon,
+  iconSize,
+  touchSize = iconSize,
+  ...props
+}: IconButtonProps) => {
+  return (
+    <button onClick={onClick} {...props}>
+      <S.IconButtonWrapper $iconSize={iconSize}>
+        <img src={`/icons/icon_${icon}.svg`} />
+      </S.IconButtonWrapper>
+    </button>
+  );
+};
+
 type IconLableLinkButtonProps = IconLabelProps & LinkButtonProps;
 export const IconLabelLinkButton = ({
   to,
@@ -47,6 +64,7 @@ export const IconLabelLinkButton = ({
   );
 };
 
+// ChipButton
 type ChipButtonProps = ChipProps & CommonButtonProps;
 export const ChipButton = ({
   disabled,

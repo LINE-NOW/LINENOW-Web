@@ -3,6 +3,8 @@ import * as A from "@styles/animation";
 import { Link } from "react-router-dom";
 
 export const WaitingCardWrapper = styled(Link)`
+  flex-direction: column;
+
   padding: 1.25rem 1rem;
   border: 1px solid;
   border-color: ${({ theme }) => theme.colors.border.gray100};
