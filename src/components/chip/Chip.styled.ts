@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import * as A from "@styles/animation";
 
 // type
-import { SchemeType, ShapeType } from "@components/type/style";
+import { SchemeType, ShapeType } from "@types/style";
 
 interface ChipWrapperProps {
   $isDisabled?: boolean;

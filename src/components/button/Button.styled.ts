@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 
 // type
 import { ButtonSizeType } from "./Button";
-import { SchemeType, ShapeType } from "@components/type/style";
+import { SchemeType, ShapeType } from "@types/style";
 import { onClickButtonAnimation } from "@styles/animation";
 
 interface ButtonWrapperProps {

@@ -1,3 +1,4 @@
+// 색상 구조 type
 export type SchemeType =
   | "blue"
   | "lime"
