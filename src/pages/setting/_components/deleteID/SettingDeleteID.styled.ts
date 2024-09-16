@@ -9,4 +9,6 @@ export const SettingDeleteIDComponentWrapper = styled.div`
 export const SettingDeleteIDComponentText = styled.span`
   ${({ theme }) => theme.fonts.chip};
   color: ${({ theme }) => theme.colors.font.gray};
+
+  cursor: pointer;
 `;
