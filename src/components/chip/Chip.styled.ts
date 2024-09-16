@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 // type
 import { SchemeType, ShapeType } from "@components/type/style";
+import { onClickButtonAnimation } from "@styles/animation";
 
 interface ChipWrapperProps {
   $isDisabled?: boolean;
@@ -10,27 +11,18 @@ interface ChipWrapperProps {
 }
 
 export const ChipWrapper = styled.button<ChipWrapperProps>`
-  ${({ theme }) => theme.fonts.chip};
+  display: flex;
+  align-items: center;
+
+  padding: 0.25rem 0.5rem;
 
   border: none;
   border-radius: 0.25rem;
 
-  padding: 0.25rem 0.5rem;
-
-  display: flex;
-  align-items: center;
+  ${({ theme }) => theme.fonts.chip};
 
   // onClick이 있고 비활성 상태가 아닐 때만 hover 스타일 적용
-  ${(props) =>
-    props.onClick &&
-    !props.$isDisabled &&
-    css`
-      cursor: "pointer";
-      transition: transform 0.3s;
-      &:hover {
-        transform: scale(1.05);
-      }
-    `}
+  ${(props) => props.onClick && !props.$isDisabled && onClickButtonAnimation}
 
   ${({ $scheme, theme }) => {
     return css`
