@@ -1,5 +1,5 @@
-import { onClickButtonAnimation } from "@styles/animation";
 import styled from "styled-components";
+import * as A from "@styles/animation";
 
 export const BoothCardWrapper = styled.section`
   display: flex;
@@ -14,7 +14,7 @@ export const BoothCardWrapper = styled.section`
   border-bottom: 1px solid;
   border-color: ${({ theme }) => theme.colors.border.gray075};
 
-  ${onClickButtonAnimation}
+  ${A.onClickButtonAnimation}
 `;
 
 export const BoothCardInformationWrapper = styled.div`

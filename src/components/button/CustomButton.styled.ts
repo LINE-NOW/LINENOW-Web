@@ -1,15 +1,12 @@
 import styled, { css } from "styled-components";
+import * as A from "@styles/animation";
 
 interface IconButtonWrapperPorps {
   $iconSize: string;
 }
 
 export const IconButtonWrapper = styled.button<IconButtonWrapperPorps>`
-  cursor: pointer;
-  transition: transform 0.3s;
-  &:hover {
-    transform: scale(1.05);
-  }
+  ${A.onClickButtonAnimation}
 
   ${({ $iconSize }) => {
     return css`
@@ -21,6 +18,5 @@ export const IconButtonWrapper = styled.button<IconButtonWrapperPorps>`
   & img {
     width: 100%;
     height: 100%;
-    /* background-color: red; */
   }
 `;
