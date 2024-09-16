@@ -4,12 +4,11 @@ export const SettingComponentsWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  background-color: ${({ theme }) => theme.colors.background.white};
+  gap: 1.25rem;
+  padding: 1rem 1.25rem;
 `;
 
 export const SettingContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-
-  padding: 1rem 1.25rem;
 `;
