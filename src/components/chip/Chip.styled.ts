@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
+import { onClickButtonAnimation } from "@styles/animation";
 
 // type
 import { SchemeType, ShapeType } from "@components/type/style";
-import { onClickButtonAnimation } from "@styles/animation";
 
 interface ChipWrapperProps {
   $isDisabled?: boolean;
