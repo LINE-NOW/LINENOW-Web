@@ -1,26 +1,22 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import {
-  ButtonSizeType,
-  ButtonSchemeType,
-  ButtonShapeType,
-} from "@components/button/Button";
 
-interface DefaultButtonProps {
+// type
+import { ButtonSizeType } from "./Button";
+import { SchemeType, ShapeType } from "@types/style";
+import { onClickButtonAnimation } from "@styles/animation";
+
+interface ButtonWrapperProps {
   $isDisabled?: boolean;
   $size: ButtonSizeType;
-  $scheme: ButtonSchemeType;
-  $shape: ButtonShapeType;
+  $scheme: SchemeType;
+  $shape: ShapeType;
 }
-export const DefaultButton = styled.button<DefaultButtonProps>`
-  ${({ theme }) => theme.fonts.btn};
-
-  border: none;
-
+export const ButtonWrapper = styled.button<ButtonWrapperProps>`
   display: flex;
   align-items: center;
-
   // 자식노드가 1개면 중앙 정렬, 2개 이상이면 양끝 정렬
+
   ${(props) => css`
     ${props.children && React.Children.count(props.children) === 1
       ? `
@@ -32,16 +28,7 @@ export const DefaultButton = styled.button<DefaultButtonProps>`
   `}
 
   // onClick이 있고 비활성 상태가 아닐 때만 hover 스타일 적용
-  ${(props) =>
-    props.onClick &&
-    !props.$isDisabled &&
-    css`
-      cursor: "pointer";
-      transition: transform 0.3s;
-      &:hover {
-        transform: scale(1.05);
-      }
-    `}
+  ${(props) => props.onClick && !props.$isDisabled && onClickButtonAnimation}
 
   ${({ $size, theme }) => {
     switch ($size) {
@@ -59,8 +46,6 @@ export const DefaultButton = styled.button<DefaultButtonProps>`
         `;
     }
   }}
-
-
 
   ${({ $scheme, theme }) => {
     return css`
@@ -80,13 +65,20 @@ export const DefaultButton = styled.button<DefaultButtonProps>`
     }
   }}
   
-  // 버튼의 스타일이 outline일때
+  // 버튼의 스타일이 fill 일때 - border noen 적용
+  // 버튼의 스타일이 outline일때 - border 1px 적용, 배경은 투명화 진행
   ${({ $shape }) => {
-    if ($shape == "outline") {
+    if ($shape == "fill") {
+      return css`
+        border: none;
+      `;
+    } else if ($shape == "outline") {
       return css`
         border: 1px solid;
         background-color: transparent;
       `;
     }
   }}
+
+  ${({ theme }) => theme.fonts.btn};
 `;

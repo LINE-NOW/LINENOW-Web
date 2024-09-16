@@ -1,26 +1,18 @@
 import { ReactNode } from "react";
-import { DefaultButton } from "@components/button/Button.styled";
+import { ButtonWrapper } from "@components/button/Button.styled";
+
+// type
+import { SchemeType, ShapeType } from "@types/style";
 
 // 버튼의 크기 type
 export type ButtonSizeType = "large" | { width: string; height: string };
-
-// 버튼의 색상 패턴 type
-export type ButtonSchemeType =
-  | "blue"
-  | "lime"
-  | "blueLight"
-  | "limeLight"
-  | "grayLight";
-
-// 버튼의 형태 type
-export type ButtonShapeType = "fill" | "outline";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   size?: ButtonSizeType;
-  scheme?: ButtonSchemeType;
-  shape?: ButtonShapeType;
+  scheme?: SchemeType;
+  shape?: ShapeType;
   children?: ReactNode;
 }
 
@@ -34,7 +26,7 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   return (
-    <DefaultButton
+    <ButtonWrapper
       onClick={onClick}
       disabled={disabled}
       $isDisabled={disabled}
@@ -44,7 +36,7 @@ const Button = ({
       {...props}
     >
       {children}
-    </DefaultButton>
+    </ButtonWrapper>
   );
 };
 

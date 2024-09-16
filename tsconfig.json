@@ -4,8 +4,11 @@
     "paths": {
       "@atoms/*": ["src/atoms/*"],
       "@components/*": ["src/components/*"],
+      "@constants/*": ["src/constants/*"],
       "@hooks/*": ["src/hooks/*"],
       "@pages/*": ["src/pages/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@types/*": ["src/types/*"],
       "@routes/*": ["src/routes/*"],
       "@styles/*": ["src/styles/*"]
     },

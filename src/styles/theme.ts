@@ -40,6 +40,7 @@ const theme = {
     font: {
       white: colorScale.white,
       blue: colorScale.blue500,
+      lime: colorScale.lime400,
 
       black: colorScale.gray800,
       blackLight: colorScale.gray600,
@@ -47,7 +48,7 @@ const theme = {
       gray: colorScale.gray300,
     },
 
-    stroke: {
+    border: {
       gray075: colorScale.gray075,
       gray100: colorScale.gray100,
     },
@@ -101,28 +102,22 @@ const theme = {
 
   fonts: {
     // head
-    h1: fontGenerator("Pretendard", "1.5rem", "600", "1.75rem", "-0.015rem"),
-    h2: fontGenerator("Pretendard", "1.25rem", "600", "1.5rem", "-0.00625rem"),
-    h2_b: fontGenerator(
-      "Pretendard",
-      "1.25rem",
-      "700",
-      "1.5rem",
-      "-0.00625rem"
-    ),
-    h3: fontGenerator("Pretendard", "1rem", "600", "1.25rem", "-0.01rem"),
+    h1: fontGenerator("Pretendard", "1.5rem", "600", "1.75rem", "-0.24px"),
+    h2: fontGenerator("Pretendard", "1.25rem", "600", "1.5rem", "-0.1px"),
+    h2_b: fontGenerator("Pretendard", "1.25rem", "700", "1.5rem", "-0.1px"),
+    h3: fontGenerator("Pretendard", "1rem", "600", "1.25rem", "-0.16px"),
 
     // body
-    b1: fontGenerator("Pretendard", "1rem", "500", "1.5rem", "-0.01563rem"),
-    b2: fontGenerator("Pretendard", "0.875rem", "500", "-0.01563rem"),
-    b2_b: fontGenerator("Pretendard", "0.875rem", "600", "-0.03125rem"),
+    b1: fontGenerator("Pretendard", "1rem", "500", "1.5rem", "-0.25px"),
+    b2: fontGenerator("Pretendard", "0.875rem", "500", "-0.25px"),
+    b2_b: fontGenerator("Pretendard", "0.875rem", "600", "-0.5px"),
     b3: fontGenerator("Pretendard", "0.75rem", "500", "1rem"),
     b3_b: fontGenerator("Pretendard", "0.75rem", "600", "1rem"),
 
     // etc
-    btn: fontGenerator("Pretendard", "1rem", "700", "1.5rem", "-0.0125rem"),
-    chip: fontGenerator("Pretendard", "0.75rem", "700", "1rem", "-0.03125re"),
-    caption: fontGenerator("Pretendard", "0.625rem", "500", "0.75rem", ""),
+    btn: fontGenerator("Pretendard", "1rem", "700", "1.5rem", "-0.2px"),
+    chip: fontGenerator("Pretendard", "0.75rem", "700", "1rem", "-0.5px"),
+    caption: fontGenerator("Pretendard", "0.625rem", "500", "0.75rem"),
   },
 };
 

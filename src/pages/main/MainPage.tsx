@@ -1,50 +1,39 @@
-// component
-import ButtonLayout from "@components/button/ButtonLayout";
-import Button from "@components/button/Button";
-import useBottomsheet from "@hooks/useBottomsheet";
-import useModal from "@hooks/useModal";
+import { useRef } from "react";
+
+import * as S from "./MainPage.styled";
+import MainNavigation from "./_components/navigation/MainNavigation";
+import MainBoothListHeader from "./_components/boothList/MinaBoothListHeader";
+import MainBoothList from "./_components/boothList/MainBoothList";
 
 // hook
+import useMainNavigation from "@pages/main/_hooks/useMainNavigation";
+
+// constant
+import { MAIN_FIXED_COMPONENTS_HEIGHT } from "@constants/style";
 
 const MainPage = () => {
-  const { openBottomsheet } = useBottomsheet();
-  const { openModal } = useModal();
+  const mainBoothListRef = useRef<HTMLDivElement>(null);
+  const isFold = useMainNavigation(mainBoothListRef);
 
-  // 바텀시트를 여는 버튼
-  const OpenBottomsheetButton = () => {
-    return (
-      <Button
-        onClick={() =>
-          openBottomsheet({ children: <ModalBottomsheetContent /> })
-        }
-      >
-        바텀시트 열기 버튼
-      </Button>
-    );
-  };
-
-  // 바텀시트 내부 요소
-  const ModalBottomsheetContent = () => {
-    return (
-      <>
-        <h1>클릭해서 모달을 열어보세요!</h1>
-        <Button
-          onClick={() =>
-            openModal({
-              title: "잘하셨습니다.",
-              sub: "바텀시트와, 모달을 hook으로 \n손쉽게 관리해봐요.",
-            })
-          }
-        >
-          모달 열기 버튼
-        </Button>
-      </>
-    );
-  };
   return (
-    <div>
-      <OpenBottomsheetButton />
-    </div>
+    <>
+      <S.MainFixedComponentsWrapper>
+        <MainNavigation isFold={isFold} />
+        <MainBoothListHeader />
+      </S.MainFixedComponentsWrapper>
+
+      <S.MainFixedComponentBackgorund
+        style={{
+          height: `${
+            isFold
+              ? MAIN_FIXED_COMPONENTS_HEIGHT.fold
+              : MAIN_FIXED_COMPONENTS_HEIGHT.unfold
+          }`,
+        }}
+      />
+
+      <MainBoothList ref={mainBoothListRef} />
+    </>
   );
 };
 

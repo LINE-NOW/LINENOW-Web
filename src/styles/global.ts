@@ -1,34 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-// 폰트설정
-@font-face {
-    font-family:"Pretendard";
-    src: url("src/assets/fonts/PretendardVariable.woff2");
-}
-
-// 초기 html 설정
-html {
-	background-color: ${({ theme }) => theme.colors.background.blueLight};
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-	-webkit-touch-callout: none;
-    -webkit-tap-highlight-color:rgb(0 0 0 / 0%);
-    scroll-behavior: smooth; 
-}
-
-body {
-	width: 100%;
-	max-width: 540px;
-
-	min-height: 100vh;
-
-	overflow-x: hidden;
-
-	background-color: ${({ theme }) => theme.colors.background.white};
-	color: ${({ theme }) => theme.colors.font.black};
+a {
+	text-decoration-line: none;
 }
 
 html, body, div, span, applet, object, iframe,
@@ -43,13 +17,14 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed, 
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+time, mark, audio, video, button {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	background-color: transparent;
+	box-sizing: border-box;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -59,6 +34,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
+img{border:none}
 ol, ul {
 	list-style: none;
 }
@@ -75,6 +51,42 @@ table {
 	border-spacing: 0;
 }
 
+#root {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+// 폰트설정
+@font-face {
+    font-family:"Pretendard";
+    src: url("src/assets/fonts/PretendardVariable.woff2");
+}
+
+// 초기 html 설정
+html {
+	background-color: ${({ theme }) => theme.colors.background.blueLight};
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	-webkit-touch-callout: none;
+    -webkit-tap-highlight-color:rgb(0 0 0 / 0%);
+    scroll-behavior: smooth; 
+
+	@media (max-width: 360px) {
+		font-size:12px;
+	}
+}
+
+body {
+	width: 100%;
+	max-width: 540px;
+	/* min-height: 100vh; */
+	overflow-x: hidden;
+	background-color: ${({ theme }) => theme.colors.background.white};
+	color: ${({ theme }) => theme.colors.font.black};
+}
 
 `;
 

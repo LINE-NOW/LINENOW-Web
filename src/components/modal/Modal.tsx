@@ -1,11 +1,5 @@
 // component
-import {
-  ModalBackground,
-  ModalContainer,
-  ModalTextSub,
-  ModalTextTitle,
-  ModalTextWrapper,
-} from "./Modal.styled";
+import * as S from "./Modal.styled";
 
 import Button, { ButtonProps } from "@components/button/Button";
 import ButtonLayout from "@components/button/ButtonLayout";
@@ -25,13 +19,13 @@ const Modal = () => {
   const { closeModal, modal } = useModal();
 
   return modal.isOpen ? (
-    <ModalBackground>
-      <ModalContainer>
+    <S.ModalBackground>
+      <S.ModalContainer>
         {/* 텍스트 부분 */}
-        <ModalTextWrapper>
-          <ModalTextTitle>{modal.title}</ModalTextTitle>
-          <ModalTextSub>{modal.sub}</ModalTextSub>
-        </ModalTextWrapper>
+        <S.ModalTextWrapper>
+          <S.ModalTextTitle>{modal.title}</S.ModalTextTitle>
+          <S.ModalTextSub>{modal.sub}</S.ModalTextSub>
+        </S.ModalTextWrapper>
 
         {/* 버튼 부분 */}
         <ButtonLayout $col={2}>
@@ -55,8 +49,8 @@ const Modal = () => {
             {modal.primaryButton?.children || "확인"}
           </Button>
         </ButtonLayout>
-      </ModalContainer>
-    </ModalBackground>
+      </S.ModalContainer>
+    </S.ModalBackground>
   ) : null;
 };
 
