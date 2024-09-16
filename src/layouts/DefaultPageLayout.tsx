@@ -1,13 +1,14 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
+
+import Navigation from "@components/navigation/Navigation";
 
 const DefaultPageLayout = () => {
   return (
     <section>
-      <header>네비게이션</header>
+      <Navigation />
       <section>
         <Outlet />
       </section>
-      <footer>바텀 버튼</footer>
     </section>
   );
 };
