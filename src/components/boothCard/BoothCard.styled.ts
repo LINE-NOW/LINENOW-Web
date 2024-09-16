@@ -1,3 +1,4 @@
+import { onClickButtonAnimation } from "@styles/animation";
 import styled from "styled-components";
 
 export const BoothCardWrapper = styled.section`
@@ -13,11 +14,7 @@ export const BoothCardWrapper = styled.section`
   border-bottom: 1px solid;
   border-color: ${({ theme }) => theme.colors.border.gray075};
 
-  cursor: pointer;
-  transition: transform 0.3s;
-  &:hover {
-    transform: scale(1.05);
-  }
+  ${onClickButtonAnimation}
 `;
 
 export const BoothCardInformationWrapper = styled.div`
@@ -26,10 +23,12 @@ export const BoothCardInformationWrapper = styled.div`
 `;
 export const BoothCardInformationImage = styled.img`
   flex-shrink: 0;
+
   width: 4.5rem;
   height: 4.5rem;
 
   border-radius: 0.25rem;
+
   background-color: ${({ theme }) => theme.colors.background.blueLight};
 `;
 
