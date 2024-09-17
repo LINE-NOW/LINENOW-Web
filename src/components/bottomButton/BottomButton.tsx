@@ -7,20 +7,28 @@ interface BottomButtonProps {
   children?: ReactNode;
   informationTitle?: string;
   informationSub?: string;
+  waitingCancle?: string;
 }
 const BottomButton = ({
   children,
   informationTitle,
   informationSub,
+  waitingCancle,
 }: BottomButtonProps) => {
   return (
     <S.BottomButtonWrapper>
-      <S.BottomButtonInformationWrapper>
-        <span>{informationTitle}</span>
-        <span className="blue">{informationSub}</span>
-      </S.BottomButtonInformationWrapper>
-
+      {(informationTitle || informationSub) && (
+        <S.BottomButtonInformationWrapper>
+          <span>{informationTitle}</span>
+          <span className="blue">{informationSub}</span>
+        </S.BottomButtonInformationWrapper>
+      )}
       <ButtonLayout $col={1}>{children}</ButtonLayout>
+      {waitingCancle && (
+        <S.BottomButtonWaitingCancle>
+          <span>{waitingCancle}</span>
+        </S.BottomButtonWaitingCancle>
+      )}
     </S.BottomButtonWrapper>
   );
 };
