@@ -3,7 +3,13 @@ import * as A from "@styles/animation";
 
 import { Link } from "react-router-dom";
 
-export const BoothCardWrapper = styled(Link)`
+interface BoothCardWrapperProps {
+  borderBottom?: string;
+  padding?: string;
+  animation?: boolean;
+}
+
+export const BoothCardWrapper = styled(Link)<BoothCardWrapperProps>`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -11,12 +17,12 @@ export const BoothCardWrapper = styled(Link)`
   width: 100%;
   box-sizing: border-box;
 
-  padding: 0.75rem 0.25rem 1rem 0.25rem;
+  padding: ${({ padding }) => padding || `0.75rem 0.25rem 1rem 0.25rem`};
 
-  border-bottom: 1px solid;
-  border-color: ${({ theme }) => theme.colors.border.gray075};
+  border-bottom: ${({ borderBottom, theme }) =>
+    borderBottom || `1px solid ${theme.colors.border.gray075}`};
 
-  ${A.onClickButtonAnimation}
+  ${({ animation }) => (animation ? A.onClickButtonAnimation : "")};
 `;
 
 export const BoothCardInformationWrapper = styled.div`

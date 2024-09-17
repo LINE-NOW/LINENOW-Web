@@ -1,10 +1,28 @@
 import IconLabel from "@components/label/IconLabel";
 import * as S from "./BoothCard.styled";
-import Chip from "@components/chip/Chip";
 
-const BoothCard = () => {
+interface BoothCardProps {
+  chip?: React.ReactNode;
+  borderBottom?: string;
+  padding?: string;
+  to?: string;
+  animation?: boolean;
+}
+
+const BoothCard = ({
+  chip,
+  borderBottom,
+  padding,
+  to,
+  animation = true,
+}: BoothCardProps) => {
   return (
-    <S.BoothCardWrapper to="booth/1">
+    <S.BoothCardWrapper
+      to={to || "#"}
+      borderBottom={borderBottom}
+      padding={padding}
+      animation={!!to && animation}
+    >
       <S.BoothCardInformationWrapper>
         <S.BoothCardInformationImage />
         <S.BoothCardInformationLabelWrapper>
@@ -29,10 +47,7 @@ const BoothCard = () => {
         </S.BoothCardInformationLabelWrapper>
       </S.BoothCardInformationWrapper>
 
-      <S.BoothCardChipListWrapper>
-        <Chip scheme="lime">대기중</Chip>
-        <Chip scheme="blueLight">대기 12 팀</Chip>
-      </S.BoothCardChipListWrapper>
+      {chip && <S.BoothCardChipListWrapper>{chip}</S.BoothCardChipListWrapper>}
     </S.BoothCardWrapper>
   );
 };
