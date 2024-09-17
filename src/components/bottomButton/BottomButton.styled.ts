@@ -43,16 +43,21 @@ export const BottomButtonWaitingCancle = styled.div`
   display: flex;
   justify-content: center;
 
-  padding: 4px 0px;
+  padding: 0.25rem 0px;
 
   color: ${({ theme }) => theme.colors.font.gray};
 
   span {
-    padding-bottom: 2px;
+    padding-bottom: 0.125rem;
 
     border-bottom: 1px solid;
     border-color: ${({ theme }) => theme.colors.border.gray100};
 
     cursor: pointer;
   }
+`;
+
+export const BottomButtonPadding = styled.div<{ $height: number }>`
+  height: ${({ $height }) => ($height + 10) / 16}rem;
+  flex-shrink: 0;
 `;

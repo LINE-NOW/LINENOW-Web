@@ -1,4 +1,3 @@
-import { useRef, useEffect, useState } from "react";
 import * as S from "./WaitingDetailPage.styled";
 import BoothCard from "@components/boothCard/BoothCard";
 import BottomButton from "@components/bottomButton/BottomButton";
@@ -7,31 +6,19 @@ import Separator from "@components/separator/Separator";
 import WaitingDetailCaution from "./_components/WaitingDetailCaution";
 
 const WaitingDetailPage = () => {
-  const [bottomButtonHeight, setBottomButtonHeight] = useState(0);
-  const bottomButtonRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (bottomButtonRef.current) {
-      setBottomButtonHeight(bottomButtonRef.current.offsetHeight);
-    }
-  }, [bottomButtonRef.current]);
-
   return (
     <>
       <S.WaitingDetailPageBoothCardWrapper>
         <S.WaitingDetailPageBoothCard>
-          <BoothCard borderBottom="none" padding="1rem" />
+          <BoothCard type="detail" />
         </S.WaitingDetailPageBoothCard>
       </S.WaitingDetailPageBoothCardWrapper>
 
       <Separator />
 
-      <S.WaitingDetailPageContent $paddingBottom={bottomButtonHeight}>
-        <WaitingDetailCaution />
-      </S.WaitingDetailPageContent>
+      <WaitingDetailCaution />
 
       <BottomButton
-        ref={bottomButtonRef}
         informationTitle="전체 줄"
         informationSub="123팀"
         waitingCancle="대기 취소하기"

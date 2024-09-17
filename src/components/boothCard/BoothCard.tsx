@@ -2,6 +2,7 @@ import IconLabel from "@components/label/IconLabel";
 import * as S from "./BoothCard.styled";
 
 interface BoothCardProps {
+  type: "list" | "detail";
   chip?: React.ReactNode;
   borderBottom?: string;
   padding?: string;
@@ -10,6 +11,7 @@ interface BoothCardProps {
 }
 
 const BoothCard = ({
+  type,
   chip,
   borderBottom,
   padding,
@@ -18,6 +20,7 @@ const BoothCard = ({
 }: BoothCardProps) => {
   return (
     <S.BoothCardWrapper
+      type={type}
       to={to || "#"}
       $borderBottom={borderBottom}
       padding={padding}

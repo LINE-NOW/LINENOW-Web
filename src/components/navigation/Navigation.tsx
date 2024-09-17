@@ -7,13 +7,15 @@ const Navigation = () => {
   const location = useLocation();
 
   const getNavigationTitle = () => {
+    if (location.pathname.startsWith("/waiting/")) {
+      return <S.NavigationLabel>나의 줄서기 정보</S.NavigationLabel>;
+    }
+
     switch (location.pathname) {
       case "/my-waiting":
         return <S.NavigationLabel>나의 줄서기</S.NavigationLabel>;
       case "/setting":
         return <S.NavigationLabel>설정</S.NavigationLabel>;
-      case "/waiting/1":
-        return <S.NavigationLabel>나의 줄서기 정보</S.NavigationLabel>;
       default:
         return null;
     }

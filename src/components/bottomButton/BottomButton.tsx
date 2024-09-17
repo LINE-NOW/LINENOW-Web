@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as S from "./BottomButton.styled";
 import ButtonLayout from "@components/button/ButtonLayout";
 
@@ -9,9 +9,22 @@ interface BottomButtonProps {
   waitingCancle?: string;
 }
 
-const BottomButton = forwardRef<HTMLDivElement, BottomButtonProps>(
-  ({ children, informationTitle, informationSub, waitingCancle }, ref) => {
-    return (
+const BottomButton = ({
+  informationTitle,
+  informationSub,
+  waitingCancle,
+  children,
+}: BottomButtonProps) => {
+  const [height, setHeight] = useState<number>(0);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (ref.current) {
+      setHeight(ref.current.offsetHeight);
+    }
+  }, [ref.current]);
+  return (
+    <>
       <S.BottomButtonWrapper ref={ref}>
         {(informationTitle || informationSub) && (
           <S.BottomButtonInformationWrapper>
@@ -26,8 +39,8 @@ const BottomButton = forwardRef<HTMLDivElement, BottomButtonProps>(
           </S.BottomButtonWaitingCancle>
         )}
       </S.BottomButtonWrapper>
-    );
-  }
-);
-
+      <S.BottomButtonPadding $height={height} />
+    </>
+  );
+};
 export default BottomButton;

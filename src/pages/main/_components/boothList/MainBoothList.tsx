@@ -14,6 +14,7 @@ const MainBoothList = forwardRef<HTMLDivElement, {}>((props, ref) => {
           </>
         }
         to="/waiting/1"
+        type="list"
       />
       <BoothCard
         chip={
@@ -23,6 +24,7 @@ const MainBoothList = forwardRef<HTMLDivElement, {}>((props, ref) => {
           </>
         }
         to="/waiting/1"
+        type="list"
       />
       <BoothCard
         chip={
@@ -32,6 +34,7 @@ const MainBoothList = forwardRef<HTMLDivElement, {}>((props, ref) => {
           </>
         }
         to="/waiting/1"
+        type="list"
       />
       <BoothCard
         chip={
@@ -41,6 +44,7 @@ const MainBoothList = forwardRef<HTMLDivElement, {}>((props, ref) => {
           </>
         }
         to="/waiting/1"
+        type="list"
       />
       <BoothCard
         chip={
@@ -50,6 +54,7 @@ const MainBoothList = forwardRef<HTMLDivElement, {}>((props, ref) => {
           </>
         }
         to="/waiting/1"
+        type="list"
       />
       <div style={{ height: "24px", width: "100%" }} />
     </S.MainBoothListScrollContainer>

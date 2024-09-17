@@ -12,6 +12,7 @@ export const WaitingDetailPageBoothCard = styled.div`
   border-radius: 8px;
 `;
 
-export const WaitingDetailPageContent = styled.div<{ $paddingBottom: number }>`
-  padding-bottom: ${({ $paddingBottom }) => $paddingBottom + 10}px;
-`;
+// export const WaitingDetailPageContent = styled.div<{ $paddingBottom: number }>`
+//   padding-bottom: ${({ $paddingBottom }) =>
+//     `calc(${$paddingBottom}px + 0.625rem)`};
+// `;

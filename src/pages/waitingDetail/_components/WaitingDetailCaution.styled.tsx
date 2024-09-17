@@ -4,16 +4,16 @@ export const WaitingDetailCautionWrapper = styled.div`
   padding: 16px;
 `;
 
-export const WaitingDetailCautionTitle = styled.div`
+export const WaitingDetailCautionTitle = styled.h3`
   width: 100%;
 
-  padding: 0px 4px 12px 4px;
-  margin-bottom: 16px;
+  padding: 0rem 0.25rem 0.75rem 0.25rem;
+  margin-bottom: 1rem;
 
-  border-bottom: 1px solid;
+  border-bottom: 0.0625rem solid;
   border-color: ${({ theme }) => theme.colors.border.gray075};
 
-  ${({ theme }) => theme.fonts.h3}
+  ${({ theme }) => theme.fonts.h3};
 `;
 
 export const WaitingDetailCautionItemWrapper = styled.div`
@@ -28,7 +28,7 @@ export const WaitingDetailCautionItemContainer = styled.div`
   gap: 1.5rem;
 `;
 
-export const WaitingDetailCautionItemImg = styled.div`
+export const WaitingDetailCautionItemImg = styled.img`
   flex-shrink: 0;
 
   width: 4.5rem;

@@ -1,15 +1,17 @@
 import * as S from "./WaitingDetailCaution.styled";
 
 interface WaitingDetailCautionItemProps {
-  content: string;
+  content: React.ReactNode;
+  imgSrc: string;
 }
 
 const WaitingDetailCautionItem = ({
   content,
+  imgSrc,
 }: WaitingDetailCautionItemProps) => {
   return (
     <S.WaitingDetailCautionItemWrapper>
-      <S.WaitingDetailCautionItemImg />
+      <S.WaitingDetailCautionItemImg src={imgSrc} />
       <S.WaitingDetailCautionItemContent>
         {content}
       </S.WaitingDetailCautionItemContent>
