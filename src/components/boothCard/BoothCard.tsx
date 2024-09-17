@@ -19,9 +19,9 @@ const BoothCard = ({
   return (
     <S.BoothCardWrapper
       to={to || "#"}
-      borderBottom={borderBottom}
+      $borderBottom={borderBottom}
       padding={padding}
-      animation={!!to && animation}
+      $animation={!!to && animation}
     >
       <S.BoothCardInformationWrapper>
         <S.BoothCardInformationImage />

@@ -4,9 +4,9 @@ import * as A from "@styles/animation";
 import { Link } from "react-router-dom";
 
 interface BoothCardWrapperProps {
-  borderBottom?: string;
+  $borderBottom?: string;
   padding?: string;
-  animation?: boolean;
+  $animation?: boolean;
 }
 
 export const BoothCardWrapper = styled(Link)<BoothCardWrapperProps>`
@@ -19,10 +19,10 @@ export const BoothCardWrapper = styled(Link)<BoothCardWrapperProps>`
 
   padding: ${({ padding }) => padding || `0.75rem 0.25rem 1rem 0.25rem`};
 
-  border-bottom: ${({ borderBottom, theme }) =>
-    borderBottom || `1px solid ${theme.colors.border.gray075}`};
+  border-bottom: ${({ $borderBottom, theme }) =>
+    $borderBottom || `1px solid ${theme.colors.border.gray075}`};
 
-  ${({ animation }) => (animation ? A.onClickButtonAnimation : "")};
+  ${({ $animation }) => ($animation ? A.onClickButtonAnimation : "")};
 `;
 
 export const BoothCardInformationWrapper = styled.div`

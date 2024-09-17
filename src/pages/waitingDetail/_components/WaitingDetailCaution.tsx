@@ -1,5 +1,5 @@
 import * as S from "./WaitingDetailCaution.styled";
-import WaitingDetailCautionItem from "./waitingDetailCautionItem";
+import WaitingDetailCautionItem from "./WaitingDetailCautionItem";
 
 const WaitingDetailCaution = () => {
   const contents = [

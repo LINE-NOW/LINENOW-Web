@@ -26,7 +26,7 @@ const WaitingDetailPage = () => {
 
       <Separator />
 
-      <S.WaitingDetailPageContent paddingBottom={bottomButtonHeight}>
+      <S.WaitingDetailPageContent $paddingBottom={bottomButtonHeight}>
         <WaitingDetailCaution />
       </S.WaitingDetailPageContent>
 
