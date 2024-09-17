@@ -38,3 +38,21 @@ export const BottomButtonInformationWrapper = styled.div`
     color: ${({ theme }) => theme.colors.font.blue};
   }
 `;
+
+export const BottomButtonWaitingCancle = styled.div`
+  display: flex;
+  justify-content: center;
+
+  padding: 4px 0px;
+
+  color: ${({ theme }) => theme.colors.font.gray};
+
+  span {
+    padding-bottom: 2px;
+
+    border-bottom: 1px solid;
+    border-color: ${({ theme }) => theme.colors.border.gray100};
+
+    cursor: pointer;
+  }
+`;
