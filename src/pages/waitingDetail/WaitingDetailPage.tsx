@@ -2,6 +2,7 @@ import * as S from "./WaitingDetailPage.styled";
 import BoothCard from "@components/boothCard/BoothCard";
 import BottomButton from "@components/bottomButton/BottomButton";
 import Button from "@components/button/Button";
+import Separator from "@components/separator/Separator";
 
 const WaitingDetailPage = () => {
   return (
@@ -21,6 +22,7 @@ const WaitingDetailPage = () => {
           <span>123팀</span>
         </Button>
       </BottomButton>
+      <Separator />
     </>
   );
 };
