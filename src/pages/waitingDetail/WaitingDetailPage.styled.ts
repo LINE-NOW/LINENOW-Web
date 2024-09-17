@@ -11,3 +11,7 @@ export const WaitingDetailPageBoothCard = styled.div`
   border-color: ${({ theme }) => theme.colors.border.gray100};
   border-radius: 8px;
 `;
+
+export const WaitingDetailPageContent = styled.div<{ paddingBottom: number }>`
+  padding-bottom: ${({ paddingBottom }) => paddingBottom + 10}px;
+`;
