@@ -6,16 +6,12 @@ interface BottomButtonProps {
   children?: React.ReactNode;
   informationTitle?: string;
   informationSub?: string;
-  waitingCancel?: string;
-  onWaitingCancelClick?: () => void;
 }
 
 const BottomButton = ({
   informationTitle,
   informationSub,
-  waitingCancel,
   children,
-  onWaitingCancelClick,
 }: BottomButtonProps) => {
   const [height, setHeight] = useState<number>(0);
   const ref = useRef<HTMLDivElement>(null);
@@ -24,7 +20,8 @@ const BottomButton = ({
     if (ref.current) {
       setHeight(ref.current.offsetHeight);
     }
-  }, [ref.current]);
+  }, []);
+
   return (
     <>
       <S.BottomButtonWrapper ref={ref}>
@@ -35,14 +32,10 @@ const BottomButton = ({
           </S.BottomButtonInformationWrapper>
         )}
         <ButtonLayout $col={1}>{children}</ButtonLayout>
-        {waitingCancel && (
-          <S.BottomButtonWaitingCancle>
-            <span onClick={onWaitingCancelClick}>{waitingCancel}</span>
-          </S.BottomButtonWaitingCancle>
-        )}
       </S.BottomButtonWrapper>
       <S.BottomButtonPadding $height={height} />
     </>
   );
 };
+
 export default BottomButton;

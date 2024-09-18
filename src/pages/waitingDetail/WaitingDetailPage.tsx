@@ -36,16 +36,14 @@ const WaitingDetailPage = () => {
 
       <WaitingDetailCaution />
 
-      <BottomButton
-        informationTitle="전체 줄"
-        informationSub="123팀"
-        waitingCancel="대기 취소하기"
-        onWaitingCancelClick={onWaitingCancelClick}
-      >
+      <BottomButton informationTitle="전체 줄" informationSub="123팀">
         <Button scheme="blueLight">
           <span>내 앞으로 지금</span>
           <span>123팀</span>
         </Button>
+        <S.WaitingDetailCancel>
+          <span onClick={onWaitingCancelClick}>대기 취소하기</span>
+        </S.WaitingDetailCancel>
       </BottomButton>
     </>
   );

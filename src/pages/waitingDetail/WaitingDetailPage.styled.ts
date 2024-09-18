@@ -12,7 +12,20 @@ export const WaitingDetailPageBoothCard = styled.div`
   border-radius: 8px;
 `;
 
-// export const WaitingDetailPageContent = styled.div<{ $paddingBottom: number }>`
-//   padding-bottom: ${({ $paddingBottom }) =>
-//     `calc(${$paddingBottom}px + 0.625rem)`};
-// `;
+export const WaitingDetailCancel = styled.div`
+  display: flex;
+  justify-content: center;
+
+  padding: 0.25rem 0px;
+
+  color: ${({ theme }) => theme.colors.font.gray};
+
+  span {
+    padding-bottom: 0.125rem;
+
+    border-bottom: 1px solid;
+    border-color: ${({ theme }) => theme.colors.border.gray100};
+
+    cursor: pointer;
+  }
+`;
