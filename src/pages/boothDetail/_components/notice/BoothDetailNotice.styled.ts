@@ -2,22 +2,19 @@ import styled from "styled-components";
 
 export const BoothDetailNoticeWrapper = styled.section`
   display: flex;
-  gap: 16px;
+  gap: 1rem;
   flex-direction: column;
 
-  padding: 24px 16px;
+  padding: 1.5rem 1rem;
 `;
 
 export const BoothDetailNoticeArticle = styled.article`
   display: flex;
   overflow: hidden;
-  color: ${({ theme }) => theme.colors.font.blackLight};
-  text-overflow: ellipsis;
-  white-space: nowrap;
 
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: -0.25px;
+  color: ${({ theme }) => theme.colors.font.blackLight};
+
+  ${({ theme }) => theme.fonts.b2}
+  text-overflow: ellipsis;
+  white-space: pre-line;
 `;

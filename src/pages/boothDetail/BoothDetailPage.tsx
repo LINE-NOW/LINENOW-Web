@@ -1,4 +1,3 @@
-import * as S from "./BoothDetailPage.styled";
 import BottomButton from "@components/bottomButton/BottomButton";
 import Button from "@components/button/Button";
 import Separator from "@components/separator/Separator";
@@ -20,10 +19,7 @@ import {
 const BoothDetailPage = () => {
   const boothID = useBoothID() ?? "";
   return (
-    <S.BoothDetailWrapper>
-      <BottomButton informationTitle="전체 줄" informationSub="123 팀">
-        <Button>대기걸기</Button>
-      </BottomButton>
+    <>
       <BoothDetailCard boothID={boothID} activeIndex={0} />
       <BoothDetailContent
         boothTitle={BOOTH_TITLE}
@@ -33,7 +29,10 @@ const BoothDetailPage = () => {
       <Separator />
       <BoothDetailNotice article={BOOTH_NOTICE_ARTICLE}></BoothDetailNotice>
       <BoothDetailMenu menuInfo={BOOTH_MENU_INFO}></BoothDetailMenu>
-    </S.BoothDetailWrapper>
+      <BottomButton informationTitle="전체 줄" informationSub="123 팀">
+        <Button>대기걸기</Button>
+      </BottomButton>
+    </>
   );
 };
 

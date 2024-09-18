@@ -1,18 +1,17 @@
 import styled from "styled-components";
 
 export const BoothDetailMenuLayout = styled.section`
-  padding: 24px 16px;
   display: flex;
-  gap: 16px;
+  gap: 1rem;
   flex-direction: column;
-  margin-bottom: 10rem;
+
+  padding: 1.5rem 1rem;
 `;
 
 export const BoothDetailMenuWrapper = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  width: 95%;
+  gap: 0.625rem;
 `;
 
 export const BoothDetailMenuArticleWrapper = styled.div`
@@ -27,7 +26,5 @@ export const BoothDetailMenuArticle = styled.article`
   text-overflow: ellipsis;
 
   color: ${({ theme }) => theme.colors.font.blackLight};
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
+  ${({ theme }) => theme.fonts.b2}
 `;

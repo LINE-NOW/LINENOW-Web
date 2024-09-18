@@ -4,7 +4,7 @@ export const BoothDetailCardWrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 0.75rem;
 
   width: 100%;
   max-width: 540px;
@@ -18,14 +18,14 @@ export const BoothDetailCardIndicatorWrapper = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
 
   width: 100%;
 `;
 
 export const BoothDetailCardIndicator = styled.div<{ $active: boolean }>`
-  width: 4px;
-  height: 4px;
+  width: 0.25rem;
+  height: 0.25rem;
 
   border-radius: 50%;
 
