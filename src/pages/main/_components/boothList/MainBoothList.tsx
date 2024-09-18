@@ -1,15 +1,61 @@
 import { forwardRef } from "react";
 import * as S from "./MainBoothList.styled";
 import BoothCard from "@components/boothCard/BoothCard";
+import Chip from "@components/chip/Chip";
 
 const MainBoothList = forwardRef<HTMLDivElement, {}>((props, ref) => {
   return (
     <S.MainBoothListScrollContainer ref={ref}>
-      <BoothCard />
-      <BoothCard />
-      <BoothCard />
-      <BoothCard />
-      <BoothCard />
+      <BoothCard
+        chip={
+          <>
+            <Chip scheme="lime">대기중</Chip>
+            <Chip scheme="blueLight">대기 12 팀</Chip>
+          </>
+        }
+        to="/waiting/1"
+        type="list"
+      />
+      <BoothCard
+        chip={
+          <>
+            <Chip scheme="lime">대기중</Chip>
+            <Chip scheme="blueLight">대기 12 팀</Chip>
+          </>
+        }
+        to="/waiting/1"
+        type="list"
+      />
+      <BoothCard
+        chip={
+          <>
+            <Chip scheme="lime">대기중</Chip>
+            <Chip scheme="blueLight">대기 12 팀</Chip>
+          </>
+        }
+        to="/waiting/1"
+        type="list"
+      />
+      <BoothCard
+        chip={
+          <>
+            <Chip scheme="lime">대기중</Chip>
+            <Chip scheme="blueLight">대기 12 팀</Chip>
+          </>
+        }
+        to="/waiting/1"
+        type="list"
+      />
+      <BoothCard
+        chip={
+          <>
+            <Chip scheme="lime">대기중</Chip>
+            <Chip scheme="blueLight">대기 12 팀</Chip>
+          </>
+        }
+        to="/waiting/1"
+        type="list"
+      />
       <div style={{ height: "24px", width: "100%" }} />
     </S.MainBoothListScrollContainer>
   );
