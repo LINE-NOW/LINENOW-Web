@@ -1,8 +1,10 @@
 import IconLabel from "@components/label/IconLabel";
 import * as S from "./BoothCard.styled";
 
+export type BoothCardType = "list" | "detail";
+
 interface BoothCardProps {
-  type: "list" | "detail";
+  type?: BoothCardType;
   chip?: React.ReactNode;
   borderBottom?: string;
   padding?: string;
@@ -11,7 +13,7 @@ interface BoothCardProps {
 }
 
 const BoothCard = ({
-  type,
+  type = "list",
   chip,
   borderBottom,
   padding,
