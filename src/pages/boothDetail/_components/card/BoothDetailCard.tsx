@@ -18,7 +18,7 @@ export const BoothDetailCard = ({
         {[0, 1, 2, 3].map((index) => (
           <S.BoothDetailCardIndicator
             key={index}
-            active={index === activeIndex}
+            $active={index === activeIndex}
           />
         ))}
       </S.BoothDetailCardIndicatorWrapper>

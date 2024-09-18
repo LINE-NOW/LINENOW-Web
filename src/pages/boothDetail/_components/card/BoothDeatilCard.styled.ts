@@ -23,14 +23,14 @@ export const BoothDetailCardIndicatorWrapper = styled.section`
   width: 100%;
 `;
 
-export const BoothDetailCardIndicator = styled.div<{ active: boolean }>`
+export const BoothDetailCardIndicator = styled.div<{ $active: boolean }>`
   width: 4px;
   height: 4px;
 
   border-radius: 50%;
 
-  background-color: ${({ active, theme }) =>
-    active
+  background-color: ${({ $active, theme }) =>
+    $active
       ? theme.colors.scheme.blue.background
       : theme.colors.background.grayLight};
 

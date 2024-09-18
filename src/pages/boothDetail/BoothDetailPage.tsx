@@ -1,6 +1,6 @@
 import BottomButton from "@components/bottomButton/BottomButton";
 import Button from "@components/button/Button";
-
+import Separator from "@components/separator/Separator";
 import useBoothID from "./_hooks/useBoothID";
 import { BoothDetailCard, BoothDetailContent } from "./_components";
 import {
@@ -22,6 +22,7 @@ const BoothDetailPage = () => {
         boothSummary={BOOTH_SUMMARY}
         boothLocationInfo={BOOTH_LOCATION_INFO}
       />
+      <Separator />
     </>
   );
 };

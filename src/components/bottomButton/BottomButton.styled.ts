@@ -58,6 +58,6 @@ export const BottomButtonWaitingCancle = styled.div`
 `;
 
 export const BottomButtonPadding = styled.div<{ $height: number }>`
-  height: ${({ $height }) => ($height + 10) / 16}rem;
+  /* height: ${({ $height }) => ($height + 10) / 16}rem; */
   flex-shrink: 0;
 `;
