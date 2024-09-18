@@ -7,12 +7,14 @@ import {
   BoothDetailCard,
   BoothDetailContent,
   BoothDetailNotice,
+  BoothDetailMenu,
 } from "./_components";
 import {
   BOOTH_TITLE,
   BOOTH_SUMMARY,
   BOOTH_LOCATION_INFO,
   BOOTH_NOTICE_ARTICLE,
+  BOOTH_MENU_INFO,
 } from "@constants/booth";
 
 const BoothDetailPage = () => {
@@ -30,6 +32,7 @@ const BoothDetailPage = () => {
       />
       <Separator />
       <BoothDetailNotice article={BOOTH_NOTICE_ARTICLE}></BoothDetailNotice>
+      <BoothDetailMenu menuInfo={BOOTH_MENU_INFO}></BoothDetailMenu>
     </S.BoothDetailWrapper>
   );
 };
