@@ -13,7 +13,7 @@ const MainBoothList = forwardRef<HTMLDivElement, {}>((props, ref) => {
             <Chip scheme="blueLight">대기 12 팀</Chip>
           </>
         }
-        to="/waiting/1"
+        to="/booth/1"
         type="list"
       />
       <BoothCard
@@ -23,7 +23,7 @@ const MainBoothList = forwardRef<HTMLDivElement, {}>((props, ref) => {
             <Chip scheme="blueLight">대기 12 팀</Chip>
           </>
         }
-        to="/waiting/1"
+        to="/booth/1"
         type="list"
       />
       <BoothCard
@@ -33,7 +33,7 @@ const MainBoothList = forwardRef<HTMLDivElement, {}>((props, ref) => {
             <Chip scheme="blueLight">대기 12 팀</Chip>
           </>
         }
-        to="/waiting/1"
+        to="/booth/1"
         type="list"
       />
       <BoothCard
@@ -43,7 +43,7 @@ const MainBoothList = forwardRef<HTMLDivElement, {}>((props, ref) => {
             <Chip scheme="blueLight">대기 12 팀</Chip>
           </>
         }
-        to="/waiting/1"
+        to="/booth/1"
         type="list"
       />
       <BoothCard
@@ -53,7 +53,7 @@ const MainBoothList = forwardRef<HTMLDivElement, {}>((props, ref) => {
             <Chip scheme="blueLight">대기 12 팀</Chip>
           </>
         }
-        to="/waiting/1"
+        to="/booth/1"
         type="list"
       />
       <div style={{ height: "24px", width: "100%" }} />
