@@ -19,14 +19,20 @@ const SettingPage = () => {
     });
   };
 
+  const settingItemProps = [
+    { title: '로그아웃', onClick: handleLogoutClick },
+    { title: '언어설정' },
+    { title: '이용약관' },
+    { title: '1:1 문의' },
+    { title: '개발자 정보' },
+  ];
+
   return (
     <S.SettingComponentsWrapper>
       <S.SettingContentWrapper>
-        <SettingItem title="로그아웃" onClick={handleLogoutClick} />
-        <SettingItem title="언어설정" />
-        <SettingItem title="이용약관" />
-        <SettingItem title="1:1 문의" />
-        <SettingItem title="개발자 정보" />
+        {settingItemProps.map((item, index) => (
+          <SettingItem key={index} {...item} />
+        ))}
       </S.SettingContentWrapper>
       <SettingDeleteID />
     </S.SettingComponentsWrapper>
