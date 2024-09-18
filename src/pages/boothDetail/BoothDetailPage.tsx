@@ -1,13 +1,37 @@
 import BottomButton from "@components/bottomButton/BottomButton";
 import Button from "@components/button/Button";
+import Separator from "@components/separator/Separator";
+import useBoothID from "./_hooks/useBoothID";
+import {
+  BoothDetailCard,
+  BoothDetailContent,
+  BoothDetailNotice,
+  BoothDetailMenu,
+} from "./_components";
+import {
+  BOOTH_TITLE,
+  BOOTH_SUMMARY,
+  BOOTH_LOCATION_INFO,
+  BOOTH_NOTICE_ARTICLE,
+  BOOTH_MENU_INFO,
+} from "@constants/booth";
 
 const BoothDetailPage = () => {
+  const boothID = useBoothID() ?? "";
   return (
     <>
+      <BoothDetailCard boothID={boothID} activeIndex={0} />
+      <BoothDetailContent
+        boothTitle={BOOTH_TITLE}
+        boothSummary={BOOTH_SUMMARY}
+        boothLocationInfo={BOOTH_LOCATION_INFO}
+      />
+      <Separator />
+      <BoothDetailNotice article={BOOTH_NOTICE_ARTICLE}></BoothDetailNotice>
+      <BoothDetailMenu menuInfo={BOOTH_MENU_INFO}></BoothDetailMenu>
       <BottomButton informationTitle="전체 줄" informationSub="123 팀">
         <Button>대기걸기</Button>
       </BottomButton>
-      <div>부스 디테일 페이지</div>
     </>
   );
 };
