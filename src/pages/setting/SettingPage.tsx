@@ -6,17 +6,19 @@ import useModal from '@hooks/useModal';
 const SettingPage = () => {
   const { openModal } = useModal();
 
+  const logoutModalProps = {
+    title: '로그아웃',
+    sub: '취소하면 레전드 다시 서야합니다.\n 취소하면 레전드 다시 서야합니다.',
+    primaryButton: {
+      children: '로그아웃하기',
+    },
+    secondButton: {
+      children: '취소하기',
+    },
+  };
+
   const handleLogoutClick = () => {
-    openModal({
-      title: '로그아웃',
-      sub: '취소하면 레전드 다시 서야합니다.\n 취소하면 레전드 다시 서야합니다.',
-      primaryButton: {
-        children: '로그아웃하기',
-      },
-      secondButton: {
-        children: '취소하기',
-      },
-    });
+    openModal(logoutModalProps);
   };
 
   const settingItemProps = [
