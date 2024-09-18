@@ -6,7 +6,7 @@ export const SettingDeleteIDComponentWrapper = styled.div`
   padding: 0.75rem 0.25rem;
 `;
 
-export const SettingDeleteIDComponentText = styled.span`
+export const SettingDeleteIDComponentText = styled.button`
   ${({ theme }) => theme.fonts.chip};
   color: ${({ theme }) => theme.colors.font.gray};
 
