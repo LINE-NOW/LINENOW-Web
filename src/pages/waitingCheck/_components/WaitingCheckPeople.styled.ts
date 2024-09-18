@@ -43,3 +43,21 @@ export const Circle = styled.div<{ $isChecked: boolean }>`
     margin-right: 0;
   }
 `;
+
+export const CheckBoxWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.75rem;
+  cursor: pointer;
+
+  span {
+    ${({ theme }) => theme.fonts.h3};
+    color: ${({ theme }) => theme.colors.font.black};
+  }
+`;
+
+export const CheckBoxImage = styled.img`
+  width: 24px;
+  height: 24px;
+  margin-right: 0.5rem;
+`;

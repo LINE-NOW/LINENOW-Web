@@ -2,12 +2,15 @@ import InfoBottomButton from "@components/infobottomButton/InfoBottomButton";
 import WaitingCheckPeople from "./WaitingCheckPeople";
 import Button from "@components/button/Button";
 import ButtonLayout from "@components/button/ButtonLayout";
+import { useNavigate } from "react-router-dom";
 
 interface WaitingCheckModalProps {
   onClose: () => void;
 }
 
 const WaitingCheckModal = ({ onClose }: WaitingCheckModalProps) => {
+  const navigate = useNavigate();
+
   const handleCancel = () => {
     console.log("취소 버튼 클릭");
     onClose();
@@ -15,6 +18,7 @@ const WaitingCheckModal = ({ onClose }: WaitingCheckModalProps) => {
 
   const handleConfirm = () => {
     console.log("확인 버튼 클릭");
+    navigate("/check");
   };
 
   return (

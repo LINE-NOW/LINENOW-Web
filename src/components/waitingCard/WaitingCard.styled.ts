@@ -1,8 +1,14 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import * as A from "@styles/animation";
 import { Link } from "react-router-dom";
+import { WaitingCardType } from "./WaitingCard";
 
-export const WaitingCardWrapper = styled(Link)`
+interface WaitingCardWrapperProps {
+  type?: WaitingCardType;
+  $animation?: boolean;
+}
+
+export const WaitingCardWrapper = styled(Link)<WaitingCardWrapperProps>`
   flex-direction: column;
 
   padding: 1.25rem 1rem;
@@ -12,7 +18,9 @@ export const WaitingCardWrapper = styled(Link)`
 
   background-color: ${({ theme }) => theme.colors.background.white};
 
-  ${A.onClickButtonAnimation}
+  ${({ type, $animation }) => css`
+    ${type !== "check" && $animation && A.onClickButtonAnimation};
+  `}
 `;
 
 // WaitingCardTitle
@@ -29,6 +37,11 @@ export const WaitingCardTitleWrapper = styled.div`
 export const WaitingCardTitleLabel = styled.h2`
   ${({ theme }) => theme.fonts.h2};
   color: ${({ theme }) => theme.colors.font.black};
+`;
+
+export const HighlightedText = styled.span<{ type: WaitingCardType }>`
+  color: ${({ theme, type }) =>
+    type === "check" ? theme.colors.font.blue : theme.colors.font.black};
 `;
 
 // BoothInformation
