@@ -1,9 +1,17 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import * as A from "@styles/animation";
+import { BoothCardType } from "./BoothCard";
 
 import { Link } from "react-router-dom";
 
-export const BoothCardWrapper = styled(Link)`
+interface BoothCardWrapperProps {
+  type?: BoothCardType;
+  $borderBottom?: string;
+  padding?: string;
+  $animation?: boolean;
+}
+
+export const BoothCardWrapper = styled(Link)<BoothCardWrapperProps>`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -11,12 +19,14 @@ export const BoothCardWrapper = styled(Link)`
   width: 100%;
   box-sizing: border-box;
 
-  padding: 0.75rem 0.25rem 1rem 0.25rem;
+  ${({ type, theme, $animation }) => css`
+    padding: ${type === "detail" ? `1rem` : `0.75rem 0.25rem 1rem 0.25rem`};
+    border-bottom: ${type === "detail"
+      ? `none`
+      : `1px solid ${theme.colors.border.gray075}`};
 
-  border-bottom: 1px solid;
-  border-color: ${({ theme }) => theme.colors.border.gray075};
-
-  ${A.onClickButtonAnimation}
+    ${type !== "detail" && $animation && A.onClickButtonAnimation};
+  `}
 `;
 
 export const BoothCardInformationWrapper = styled.div`
