@@ -2,7 +2,12 @@ import BottomButton from "@components/bottomButton/BottomButton";
 import Button from "@components/button/Button";
 
 import useBoothID from "./_hooks/useBoothID";
-import { BoothDetailCard } from "./_components/card/BoothDetailCard";
+import { BoothDetailCard, BoothDetailContent } from "./_components";
+import {
+  BOOTH_TITLE,
+  BOOTH_SUMMARY,
+  BOOTH_LOCATION_INFO,
+} from "@constants/booth";
 
 const BoothDetailPage = () => {
   const boothID = useBoothID() ?? "";
@@ -12,6 +17,11 @@ const BoothDetailPage = () => {
         <Button>대기걸기</Button>
       </BottomButton>
       <BoothDetailCard boothID={boothID} activeIndex={0} />
+      <BoothDetailContent
+        boothTitle={BOOTH_TITLE}
+        boothSummary={BOOTH_SUMMARY}
+        boothLocationInfo={BOOTH_LOCATION_INFO}
+      />
     </>
   );
 };
