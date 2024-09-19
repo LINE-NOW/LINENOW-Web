@@ -8,6 +8,8 @@ import { Waiting } from "@interfaces/waiting";
 
 // hooks
 import { useWaitingCard } from "./_hooks/useWaitingCard";
+import { useNavigate } from "react-router-dom";
+import useModal from "@hooks/useModal";
 
 interface WaitingCardProps
   extends Pick<
@@ -15,7 +17,7 @@ interface WaitingCardProps
     "waitingID" | "waitingCount" | "booth" | "partySize" | "waitingStatus"
   > {
   targetTime?: string;
-  isBottomButton: boolean;
+  isButton?: boolean;
 }
 
 const WaitingCard = ({
@@ -27,8 +29,27 @@ const WaitingCard = ({
   targetTime,
   isButton = true,
 }: WaitingCardProps) => {
-  const handleOnClickCancelButton = () => {
-    alert(`${waitingID}를 취소하시겠습니까?`);
+  const navigate = useNavigate();
+  const { openModal } = useModal();
+
+  const cancelModal = {
+    title: "정말 대기를 취소하시겠어요?",
+    sub: "대기를 취소하면 현재 줄 서기가 사라져요.\n그래도 취소하실건가요?",
+    primaryButton: {
+      children: "줄 서기 취소하기",
+    },
+    secondButton: {
+      children: "이전으로",
+    },
+  };
+
+  const handleCancelButton = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    openModal(cancelModal);
+  };
+
+  const handleWaitingCard = () => {
+    navigate(`/waiting/${waitingID}`);
   };
 
   const { titleContent, button, isValidate } = useWaitingCard({
@@ -38,13 +59,13 @@ const WaitingCard = ({
   });
 
   return (
-    <S.WaitingCardWrapper to={`/waiting/${waitingID}`}>
+    <S.WaitingCardWrapper onClick={handleWaitingCard}>
       {/* 상단 타이틀 */}
       <S.WaitingCardTitleWrapper>
         <S.WaitingCardTitleLabel>{titleContent}</S.WaitingCardTitleLabel>
         {isValidate ? (
           <ChipButton
-            onClick={handleOnClickCancelButton}
+            onClick={handleCancelButton}
             scheme="grayLight"
             shape="outline"
           >

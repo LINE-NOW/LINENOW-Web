@@ -72,8 +72,8 @@ export const ChipButton = ({
   ...props
 }: ChipButtonProps) => {
   return (
-    <button onClick={onClick} {...props}>
+    <S.CustomButtonWrapper onClick={onClick} {...props}>
       <Chip scheme={disabled ? "grayLight" : props.scheme} {...props} />
-    </button>
+    </S.CustomButtonWrapper>
   );
 };

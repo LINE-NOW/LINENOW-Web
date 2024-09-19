@@ -8,6 +8,7 @@ import { WaitingSatus } from "@types/status";
 
 //hooks
 import useCountdown from "@hooks/useCountdown";
+import useModal from "@hooks/useModal";
 
 interface WaitingCardProps {
   status: WaitingSatus;
@@ -29,6 +30,25 @@ export const useWaitingCard = ({
   const { getTime } = useCountdown({
     targetDate: targetTime || "1970-01-01T00:00:00.000Z",
   });
+
+  const { openModal } = useModal();
+
+  const confirmModal = {
+    title: "다른 대기가 취소돼요",
+    sub: "입장을 확정하면 다른 대기는 취소돼요.\n 입장을 확정하시겠어요?",
+    primaryButton: {
+      scheme: "lime",
+      children: "입장 확정하기",
+    },
+    secondButton: {
+      children: "이전으로",
+    },
+  };
+
+  const handleConfirmButton = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    openModal(confirmModal);
+  };
 
   const waitingCardConfig: Record<WaitingSatus, WaitingCardConfig> = {
     // waiting: - 대기 중임
@@ -54,7 +74,7 @@ export const useWaitingCard = ({
         </>
       ),
       button: (
-        <Button scheme="lime">
+        <Button scheme="lime" onClick={handleConfirmButton}>
           <span>입장 확정하기</span>
           <span>{getTime("MMSS")}</span>
         </Button>

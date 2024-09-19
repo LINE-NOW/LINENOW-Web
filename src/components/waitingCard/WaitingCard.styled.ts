@@ -2,7 +2,7 @@ import styled from "styled-components";
 import * as A from "@styles/animation";
 import { Link } from "react-router-dom";
 
-export const WaitingCardWrapper = styled(Link)`
+export const WaitingCardWrapper = styled.div`
   flex-direction: column;
   flex-shrink: 0;
   width: 100%;
