@@ -37,10 +37,8 @@ const WaitingCard = ({
     <S.WaitingCardWrapper to={to || "#"}>
       <S.WaitingCardTitleWrapper>
         <S.WaitingCardTitleLabel>
-          내 앞으로
-          <S.HighlightedText type={type}>
-            {remainingTeams}팀
-          </S.HighlightedText>{" "}
+          내 앞으로{" "}
+          <S.HighlightedText type={type}>{remainingTeams}팀</S.HighlightedText>{" "}
           남았어요
         </S.WaitingCardTitleLabel>
         {type === "main" && (

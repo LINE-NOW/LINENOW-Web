@@ -1,5 +1,6 @@
 import * as S from "./WaitingDetailCaution.styled";
 import WaitingDetailCautionItem from "./WaitingDetailCautionItem";
+import { SUBTITLE, TITLE } from "@constants/waitingCaution";
 
 const WaitingDetailCaution = () => {
   const contents = [
@@ -16,13 +17,9 @@ const WaitingDetailCaution = () => {
   return (
     <S.WaitingDetailCautionWrapper>
       <S.WaitingDetailCautionTitle>
-        라인나우 대기 줄서기 유의사항
+        {TITLE}
         <S.WaitingDetailCautionSubTitle>
-          <span>
-            입장 미확정 또는 입장 시간을 준수하지 않으면 대기 줄서기가 자동
-            취소됩니다.
-          </span>{" "}
-          아래 유의사항을 꼭 읽어주세요.
+          {SUBTITLE}
         </S.WaitingDetailCautionSubTitle>
       </S.WaitingDetailCautionTitle>
       <S.WaitingDetailCautionItemContainer>
