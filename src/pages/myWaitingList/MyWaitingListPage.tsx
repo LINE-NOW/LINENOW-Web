@@ -1,5 +1,26 @@
+//components
+import * as S from "./MyWaitingListPage.styled";
+import WaitingCard from "@components/waitingCard/WaitingCard";
+
+// API
+import { dummyWaitingsResponse } from "./dummyWaitingsResponse";
+
 const MyWaitingListPage = () => {
-  return <div>나의 웨이팅 리스트 페이지</div>;
+  return (
+    <S.MyWaitingListPageWrapper>
+      {dummyWaitingsResponse.waitings.map((item, index) => (
+        <WaitingCard
+          key={index}
+          waitingID={item.waitingID}
+          waitingCount={item.waitingCount || undefined}
+          booth={item.booth}
+          partySize={item.partySize}
+          waitingStatus={item.waitingStatus}
+          targetTime={item.readyToConfirmAt}
+        />
+      ))}
+    </S.MyWaitingListPageWrapper>
+  );
 };
 
 export default MyWaitingListPage;

@@ -29,6 +29,11 @@ export const WaitingCardTitleWrapper = styled.div`
 export const WaitingCardTitleLabel = styled.h2`
   ${({ theme }) => theme.fonts.h2};
   color: ${({ theme }) => theme.colors.font.black};
+
+  .blue {
+    ${({ theme }) => theme.fonts.h2_b};
+    color: ${({ theme }) => theme.colors.font.blue};
+  }
 `;
 
 // BoothInformation
