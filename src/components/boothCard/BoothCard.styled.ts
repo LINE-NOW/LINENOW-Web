@@ -8,7 +8,6 @@ interface BoothCardWrapperProps {
   type?: BoothCardType;
   $borderBottom?: string;
   padding?: string;
-  $animation?: boolean;
 }
 
 export const BoothCardWrapper = styled(Link)<BoothCardWrapperProps>`
@@ -19,13 +18,13 @@ export const BoothCardWrapper = styled(Link)<BoothCardWrapperProps>`
   width: 100%;
   box-sizing: border-box;
 
-  ${({ type, theme, $animation }) => css`
+  ${({ type, theme }) => css`
     padding: ${type === "detail" ? `1rem` : `0.75rem 0.25rem 1rem 0.25rem`};
     border-bottom: ${type === "detail"
       ? `none`
       : `1px solid ${theme.colors.border.gray075}`};
 
-    ${type !== "detail" && $animation && A.onClickButtonAnimation};
+    ${type !== "detail" && A.onClickButtonAnimation};
   `}
 `;
 

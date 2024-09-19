@@ -9,6 +9,7 @@ interface BottomButtonProps {
 const InfoBottomButton = ({
   informationTitle,
   informationSub,
+
   children,
 }: BottomButtonProps) => {
   return (

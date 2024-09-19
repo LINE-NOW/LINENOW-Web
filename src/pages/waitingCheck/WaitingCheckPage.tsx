@@ -6,9 +6,11 @@ import Separator from "@components/separator/Separator";
 import WaitingCard from "@components/waitingCard/WaitingCard";
 import WaitingDetailCaution from "@pages/waitingDetail/_components/WaitingDetailCaution";
 import WaitingCheckCautionModal from "./_components/WaitingCheckCautionModal";
+// import useWaitingId from "./_hooks/useWaitingId";
 
 const WaitingCheckPage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+  // const waitingID = useWaitingId();
 
   const handleOpenModal = () => {
     setModalOpen(true);
@@ -24,8 +26,10 @@ const WaitingCheckPage = () => {
         <S.WaitingCheckPageTitle>
           줄서기를 진행하시겠어요?
         </S.WaitingCheckPageTitle>
+        {/* {waitingID ? ( */}
         <WaitingCard
           type="check"
+          // waitingID={waitingID}
           remainingTeams={3}
           boothInfo={{
             peopleCount: 8,
@@ -33,6 +37,9 @@ const WaitingCheckPage = () => {
             location: "멋쟁이 사자처럼",
           }}
         />
+        {/* ) : (
+          ""
+        )} */}
       </S.WaitingDetailPageBoothCardWrapper>
 
       <Separator />

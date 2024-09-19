@@ -1,11 +1,17 @@
 import { useState } from "react";
 import * as S from "./WaitingCheckPeople.styled";
 
-const WaitingCheckPeople = () => {
+interface WaitingCheckPeopleProps {
+  onCheck: (num: number | null) => void;
+}
+
+const WaitingCheckPeople = ({ onCheck }: WaitingCheckPeopleProps) => {
   const [checkedPeople, setCheckedPeople] = useState<number | null>(1);
 
   const toggleCheck = (num: number) => {
-    setCheckedPeople((prev) => (prev === num ? null : num));
+    const newCheckedPeople = checkedPeople === num ? null : num;
+    setCheckedPeople(newCheckedPeople);
+    onCheck(newCheckedPeople);
   };
 
   return (

@@ -5,7 +5,6 @@ import { WaitingCardType } from "./WaitingCard";
 
 interface WaitingCardWrapperProps {
   type?: WaitingCardType;
-  $animation?: boolean;
 }
 
 export const WaitingCardWrapper = styled(Link)<WaitingCardWrapperProps>`
@@ -18,8 +17,8 @@ export const WaitingCardWrapper = styled(Link)<WaitingCardWrapperProps>`
 
   background-color: ${({ theme }) => theme.colors.background.white};
 
-  ${({ type, $animation }) => css`
-    ${type !== "check" && $animation && A.onClickButtonAnimation};
+  ${({ type }) => css`
+    ${type !== "check" && A.onClickButtonAnimation};
   `}
 `;
 

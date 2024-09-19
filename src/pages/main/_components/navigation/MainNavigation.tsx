@@ -44,8 +44,6 @@ const MainNavigation = ({ isFold }: MainNavigationProps) => {
         <WaitingCard
           type="main"
           remainingTeams={3}
-          cancelButtonLabel="취소하기"
-          onCancelClick={() => alert("취소하시겠습니까?")}
           waitingMessage="순서까지 기다려주세요"
           boothInfo={{
             peopleCount: 8,

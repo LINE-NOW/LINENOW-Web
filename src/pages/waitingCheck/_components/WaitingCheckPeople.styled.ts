@@ -5,14 +5,13 @@ export const WaitingCheckContainer = styled.div`
   overflow-x: auto;
 
   margin-bottom: 1.75rem;
-
-  //스크롤비 안보이도록
+  /* 
   scrollbar-width: none;
   -ms-overflow-style: none;
 
   &::-webkit-scrollbar {
     display: none;
-  }
+  } */
 `;
 
 export const Circle = styled.div<{ $isChecked: boolean }>`

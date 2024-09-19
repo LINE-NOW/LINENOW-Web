@@ -5,51 +5,51 @@ import { ChipButton } from "@components/button/CustomButton";
 
 export type WaitingCardType = "main" | "check";
 
+interface BoothInfo {
+  peopleCount: number;
+  boothName: string;
+  location: string;
+}
+
 interface WaitingCardProps {
   type: WaitingCardType;
   remainingTeams?: number;
-  cancelButtonLabel?: string;
-  onCancelClick?: () => void;
   waitingMessage?: string;
   disabled?: boolean;
-  boothInfo: {
-    peopleCount: number;
-    boothName: string;
-    location: string;
-  };
   to?: string;
   animation?: boolean;
+  boothInfo: BoothInfo;
 }
 
 const WaitingCard = ({
   type,
   remainingTeams = 0,
-  cancelButtonLabel,
-  onCancelClick,
   waitingMessage,
   disabled = true,
-  boothInfo,
   to,
-  animation = true,
+  boothInfo,
 }: WaitingCardProps) => {
+  const onCancelClick = () => {
+    alert("대기 취소 요청이 완료되었습니다.");
+  };
+
   return (
-    <S.WaitingCardWrapper
-      to={to || "#"}
-      $animation={type !== "check" && animation}
-    >
+    <S.WaitingCardWrapper to={to || "#"}>
       <S.WaitingCardTitleWrapper>
         <S.WaitingCardTitleLabel>
-          내 앞으로{" "}
-          <S.HighlightedText type={type}>{remainingTeams}팀</S.HighlightedText>{" "}
+          내 앞으로
+          <S.HighlightedText type={type}>
+            {remainingTeams}팀
+          </S.HighlightedText>{" "}
           남았어요
         </S.WaitingCardTitleLabel>
-        {type === "main" && cancelButtonLabel && (
+        {type === "main" && (
           <ChipButton
             onClick={onCancelClick}
             scheme="grayLight"
             shape="outline"
           >
-            {cancelButtonLabel}
+            취소하기
           </ChipButton>
         )}
       </S.WaitingCardTitleWrapper>
