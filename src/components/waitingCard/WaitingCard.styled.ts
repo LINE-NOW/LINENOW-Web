@@ -9,6 +9,8 @@ interface WaitingCardWrapperProps {
 
 export const WaitingCardWrapper = styled(Link)<WaitingCardWrapperProps>`
   flex-direction: column;
+  flex-shrink: 0;
+  width: 100%;
 
   padding: 1.25rem 1rem;
   border: 1px solid;
