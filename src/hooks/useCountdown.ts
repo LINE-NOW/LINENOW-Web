@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 type countdownFormat = "MMSS";
 
 interface Countdown {
-  total: number;
+  leftTotal: number;
+
   leftMinutes: number;
   leftSeconds: number;
 }
@@ -49,8 +50,8 @@ export default useCountdown;
 function calculateTime(targetDate: Date): Countdown {
   const now = new Date();
   const target = new Date(targetDate);
-  const total = Math.max(target.getTime() - now.getTime(), 0);
-  const leftMinutes = Math.floor(total / (1000 * 60));
-  const leftSeconds = Math.floor((total % (1000 * 60)) / 1000);
-  return { total, leftMinutes, leftSeconds };
+  const leftTotal = Math.max(target.getTime() - now.getTime(), 0);
+  const leftMinutes = Math.floor(leftTotal / (1000 * 60));
+  const leftSeconds = Math.floor((leftTotal % (1000 * 60)) / 1000);
+  return { leftTotal, leftMinutes, leftSeconds };
 }
