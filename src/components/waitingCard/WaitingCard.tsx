@@ -3,18 +3,17 @@ import * as S from "./WaitingCard.styled";
 import IconLabel from "@components/label/IconLabel";
 import { ChipButton } from "@components/button/CustomButton";
 
-// hook
+// interfaces
+import { Waiting } from "@interfaces/waiting";
+
+// hooks
 import { useWaitingCard } from "./_hooks/useWaitingCard";
-import { Booth } from "./interfaces/WaitingCard";
-import { WaitingSatus } from "@types/status";
 
-interface WaitingCardProps {
-  waitingID: number;
-  waitingCount?: number;
-  booth: Booth;
-  partySize: number;
-
-  waitingStatus: WaitingSatus;
+interface WaitingCardProps
+  extends Pick<
+    Waiting,
+    "waitingID" | "waitingCount" | "booth" | "partySize" | "waitingStatus"
+  > {
   targetTime?: string;
 }
 
