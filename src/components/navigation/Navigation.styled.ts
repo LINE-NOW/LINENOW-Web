@@ -5,7 +5,17 @@ export const NavigationWrapper = styled.header`
   align-items: center;
   gap: 0.5rem;
 
+  position: fixed;
+  transform: translate(-50%, 0%);
+  top: 0;
+  left: 50%;
+
+  width: 100%;
+  max-width: 540px;
+
   padding: 1rem 1.5rem;
+
+  background-color: ${({ theme }) => theme.colors.background.white};
 `;
 
 export const NavigationLabel = styled.h2`
