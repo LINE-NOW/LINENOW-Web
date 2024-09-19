@@ -30,7 +30,9 @@ const BoothDetailPage = () => {
       <BoothDetailNotice article={BOOTH_NOTICE_ARTICLE}></BoothDetailNotice>
       <BoothDetailMenu menuInfo={BOOTH_MENU_INFO}></BoothDetailMenu>
       <BottomButton informationTitle="전체 줄" informationSub="123 팀">
-        <Button>대기걸기</Button>
+        <Button>
+          <span>대기걸기</span>
+        </Button>
       </BottomButton>
     </>
   );
