@@ -14,17 +14,19 @@ interface useCountdownProps {
 }
 
 const useCountdown = ({ targetDate }: useCountdownProps) => {
-  const target = new Date(targetDate);
-
-  const [countdown, setCountdown] = useState<Countdown>(calculateTime(target));
+  const [countdown, setCountdown] = useState<Countdown>(
+    calculateTime(targetDate)
+  );
+  const [isCountdownOver, setIsCountDownOver] = useState<boolean>(false);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      const newCountdown = calculateTime(target);
+      const newCountdown = calculateTime(targetDate);
       setCountdown(newCountdown);
 
-      if (newCountdown.total <= 0) {
+      if (newCountdown.leftTotal <= 0) {
         clearInterval(intervalId);
+        setIsCountDownOver(true);
         return;
       }
     }, 1000);
@@ -41,15 +43,16 @@ const useCountdown = ({ targetDate }: useCountdownProps) => {
     }
   };
 
-  return { countdown, getTime };
+  return { countdown, getTime, isCountdownOver };
 };
 
 export default useCountdown;
 
 // 목표 날짜까지의 남은 시간을 계산하는 함수
-function calculateTime(targetDate: Date): Countdown {
+function calculateTime(targetDate: string): Countdown {
   const now = new Date();
   const target = new Date(targetDate);
+
   const leftTotal = Math.max(target.getTime() - now.getTime(), 0);
   const leftMinutes = Math.floor(leftTotal / (1000 * 60));
   const leftSeconds = Math.floor((leftTotal % (1000 * 60)) / 1000);
