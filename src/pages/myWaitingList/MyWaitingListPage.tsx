@@ -2,17 +2,17 @@
 import * as S from "./MyWaitingListPage.styled";
 import WaitingCard from "@components/waitingCard/WaitingCard";
 
-// API
-import { dummyWaitingsResponse } from "./dummyWaitingsResponse";
+// dummy
+import { dummyWaitingsResponse } from "@apis/dummy/dummyWaitingsResponse";
 
 const MyWaitingListPage = () => {
   return (
     <S.MyWaitingListPageWrapper>
-      {dummyWaitingsResponse.waitings.map((item, index) => (
+      {dummyWaitingsResponse.map((item, index) => (
         <WaitingCard
           key={index}
           waitingID={item.waitingID}
-          waitingCount={item.waitingCount || undefined}
+          waitingCount={item.waitingCount}
           booth={item.booth}
           partySize={item.partySize}
           waitingStatus={item.waitingStatus}

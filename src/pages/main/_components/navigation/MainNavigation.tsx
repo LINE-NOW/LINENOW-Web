@@ -1,18 +1,20 @@
 import * as S from "./MainNavigation.styled";
 
 //component
-
 import {
   IconLabelLinkButton,
   IconLinkButton,
 } from "@components/button/CustomButton";
 import WaitingCard from "@components/waitingCard/WaitingCard";
 
-// constant
-import { MAIN_NAVIGATION_HEIGHT } from "@constants/style";
-import { dummyWaitingsResponse } from "@pages/myWaitingList/dummyWaitingsResponse";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css"; // Updated CSS import
+
+// constant
+import { MAIN_NAVIGATION_HEIGHT } from "@constants/style";
+
+// dummy
+import { dummyWaitingsResponse } from "@apis/dummy/dummyWaitingsResponse";
 
 interface MainNavigationProps {
   isFold: boolean;
@@ -51,12 +53,12 @@ const MainNavigation = ({ isFold }: MainNavigationProps) => {
           slidesPerView={1}
           style={{ width: "100%", overflow: "visible" }}
         >
-          {dummyWaitingsResponse.waitings.map((item, index) => (
+          {dummyWaitingsResponse.map((item, index) => (
             <SwiperSlide>
               <WaitingCard
                 key={index}
                 waitingID={item.waitingID}
-                waitingCount={item.waitingCount || undefined}
+                waitingCount={item.waitingCount}
                 booth={item.booth}
                 partySize={item.partySize}
                 waitingStatus={item.waitingStatus}

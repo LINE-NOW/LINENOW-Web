@@ -1,14 +1,11 @@
 import { WaitingSatus } from "@types/status";
+import { BoothBrief } from "@interfaces/booth";
 
-export interface GetWaitingsResponse {
-  waitings: GetWaitingsResponseData[];
-}
-
-export interface GetWaitingsResponseData {
+export interface Waiting {
   waitingID: number;
   waitingCount?: number;
 
-  booth: Booth;
+  booth: BoothBrief;
   partySize: number;
 
   waitingStatus: WaitingSatus;

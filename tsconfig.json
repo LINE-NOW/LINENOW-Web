@@ -2,13 +2,15 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@apis/*": ["src/apis/*"],
       "@atoms/*": ["src/atoms/*"],
       "@components/*": ["src/components/*"],
       "@constants/*": ["src/constants/*"],
       "@hooks/*": ["src/hooks/*"],
       "@pages/*": ["src/pages/*"],
       "@layouts/*": ["src/layouts/*"],
-      "@types/*": ["src/types/*"],
+      "@types/*": ["src/lib/types/*"],
+      "@interfaces/*": ["src/lib/interfaces/*"],
       "@routes/*": ["src/routes/*"],
       "@styles/*": ["src/styles/*"]
     },
