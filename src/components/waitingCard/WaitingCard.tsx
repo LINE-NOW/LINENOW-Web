@@ -14,6 +14,7 @@ interface WaitingCardProps
     "waitingID" | "waitingCount" | "booth" | "partySize" | "waitingStatus"
   > {
   targetTime?: string;
+  isBottomButton: boolean;
 }
 
 const WaitingCard = ({
@@ -23,6 +24,7 @@ const WaitingCard = ({
   partySize,
   waitingStatus,
   targetTime,
+  isButton = true,
 }: WaitingCardProps) => {
   const handleOnClickCancelButton = () => {
     alert(`${waitingID}를 취소하시겠습니까?`);
@@ -36,6 +38,7 @@ const WaitingCard = ({
 
   return (
     <S.WaitingCardWrapper to={`/waiting/${waitingID}`}>
+      {/* 상단 타이틀 */}
       <S.WaitingCardTitleWrapper>
         <S.WaitingCardTitleLabel>{titleContent}</S.WaitingCardTitleLabel>
         {isValidate ? (
@@ -49,24 +52,28 @@ const WaitingCard = ({
         ) : null}
       </S.WaitingCardTitleWrapper>
 
-      <S.BoothInformationWrapper>
-        <S.BoothInformationImage />
-        <S.BoothInformaitonLabelWrapper>
-          <S.BoothInformationNameLabel>
-            <span>{partySize}명</span>
-            <span>·</span>
-            <span>{booth.name}</span>
-          </S.BoothInformationNameLabel>
+      <S.WaitingCardContentWrapper>
+        {/* 부스 정보 */}
+        <S.BoothInformationWrapper>
+          <S.BoothInformationImage />
+          <S.BoothInformaitonLabelWrapper>
+            <S.BoothInformationNameLabel>
+              <span>{partySize}명</span>
+              <span>·</span>
+              <span>{booth.name}</span>
+            </S.BoothInformationNameLabel>
 
-          <IconLabel icon="location_gray_light" iconSize="1rem" gap="0.12rem">
-            <S.BoothInformationPositionLabel>
-              {booth.location}
-            </S.BoothInformationPositionLabel>
-          </IconLabel>
-        </S.BoothInformaitonLabelWrapper>
-      </S.BoothInformationWrapper>
+            <IconLabel icon="location_gray_light" iconSize="1rem" gap="0.12rem">
+              <S.BoothInformationPositionLabel>
+                {booth.location}
+              </S.BoothInformationPositionLabel>
+            </IconLabel>
+          </S.BoothInformaitonLabelWrapper>
+        </S.BoothInformationWrapper>
 
-      <S.WaitingCardButtonWrapper>{button}</S.WaitingCardButtonWrapper>
+        {/* 추가 엑션 버튼 */}
+        {isButton ? button : null}
+      </S.WaitingCardContentWrapper>
     </S.WaitingCardWrapper>
   );
 };
