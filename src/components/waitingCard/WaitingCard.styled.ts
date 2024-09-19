@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 export const WaitingCardWrapper = styled(Link)`
   flex-direction: column;
+  flex-shrink: 0;
+  width: 100%;
 
   padding: 1.25rem 1rem;
   border: 1px solid;

@@ -1,15 +1,18 @@
 import * as S from "./MainNavigation.styled";
 
 //component
-import IconLabel from "@components/label/IconLabel";
+
 import {
   IconLabelLinkButton,
   IconLinkButton,
 } from "@components/button/CustomButton";
 import WaitingCard from "@components/waitingCard/WaitingCard";
 
-// comstant
+// constant
 import { MAIN_NAVIGATION_HEIGHT } from "@constants/style";
+import { dummyWaitingsResponse } from "@pages/myWaitingList/dummyWaitingsResponse";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css"; // Updated CSS import
 
 interface MainNavigationProps {
   isFold: boolean;
@@ -41,7 +44,28 @@ const MainNavigation = ({ isFold }: MainNavigationProps) => {
 
         <IconLinkButton to="/setting" icon="setting_white" iconSize="1.5rem" />
       </S.MainNavigationTitleWrapper>
-      {isFold ? null : <WaitingCard />}
+
+      {isFold ? null : (
+        <Swiper
+          spaceBetween={8}
+          slidesPerView={1}
+          style={{ width: "100%", overflow: "visible" }}
+        >
+          {dummyWaitingsResponse.waitings.map((item, index) => (
+            <SwiperSlide>
+              <WaitingCard
+                key={index}
+                waitingID={item.waitingID}
+                waitingCount={item.waitingCount || undefined}
+                booth={item.booth}
+                partySize={item.partySize}
+                waitingStatus={item.waitingStatus}
+                targetTime={item.readyToConfirmAt}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
     </S.MainNavigationWrapper>
   );
 };
