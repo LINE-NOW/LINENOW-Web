@@ -79,7 +79,8 @@ export const BoothInformationPositionLabel = styled.p`
   color: ${({ theme }) => theme.colors.font.gray};
 `;
 
-// WaitingCardButton
-export const WaitingCardButtonWrapper = styled.div`
-  padding-top: 1rem;
+export const WaitingCardContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
