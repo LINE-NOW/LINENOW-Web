@@ -20,3 +20,7 @@ export const IconButtonWrapper = styled.button<IconButtonWrapperPorps>`
     height: 100%;
   }
 `;
+
+export const CustomButtonWrapper = styled.button`
+  ${A.onClickButtonAnimation}
+`;

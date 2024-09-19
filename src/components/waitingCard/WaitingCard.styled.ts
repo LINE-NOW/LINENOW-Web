@@ -1,13 +1,7 @@
 import styled, { css } from "styled-components";
 import * as A from "@styles/animation";
-import { Link } from "react-router-dom";
-import { WaitingCardType } from "./WaitingCard";
 
-interface WaitingCardWrapperProps {
-  type?: WaitingCardType;
-}
-
-export const WaitingCardWrapper = styled(Link)<WaitingCardWrapperProps>`
+export const WaitingCardWrapper = styled.div`
   flex-direction: column;
   flex-shrink: 0;
   width: 100%;
@@ -19,9 +13,7 @@ export const WaitingCardWrapper = styled(Link)<WaitingCardWrapperProps>`
 
   background-color: ${({ theme }) => theme.colors.background.white};
 
-  ${({ type }) => css`
-    ${type !== "check" && A.onClickButtonAnimation};
-  `}
+  ${A.onClickButtonAnimation}
 `;
 
 // WaitingCardTitle
