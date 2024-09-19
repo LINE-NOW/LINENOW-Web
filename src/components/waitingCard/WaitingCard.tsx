@@ -1,49 +1,78 @@
-// component
 import * as S from "./WaitingCard.styled";
 import IconLabel from "@components/label/IconLabel";
 import Button from "@components/button/Button";
 import { ChipButton } from "@components/button/CustomButton";
 
-// hook
+export type WaitingCardType = "main" | "check";
 
-const WaitingCard = () => {
-  const handleOnClickCancelButton = () => {
-    alert("취소하시겠습니까?");
+interface BoothInfo {
+  peopleCount: number;
+  boothName: string;
+  location: string;
+}
+
+interface WaitingCardProps {
+  type: WaitingCardType;
+  remainingTeams?: number;
+  waitingMessage?: string;
+  disabled?: boolean;
+  to?: string;
+  animation?: boolean;
+  boothInfo: BoothInfo;
+}
+
+const WaitingCard = ({
+  type,
+  remainingTeams = 0,
+  waitingMessage,
+  disabled = true,
+  to,
+  boothInfo,
+}: WaitingCardProps) => {
+  const onCancelClick = () => {
+    alert("대기 취소 요청이 완료되었습니다.");
   };
+
   return (
-    <S.WaitingCardWrapper to="/waiting/1">
+    <S.WaitingCardWrapper to={to || "#"}>
       <S.WaitingCardTitleWrapper>
         <S.WaitingCardTitleLabel>
-          내 앞으로 3팀 남았어요
+          내 앞으로{" "}
+          <S.HighlightedText type={type}>{remainingTeams}팀</S.HighlightedText>{" "}
+          남았어요
         </S.WaitingCardTitleLabel>
-        <ChipButton
-          onClick={handleOnClickCancelButton}
-          scheme="grayLight"
-          shape="outline"
-        >
-          취소하기
-        </ChipButton>
+        {type === "main" && (
+          <ChipButton
+            onClick={onCancelClick}
+            scheme="grayLight"
+            shape="outline"
+          >
+            취소하기
+          </ChipButton>
+        )}
       </S.WaitingCardTitleWrapper>
       <S.BoothInformationWrapper>
         <S.BoothInformationImage />
         <S.BoothInformaitonLabelWrapper>
           <S.BoothInformationNameLabel>
-            <span>8명</span>
+            <span>{boothInfo.peopleCount}명</span>
             <span>·</span>
-            <span>부스 -A</span>
+            <span>{boothInfo.boothName}</span>
           </S.BoothInformationNameLabel>
 
           <IconLabel icon="location_gray_light" iconSize="1rem" gap="0.12rem">
             <S.BoothInformationPositionLabel>
-              멋쟁이 사자처럼
+              {boothInfo.location}
             </S.BoothInformationPositionLabel>
           </IconLabel>
         </S.BoothInformaitonLabelWrapper>
       </S.BoothInformationWrapper>
 
-      <S.WaitingCardButtonWrapper>
-        <Button disabled>순서까지 기다려주세요</Button>
-      </S.WaitingCardButtonWrapper>
+      {type === "main" && waitingMessage && (
+        <S.WaitingCardButtonWrapper>
+          <Button disabled={disabled}>{waitingMessage}</Button>
+        </S.WaitingCardButtonWrapper>
+      )}
     </S.WaitingCardWrapper>
   );
 };

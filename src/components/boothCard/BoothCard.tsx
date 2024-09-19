@@ -9,7 +9,6 @@ interface BoothCardProps {
   borderBottom?: string;
   padding?: string;
   to?: string;
-  animation?: boolean;
 }
 
 const BoothCard = ({
@@ -18,7 +17,6 @@ const BoothCard = ({
   borderBottom,
   padding,
   to,
-  animation = true,
 }: BoothCardProps) => {
   return (
     <S.BoothCardWrapper
@@ -26,7 +24,6 @@ const BoothCard = ({
       to={to || "#"}
       $borderBottom={borderBottom}
       padding={padding}
-      $animation={!!to && animation}
     >
       <S.BoothCardInformationWrapper>
         <S.BoothCardInformationImage />

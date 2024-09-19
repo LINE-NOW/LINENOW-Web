@@ -5,7 +5,10 @@ export const WaitingDetailCautionWrapper = styled.div`
 `;
 
 export const WaitingDetailCautionTitle = styled.h3`
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  gap: 0.5rem;
 
   padding: 0rem 0.25rem 0.75rem 0.25rem;
   margin-bottom: 1rem;
@@ -14,6 +17,17 @@ export const WaitingDetailCautionTitle = styled.h3`
   border-color: ${({ theme }) => theme.colors.border.gray075};
 
   ${({ theme }) => theme.fonts.h3};
+`;
+
+export const WaitingDetailCautionSubTitle = styled.div`
+  ${({ theme }) => theme.fonts.b3};
+  color: ${({ theme }) => theme.colors.font.gray};
+  word-break: keep-all;
+  white-space: pre-line;
+
+  span {
+    display: block;
+  }
 `;
 
 export const WaitingDetailCautionItemWrapper = styled.div`

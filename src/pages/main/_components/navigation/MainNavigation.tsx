@@ -1,7 +1,6 @@
 import * as S from "./MainNavigation.styled";
 
 //component
-import IconLabel from "@components/label/IconLabel";
 import {
   IconLabelLinkButton,
   IconLinkButton,
@@ -41,7 +40,18 @@ const MainNavigation = ({ isFold }: MainNavigationProps) => {
 
         <IconLinkButton to="/setting" icon="setting_white" iconSize="1.5rem" />
       </S.MainNavigationTitleWrapper>
-      {isFold ? null : <WaitingCard />}
+      {isFold ? null : (
+        <WaitingCard
+          type="main"
+          remainingTeams={3}
+          waitingMessage="순서까지 기다려주세요"
+          boothInfo={{
+            peopleCount: 8,
+            boothName: "부스 - A",
+            location: "멋쟁이 사자처럼",
+          }}
+        />
+      )}
     </S.MainNavigationWrapper>
   );
 };

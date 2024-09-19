@@ -23,6 +23,7 @@ i {font-style:normal}
 	overflow: hidden;
 
 	min-height: 100vh;
+
 }
 
 // 폰트설정
@@ -45,6 +46,7 @@ html {
 	@media (max-width: 360px) {
 		font-size:12px;
 	}
+
 }
 
 body {
@@ -54,7 +56,16 @@ body {
 	overflow-x: hidden;
 	background-color: ${({ theme }) => theme.colors.background.white};
 	color: ${({ theme }) => theme.colors.font.black};
+	
+	scrollbar-width: none; 
+	-ms-overflow-style: none;
+
+	::-webkit-scrollbar {
+    display: none;
 }
+}
+
+
 
 `;
 
