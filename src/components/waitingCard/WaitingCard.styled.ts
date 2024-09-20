@@ -37,11 +37,6 @@ export const WaitingCardTitleLabel = styled.h2`
   }
 `;
 
-export const HighlightedText = styled.span<{ type: WaitingCardType }>`
-  color: ${({ theme, type }) =>
-    type === "check" ? theme.colors.font.blue : theme.colors.font.black};
-`;
-
 // BoothInformation
 export const BoothInformationWrapper = styled.div`
   display: flex;
