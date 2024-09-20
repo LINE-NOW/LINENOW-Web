@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import Button from "@components/button/Button";
 
 //types
-import { WaitingSatus } from "@types/status";
+import { WaitingSatus } from "@linenow-types/status";
 
 //hooks
 import useCountdown from "@hooks/useCountdown";

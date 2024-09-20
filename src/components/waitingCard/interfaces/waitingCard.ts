@@ -1,4 +1,4 @@
-import { WaitingSatus } from "@types/status";
+import { WaitingSatus } from "@linenow-types/status";
 
 export interface GetWaitingsResponse {
   waitings: GetWaitingsResponseData[];

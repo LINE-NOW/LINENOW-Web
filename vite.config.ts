@@ -13,7 +13,7 @@ export default defineConfig({
       "@constants": path.resolve(__dirname, "src/constants"),
       "@hooks": path.resolve(__dirname, "src/hooks"),
       "@layouts": path.resolve(__dirname, "src/layouts"),
-      "@types": path.resolve(__dirname, "src/lib/types"),
+      "@linenow-types": path.resolve(__dirname, "src/lib/types"),
       "@interfaces": path.resolve(__dirname, "src/lib/interfaces"),
       "@pages": path.resolve(__dirname, "src/pages"),
       "@routes": path.resolve(__dirname, "src/routes"),

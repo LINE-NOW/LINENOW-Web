@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 // type
-import { SchemeType, ShapeType } from "@types/style";
+import { SchemeType, ShapeType } from "@linenow-types/style";
 
 //component
 import { ChipWrapper } from "./Chip.styled";

@@ -9,7 +9,7 @@
       "@hooks/*": ["src/hooks/*"],
       "@pages/*": ["src/pages/*"],
       "@layouts/*": ["src/layouts/*"],
-      "@types/*": ["src/lib/types/*"],
+      "@linenow-types/*": ["src/lib/types/*"],
       "@interfaces/*": ["src/lib/interfaces/*"],
       "@routes/*": ["src/routes/*"],
       "@styles/*": ["src/styles/*"]
@@ -33,7 +33,8 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "typeRoots": ["./node_modules/@linenow-types", "./src/lib/types"]
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

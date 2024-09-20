@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { ButtonWrapper } from "@components/button/Button.styled";
 
 // type
-import { SchemeType, ShapeType } from "@types/style";
+import { SchemeType, ShapeType } from "@linenow-types/style";
 
 // 버튼의 크기 type
 export type ButtonSizeType = "large" | { width: string; height: string };

@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import * as A from "@styles/animation";
 
 export const WaitingCardWrapper = styled.div`

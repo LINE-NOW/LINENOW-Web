@@ -1,4 +1,4 @@
-import { WaitingSatus } from "@types/status";
+import { WaitingSatus } from "@linenow-types/status";
 import { BoothBrief } from "@interfaces/booth";
 
 export interface Waiting {
