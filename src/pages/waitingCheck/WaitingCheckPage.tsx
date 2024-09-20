@@ -6,7 +6,6 @@ import Separator from "@components/separator/Separator";
 import WaitingCard from "@components/waitingCard/WaitingCard";
 import WaitingDetailCaution from "@pages/waitingDetail/_components/WaitingDetailCaution";
 import WaitingCheckCautionModal from "./_components/WaitingCheckCautionModal";
-// import useWaitingId from "./_hooks/useWaitingId";
 
 const WaitingCheckPage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -26,20 +25,17 @@ const WaitingCheckPage = () => {
         <S.WaitingCheckPageTitle>
           줄서기를 진행하시겠어요?
         </S.WaitingCheckPageTitle>
-        {/* {waitingID ? ( */}
         <WaitingCard
-          type="check"
-          // waitingID={waitingID}
-          remainingTeams={3}
-          boothInfo={{
-            peopleCount: 8,
-            boothName: "부스 - A",
-            location: "멋쟁이 사자처럼",
+          //TODO: - api 연결 후 삭제 필요
+          waiting={{
+            waitingID: 1,
+            waitingStatus: "check",
+            waitingCount: 3,
+            booth: { name: "라인나우", boothID: 1, location: "동국대학교" },
+            partySize: 3,
           }}
+          isButton={false}
         />
-        {/* ) : (
-          ""
-        )} */}
       </S.WaitingDetailPageBoothCardWrapper>
 
       <Separator />

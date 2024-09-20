@@ -1,14 +1,10 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import * as A from "@styles/animation";
-import { Link } from "react-router-dom";
-import { WaitingCardType } from "./WaitingCard";
 
-interface WaitingCardWrapperProps {
-  type?: WaitingCardType;
-}
-
-export const WaitingCardWrapper = styled(Link)<WaitingCardWrapperProps>`
+export const WaitingCardWrapper = styled.div`
   flex-direction: column;
+  flex-shrink: 0;
+  width: 100%;
 
   padding: 1.25rem 1rem;
   border: 1px solid;
@@ -17,9 +13,7 @@ export const WaitingCardWrapper = styled(Link)<WaitingCardWrapperProps>`
 
   background-color: ${({ theme }) => theme.colors.background.white};
 
-  ${({ type }) => css`
-    ${type !== "check" && A.onClickButtonAnimation};
-  `}
+  ${A.onClickButtonAnimation}
 `;
 
 // WaitingCardTitle
@@ -36,11 +30,11 @@ export const WaitingCardTitleWrapper = styled.div`
 export const WaitingCardTitleLabel = styled.h2`
   ${({ theme }) => theme.fonts.h2};
   color: ${({ theme }) => theme.colors.font.black};
-`;
 
-export const HighlightedText = styled.span<{ type: WaitingCardType }>`
-  color: ${({ theme, type }) =>
-    type === "check" ? theme.colors.font.blue : theme.colors.font.black};
+  .blue {
+    ${({ theme }) => theme.fonts.h2_b};
+    color: ${({ theme }) => theme.colors.font.blue};
+  }
 `;
 
 // BoothInformation
@@ -84,7 +78,8 @@ export const BoothInformationPositionLabel = styled.p`
   color: ${({ theme }) => theme.colors.font.gray};
 `;
 
-// WaitingCardButton
-export const WaitingCardButtonWrapper = styled.div`
-  padding-top: 1rem;
+export const WaitingCardContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;

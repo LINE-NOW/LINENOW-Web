@@ -10,6 +10,8 @@ export const MainNavigationWrapper = styled.section`
   flex-shrink: 0;
   gap: 1rem;
 
+  overflow-x: hidden;
+
   width: 100%;
 
   box-sizing: border-box;

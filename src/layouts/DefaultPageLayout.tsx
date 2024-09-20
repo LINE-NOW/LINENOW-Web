@@ -18,5 +18,6 @@ export default DefaultPageLayout;
 
 const OutletWrapper = styled.section`
   flex-grow: 1;
+  padding-top: 3.5rem;
   background-color: ${({ theme }) => theme.colors.background.white};
 `;

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 // type
-import { SchemeType, ShapeType } from "@types/style";
+import { SchemeType, ShapeType } from "@linenow-types/style";
 
 interface ChipWrapperProps {
   $scheme: SchemeType;

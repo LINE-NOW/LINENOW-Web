@@ -5,10 +5,17 @@ import {
   IconLabelLinkButton,
   IconLinkButton,
 } from "@components/button/CustomButton";
+
 import WaitingCard from "@components/waitingCard/WaitingCard";
 
-// comstant
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css"; // Updated CSS import
+
+// constant
 import { MAIN_NAVIGATION_HEIGHT } from "@constants/style";
+
+// dummy
+import { dummyWaitingsResponse } from "@apis/dummy/dummyWaitingsResponse";
 
 interface MainNavigationProps {
   isFold: boolean;
@@ -40,17 +47,23 @@ const MainNavigation = ({ isFold }: MainNavigationProps) => {
 
         <IconLinkButton to="/setting" icon="setting_white" iconSize="1.5rem" />
       </S.MainNavigationTitleWrapper>
+
       {isFold ? null : (
-        <WaitingCard
-          type="main"
-          remainingTeams={3}
-          waitingMessage="순서까지 기다려주세요"
-          boothInfo={{
-            peopleCount: 8,
-            boothName: "부스 - A",
-            location: "멋쟁이 사자처럼",
-          }}
-        />
+        <Swiper
+          spaceBetween={8}
+          slidesPerView={1}
+          style={{ width: "100%", overflow: "visible" }}
+        >
+          {dummyWaitingsResponse.map((item, index) => (
+            <SwiperSlide>
+              <WaitingCard
+                key={index}
+                waiting={item}
+                targetTime={item.readyToConfirmAt}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       )}
     </S.MainNavigationWrapper>
   );
