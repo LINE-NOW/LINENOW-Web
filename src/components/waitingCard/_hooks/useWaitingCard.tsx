@@ -4,14 +4,14 @@ import { ReactNode } from "react";
 import Button from "@components/button/Button";
 
 //types
-import { WaitingSatus } from "@linenow-types/status";
+import { WaitingStatus } from "@linenow-types/status";
 
 //hooks
 import useCountdown from "@hooks/useCountdown";
 import useModal from "@hooks/useModal";
 
 interface WaitingCardProps {
-  status: WaitingSatus;
+  status: WaitingStatus;
   waitingCount?: number;
   targetTime?: string;
 }
@@ -50,7 +50,7 @@ export const useWaitingCard = ({
     openModal(confirmModal);
   };
 
-  const waitingCardConfig: Record<WaitingSatus, WaitingCardConfig> = {
+  const waitingCardConfig: Record<WaitingStatus, WaitingCardConfig> = {
     check: {
       titleContent: (
         <>

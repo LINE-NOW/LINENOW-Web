@@ -1,9 +1,9 @@
-import { WaitingSatus } from "@linenow-types/status";
+import { WaitingStatus } from "@linenow-types/status";
 import { BoothBrief } from "@interfaces/booth";
 
 export interface Waiting {
   waitingID: number;
-  waitingStatus: WaitingSatus;
+  waitingStatus: WaitingStatus;
 
   readyToConfirmAt?: string;
   confirmedAt?: string;

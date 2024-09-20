@@ -1,4 +1,4 @@
-export type WaitingSatus =
+export type WaitingStatus =
   | "check"
   | "waiting"
   | "readyToConfirm"

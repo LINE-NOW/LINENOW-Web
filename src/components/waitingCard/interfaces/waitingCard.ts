@@ -1,4 +1,4 @@
-import { WaitingSatus } from "@linenow-types/status";
+import { WaitingStatus } from "@linenow-types/status";
 
 export interface GetWaitingsResponse {
   waitings: GetWaitingsResponseData[];
@@ -11,7 +11,7 @@ export interface GetWaitingsResponseData {
   booth: Booth;
   partySize: number;
 
-  waitingStatus: WaitingSatus;
+  waitingStatus: WaitingStatus;
   readyToConfirmAt?: string;
   confirmedAt?: string;
   canceledAt?: string;
