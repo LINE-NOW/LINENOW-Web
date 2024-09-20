@@ -1,4 +1,5 @@
 export type WaitingSatus =
+  | "check"
   | "waiting"
   | "readyToConfirm"
   | "confirmed"

@@ -51,6 +51,14 @@ export const useWaitingCard = ({
   };
 
   const waitingCardConfig: Record<WaitingSatus, WaitingCardConfig> = {
+    check: {
+      titleContent: (
+        <>
+          내 앞으로 <span className="blue">{waitingCount}팀</span> 남았어요
+        </>
+      ),
+      isValidate: false,
+    },
     // waiting: - 대기 중임
     waiting: {
       titleContent: (

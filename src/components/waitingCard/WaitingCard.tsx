@@ -10,24 +10,16 @@ import { useWaitingCard } from "./_hooks/useWaitingCard";
 import { useNavigate } from "react-router-dom";
 import useModal from "@hooks/useModal";
 
-interface WaitingCardProps
-  extends Pick<
+interface WaitingCardProps {
+  waiting: Pick<
     Waiting,
     "waitingID" | "waitingCount" | "booth" | "partySize" | "waitingStatus"
-  > {
+  >;
   targetTime?: string;
   isButton?: boolean;
 }
 
-const WaitingCard = ({
-  waitingID,
-  waitingCount,
-  booth,
-  partySize,
-  waitingStatus,
-  targetTime,
-  isButton = true,
-}: WaitingCardProps) => {
+const WaitingCard = ({ waiting, targetTime }: WaitingCardProps) => {
   const navigate = useNavigate();
   const { openModal } = useModal();
 
@@ -48,12 +40,12 @@ const WaitingCard = ({
   };
 
   const handleWaitingCard = () => {
-    navigate(`/waiting/${waitingID}`);
+    navigate(`/waiting/${waiting.waitingID}`);
   };
 
   const { titleContent, button, isValidate } = useWaitingCard({
-    status: waitingStatus,
-    waitingCount: waitingCount,
+    status: waiting.waitingStatus,
+    waitingCount: waiting.waitingCount,
     targetTime: targetTime,
   });
 
@@ -79,21 +71,21 @@ const WaitingCard = ({
           <S.BoothInformationImage />
           <S.BoothInformaitonLabelWrapper>
             <S.BoothInformationNameLabel>
-              <span>{partySize}명</span>
+              <span>{waiting.partySize}명</span>
               <span>·</span>
-              <span>{booth.name}</span>
+              <span>{waiting.booth.name}</span>
             </S.BoothInformationNameLabel>
 
             <IconLabel icon="location_gray_light" iconSize="1rem" gap="0.12rem">
               <S.BoothInformationPositionLabel>
-                {booth.location}
+                {waiting.booth.location}
               </S.BoothInformationPositionLabel>
             </IconLabel>
           </S.BoothInformaitonLabelWrapper>
         </S.BoothInformationWrapper>
 
         {/* 추가 엑션 버튼 */}
-        {isButton ? button : null}
+        {button}
       </S.WaitingCardContentWrapper>
     </S.WaitingCardWrapper>
   );
