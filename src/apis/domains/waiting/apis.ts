@@ -2,39 +2,30 @@
 import { getResponse } from "@apis/instance";
 
 // types
-import { WaitingStatus } from "@linenow-types/status";
+import { Waiting } from "@interfaces/waiting";
+import {
+  transformGetWaitingResponse,
+  transformGetWaitingsResponse,
+} from "./_interfaces";
 
-// get waiting : - 나의 대기 상세(줄서기 상세)
+// get waiting : - 나의 대기 상세 (줄서기 상세)
 export interface GetWaitingRequest {
   waitingID: number;
 }
 
-interface GetWaitingResponse {
-  id: number;
-  booth: GetWaitingResponseBooth;
-  partySize: number;
-  waitingStatus: WaitingStatus;
-  readyToConfirmAt?: string;
-  confirmedAt?: string;
-  canceledAt?: string;
-}
-
-interface GetWaitingResponseBooth {
-  boothID: number;
-  name: string;
-  description: string;
-  location: string;
-}
-
 export const getWaiting = async ({
   ...props
-}: GetWaitingRequest): Promise<GetWaitingResponse | null> => {
-  return getResponse(`/api/v1/waitings/${props.waitingID}`);
+}: GetWaitingRequest): Promise<Waiting | null> => {
+  const response = await getResponse(`/api/v1/waitings/${props.waitingID}`);
+  return response ? transformGetWaitingResponse(response) : null; // 변환 후 반환
 };
 
 // get waitings : - 나의 대기 리스트
-export interface GetWaitingsResponse extends Array<GetWaitingResponse> {}
-
-export const getWaitings = async (): Promise<GetWaitingsResponse | null> => {
-  return getResponse(`/api/v1/waitings`);
+export const getWaitings = async (
+  type: string | undefined
+): Promise<Waiting[]> => {
+  const response = await getResponse(
+    `/api/v1/waitings${type ? `/${type}` : ""}`
+  );
+  return response ? transformGetWaitingsResponse(response) : []; // 변환 후 반환
 };
