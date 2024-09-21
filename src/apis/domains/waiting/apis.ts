@@ -4,6 +4,8 @@ import { getResponse } from "@apis/instance";
 // types
 import { Waiting } from "@interfaces/waiting";
 import {
+  GetWaitingResponse,
+  GetWaitingsResponse,
   transformGetWaitingResponse,
   transformGetWaitingsResponse,
 } from "./_interfaces";
@@ -16,7 +18,9 @@ export interface GetWaitingRequest {
 export const getWaiting = async ({
   ...props
 }: GetWaitingRequest): Promise<Waiting | null> => {
-  const response = await getResponse(`/api/v1/waitings/${props.waitingID}`);
+  const response = await getResponse<GetWaitingResponse>(
+    `/api/v1/waitings/${props.waitingID}`
+  );
   return response ? transformGetWaitingResponse(response) : null; // 변환 후 반환
 };
 
@@ -24,7 +28,7 @@ export const getWaiting = async ({
 export const getWaitings = async (
   type: string | undefined
 ): Promise<Waiting[]> => {
-  const response = await getResponse(
+  const response = await getResponse<GetWaitingsResponse>(
     `/api/v1/waitings${type ? `/${type}` : ""}`
   );
   return response ? transformGetWaitingsResponse(response) : []; // 변환 후 반환
