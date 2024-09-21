@@ -26,7 +26,7 @@ const SettingPage = () => {
   };
 
   // 로그인 바텀 시트 테스트
-  const { bottomsheet, openBottomsheet, closeBottomsheet } = useBottomsheet();
+  const { openBottomsheet } = useBottomsheet();
 
   const handleOpenBottomSheetButton = () => {
     openBottomsheet({ children: <LoginBottomsheetContent /> });
