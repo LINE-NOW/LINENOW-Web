@@ -7,11 +7,11 @@ const instance = axios.create({
 
 export const getResponse = async (url: string) => {
   try {
-    console.log(`[GET] ${url} ------`);
     const response = await instance.get(url);
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError;
+    console.log(`[GET] ${url}`);
     console.error("Response error:", axiosError);
     return null;
   }

@@ -66,7 +66,7 @@ const MainNavigation = ({ isFold }: MainNavigationProps) => {
           style={{ width: "100%", overflow: "visible" }}
         >
           {waitings.map((item, index) => (
-            <SwiperSlide>
+            <SwiperSlide key={index}>
               <WaitingCard
                 key={index}
                 waiting={item}

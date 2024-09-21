@@ -16,7 +16,6 @@ const MyWaitingListPage = () => {
 
   useEffect(() => {
     setWaitings(data || []);
-    console.log(isLoading, data);
   }, [isLoading, isError, data]);
 
   return (
