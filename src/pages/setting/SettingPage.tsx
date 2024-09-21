@@ -3,6 +3,10 @@ import SettingItem from './_components/settingItem/SettingItem';
 import SettingDeleteID from './_components/deleteID/SettingDeleteID';
 import useModal from '@hooks/useModal';
 
+// 로그인 바텀 시트 테스트
+import useBottomsheet from '@hooks/useBottomsheet';
+import LoginBottomsheetContent from '@components/login/LoginBottomsheetContent';
+
 const SettingPage = () => {
   const { openModal } = useModal();
 
@@ -21,9 +25,16 @@ const SettingPage = () => {
     openModal(logoutModalProps);
   };
 
+  // 로그인 바텀 시트 테스트
+  const { bottomsheet, openBottomsheet, closeBottomsheet } = useBottomsheet();
+
+  const handleOpenBottomSheetButton = () => {
+    openBottomsheet({ children: <LoginBottomsheetContent /> });
+  };
+
   const settingItemProps = [
     { title: '로그아웃', onClick: handleLogoutClick },
-    { title: '언어설정' },
+    { title: '언어설정', onClick: handleOpenBottomSheetButton },
     { title: '이용약관' },
     { title: '1:1 문의' },
     { title: '개발자 정보' },
