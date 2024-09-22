@@ -9,6 +9,7 @@ import { Waiting } from "@interfaces/waiting";
 
 // dummy
 import { useGetWaitings } from "@hooks/apis/waiting";
+import Spinner from "@components/spinner/Spinner";
 
 const MyWaitingListPage = () => {
   const { data, isLoading, isError } = useGetWaitings();
@@ -18,7 +19,9 @@ const MyWaitingListPage = () => {
     setWaitings(data || []);
   }, [isLoading, isError, data]);
 
-  return (
+  return isLoading ? (
+    <Spinner />
+  ) : (
     <S.MyWaitingListPageWrapper>
       {waitings.map((item, index) => (
         <WaitingCard
