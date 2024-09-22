@@ -35,6 +35,7 @@ export const transformGetWaitingResponse = (
     booth: {
       boothID: response.booth.booth_id,
       name: response.booth.name,
+      description: response.booth.description,
       location: response.booth.location,
     },
   };

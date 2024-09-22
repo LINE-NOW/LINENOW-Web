@@ -6,8 +6,8 @@ import WaitingCard from "@components/waitingCard/WaitingCard";
 
 // types
 import { Waiting } from "@interfaces/waiting";
-// dummy
 
+// dummy
 import { useGetWaitings } from "@hooks/apis/waiting";
 
 const MyWaitingListPage = () => {
