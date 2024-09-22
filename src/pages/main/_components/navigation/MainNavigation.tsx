@@ -67,11 +67,7 @@ const MainNavigation = ({ isFold }: MainNavigationProps) => {
         >
           {waitings.map((item, index) => (
             <SwiperSlide key={index}>
-              <WaitingCard
-                key={index}
-                waiting={item}
-                targetTime={item.readyToConfirmAt}
-              />
+              <WaitingCard key={index} waiting={item} />
             </SwiperSlide>
           ))}
         </Swiper>

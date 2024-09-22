@@ -1,6 +1,6 @@
 export interface Booth {
   boothID: number;
-  thumbnail?: string;
+  thumbnail: string;
   name: string;
   description?: string;
   location: string;

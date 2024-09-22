@@ -75,7 +75,7 @@ export const useWaitingCard = ({
     },
 
     // readyToConfirm: - 입장 확정을 받기 위한 3분의 기다림
-    readyToConfirm: {
+    ready_to_confirm: {
       titleContent: (
         <>
           <span className="blue">입장</span>하실 수 있어요!

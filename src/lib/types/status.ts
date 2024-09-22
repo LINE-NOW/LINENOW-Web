@@ -1,7 +1,7 @@
 export type WaitingStatus =
   | "check"
   | "waiting"
-  | "readyToConfirm"
+  | "ready_to_confirm"
   | "confirmed"
   | "arrived"
   | "canceled";

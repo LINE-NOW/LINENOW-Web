@@ -24,11 +24,7 @@ const MyWaitingListPage = () => {
   ) : (
     <S.MyWaitingListPageWrapper>
       {waitings.map((item, index) => (
-        <WaitingCard
-          key={index}
-          waiting={item}
-          targetTime={item.readyToConfirmAt}
-        />
+        <WaitingCard key={index} waiting={item} />
       ))}
     </S.MyWaitingListPageWrapper>
   );

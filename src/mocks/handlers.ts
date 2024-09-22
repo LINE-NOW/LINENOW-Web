@@ -2,8 +2,8 @@ import { delay, http, HttpResponse } from "msw";
 
 //dummy
 import {
-  dummyWaitingMainResponse,
-  dummyWaitingResponse,
+  dummyNowWaitingsResponse,
+  dummyWaitingsResponse,
 } from "./dummy/waitings";
 
 const COMMON_DELAY = 0;
@@ -16,9 +16,9 @@ const getDelayedResponse = (responseData: any) => {
 };
 
 export const handlers = [
-  http.get("/api/v1/waitings", getDelayedResponse(dummyWaitingResponse)),
+  http.get("/api/v1/waitings", getDelayedResponse(dummyWaitingsResponse)),
   http.get(
-    "/api/v1/waitings/main",
-    getDelayedResponse(dummyWaitingMainResponse)
+    "/api/v1/waitings/now-waitings",
+    getDelayedResponse(dummyNowWaitingsResponse)
   ),
 ];

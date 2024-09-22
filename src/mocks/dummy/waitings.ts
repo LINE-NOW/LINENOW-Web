@@ -1,159 +1,169 @@
-export const dummyWaitingResponse = [
+export const dummyWaitingsResponse = [
   {
     id: 1,
+    waiting_status: "waiting",
+    waiting_teams_ahead: 5,
+    party_size: 4,
+    confirm_remaining_time: undefined, // Not applicable
+    arrival_remaining_time: undefined, // Not applicable
     booth: {
       booth_id: 101,
-      name: "The Cozy Nook",
-      description: "A cozy booth for small gatherings.",
-      location: "1st Floor, Near Entrance",
+      name: "아늑한 공간",
+      description: "소규모 모임을 위한 아늑한 부스.",
+      location: "1층, 입구 근처",
+      thumbnail:
+        "https://image.mediapen.com/news/202103/news_605667_1614652226_m.jpg",
     },
-    party_size: 4,
-    waiting_status: "waiting",
-    waiting_count: 5,
-    ready_to_confirm_at: "2024-09-21T14:30:00Z",
-    confirmed_at: undefined,
-    canceled_at: undefined,
   },
   {
     id: 2,
+    waiting_status: "ready_to_confirm",
+    waiting_teams_ahead: 0,
+    party_size: 6,
+    confirm_remaining_time: "2024-10-01T14:45:00Z", // Only applicable here
+    arrival_remaining_time: undefined, // Not applicable
     booth: {
       booth_id: 102,
-      name: "Gathering Grove",
-      description: "Perfect for larger parties.",
-      location: "2nd Floor, Next to Cafe",
+      name: "모임의 숲",
+      description: "대규모 파티에 적합합니다.",
+      location: "2층, 카페 옆",
+      thumbnail:
+        "https://image.mediapen.com/news/202103/news_605667_1614666790_m.jpg",
     },
-    party_size: 6,
-    waiting_status: "confirmed",
-    waiting_count: 2,
-    ready_to_confirm_at: "2024-09-21T14:45:00Z",
-    confirmed_at: "2024-09-21T14:35:00Z",
-    canceled_at: undefined,
   },
   {
     id: 3,
+    waiting_status: "confirmed",
+    waiting_teams_ahead: 1,
+    party_size: 2,
+    confirm_remaining_time: "2024-10-01T15:00:00Z", // Both applicable here
+    arrival_remaining_time: "2024-10-01T15:05:00Z", // Arrival time
     booth: {
       booth_id: 103,
-      name: "Scenic Viewpoint",
-      description: "Great view and spacious.",
-      location: "Rooftop",
+      name: "경치 좋은 전망대",
+      description: "넓고 좋은 전망.",
+      location: "옥상",
+      thumbnail:
+        "https://image.mediapen.com/news/202103/news_605667_1614652226_m.jpg",
     },
-    party_size: 2,
-    waiting_status: "canceled",
-    waiting_count: 1,
-    ready_to_confirm_at: "2024-09-21T15:00:00Z",
-    confirmed_at: undefined,
-    canceled_at: "2024-09-21T14:50:00Z",
   },
   {
     id: 4,
+    waiting_status: "waiting",
+    waiting_teams_ahead: 4,
+    party_size: 3,
+    confirm_remaining_time: undefined, // Not applicable
+    arrival_remaining_time: undefined, // Not applicable
     booth: {
       booth_id: 104,
-      name: "Tech Hub",
-      description: "Modern design with tech amenities.",
-      location: "3rd Floor, Conference Hall",
+      name: "테크 허브",
+      description: "현대적인 디자인과 기술 편의시설.",
+      location: "3층, 회의실",
+      thumbnail:
+        "https://image.mediapen.com/news/202103/news_605667_1614652226_m.jpg",
     },
-    party_size: 3,
-    waiting_status: "waiting",
-    waiting_count: 4,
-    ready_to_confirm_at: "2024-09-21T15:10:00Z",
-    confirmed_at: undefined,
-    canceled_at: undefined,
   },
   {
     id: 5,
+    waiting_status: "confirmed",
+    waiting_teams_ahead: 0,
+    party_size: 2,
+    confirm_remaining_time: "2024-10-01T15:20:00Z", // Both applicable here
+    arrival_remaining_time: "2024-10-01T15:25:00Z", // Arrival time
     booth: {
       booth_id: 105,
-      name: "Romantic Retreat",
-      description: "Intimate setting for romantic dinners.",
-      location: "Garden Area",
+      name: "로맨틱 리트리트",
+      description: "로맨틱한 저녁을 위한 아늑한 공간.",
+      location: "정원 지역",
+      thumbnail:
+        "https://image.mediapen.com/news/202103/news_605667_1614652226_m.jpg",
     },
-    party_size: 2,
-    waiting_status: "confirmed",
-    waiting_count: 0,
-    ready_to_confirm_at: "2024-09-21T15:20:00Z",
-    confirmed_at: "2024-09-21T15:15:00Z",
-    canceled_at: undefined,
   },
   {
     id: 6,
+    waiting_status: "waiting",
+    waiting_teams_ahead: 3,
+    party_size: 5,
+    confirm_remaining_time: undefined, // Not applicable
+    arrival_remaining_time: undefined, // Not applicable
     booth: {
       booth_id: 106,
-      name: "Family Fun Zone",
-      description: "Family-friendly booth with games.",
-      location: "1st Floor, Near Playground",
+      name: "가족 놀이존",
+      description: "가족 친화적인 부스와 게임.",
+      location: "1층, 놀이터 근처",
+      thumbnail:
+        "https://image.mediapen.com/news/202103/news_605667_1614652226_m.jpg",
     },
-    party_size: 5,
-    waiting_status: "waiting",
-    waiting_count: 3,
-    ready_to_confirm_at: "2024-09-21T15:30:00Z",
-    confirmed_at: undefined,
-    canceled_at: undefined,
   },
   {
     id: 7,
+    waiting_status: "confirmed",
+    waiting_teams_ahead: 1,
+    party_size: 4,
+    confirm_remaining_time: "2024-10-01T15:40:00Z", // Both applicable here
+    arrival_remaining_time: "2024-10-01T15:45:00Z", // Arrival time
     booth: {
       booth_id: 107,
-      name: "Business Lounge",
-      description: "Quiet space for business meetings.",
-      location: "2nd Floor, Business Center",
+      name: "비즈니스 라운지",
+      description: "비즈니스 미팅을 위한 조용한 공간.",
+      location: "2층, 비즈니스 센터",
+      thumbnail:
+        "https://image.mediapen.com/news/202103/news_605667_1614652226_m.jpg",
     },
-    party_size: 4,
-    waiting_status: "confirmed",
-    waiting_count: 1,
-    ready_to_confirm_at: "2024-09-21T15:40:00Z",
-    confirmed_at: "2024-09-21T15:35:00Z",
-    canceled_at: undefined,
   },
   {
     id: 8,
+    waiting_status: "waiting",
+    waiting_teams_ahead: 2,
+    party_size: 8,
+    confirm_remaining_time: undefined, // Not applicable
+    arrival_remaining_time: undefined, // Not applicable
     booth: {
       booth_id: 108,
-      name: "Open Sky Terrace",
-      description: "Open-air booth for social events.",
-      location: "Rooftop",
+      name: "오픈 스카이 테라스",
+      description: "사회적 이벤트를 위한 야외 부스.",
+      location: "옥상",
+      thumbnail:
+        "https://image.mediapen.com/news/202103/news_605667_1614652226_m.jpg",
     },
-    party_size: 8,
-    waiting_status: "waiting",
-    waiting_count: 2,
-    ready_to_confirm_at: "2024-09-21T15:50:00Z",
-    confirmed_at: undefined,
-    canceled_at: undefined,
   },
   {
     id: 9,
+    waiting_status: "canceled",
+    waiting_teams_ahead: 5,
+    party_size: 10,
+    confirm_remaining_time: undefined, // Not applicable
+    arrival_remaining_time: undefined, // Not applicable
     booth: {
       booth_id: 109,
-      name: "Themed Wonderland",
-      description: "Themed decor for special occasions.",
-      location: "3rd Floor, Event Hall",
+      name: "테마 원더랜드",
+      description: "특별한 행사에 적합한 테마 장식.",
+      location: "3층, 이벤트 홀",
+      thumbnail:
+        "https://image.mediapen.com/news/202103/news_605667_1614652226_m.jpg",
     },
-    party_size: 10,
-    waiting_status: "canceled",
-    waiting_count: 5,
-    ready_to_confirm_at: "2024-09-21T16:00:00Z",
-    confirmed_at: undefined,
-    canceled_at: "2024-09-21T15:55:00Z",
   },
   {
     id: 10,
+    waiting_status: "waiting",
+    waiting_teams_ahead: 3,
+    party_size: 2,
+    confirm_remaining_time: undefined, // Not applicable
+    arrival_remaining_time: undefined, // Not applicable
     booth: {
       booth_id: 110,
-      name: "Exclusive Oasis",
-      description: "Private booth for exclusive parties.",
-      location: "1st Floor, VIP Area",
+      name: "프라이빗 오아시스",
+      description: "독점적인 파티를 위한 개인 부스.",
+      location: "1층, VIP 지역",
+      thumbnail:
+        "https://image.mediapen.com/news/202103/news_605667_1614652226_m.jpg",
     },
-    party_size: 12,
-    waiting_status: "waiting",
-    waiting_count: 0,
-    ready_to_confirm_at: "2024-09-21T16:10:00Z",
-    confirmed_at: undefined,
-    canceled_at: undefined,
   },
 ];
 
-export const dummyWaitingMainResponse = dummyWaitingResponse.filter(
+export const dummyNowWaitingsResponse = dummyWaitingsResponse.filter(
   (item) =>
     item.waiting_status === "waiting" ||
     item.waiting_status === "confirmed" ||
-    item.waiting_status === "readyToConfirm"
+    item.waiting_status === "ready_to_confirm"
 );
