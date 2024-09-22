@@ -19,14 +19,14 @@ import { Waiting } from "@interfaces/waiting";
 import { MAIN_NAVIGATION_HEIGHT } from "@constants/style";
 
 // hooks
-import { useGetWaitings } from "@hooks/apis/waiting";
+import { useGetNowWaitings } from "@hooks/apis/waiting";
 
 interface MainNavigationProps {
   isFold: boolean;
 }
 
 const MainNavigation = ({ isFold }: MainNavigationProps) => {
-  const { data, isLoading, isError } = useGetWaitings("main");
+  const { data, isLoading, isError } = useGetNowWaitings();
   const [waitings, setWaitings] = useState<Waiting[]>([]);
 
   useEffect(() => {

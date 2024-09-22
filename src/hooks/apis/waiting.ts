@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { WAITING_QUERY_KEY } from "@apis/domains/waiting/queries";
 import {
+  getNowWaitings,
   getWaiting,
   GetWaitingRequest,
   getWaitings,
@@ -14,9 +15,16 @@ export const useGetWaiting = ({ ...props }: GetWaitingRequest) => {
   });
 };
 
-export const useGetWaitings = (type: string | undefined = undefined) => {
+export const useGetWaitings = () => {
   return useQuery({
     queryKey: [WAITING_QUERY_KEY.WAITINGS],
-    queryFn: () => getWaitings(type),
+    queryFn: () => getWaitings(),
+  });
+};
+
+export const useGetNowWaitings = () => {
+  return useQuery({
+    queryKey: [WAITING_QUERY_KEY.NOW_WAITINGS],
+    queryFn: () => getNowWaitings(),
   });
 };
