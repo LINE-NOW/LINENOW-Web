@@ -1,4 +1,5 @@
 import { WaitingStatus } from "@linenow-types/status";
+import { Booth } from "@interfaces/booth";
 
 export interface GetWaitingsResponse {
   waitings: GetWaitingsResponseData[];

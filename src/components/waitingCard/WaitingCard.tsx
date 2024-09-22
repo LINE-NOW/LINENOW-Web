@@ -13,15 +13,29 @@ import useModal from "@hooks/useModal";
 interface WaitingCardProps {
   waiting: Pick<
     Waiting,
-    "waitingID" | "waitingCount" | "booth" | "partySize" | "waitingStatus"
+    | "waitingID"
+    | "waitingTeamsAhead"
+    | "booth"
+    | "partySize"
+    | "waitingStatus"
+    | "confirmRemainingTime"
+    | "arrivalRemainingTime"
   >;
-  targetTime?: string;
   isButton?: boolean;
 }
 
-const WaitingCard = ({ waiting, targetTime }: WaitingCardProps) => {
+const WaitingCard = ({ waiting }: WaitingCardProps) => {
   const navigate = useNavigate();
   const { openModal } = useModal();
+
+  const targetTime = () => {
+    switch (waiting.waitingStatus) {
+      case "ready_to_confirm":
+        return waiting.confirmRemainingTime;
+      case "confirmed":
+        return waiting.arrivalRemainingTime;
+    }
+  };
 
   const cancelModal = {
     title: "정말 대기를 취소하시겠어요?",
@@ -45,8 +59,8 @@ const WaitingCard = ({ waiting, targetTime }: WaitingCardProps) => {
 
   const { titleContent, button, isValidate } = useWaitingCard({
     status: waiting.waitingStatus,
-    waitingCount: waiting.waitingCount,
-    targetTime: targetTime,
+    waitingCount: waiting.waitingTeamsAhead,
+    targetTime: targetTime(),
   });
 
   return (
@@ -68,7 +82,7 @@ const WaitingCard = ({ waiting, targetTime }: WaitingCardProps) => {
       <S.WaitingCardContentWrapper>
         {/* 부스 정보 */}
         <S.BoothInformationWrapper>
-          <S.BoothInformationImage />
+          <S.BoothInformationImage src={waiting.booth.thumbnail} />
           <S.BoothInformaitonLabelWrapper>
             <S.BoothInformationNameLabel>
               <span>{waiting.partySize}명</span>

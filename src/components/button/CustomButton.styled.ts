@@ -5,7 +5,7 @@ interface IconButtonWrapperPorps {
   $iconSize: string;
 }
 
-export const IconButtonWrapper = styled.button<IconButtonWrapperPorps>`
+export const IconButtonWrapper = styled.div<IconButtonWrapperPorps>`
   ${A.onClickButtonAnimation}
 
   ${({ $iconSize }) => {

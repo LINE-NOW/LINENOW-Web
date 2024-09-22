@@ -8,7 +8,7 @@ interface ChipWrapperProps {
   $shape: ShapeType;
 }
 
-export const ChipWrapper = styled.button<ChipWrapperProps>`
+export const ChipWrapper = styled.div<ChipWrapperProps>`
   display: flex;
   align-items: center;
 

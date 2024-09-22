@@ -1,6 +1,7 @@
-import * as S from "./MainNavigation.styled";
+import { useEffect, useState } from "react";
 
 //component
+import * as S from "./MainNavigation.styled";
 import {
   IconLabelLinkButton,
   IconLinkButton,
@@ -11,17 +12,27 @@ import WaitingCard from "@components/waitingCard/WaitingCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css"; // Updated CSS import
 
+//type
+import { Waiting } from "@interfaces/waiting";
+
 // constant
 import { MAIN_NAVIGATION_HEIGHT } from "@constants/style";
 
-// dummy
-import { dummyWaitingsResponse } from "@apis/dummy/dummyWaitingsResponse";
+// hooks
+import { useGetNowWaitings } from "@hooks/apis/waiting";
 
 interface MainNavigationProps {
   isFold: boolean;
 }
 
 const MainNavigation = ({ isFold }: MainNavigationProps) => {
+  const { data, isLoading, isError } = useGetNowWaitings();
+  const [waitings, setWaitings] = useState<Waiting[]>([]);
+
+  useEffect(() => {
+    setWaitings(data || []);
+  }, [isLoading, isError, data]);
+
   return (
     <S.MainNavigationWrapper
       style={{
@@ -54,13 +65,9 @@ const MainNavigation = ({ isFold }: MainNavigationProps) => {
           slidesPerView={1}
           style={{ width: "100%", overflow: "visible" }}
         >
-          {dummyWaitingsResponse.map((item, index) => (
-            <SwiperSlide>
-              <WaitingCard
-                key={index}
-                waiting={item}
-                targetTime={item.readyToConfirmAt}
-              />
+          {waitings.map((item, index) => (
+            <SwiperSlide key={index}>
+              <WaitingCard key={index} waiting={item} />
             </SwiperSlide>
           ))}
         </Swiper>

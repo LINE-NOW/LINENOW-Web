@@ -1,19 +1,30 @@
+import { useEffect, useState } from "react";
+
 //components
 import * as S from "./MyWaitingListPage.styled";
 import WaitingCard from "@components/waitingCard/WaitingCard";
 
+// types
+import { Waiting } from "@interfaces/waiting";
+
 // dummy
-import { dummyWaitingsResponse } from "@apis/dummy/dummyWaitingsResponse";
+import { useGetWaitings } from "@hooks/apis/waiting";
+import Spinner from "@components/spinner/Spinner";
 
 const MyWaitingListPage = () => {
-  return (
+  const { data, isLoading, isError } = useGetWaitings();
+  const [waitings, setWaitings] = useState<Waiting[]>([]);
+
+  useEffect(() => {
+    setWaitings(data || []);
+  }, [isLoading, isError, data]);
+
+  return isLoading ? (
+    <Spinner />
+  ) : (
     <S.MyWaitingListPageWrapper>
-      {dummyWaitingsResponse.map((item, index) => (
-        <WaitingCard
-          key={index}
-          waiting={item}
-          targetTime={item.readyToConfirmAt}
-        />
+      {waitings.map((item, index) => (
+        <WaitingCard key={index} waiting={item} />
       ))}
     </S.MyWaitingListPageWrapper>
   );
