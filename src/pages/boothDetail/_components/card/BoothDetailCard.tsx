@@ -1,24 +1,42 @@
 import * as S from "./BoothDeatilCard.styled";
+import { useState } from "react";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
+
+import { dummyBoothDetailResponse } from "@apis/dummy/dummyBoothDetailResponse"; // dummy 데이터 임포트
 
 interface BoothDetailCardProps {
-  boothID: string;
   activeIndex: number;
 }
 
-export const BoothDetailCard = ({
-  boothID,
-  activeIndex,
-}: BoothDetailCardProps) => {
+export const BoothDetailCard = ({}: BoothDetailCardProps) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   return (
     <S.BoothDetailCardWrapper>
-      <S.BoothDetailCardThumbnail
-        src={`/images/image_thumbnail_${boothID}.png`}
-      />
+      <Swiper
+        cssMode={true}
+        pagination={true}
+        mousewheel={true}
+        keyboard={true}
+        onSlideChange={(swiper) => setCurrentIndex(swiper.activeIndex)}
+        style={{
+          width: "100%",
+        }}
+      >
+        {dummyBoothDetailResponse.map((booth, _) => (
+          <SwiperSlide key={booth.boothID}>
+            <S.BoothDetailCardThumbnail src={booth.images[0].image} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
       <S.BoothDetailCardIndicatorWrapper>
-        {[0, 1, 2, 3].map((index) => (
+        {dummyBoothDetailResponse.map((_, index) => (
           <S.BoothDetailCardIndicator
             key={index}
-            $active={index === activeIndex}
+            $active={index === currentIndex}
           />
         ))}
       </S.BoothDetailCardIndicatorWrapper>

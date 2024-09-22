@@ -1,7 +1,7 @@
 import BottomButton from "@components/bottomButton/BottomButton";
 import Button from "@components/button/Button";
 import Separator from "@components/separator/Separator";
-import useBoothID from "./_hooks/useBoothID";
+// import useBoothID from "./_hooks/useBoothID";
 import {
   BoothDetailCard,
   BoothDetailContent,
@@ -17,10 +17,10 @@ import {
 } from "@constants/booth";
 
 const BoothDetailPage = () => {
-  const boothID = useBoothID() ?? "";
+  // const boothID = useBoothID() ?? "";
   return (
     <>
-      <BoothDetailCard boothID={boothID} activeIndex={0} />
+      <BoothDetailCard activeIndex={0} />
       <BoothDetailContent
         boothTitle={BOOTH_TITLE}
         boothSummary={BOOTH_SUMMARY}
@@ -31,7 +31,7 @@ const BoothDetailPage = () => {
       <BoothDetailMenu menuInfo={BOOTH_MENU_INFO}></BoothDetailMenu>
       <BottomButton informationTitle="전체 줄" informationSub="123 팀">
         <Button>
-          <span>대기걸기</span>
+          <span>대기 줄 서기</span>
         </Button>
       </BottomButton>
     </>
