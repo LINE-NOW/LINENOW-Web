@@ -1,13 +1,13 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 // component
 import {
   BottomsheetBackground,
   BottomsheetContainer,
-} from "./Bottomsheet.styled";
+} from './Bottomsheet.styled';
 
 // hook
-import useBottomsheet from "@hooks/useBottomsheet";
+import useBottomsheet from '@hooks/useBottomsheet';
 
 export interface BottomsheetProps {
   isOpen: boolean;
@@ -15,10 +15,16 @@ export interface BottomsheetProps {
 }
 
 const Bottomsheet = () => {
-  const { bottomsheet } = useBottomsheet();
+  const { bottomsheet, closeBottomsheet } = useBottomsheet();
+
+  const handleBackgroundClick = (event: React.MouseEvent) => {
+    if (event.target === event.currentTarget) {
+      closeBottomsheet();
+    }
+  };
 
   return bottomsheet.isOpen ? (
-    <BottomsheetBackground>
+    <BottomsheetBackground onClick={handleBackgroundClick}>
       <BottomsheetContainer>{bottomsheet.children}</BottomsheetContainer>
     </BottomsheetBackground>
   ) : null;
