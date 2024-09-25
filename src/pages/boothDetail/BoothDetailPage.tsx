@@ -1,3 +1,4 @@
+import { useState } from "react";
 import BottomButton from "@components/bottomButton/BottomButton";
 import Button from "@components/button/Button";
 import Separator from "@components/separator/Separator";
@@ -15,9 +16,20 @@ import {
   BOOTH_NOTICE_ARTICLE,
   BOOTH_MENU_INFO,
 } from "@constants/booth";
+import WaitingCheckModal from "@pages/waitingCheck/_components/WaitingCheckModal";
 
 const BoothDetailPage = () => {
   const boothID = useBoothID() ?? "";
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <BoothDetailCard boothID={boothID} activeIndex={0} />
@@ -29,11 +41,12 @@ const BoothDetailPage = () => {
       <Separator />
       <BoothDetailNotice article={BOOTH_NOTICE_ARTICLE}></BoothDetailNotice>
       <BoothDetailMenu menuInfo={BOOTH_MENU_INFO}></BoothDetailMenu>
-      <BottomButton informationTitle="전체 줄" informationSub="123 팀">
-        <Button>
+      <BottomButton informationTitle="전체 줄" informationSub={`123 팀`}>
+        <Button onClick={openModal}>
           <span>대기걸기</span>
         </Button>
       </BottomButton>
+      {isModalOpen && <WaitingCheckModal onClose={closeModal} />}
     </>
   );
 };

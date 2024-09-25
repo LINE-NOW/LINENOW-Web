@@ -1,5 +1,6 @@
 import IconLabel from "@components/label/IconLabel";
 import * as S from "./BoothCard.styled";
+import { BOOTH_TITLE, BOOTH_SUMMARY } from "@constants/booth";
 
 export type BoothCardType = "list" | "detail";
 
@@ -29,12 +30,11 @@ const BoothCard = ({
         <S.BoothCardInformationImage />
         <S.BoothCardInformationLabelWrapper>
           <S.BoothCardInformationNameLabel>
-            부스 A
+            <span>{BOOTH_TITLE}</span>
           </S.BoothCardInformationNameLabel>
 
           <S.BoothCardInformationDescriptionLabel>
-            예시 부스입니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사
-            우리 나라 만세~
+            {BOOTH_SUMMARY}
           </S.BoothCardInformationDescriptionLabel>
 
           <IconLabel

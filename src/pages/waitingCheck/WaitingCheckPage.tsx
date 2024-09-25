@@ -30,8 +30,14 @@ const WaitingCheckPage = () => {
           waiting={{
             waitingID: 1,
             waitingStatus: "check",
-            waitingCount: 3,
-            booth: { name: "라인나우", boothID: 1, location: "동국대학교" },
+            waitingTeamsAhead: 3,
+            booth: {
+              name: "라인나우",
+              boothID: 1,
+              location: "동국대학교",
+              thumbnail: "/images/image_thumbnail_1.png",
+            },
+
             partySize: 3,
           }}
           isButton={false}
