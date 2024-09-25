@@ -42,7 +42,7 @@ export const dummyBoothDetailResponse: BoothDetail[] = [
     isOperated: "운영 중",
     images: [
       {
-        image: "/images/image_caution.png",
+        image: "/images/image_thumbnail_2.png",
       },
     ],
     menu: ["사자고기: 50,000원", "사자음료: 5,000원"],
@@ -78,7 +78,7 @@ export const dummyBoothDetailResponse: BoothDetail[] = [
     isOperated: "운영 중",
     images: [
       {
-        image: "/images/image_caution.png",
+        image: "/images/image_thumbnail_2.png",
       },
     ],
     menu: ["메뉴1: 10,000원", "메뉴2: 15,000원"],

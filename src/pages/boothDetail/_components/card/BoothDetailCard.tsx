@@ -6,11 +6,7 @@ import "swiper/swiper-bundle.css";
 
 import { dummyBoothDetailResponse } from "@apis/dummy/dummyBoothDetailResponse"; // dummy 데이터 임포트
 
-interface BoothDetailCardProps {
-  activeIndex: number;
-}
-
-export const BoothDetailCard = ({}: BoothDetailCardProps) => {
+export const BoothDetailCard = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (

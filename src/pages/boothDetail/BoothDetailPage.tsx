@@ -20,7 +20,7 @@ const BoothDetailPage = () => {
   // const boothID = useBoothID() ?? "";
   return (
     <>
-      <BoothDetailCard activeIndex={0} />
+      <BoothDetailCard />
       <BoothDetailContent
         boothTitle={BOOTH_TITLE}
         boothSummary={BOOTH_SUMMARY}
