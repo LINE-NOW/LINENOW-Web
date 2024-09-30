@@ -1,5 +1,5 @@
 import * as S from "./WaitingDetailPage.styled";
-import BoothCard from "@components/boothCard/BoothCard";
+import BoothCardDetail from "@components/boothCard/boothCardDetail";
 import BottomButton from "@components/bottomButton/BottomButton";
 import Button from "@components/button/Button";
 import Separator from "@components/separator/Separator";
@@ -24,11 +24,13 @@ const WaitingDetailPage = () => {
     openModal(waitingCancelModal);
   };
 
+  const waitingCount = 12;
+
   return (
     <>
       <S.WaitingDetailPageBoothCardWrapper>
         <S.WaitingDetailPageBoothCard>
-          <BoothCard type="detail" />
+          <BoothCardDetail waitingCount={waitingCount} />
         </S.WaitingDetailPageBoothCard>
       </S.WaitingDetailPageBoothCardWrapper>
 
