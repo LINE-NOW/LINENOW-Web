@@ -1,6 +1,10 @@
+import { useEffect } from "react";
+
 import BottomButton from "@components/bottomButton/BottomButton";
 import Button from "@components/button/Button";
 import Separator from "@components/separator/Separator";
+import { Entrance } from "@components/entrance/Entrance";
+import useBottomsheet from "@hooks/useBottomsheet";
 // import useBoothID from "./_hooks/useBoothID";
 import {
   BoothDetailCard,
@@ -18,6 +22,10 @@ import {
 
 const BoothDetailPage = () => {
   // const boothID = useBoothID() ?? "";
+  const { openBottomsheet } = useBottomsheet();
+  useEffect(() => {
+    openBottomsheet({ children: <Entrance /> });
+  }, []);
   return (
     <>
       <BoothDetailCard />
