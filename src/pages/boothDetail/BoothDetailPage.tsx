@@ -2,7 +2,7 @@ import { useState } from "react";
 import BottomButton from "@components/bottomButton/BottomButton";
 import Button from "@components/button/Button";
 import Separator from "@components/separator/Separator";
-import useBoothID from "./_hooks/useBoothID";
+// import useBoothID from "./_hooks/useBoothID";
 import {
   BoothDetailCard,
   BoothDetailContent,
@@ -19,6 +19,7 @@ import {
 import WaitingCheckModal from "@pages/waitingCheck/_components/WaitingCheckModal";
 
 const BoothDetailPage = () => {
+
   const boothID = useBoothID() ?? "";
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -30,9 +31,12 @@ const BoothDetailPage = () => {
     setIsModalOpen(false);
   };
 
+
+  // const boothID = useBoothID() ?? "";
+
   return (
     <>
-      <BoothDetailCard boothID={boothID} activeIndex={0} />
+      <BoothDetailCard />
       <BoothDetailContent
         boothTitle={BOOTH_TITLE}
         boothSummary={BOOTH_SUMMARY}
@@ -41,6 +45,7 @@ const BoothDetailPage = () => {
       <Separator />
       <BoothDetailNotice article={BOOTH_NOTICE_ARTICLE}></BoothDetailNotice>
       <BoothDetailMenu menuInfo={BOOTH_MENU_INFO}></BoothDetailMenu>
+
       <BottomButton informationTitle="전체 줄" informationSub={`123 팀`}>
         <Button onClick={openModal}>
           <span>대기걸기</span>
