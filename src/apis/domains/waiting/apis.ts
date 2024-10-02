@@ -19,7 +19,7 @@ export const getWaiting = async ({
   ...props
 }: GetWaitingRequest): Promise<Waiting | null> => {
   const response = await getResponse<GetWaitingResponse>(
-    `/api/v1/waitings/${props.waitingID}`
+    `api/v1/waitings/${props.waitingID}`
   );
   return response ? transformGetWaitingResponse(response) : null; // 변환 후 반환
 };
@@ -27,13 +27,13 @@ export const getWaiting = async ({
 // get waitings : - 나의 대기 리스트
 
 export const getWaitings = async (): Promise<Waiting[]> => {
-  const response = await getResponse<GetWaitingsResponse>(`/api/v1/waitings`);
+  const response = await getResponse<GetWaitingsResponse>(`api/v1/waitings`);
   return response ? transformGetWaitingsResponse(response) : []; // 변환 후 반환
 };
 
 export const getNowWaitings = async (): Promise<Waiting[]> => {
   const response = await getResponse<GetWaitingsResponse>(
-    `/api/v1/waitings/now-waitings`
+    `api/v1/waitings/now-waitings`
   );
   return response ? transformGetWaitingsResponse(response) : []; // 변환 후 반환
 };

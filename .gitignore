@@ -51,4 +51,5 @@ thumb
 sketch
 
 dist
+.env
 # End of https://www.toptal.com/developers/gitignore/api/react,macos
