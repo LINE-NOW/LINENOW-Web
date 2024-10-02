@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import * as S from "./WaitingCheckPage.styled";
 import BottomButton from "@components/bottomButton/BottomButton";
 import Button from "@components/button/Button";
@@ -9,7 +10,8 @@ import WaitingCheckCautionModal from "./_components/WaitingCheckCautionModal";
 
 const WaitingCheckPage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
-  // const waitingID = useWaitingId();
+  const { state } = useLocation();
+  const checkedPeople = state?.checkedPeople || 1;
 
   const handleOpenModal = () => {
     setModalOpen(true);
@@ -26,7 +28,6 @@ const WaitingCheckPage = () => {
           줄서기를 진행하시겠어요?
         </S.WaitingCheckPageTitle>
         <WaitingCard
-          //TODO: - api 연결 후 삭제 필요
           waiting={{
             waitingID: 1,
             waitingStatus: "check",
@@ -37,8 +38,7 @@ const WaitingCheckPage = () => {
               location: "동국대학교",
               thumbnail: "/images/image_thumbnail_1.png",
             },
-
-            partySize: 3,
+            partySize: checkedPeople,
           }}
           isButton={false}
         />

@@ -6,6 +6,7 @@ import {
   dummyWaitingsResponse,
 } from "./dummy/waitings";
 import { dummyBoothListResponse } from "./dummy/boothList";
+import { dummyBoothResponse } from "./dummy/booth";
 
 const COMMON_DELAY = 0;
 
@@ -23,4 +24,5 @@ export const handlers = [
     getDelayedResponse(dummyNowWaitingsResponse)
   ),
   http.get("/api/v1/booths", getDelayedResponse(dummyBoothListResponse)),
+  http.get(`/api/v1/booths/:boothId`, getDelayedResponse(dummyBoothResponse)),
 ];
