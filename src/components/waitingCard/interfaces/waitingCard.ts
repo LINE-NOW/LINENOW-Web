@@ -10,7 +10,7 @@ export interface GetWaitingsResponseData {
   waitingCount?: number;
 
   booth: Booth;
-  partySize: number;
+  party_size: number;
 
   waitingStatus: WaitingStatus;
   readyToConfirmAt?: string;

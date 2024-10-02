@@ -39,7 +39,7 @@ const WaitingCheckPage = () => {
               thumbnail: booth.images[0] || "/images/default_thumbnail.png",
             },
 
-            partySize: checkedPeople,
+            party_size: checkedPeople,
           }}
           isButton={false}
         />
@@ -55,7 +55,13 @@ const WaitingCheckPage = () => {
         </Button>
       </BottomButton>
 
-      {isModalOpen && <WaitingCheckCautionModal onClose={handleCloseModal} />}
+      {isModalOpen && (
+        <WaitingCheckCautionModal
+          checkedPeople={checkedPeople}
+          boothId={booth.id}
+          onClose={handleCloseModal}
+        />
+      )}
     </>
   );
 };

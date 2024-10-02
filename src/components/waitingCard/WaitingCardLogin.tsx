@@ -15,7 +15,7 @@ interface WaitingCardProps {
     | "waitingID"
     | "waitingTeamsAhead"
     | "booth"
-    | "partySize"
+    | "party_size"
     | "waitingStatus"
     | "confirmRemainingTime"
     | "arrivalRemainingTime"
