@@ -17,10 +17,9 @@ import {
   BOOTH_MENU_INFO,
 } from "@constants/booth";
 import WaitingCheckModal from "@pages/waitingCheck/_components/WaitingCheckModal";
+// import useBoothID from "./_hooks/useBoothID";
 
 const BoothDetailPage = () => {
-
-  const boothID = useBoothID() ?? "";
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -30,7 +29,6 @@ const BoothDetailPage = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-
 
   // const boothID = useBoothID() ?? "";
 
