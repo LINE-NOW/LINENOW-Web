@@ -2,7 +2,7 @@ import { WaitingStatus } from "@linenow-types/status";
 import { BoothBrief } from "@interfaces/booth";
 
 export interface Waiting {
-  waitingID: number;
+  waitingID?: number;
   waitingStatus: WaitingStatus;
   waitingTeamsAhead?: number;
   waitingCount?: number;

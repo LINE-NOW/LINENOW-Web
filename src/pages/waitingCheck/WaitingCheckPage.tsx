@@ -10,8 +10,9 @@ import WaitingCheckCautionModal from "./_components/WaitingCheckCautionModal";
 
 const WaitingCheckPage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const { state } = useLocation();
-  const checkedPeople = state?.checkedPeople || 1;
+  // const waitingID = useWaitingId();
+  const location = useLocation();
+  const { checkedPeople, booth } = location.state || {};
 
   const handleOpenModal = () => {
     setModalOpen(true);
@@ -29,15 +30,15 @@ const WaitingCheckPage = () => {
         </S.WaitingCheckPageTitle>
         <WaitingCard
           waiting={{
-            waitingID: 1,
             waitingStatus: "check",
-            waitingTeamsAhead: 3,
+            waitingTeamsAhead: booth.waiting_count,
             booth: {
-              name: "라인나우",
-              boothID: 1,
-              location: "동국대학교",
-              thumbnail: "/images/image_thumbnail_1.png",
+              name: booth.name,
+              boothID: booth.id,
+              location: booth.location,
+              thumbnail: booth.images[0] || "/images/default_thumbnail.png",
             },
+
             partySize: checkedPeople,
           }}
           isButton={false}

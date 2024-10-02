@@ -4,12 +4,14 @@ import WaitingCheckPeople from "./WaitingCheckPeople";
 import Button from "@components/button/Button";
 import ButtonLayout from "@components/button/ButtonLayout";
 import { useNavigate } from "react-router-dom";
+import { Booth } from "@apis/domains/booth/_interfaces";
 
 interface WaitingCheckModalProps {
   onClose: () => void;
+  booth: Booth; // 부스 타입을 지정
 }
 
-const WaitingCheckModal = ({ onClose }: WaitingCheckModalProps) => {
+const WaitingCheckModal = ({ onClose, booth }: WaitingCheckModalProps) => {
   const navigate = useNavigate();
   const [checkedPeople, setCheckedPeople] = useState<number | null>(1);
 
@@ -18,7 +20,7 @@ const WaitingCheckModal = ({ onClose }: WaitingCheckModalProps) => {
   };
 
   const handleConfirm = () => {
-    navigate("/check", { state: { checkedPeople } });
+    navigate("/check", { state: { checkedPeople, booth } });
   };
 
   return (

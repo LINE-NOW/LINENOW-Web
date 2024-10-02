@@ -51,7 +51,9 @@ const BoothDetailPage = () => {
               <span>대기 줄 서기</span>
             </Button>
           </BottomButton>
-          {isModalOpen && <WaitingCheckModal onClose={closeModal} />}
+          {isModalOpen && (
+            <WaitingCheckModal booth={booth} onClose={closeModal} />
+          )}
         </>
       )}
     </>
