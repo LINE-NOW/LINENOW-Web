@@ -1,7 +1,10 @@
-import { IconButton } from '@components/button/CustomButton';
-import * as S from './LoginBottomsheetContent.styled';
+import { IconButton } from "@components/button/CustomButton";
+import * as S from "./LoginBottomsheetContent.styled";
+import { useNavigate } from "react-router-dom";
 
 const LoginBottomsheetContent = () => {
+  const navigate = useNavigate();
+
   return (
     <S.LoginBottomsheetContentWrapper>
       <S.LoginBottomsheetContentTopWrapper>
@@ -14,7 +17,11 @@ const LoginBottomsheetContent = () => {
         </S.LoginBottomsheetContentTopSubTitle>
       </S.LoginBottomsheetContentTopWrapper>
 
-      <S.LoginBottomsheetContentButton>
+      <S.LoginBottomsheetContentButton
+        onClick={() => {
+          navigate("/signup");
+        }}
+      >
         <IconButton icon="kakao_kakao" iconSize="1.5rem" />
         <S.LoginBottomsheetContentButtonText>
           카카오 로그인으로 시작하기
