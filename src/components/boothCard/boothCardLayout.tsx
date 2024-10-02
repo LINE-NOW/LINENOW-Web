@@ -1,40 +1,45 @@
 import IconLabel from "@components/label/IconLabel";
 import * as S from "./BoothCard.styled";
 
-export type BoothCardType = "list" | "detail";
-
 interface BoothCardProps {
-  type?: BoothCardType;
-  chip?: React.ReactNode;
+  boothTitle: React.ReactNode;
+  boothSummary: string;
+  boothLocationInfo: string;
   borderBottom?: string;
+  boothImage?: string;
+  children?: React.ReactNode;
   padding?: string;
   to?: string;
+  onClickButtonAnimation?: boolean;
 }
 
-const BoothCard = ({
-  type = "list",
-  chip,
+const BoothCardLayout = ({
+  boothTitle,
+  boothSummary,
+  boothLocationInfo,
+  boothImage,
+  children,
   borderBottom,
   padding,
   to,
+  onClickButtonAnimation,
 }: BoothCardProps) => {
   return (
     <S.BoothCardWrapper
-      type={type}
-      to={to || "#"}
+      to={to || ""}
       $borderBottom={borderBottom}
       padding={padding}
+      onClickButtonAnimation={onClickButtonAnimation}
     >
       <S.BoothCardInformationWrapper>
-        <S.BoothCardInformationImage />
+        <S.BoothCardInformationImage src={boothImage} />
         <S.BoothCardInformationLabelWrapper>
           <S.BoothCardInformationNameLabel>
-            부스 A
+            {boothTitle}
           </S.BoothCardInformationNameLabel>
 
           <S.BoothCardInformationDescriptionLabel>
-            예시 부스입니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사
-            우리 나라 만세~
+            {boothSummary}
           </S.BoothCardInformationDescriptionLabel>
 
           <IconLabel
@@ -43,15 +48,14 @@ const BoothCard = ({
             iconSize={"1rem"}
           >
             <S.BoothCardInformationLocationLabel>
-              동국대 팔정도
+              {boothLocationInfo}
             </S.BoothCardInformationLocationLabel>
           </IconLabel>
         </S.BoothCardInformationLabelWrapper>
       </S.BoothCardInformationWrapper>
-
-      {chip && <S.BoothCardChipListWrapper>{chip}</S.BoothCardChipListWrapper>}
+      {children}
     </S.BoothCardWrapper>
   );
 };
 
-export default BoothCard;
+export default BoothCardLayout;

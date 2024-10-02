@@ -39,7 +39,7 @@ export const WaitingDetailCautionItemWrapper = styled.div`
 export const WaitingDetailCautionItemContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 `;
 
 export const WaitingDetailCautionItemImg = styled.img`

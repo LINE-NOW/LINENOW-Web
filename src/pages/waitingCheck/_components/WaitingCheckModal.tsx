@@ -9,14 +9,14 @@ interface WaitingCheckModalProps {
   onClose: () => void;
 }
 
-// const WaitingCheckModal = ({ onClose }: WaitingCheckModalProps) => {
-const WaitingCheckModal = ({}: WaitingCheckModalProps) => {
+const WaitingCheckModal = ({ onClose }: WaitingCheckModalProps) => {
+  // const WaitingCheckModal = ({}: WaitingCheckModalProps) => {
   const navigate = useNavigate();
   const [checkedPeople, setCheckedPeople] = useState<number | null>(1); // 체크된 인원수 상태 관리
 
   const handleCancel = () => {
     console.log("취소 버튼 클릭");
-    // onClose();
+    onClose();
   };
 
   const handleConfirm = () => {
