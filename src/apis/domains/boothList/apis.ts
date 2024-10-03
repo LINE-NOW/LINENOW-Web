@@ -8,5 +8,6 @@ import { GetBoothListResponse, BoothList } from "./_interfaces";
 export const getBoothList = async (): Promise<BoothList[]> => {
   const response = await getResponse<BoothList[]>(`/api/v1/booths`);
 
+  console.log(response);
   return response ? response.map(GetBoothListResponse) : [];
 };
