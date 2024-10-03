@@ -13,6 +13,12 @@ interface BaseDTO<T> {
   message: string;
 }
 
+export interface EmptyDTO {
+  status: string;
+  code: number;
+  message: string;
+}
+
 export const getResponse = async <T>(url: string): Promise<T | null> => {
   try {
     const response = await instance.get<BaseDTO<T>>(url, {
@@ -37,38 +43,30 @@ export const getResponse = async <T>(url: string): Promise<T | null> => {
   }
 };
 
-// export const deleteResponse = async <T>(url: string): Promise<T | null> => {
-//   try {
-//     const response = await instance.delete<BaseDTO<T>>(url, {
-//       headers: {
-//         Authorization: `Bearer `,
-//       },
-//     });
-
-//     console.log(
-//       `[DELETE] ${url}
-//       code: ${response.data.code} (${response.data.status})
-//       message: ${response.data.message}`
-//     );
-
-//     const data = response.data.data;
-//     return data;
-//   } catch (error) {
-//     const axiosError = error as AxiosError;
-
-//     console.error('Response error:', axiosError);
-//     return null;
-//   }
-// };
-
-export const deleteResponse = async <T>(url: string): Promise<T | null> => {
+export const deleteResponse = async (url: string): Promise<EmptyDTO | null> => {
   try {
-    const response = await instance.delete<T>(url);
-    return response.data;
+    const response = await instance.delete<BaseDTO<EmptyDTO>>(url, {
+      headers: {
+        Authorization: `Bearer `,
+      },
+    });
+
+    console.log(
+      `[DELETE] ${url}
+      code: ${response.data.code} (${response.data.status})
+      message: ${response.data.message}`
+    );
+
+    const result: EmptyDTO = {
+      status: response.data.status,
+      message: response.data.message,
+      code: response.data.code,
+    };
+
+    return result;
   } catch (error) {
-    // const axiosError = error as AxiosError;
-    // console.log(`[POST] ${url} - Data:`, data);
-    // console.error('Response error:', axiosError);
+    const axiosError = error as AxiosError;
+    console.error('Response error:', axiosError);
     return null;
   }
 };

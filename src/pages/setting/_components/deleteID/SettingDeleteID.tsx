@@ -23,8 +23,8 @@ const SettingDeleteID = () => {
 
   const handleDeleteID = async () => {
     const response = await deleteUser();
+
     if (response && response.status) {
-      console.log(response);
       // localStorage.clear(); // TODO: - 추후에 확인
       closeModal();
       navigate('/');
