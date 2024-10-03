@@ -2,10 +2,6 @@ import * as S from './SettingPage.styled';
 import SettingItem from './_components/settingItem/SettingItem';
 import SettingDeleteID from './_components/deleteID/SettingDeleteID';
 import useModal from '@hooks/useModal';
-
-// 로그인 바텀 시트 테스트
-import useBottomsheet from '@hooks/useBottomsheet';
-import LoginBottomsheetContent from '@components/login/LoginBottomsheetContent';
 import { postLogout } from '@apis/domains/auth/logout/apis';
 import { useNavigate } from 'react-router-dom';
 
@@ -71,16 +67,9 @@ const SettingPage = () => {
     );
   };
 
-  // 로그인 바텀 시트 테스트
-  const { openBottomsheet } = useBottomsheet();
-
-  const handleOpenBottomSheetButton = () => {
-    openBottomsheet({ children: <LoginBottomsheetContent /> });
-  };
-
   const settingItemProps = [
     { title: '로그아웃', onClick: handleLogoutClick },
-    { title: '언어설정', onClick: handleOpenBottomSheetButton },
+    { title: '언어설정' },
     { title: '이용약관', onClick: handleTermsOfServiceClick },
     { title: '1:1 문의', onClick: handleInquiryClick },
     { title: '개발자 정보', onClick: handleDeveloperInfoClick },
