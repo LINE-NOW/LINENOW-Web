@@ -19,6 +19,19 @@ export interface EmptyDTO {
   message: string;
 }
 
+// 공통 응답 처리 함수
+const handleResponse = <T>(response: BaseDTO<T>): EmptyDTO => {
+  console.log(
+    `code: ${response.code} (${response.status})\nmessage: ${response.message}`
+  );
+
+  return {
+    status: response.status,
+    message: response.message,
+    code: response.code,
+  };
+};
+
 export const getResponse = async <T>(url: string): Promise<T | null> => {
   try {
     const response = await instance.get<BaseDTO<T>>(url, {
@@ -51,19 +64,7 @@ export const deleteResponse = async (url: string): Promise<EmptyDTO | null> => {
       },
     });
 
-    console.log(
-      `[DELETE] ${url}
-      code: ${response.data.code} (${response.data.status})
-      message: ${response.data.message}`
-    );
-
-    const result: EmptyDTO = {
-      status: response.data.status,
-      message: response.data.message,
-      code: response.data.code,
-    };
-
-    return result;
+    return handleResponse(response.data);
   } catch (error) {
     const axiosError = error as AxiosError;
     console.error('Response error:', axiosError);
@@ -71,17 +72,18 @@ export const deleteResponse = async (url: string): Promise<EmptyDTO | null> => {
   }
 };
 
-export const postResponse = async <T>(
-  url: string,
-  data: any
-): Promise<T | null> => {
+export const postResponse = async (url: string): Promise<EmptyDTO | null> => {
   try {
-    const response = await instance.post<T>(url, data);
-    return response.data;
+    const response = await instance.post<BaseDTO<EmptyDTO>>(url, {
+      headers: {
+        Authorization: `Bearer `,
+      },
+    });
+
+    return handleResponse(response.data);
   } catch (error) {
-    // const axiosError = error as AxiosError;
-    // console.log(`[POST] ${url} - Data:`, data);
-    // console.error('Response error:', axiosError);
+    const axiosError = error as AxiosError;
+    console.error('Response error:', axiosError);
     return null;
   }
 };

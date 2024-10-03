@@ -20,7 +20,7 @@ const SettingPage = () => {
     const accessToken = '12345';
 
     if (accessToken) {
-      const response = await postLogout({ accessToken });
+      const response = await postLogout();
 
       if (response) {
         localStorage.removeItem('accessToken');
