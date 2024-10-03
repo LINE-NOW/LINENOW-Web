@@ -5,15 +5,21 @@ import ButtonLayout from "@components/button/ButtonLayout";
 import BoothCard from "@components/boothCard/BoothCard";
 import * as S from "./Entrance.styled";
 import useBottomsheet from "@hooks/useBottomsheet";
+import useTimer from "@hooks/useTimer";
+import { useAtom } from "jotai";
+import { entranceBottomsheetAtom } from "@atoms/entrance";
 
 export interface EntranceProps {
-  boothID: string;
+  boothID?: string;
+  isOpen?: boolean;
 }
 // const navigate = useNavigate();
 
 export const Entrance = ({ boothID }: EntranceProps) => {
+  const [entranceState] = useAtom(entranceBottomsheetAtom);
   const { closeBottomsheet } = useBottomsheet();
   const { openModal, closeModal } = useModal();
+  const { minutes, seconds } = useTimer(0, 10);
   // useNavigate 훅을 사용하여 경로 이동 제어
 
   return (
@@ -50,7 +56,7 @@ export const Entrance = ({ boothID }: EntranceProps) => {
                   onClick: () => {
                     closeModal();
                     // navigate("/");
-                    window.location.href = `/waiting/${boothID}`;
+                    window.location.href = `${entranceState.location}`;
                     // 입장 확정 후 이동 경로 설정
                   },
                 },
@@ -58,7 +64,9 @@ export const Entrance = ({ boothID }: EntranceProps) => {
             }
           >
             <span>입장할게요!</span>
-            <span>3:00</span>
+            <span>
+              {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+            </span>
           </Button>
           <Button
             scheme="grayLight"

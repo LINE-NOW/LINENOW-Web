@@ -15,7 +15,7 @@ export interface Waiting {
   booth: BoothBrief;
 
   // registeredAt: string;
-  // readyToConfirmAt?: string;
+  readyToConfirmAt?: string;
   // confirmedAt?: string;
   // canceledAt?: string;
 }

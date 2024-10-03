@@ -1,3 +1,9 @@
 import { atom } from "jotai";
+import { EntranceProps } from "@components/entrance/Entrance";
 
-// props
+export const entranceBottomsheetAtom = atom<
+  Omit<EntranceProps, "isOpen"> & { location?: string }
+>({
+  boothID: "1",
+  location: "/",
+});
