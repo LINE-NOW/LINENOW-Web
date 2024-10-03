@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import * as S from "./WaitingCheckPage.styled";
 import BottomButton from "@components/bottomButton/BottomButton";
 import Button from "@components/button/Button";
@@ -10,6 +11,8 @@ import WaitingCheckCautionModal from "./_components/WaitingCheckCautionModal";
 const WaitingCheckPage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   // const waitingID = useWaitingId();
+  const location = useLocation();
+  const { checkedPeople, booth } = location.state || {};
 
   const handleOpenModal = () => {
     setModalOpen(true);
@@ -26,19 +29,17 @@ const WaitingCheckPage = () => {
           줄서기를 진행하시겠어요?
         </S.WaitingCheckPageTitle>
         <WaitingCard
-          //TODO: - api 연결 후 삭제 필요
           waiting={{
-            waitingID: 1,
             waitingStatus: "check",
-            waitingTeamsAhead: 3,
+            waitingTeamsAhead: booth.waiting_count,
             booth: {
-              name: "라인나우",
-              boothID: 1,
-              location: "동국대학교",
-              thumbnail: "/images/image_thumbnail_1.png",
+              name: booth.name,
+              boothID: booth.id,
+              location: booth.location,
+              thumbnail: booth.images[0] || "/images/default_thumbnail.png",
             },
 
-            partySize: 3,
+            party_size: checkedPeople,
           }}
           isButton={false}
         />
@@ -54,7 +55,13 @@ const WaitingCheckPage = () => {
         </Button>
       </BottomButton>
 
-      {isModalOpen && <WaitingCheckCautionModal onClose={handleCloseModal} />}
+      {isModalOpen && (
+        <WaitingCheckCautionModal
+          checkedPeople={checkedPeople}
+          boothId={booth.id}
+          onClose={handleCloseModal}
+        />
+      )}
     </>
   );
 };

@@ -1,15 +1,16 @@
 import * as S from "./BoothDetailNotice.styled";
 import { Title } from "../common/style";
+import { Booth } from "@apis/domains/booth/_interfaces";
 
-interface BoothDetailNoticeProps {
-  article: string;
+interface BoothDetailContentProps {
+  booth: Booth;
 }
 
-export const BoothDetailNotice = ({ article }: BoothDetailNoticeProps) => {
+export const BoothDetailNotice = ({ booth }: BoothDetailContentProps) => {
   return (
     <S.BoothDetailNoticeWrapper>
       <Title>부스 유의사항</Title>
-      <S.BoothDetailNoticeArticle>{article}</S.BoothDetailNoticeArticle>
+      <S.BoothDetailNoticeArticle>{booth.caution}</S.BoothDetailNoticeArticle>
     </S.BoothDetailNoticeWrapper>
   );
 };

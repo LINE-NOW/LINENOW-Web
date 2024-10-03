@@ -32,13 +32,13 @@ const router = createBrowserRouter([
       <>
         <Modal />
         <Bottomsheet />
-        <Outlet />
+        {/* <Outlet /> */}
         <DefaultPageLayout />
       </>
     ),
     children: [
       { path: "", element: <MainPage /> },
-      { path: "booth/:boothID", element: <BoothDetailPage /> },
+      { path: "booth/:boothId", element: <BoothDetailPage /> },
       { path: "check", element: <WaitingCheckPage /> },
       { path: "waiting/:waitingID", element: <WaitingDetailPage /> },
       { path: "my-waiting", element: <MyWaitingListPage /> },

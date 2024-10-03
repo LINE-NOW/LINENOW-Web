@@ -12,6 +12,7 @@ interface BaseDTO<T> {
   message: string;
 }
 
+//get
 export const getResponse = async <T>(url: string): Promise<T | null> => {
   try {
     const response = await instance.get<BaseDTO<T>>(url, {
@@ -22,6 +23,36 @@ export const getResponse = async <T>(url: string): Promise<T | null> => {
 
     console.log(
       `[GET] ${url}
+      code: ${response.data.code} (${response.data.status})
+      message: ${response.data.message}`
+    );
+
+    const data = response.data.data;
+    return data;
+  } catch (error) {
+    const axiosError = error as AxiosError;
+
+    console.error("Response error:", axiosError);
+    return null;
+  }
+};
+
+//post
+export const postResponse = async <T>(
+  url: string,
+  body: T
+): Promise<T | null> => {
+  try {
+    const response = await instance.post<BaseDTO<T>>(url, body, {
+      headers: {
+        Authorization: `Bearer `,
+      },
+    });
+
+    console.log("서버 응답:", response); // 응답 내용 로그 추가
+
+    console.log(
+      `[POST] ${url}
       code: ${response.data.code} (${response.data.status})
       message: ${response.data.message}`
     );
