@@ -50,6 +50,14 @@ const SettingPage = () => {
     openModal(logoutModalProps);
   };
 
+  // 이용약관 클릭
+  const handleTermsOfServiceClick = () => {
+    window.open(
+      'https://thorn-freesia-96f.notion.site/c645fe5ebb624ca9a7be3e697ecdf8be?pvs=4',
+      '_blank'
+    );
+  };
+
   // 로그인 바텀 시트 테스트
   const { openBottomsheet } = useBottomsheet();
 
@@ -60,7 +68,7 @@ const SettingPage = () => {
   const settingItemProps = [
     { title: '로그아웃', onClick: handleLogoutClick },
     { title: '언어설정', onClick: handleOpenBottomSheetButton },
-    { title: '이용약관' },
+    { title: '이용약관', onClick: handleTermsOfServiceClick },
     { title: '1:1 문의' },
     { title: '개발자 정보' },
   ];
