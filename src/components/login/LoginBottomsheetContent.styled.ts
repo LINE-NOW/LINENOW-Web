@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const LoginBottomsheetContentWrapper = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ export const LoginBottomsheetContentTopTitle = styled.h1`
   color: ${({ theme }) => theme.colors.font.black};
 `;
 
-export const LoginBottomsheetContentTopSubTitle = styled.body`
+export const LoginBottomsheetContentTopSubTitle = styled.div`
   ${({ theme }) => theme.fonts.b1}
   color: ${({ theme }) => theme.colors.font.blackLight};
 `;
