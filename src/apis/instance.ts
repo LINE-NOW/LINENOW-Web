@@ -72,3 +72,18 @@ export const deleteResponse = async <T>(url: string): Promise<T | null> => {
     return null;
   }
 };
+
+export const postResponse = async <T>(
+  url: string,
+  data: any
+): Promise<T | null> => {
+  try {
+    const response = await instance.post<T>(url, data);
+    return response.data;
+  } catch (error) {
+    // const axiosError = error as AxiosError;
+    // console.log(`[POST] ${url} - Data:`, data);
+    // console.error('Response error:', axiosError);
+    return null;
+  }
+};
