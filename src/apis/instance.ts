@@ -13,7 +13,6 @@ interface BaseDTO<T> {
   message: string;
 }
 
-
 export interface EmptyDTO {
   status: string;
   code: number;
@@ -32,7 +31,6 @@ const handleResponse = <T>(response: BaseDTO<T>): EmptyDTO => {
     code: response.code,
   };
 };
-
 
 //get
 export const getResponse = async <T>(url: string): Promise<T | null> => {
@@ -75,7 +73,9 @@ export const deleteResponse = async (url: string): Promise<EmptyDTO | null> => {
   }
 };
 
-export const postResponse = async (url: string): Promise<EmptyDTO | null> => {
+export const postResponseNoData = async (
+  url: string
+): Promise<EmptyDTO | null> => {
   try {
     const response = await instance.post<BaseDTO<EmptyDTO>>(url, {
       headers: {
@@ -103,7 +103,7 @@ export const postResponse = async <T>(
       },
     });
 
-    console.log("서버 응답:", response); // 응답 내용 로그 추가
+    console.log('서버 응답:', response); // 응답 내용 로그 추가
 
     console.log(
       `[POST] ${url}
@@ -116,7 +116,7 @@ export const postResponse = async <T>(
   } catch (error) {
     const axiosError = error as AxiosError;
 
-    console.error("Response error:", axiosError);
+    console.error('Response error:', axiosError);
     return null;
   }
 };
