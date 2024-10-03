@@ -58,6 +58,11 @@ const SettingPage = () => {
     );
   };
 
+  // 1:1 문의 클릭
+  const handleInquiryClick = () => {
+    window.open('https://open.kakao.com/o/sDiY4qSg', '_blank');
+  };
+
   // 로그인 바텀 시트 테스트
   const { openBottomsheet } = useBottomsheet();
 
@@ -69,7 +74,7 @@ const SettingPage = () => {
     { title: '로그아웃', onClick: handleLogoutClick },
     { title: '언어설정', onClick: handleOpenBottomSheetButton },
     { title: '이용약관', onClick: handleTermsOfServiceClick },
-    { title: '1:1 문의' },
+    { title: '1:1 문의', onClick: handleInquiryClick },
     { title: '개발자 정보' },
   ];
 
