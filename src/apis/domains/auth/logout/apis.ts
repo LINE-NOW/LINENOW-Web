@@ -1,7 +1,7 @@
-import { EmptyDTO, postResponse } from '@apis/instance';
+import { EmptyDTO, postResponseNoData } from '@apis/instance';
 
 // 로그아웃 API 호출 함수
-export const postLogout = async (): Promise<string | null> => {
-  const response = await postResponse('/api/v1/logout');
-  return response?.message || null;
+export const postLogout = async (): Promise<EmptyDTO | null> => {
+  const response = await postResponseNoData('/api/v1/logout');
+  return response;
 };

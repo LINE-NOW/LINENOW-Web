@@ -2,10 +2,6 @@ import * as S from './SettingPage.styled';
 import SettingItem from './_components/settingItem/SettingItem';
 import SettingDeleteID from './_components/deleteID/SettingDeleteID';
 import useModal from '@hooks/useModal';
-
-// 로그인 바텀 시트 테스트
-import useBottomsheet from '@hooks/useBottomsheet';
-import LoginBottomsheetContent from '@components/login/LoginBottomsheetContent';
 import { postLogout } from '@apis/domains/auth/logout/apis';
 import { useNavigate } from 'react-router-dom';
 
@@ -50,19 +46,33 @@ const SettingPage = () => {
     openModal(logoutModalProps);
   };
 
-  // 로그인 바텀 시트 테스트
-  const { openBottomsheet } = useBottomsheet();
+  // 이용약관 클릭
+  const handleTermsOfServiceClick = () => {
+    window.open(
+      'https://thorn-freesia-96f.notion.site/c645fe5ebb624ca9a7be3e697ecdf8be?pvs=4',
+      '_blank'
+    );
+  };
 
-  const handleOpenBottomSheetButton = () => {
-    openBottomsheet({ children: <LoginBottomsheetContent /> });
+  // 1:1 문의 클릭
+  const handleInquiryClick = () => {
+    window.open('https://open.kakao.com/o/sDiY4qSg', '_blank');
+  };
+
+  // 개발자 정보 클릭
+  const handleDeveloperInfoClick = () => {
+    window.open(
+      'https://thorn-freesia-96f.notion.site/09b2230a514848ec9041518f467f86e4?pvs=4',
+      '_blank'
+    );
   };
 
   const settingItemProps = [
     { title: '로그아웃', onClick: handleLogoutClick },
-    { title: '언어설정', onClick: handleOpenBottomSheetButton },
-    { title: '이용약관' },
-    { title: '1:1 문의' },
-    { title: '개발자 정보' },
+    { title: '언어설정' },
+    { title: '이용약관', onClick: handleTermsOfServiceClick },
+    { title: '1:1 문의', onClick: handleInquiryClick },
+    { title: '개발자 정보', onClick: handleDeveloperInfoClick },
   ];
 
   return (
