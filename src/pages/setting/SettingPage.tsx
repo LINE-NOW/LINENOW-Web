@@ -63,6 +63,14 @@ const SettingPage = () => {
     window.open('https://open.kakao.com/o/sDiY4qSg', '_blank');
   };
 
+  // 개발자 정보 클릭
+  const handleDeveloperInfoClick = () => {
+    window.open(
+      'https://thorn-freesia-96f.notion.site/09b2230a514848ec9041518f467f86e4?pvs=4',
+      '_blank'
+    );
+  };
+
   // 로그인 바텀 시트 테스트
   const { openBottomsheet } = useBottomsheet();
 
@@ -75,7 +83,7 @@ const SettingPage = () => {
     { title: '언어설정', onClick: handleOpenBottomSheetButton },
     { title: '이용약관', onClick: handleTermsOfServiceClick },
     { title: '1:1 문의', onClick: handleInquiryClick },
-    { title: '개발자 정보' },
+    { title: '개발자 정보', onClick: handleDeveloperInfoClick },
   ];
 
   return (
