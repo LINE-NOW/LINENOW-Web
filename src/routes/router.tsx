@@ -1,7 +1,8 @@
-import { createBrowserRouter, Outlet } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
-// components
-import DefaultPageLayout from "@layouts/DefaultPageLayout";
+// layouts
+import RootLayout from "@layouts/RootLayout";
+import DefaultLayout from "@layouts/DefaultPageLayout";
 
 // pages
 import MainPage from "@pages/main/MainPage";
@@ -11,41 +12,25 @@ import WaitingCheckPage from "@pages/waitingCheck/WaitingCheckPage";
 import WaitingDetailPage from "@pages/waitingDetail/WaitingDetailPage";
 import MyWaitingListPage from "@pages/myWaitingList/MyWaitingListPage";
 import SignupPage from "@pages/signup/SignupPage";
-import Modal from "@components/modal/Modal";
-import Bottomsheet from "@components/bottomsheet/Bottomsheet";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <>
-        <Modal />
-        <Bottomsheet />
-        <Outlet />
-      </>
-    ),
-    children: [{ path: "", element: <MainPage /> }],
-  },
-  {
-    path: "/",
-    element: (
-      <>
-        <Modal />
-        <Bottomsheet />
-        {/* <Outlet /> */}
-        <DefaultPageLayout />
-      </>
-    ),
+    element: <RootLayout />, // 공통 요소는 RootLayout에서 한 번만 적용
     children: [
       { path: "", element: <MainPage /> },
-      { path: "booth/:boothId", element: <BoothDetailPage /> },
-      { path: "check", element: <WaitingCheckPage /> },
-      { path: "waiting/:waitingID", element: <WaitingDetailPage /> },
-      { path: "my-waiting", element: <MyWaitingListPage /> },
-      { path: "setting", element: <SettingPage /> },
-      { path: "signup", element: <SignupPage /> },
+      {
+        element: <DefaultLayout />, // DefaultPageLayout을 필요한 경로에만 적용
+        children: [
+          { path: "booth/:boothId", element: <BoothDetailPage /> },
+          { path: "check", element: <WaitingCheckPage /> },
+          { path: "waiting/:waitingID", element: <WaitingDetailPage /> },
+          { path: "my-waiting", element: <MyWaitingListPage /> },
+          { path: "setting", element: <SettingPage /> },
+          { path: "signup", element: <SignupPage /> },
+        ],
+      },
     ],
   },
 ]);
-
 export default router;
