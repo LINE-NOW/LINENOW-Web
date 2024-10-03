@@ -11,8 +11,8 @@ export interface ModalProps {
   isOpen: boolean;
   title?: string;
   sub?: string;
-  secondButton?: Omit<ButtonProps, "size" | "scheme" | "shape">;
-  primaryButton?: Omit<ButtonProps, "size" | "scheme" | "shape">;
+  secondButton?: Omit<ButtonProps, "size" | "shape">;
+  primaryButton?: Omit<ButtonProps, "size" | "shape">;
 }
 
 const Modal = () => {

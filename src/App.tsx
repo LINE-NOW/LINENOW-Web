@@ -16,9 +16,10 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
+        <RouterProvider router={router} />
+
         <Modal />
         <Bottomsheet />
-        <RouterProvider router={router} />
       </ThemeProvider>
     </QueryClientProvider>
   );
