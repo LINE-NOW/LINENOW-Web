@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 
 import * as S from "./MainPage.styled";
 import MainNavigation from "./_components/navigation/MainNavigation";
-import MainBoothListHeader from "./_components/boothList/MinaBoothListHeader";
+import MainBoothListHeader from "./_components/boothList/MainBoothListHeader";
 import MainBoothList from "./_components/boothList/MainBoothList";
 
 // hook
