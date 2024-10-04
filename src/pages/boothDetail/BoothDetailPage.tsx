@@ -43,14 +43,27 @@ const BoothDetailPage = () => {
           <BoothDetailNotice booth={booth} />
           <BoothDetailMenu booth={booth} />
 
-          <BottomButton
-            informationTitle="전체 줄"
-            informationSub={`${booth.waiting_count}팀`}
-          >
-            <Button onClick={openModal}>
-              <span>대기 줄 서기</span>
-            </Button>
-          </BottomButton>
+          {booth.is_waiting ? (
+            <BottomButton
+              informationTitle="전체 대기"
+              informationSub={`${booth.waiting_count}팀`}
+            >
+              <Button scheme="lime">
+                <span>내 앞으로 지금</span>
+                <span className="blue">{booth.waiting_count}팀</span>
+              </Button>
+            </BottomButton>
+          ) : (
+            <BottomButton
+              informationTitle="전체 줄"
+              informationSub={`${booth.waiting_count}팀`}
+            >
+              <Button onClick={openModal}>
+                <span>대기 줄 서기</span>
+              </Button>
+            </BottomButton>
+          )}
+
           {isModalOpen && (
             <WaitingCheckModal booth={booth} onClose={closeModal} />
           )}
