@@ -1,8 +1,8 @@
 import BoothCardLayout from "./boothCardLayout";
-import { WaitingDetail } from "@interfaces/waitingDetail"; // WaitingDetail 인터페이스 import
+import { WaitingDetail } from "@interfaces/waitingDetail";
 
 interface BoothCardDetailProps {
-  waitingDetail: WaitingDetail; // WaitingDetail 타입으로 props 정의
+  waitingDetail: WaitingDetail;
 }
 
 const BoothCardDetail = ({ waitingDetail }: BoothCardDetailProps) => {
@@ -10,6 +10,7 @@ const BoothCardDetail = ({ waitingDetail }: BoothCardDetailProps) => {
     <>
       {waitingDetail ? (
         <BoothCardLayout
+          boothImage={waitingDetail.booth.thumbnail}
           boothTitle={
             <>
               <span>{waitingDetail.party_size}명</span>
