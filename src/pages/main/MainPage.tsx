@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 import * as S from "./MainPage.styled";
 import MainNavigation from "./_components/navigation/MainNavigation";
@@ -6,6 +6,7 @@ import MainBoothListHeader from "./_components/boothList/MinaBoothListHeader";
 import MainBoothList from "./_components/boothList/MainBoothList";
 
 // hook
+import useAuth from "@hooks/useAuth";
 import useMainNavigation from "@pages/main/_hooks/useMainNavigation";
 import { useGetBoothList } from "@hooks/apis/boothList";
 import useSortBooths from "./_hooks/useSortBooths";
@@ -13,9 +14,9 @@ import useSortBooths from "./_hooks/useSortBooths";
 // constant
 import { MAIN_FIXED_COMPONENTS_HEIGHT } from "@constants/style";
 
-import { useCheckWaitingStatus } from "@hooks/useCheckWaitingStatus";
-
 const MainPage = () => {
+  const { isLogin } = useAuth();
+
   const mainBoothListRef = useRef<HTMLDivElement>(null);
   const isFold = useMainNavigation(mainBoothListRef);
 
@@ -26,15 +27,20 @@ const MainPage = () => {
     handleSortBoothOptionChange,
   } = useSortBooths();
 
-  const { data: boothList, isLoading } = useGetBoothList(
-    currentSortBoothOption
-  );
+  const {
+    data: boothList,
+    isLoading: getBoothListIsLoading,
+    refetch: getBoothListRefetch,
+  } = useGetBoothList(currentSortBoothOption);
 
-  useCheckWaitingStatus();
+  useEffect(() => {
+    getBoothListRefetch();
+  }, [isLogin]);
+
   return (
     <>
       <S.MainFixedComponentsWrapper>
-        <MainNavigation isFold={isFold} />
+        <MainNavigation isFold={isFold} isLogin={isLogin} />
         <MainBoothListHeader
           boothCount={boothList?.length || 0}
           sortBoothOptions={sortBoothOptions}
@@ -56,7 +62,7 @@ const MainPage = () => {
       <MainBoothList
         ref={mainBoothListRef}
         boothList={boothList}
-        isLoading={isLoading}
+        isLoading={getBoothListIsLoading}
       />
     </>
   );
