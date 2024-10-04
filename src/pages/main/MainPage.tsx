@@ -13,6 +13,8 @@ import useSortBooths from "./_hooks/useSortBooths";
 // constant
 import { MAIN_FIXED_COMPONENTS_HEIGHT } from "@constants/style";
 
+import { useCheckWaitingStatus } from "@hooks/useCheckWaitingStatus";
+
 const MainPage = () => {
   const mainBoothListRef = useRef<HTMLDivElement>(null);
   const isFold = useMainNavigation(mainBoothListRef);
@@ -28,6 +30,7 @@ const MainPage = () => {
     currentSortBoothOption
   );
 
+  useCheckWaitingStatus();
   return (
     <>
       <S.MainFixedComponentsWrapper>

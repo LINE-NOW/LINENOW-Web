@@ -4,10 +4,13 @@ import SettingDeleteID from './_components/deleteID/SettingDeleteID';
 import useModal from '@hooks/useModal';
 import { postLogout } from '@apis/domains/auth/logout/apis';
 import { useNavigate } from 'react-router-dom';
+import { useAtom } from 'jotai';
+import { languageAtom } from '@atoms/language';
 
 const SettingPage = () => {
   const { openModal, closeModal } = useModal();
   const navigate = useNavigate();
+  const [language, setLanguage] = useAtom(languageAtom);
 
   // 로그아웃 > 모달창 - 로그아웃하기 클릭
   const handleLogout = async () => {
@@ -42,8 +45,15 @@ const SettingPage = () => {
     },
   };
 
+  // 로그아웃 클릭
   const handleLogoutClick = () => {
     openModal(logoutModalProps);
+  };
+
+  // 언어설정 클릭
+  const handleLanguageClick = () => {
+    setLanguage(prevLanguage => (prevLanguage === 'ko' ? 'en' : 'ko'));
+    console.log(language);
   };
 
   // 이용약관 클릭
@@ -69,7 +79,7 @@ const SettingPage = () => {
 
   const settingItemProps = [
     { title: '로그아웃', onClick: handleLogoutClick },
-    { title: '언어설정' },
+    { title: '언어설정', onClick: handleLanguageClick },
     { title: '이용약관', onClick: handleTermsOfServiceClick },
     { title: '1:1 문의', onClick: handleInquiryClick },
     { title: '개발자 정보', onClick: handleDeveloperInfoClick },
