@@ -22,9 +22,10 @@ interface WaitingCardProps {
     | "arrivalRemainingTime"
   >;
   isButton?: boolean;
+  disableClick?: boolean;
 }
 
-const WaitingCard = ({ waiting }: WaitingCardProps) => {
+const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
   const navigate = useNavigate();
   const { openModal } = useModal();
 
@@ -55,8 +56,12 @@ const WaitingCard = ({ waiting }: WaitingCardProps) => {
     openModal(cancelModal);
   };
 
-  const handleWaitingCard = () => {
-    navigate(`/waiting/${waiting.waitingID}`);
+  const handleWaitingCard = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (!disableClick) {
+      navigate(`/waiting/${waiting.waitingID}`);
+    } else {
+      event.stopPropagation();
+    }
   };
 
   const { titleContent, button, isValidate } = useWaitingCard({

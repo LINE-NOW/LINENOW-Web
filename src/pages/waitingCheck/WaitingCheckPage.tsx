@@ -42,6 +42,7 @@ const WaitingCheckPage = () => {
             party_size: checkedPeople,
           }}
           isButton={false}
+          disableClick={true}
         />
       </S.WaitingDetailPageBoothCardWrapper>
 

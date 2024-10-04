@@ -79,5 +79,9 @@ export const postWaitingRegister = async ({
     `api/v1/waitings/${boothId}/register`,
     { party_size }
   );
-  return response;
+
+  if (response) {
+    return response;
+  }
+  return null;
 };

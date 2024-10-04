@@ -32,8 +32,9 @@ const WaitingCheckCautionModal = ({
         boothId,
         party_size: checkedPeople,
       });
+
       if (response) {
-        navigate(`/waiting/${response.waitingID}`);
+        navigate(`/waiting/${response.booth}`, { state: response });
       }
     } catch (error) {
       console.error("대기 줄 서기 실패:", error);
