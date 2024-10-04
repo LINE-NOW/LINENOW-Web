@@ -69,8 +69,7 @@ const WaitingDetailPage = () => {
 
       <BottomButton
         informationTitle="전체 대기"
-        //백엔드 필드 추가 후 수정 필요
-        informationSub={`${waitingDetail?.waiting_teams_ahead || 0}팀`}
+        informationSub={`${waitingDetail?.total_waiting_teams || 0}팀`}
       >
         <Button scheme="blueLight">
           <span>내 앞으로 지금</span>
