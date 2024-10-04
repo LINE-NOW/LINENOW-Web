@@ -7,6 +7,8 @@ import MainBoothList from "./_components/boothList/MainBoothList";
 
 // hook
 import useMainNavigation from "@pages/main/_hooks/useMainNavigation";
+import { useGetBoothList } from "@hooks/apis/boothList";
+import useSortBooths from "./_hooks/useSortBooths";
 
 // constant
 import { MAIN_FIXED_COMPONENTS_HEIGHT } from "@constants/style";
@@ -16,12 +18,29 @@ import { useCheckWaitingStatus } from "@hooks/useCheckWaitingStatus";
 const MainPage = () => {
   const mainBoothListRef = useRef<HTMLDivElement>(null);
   const isFold = useMainNavigation(mainBoothListRef);
+
+  // booth list api
+  const {
+    sortBoothOptions,
+    currentSortBoothOption,
+    handleSortBoothOptionChange,
+  } = useSortBooths();
+
+  const { data: boothList, isLoading } = useGetBoothList(
+    currentSortBoothOption
+  );
+
   useCheckWaitingStatus();
   return (
     <>
       <S.MainFixedComponentsWrapper>
         <MainNavigation isFold={isFold} />
-        <MainBoothListHeader />
+        <MainBoothListHeader
+          boothCount={boothList?.length || 0}
+          sortBoothOptions={sortBoothOptions}
+          currentSortBoothOption={currentSortBoothOption}
+          handleSortBoothOptionChange={handleSortBoothOptionChange}
+        />
       </S.MainFixedComponentsWrapper>
 
       <S.MainFixedComponentBackgorund
@@ -34,7 +53,11 @@ const MainPage = () => {
         }}
       />
 
-      <MainBoothList ref={mainBoothListRef} />
+      <MainBoothList
+        ref={mainBoothListRef}
+        boothList={boothList}
+        isLoading={isLoading}
+      />
     </>
   );
 };

@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import Navigation from "@components/navigation/Navigation";
 import styled from "styled-components";
 
-const DefaultPageLayout = () => {
+const DefaultLayout = () => {
   return (
     <>
       <Navigation />
@@ -14,7 +14,7 @@ const DefaultPageLayout = () => {
   );
 };
 
-export default DefaultPageLayout;
+export default DefaultLayout;
 
 const OutletWrapper = styled.section`
   display: flex;
