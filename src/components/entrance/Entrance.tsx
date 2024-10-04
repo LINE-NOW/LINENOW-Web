@@ -1,14 +1,20 @@
 import { useNavigate } from "react-router-dom";
-import useModal from "@hooks/useModal";
 import Button from "@components/button/Button";
 import ButtonLayout from "@components/button/ButtonLayout";
 import BoothCardDetail from "@components/boothCard/boothCardDetail";
 import * as S from "./Entrance.styled";
+import {
+  handleConfirmEntry,
+  handleCancelEntry,
+  getThreeMinutesLater,
+} from "./entranceUtils";
 import useEntranceBottomsheet from "@hooks/useEntrance";
 import useTimer from "@hooks/useTimer";
 import { getWaitingDetail } from "@apis/domains/waitingDetail/apis";
 import { useEffect, useState } from "react";
 import { WaitingDetail } from "@interfaces/waitingDetail";
+import useModal from "@hooks/useModal";
+import useCountdown from "@hooks/useCountdown";
 
 export interface EntranceProps {
   boothID?: number;
@@ -20,7 +26,8 @@ export const Entrance = ({ boothID, nextPath }: EntranceProps) => {
   const navigate = useNavigate();
   const { closeEntrace } = useEntranceBottomsheet();
   const { openModal, closeModal } = useModal();
-  const { minutes, seconds } = useTimer(3, 0);
+
+//   const { minutes, seconds } = useTimer(3, 0);
   const [waitingDetail, setWaitingDetail] = useState<WaitingDetail | null>(
     null
   );
@@ -35,6 +42,14 @@ export const Entrance = ({ boothID, nextPath }: EntranceProps) => {
 
     fetchWaitingDetail();
   }, [boothID]);
+
+  // const targetDate = ;
+
+  // targetDate를 useCountdown 훅에 전달
+  const { getTime, isCountdownOver } = useCountdown({
+    targetDate: getThreeMinutesLater(),
+  });
+
 
   return (
     <S.EntranceWrapper>
@@ -58,54 +73,46 @@ export const Entrance = ({ boothID, nextPath }: EntranceProps) => {
       <ButtonLayout $col={1}>
         <Button
           scheme="lime"
-          disabled={false}
+          disabled={isCountdownOver} // 타이머 종료 시 버튼 비활성화
           onClick={() =>
-            openModal({
-              title: "다른 대기가 취소돼요",
-              sub: "입장을 확정하면 다른 대기는 취소돼요.\n입장을 확정하시겠어요?",
-              secondButton: {
-                children: "이전으로",
-                onClick: () => closeModal(),
-              },
-              primaryButton: {
-                children: "입장 확정하기",
-                scheme: "lime",
-                onClick: () => {
-                  closeModal();
-                  navigate(
-                    `${nextPath.startsWith("/") ? nextPath : `/${nextPath}`}`
-                  );
-                },
-              },
-            })
+
+//             openModal({
+//               title: "다른 대기가 취소돼요",
+//               sub: "입장을 확정하면 다른 대기는 취소돼요.\n입장을 확정하시겠어요?",
+//               secondButton: {
+//                 children: "이전으로",
+//                 onClick: () => closeModal(),
+//               },
+//               primaryButton: {
+//                 children: "입장 확정하기",
+//                 scheme: "lime",
+//                 onClick: () => {
+//                   closeModal();
+//                   navigate(
+//                     `${nextPath.startsWith("/") ? nextPath : `/${nextPath}`}`
+//                   );
+//                 },
+//               },
+//             })
+
+            handleConfirmEntry(
+              openModal,
+              closeModal,
+              closeEntrace,
+              navigate,
+              nextPath
+            )
+
           }
         >
           <span>입장할게요!</span>
-          <span>
-            {minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-          </span>
+          <span>{getTime("MMSS")}</span>
         </Button>
         <Button
           scheme="grayLight"
           disabled={false}
           shape="outline"
-          onClick={() =>
-            openModal({
-              title: "정말 입장을 취소하시겠어요?",
-              sub: "입장을 취소하면 현재 줄 서기가 사라져요.\n그래도 취소하실건가요?",
-              secondButton: {
-                children: "이전으로",
-                onClick: () => closeModal(),
-              },
-              primaryButton: {
-                children: "입장 취소하기",
-                onClick: () => {
-                  closeModal();
-                  closeEntrace();
-                },
-              },
-            })
-          }
+          onClick={() => handleCancelEntry(openModal, closeModal, closeEntrace)}
         >
           <span>입장 취소하기</span>
         </Button>

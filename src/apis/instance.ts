@@ -3,8 +3,15 @@ import axios, { AxiosError } from "axios";
 const instance = axios.create({
   // baseURL: import.meta.env.VITE_BASE_URL,
   baseURL: "",
-  // baseURL: "",
   withCredentials: false, //크로스 도메인 요청 시 쿠키, HTTP 인증 및 클라이언트 SSL 인증서를 사용하도록 허용한다.
+});
+
+instance.interceptors.request.use((config) => {
+  // TODO: - accessToken 연결
+  const accessToken = localStorage.getItem("accessToken");
+  config.headers.Authorization = `Bearer ${accessToken}`;
+
+  return config;
 });
 
 interface BaseDTO<T> {
@@ -20,27 +27,10 @@ export interface EmptyDTO {
   message: string;
 }
 
-// 공통 응답 처리 함수
-const handleResponse = <T>(response: BaseDTO<T>): EmptyDTO => {
-  console.log(
-    `code: ${response.code} (${response.status})\nmessage: ${response.message}`
-  );
-
-  return {
-    status: response.status,
-    message: response.message,
-    code: response.code,
-  };
-};
-
 //get
 export const getResponse = async <T>(url: string): Promise<T | null> => {
   try {
-    const response = await instance.get<BaseDTO<T>>(url, {
-      headers: {
-        Authorization: `Bearer `,
-      },
-    });
+    const response = await instance.get<BaseDTO<T>>(url);
 
     console.log(
       `[GET] ${url}
@@ -124,4 +114,17 @@ export const postResponse = async <T>(
     console.error("Response error:", axiosError);
     return null;
   }
+};
+
+// 공통 응답 처리 함수
+const handleResponse = <T>(response: BaseDTO<T>): EmptyDTO => {
+  console.log(
+    `code: ${response.code} (${response.status})\nmessage: ${response.message}`
+  );
+
+  return {
+    status: response.status,
+    message: response.message,
+    code: response.code,
+  };
 };

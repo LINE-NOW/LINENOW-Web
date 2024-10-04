@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 
 export const useCheckWaitingStatus = () => {
   const { data: nowWaitings } = useGetNowWaitings();
+
   const { openEntrance } = useEntranceBottomsheet();
   const location = useLocation(); // 현재 경로를 가져옴
 
@@ -19,10 +20,10 @@ export const useCheckWaitingStatus = () => {
           redirectPath = `/booth/${waiting.booth?.boothID}`;
         } else if (location.pathname.includes("/my-waiting")) {
           redirectPath = `/my-waiting`;
-        } else if (location.pathname === "/main") {
-          redirectPath = `/main`;
+        } else if (location.pathname === "/") {
+          redirectPath = `/`;
         } else {
-          redirectPath = "/main"; // 기본값
+          redirectPath = "/";
         }
 
         // waitingStatus가 'ready_to_confirm'일 경우 바텀시트 열기
