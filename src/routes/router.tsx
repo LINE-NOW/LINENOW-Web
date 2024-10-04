@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
 
 // layouts
 import RootLayout from "@layouts/RootLayout";
@@ -16,18 +17,23 @@ import SignupPage from "@pages/signup/SignupPage";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />, // 공통 요소는 RootLayout에서 한 번만 적용
+    element: <RootLayout />,
     children: [
       { path: "", element: <MainPage /> },
       {
-        element: <DefaultLayout />, // DefaultPageLayout을 필요한 경로에만 적용
+        element: <DefaultLayout />,
         children: [
-          { path: "booth/:boothId", element: <BoothDetailPage /> },
-          { path: "check", element: <WaitingCheckPage /> },
-          { path: "waiting/:waitingID", element: <WaitingDetailPage /> },
-          { path: "my-waiting", element: <MyWaitingListPage /> },
-          { path: "setting", element: <SettingPage /> },
           { path: "signup", element: <SignupPage /> },
+          { path: "booth/:boothId", element: <BoothDetailPage /> },
+          {
+            element: <ProtectedRoute />,
+            children: [
+              { path: "check", element: <WaitingCheckPage /> },
+              { path: "waiting/:waitingID", element: <WaitingDetailPage /> },
+              { path: "my-waiting", element: <MyWaitingListPage /> },
+              { path: "setting", element: <SettingPage /> },
+            ],
+          },
         ],
       },
     ],
