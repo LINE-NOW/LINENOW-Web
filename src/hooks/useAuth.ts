@@ -1,16 +1,36 @@
-import { useAtomValue } from "jotai";
-
-import { authAtom } from "@atoms/auth";
+import { useAtom } from "jotai";
+import { useMemo } from "react";
+import { authAtom, AuthProps } from "@atoms/auth";
 
 const useAuth = () => {
-  const auth = useAtomValue(authAtom);
+  const [auth, setAuth] = useAtom(authAtom);
 
-  // 사용자가 로그인했는지 여부 확인
-  const isLoggedIn = !!auth;
+  const login = ({ accessToken, refreshToken }: AuthProps) => {
+    if (auth) return;
 
-  // 로그인된 사용자 정보를 반환
+    localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("refreshToken", refreshToken);
+
+    setAuth({ accessToken, refreshToken });
+  };
+
+  const logout = () => {
+    if (!auth) return; // 이미 로그아웃된 상태
+
+    // localStorage에서 토큰 삭제
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+
+    setAuth(null);
+  };
+
+  const isLogin = useMemo(() => auth != null, [auth]);
+
   return {
-    isLoggedIn,
+    isLogin,
+    auth,
+    login,
+    logout,
   };
 };
 

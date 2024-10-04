@@ -19,9 +19,11 @@ const MyWaitingListPage = () => {
     setWaitings(data || []);
   }, [isLoading, isError, data]);
 
-  return isLoading ? (
-    <Spinner />
-  ) : (
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  return (
     <S.MyWaitingListPageWrapper>
       {waitings.map((item, index) => (
         <WaitingCard key={index} waiting={item} />
