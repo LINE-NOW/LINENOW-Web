@@ -2,7 +2,7 @@ import { getResponse } from "@apis/instance";
 import { GetWaitingDetailResponse } from "./_interfaces";
 import { WaitingDetail } from "@interfaces/waitingDetail";
 
-export interface ApiResponse<T> {
+export interface BaseDTO<T> {
   data: T;
 }
 
@@ -13,7 +13,7 @@ export interface GetWaitingDetailRequest {
 export const getWaitingDetail = async ({
   waitingID,
 }: GetWaitingDetailRequest): Promise<WaitingDetail | null> => {
-  const response = await getResponse<ApiResponse<WaitingDetail>>(
+  const response = await getResponse<BaseDTO<WaitingDetail>>(
     `/api/v1/waitings/${waitingID}`
   );
 
