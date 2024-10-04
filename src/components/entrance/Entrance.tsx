@@ -6,21 +6,35 @@ import BoothCardDetail from "@components/boothCard/boothCardDetail";
 import * as S from "./Entrance.styled";
 import useEntranceBottomsheet from "@hooks/useEntrance";
 import useTimer from "@hooks/useTimer";
-// import { useAtom } from "jotai";
-// import { entranceBottomsheetAtom } from "@atoms/entrance";
+import { getWaitingDetail } from "@apis/domains/waitingDetail/apis";
+import { useEffect, useState } from "react";
+import { WaitingDetail } from "@interfaces/waitingDetail";
+
 export interface EntranceProps {
   boothID?: number;
   isOpen?: boolean;
   nextPath: string;
 }
-// const navigate = useNavigate();
 
 export const Entrance = ({ boothID, nextPath }: EntranceProps) => {
   const navigate = useNavigate();
   const { closeEntrace } = useEntranceBottomsheet();
   const { openModal, closeModal } = useModal();
   const { minutes, seconds } = useTimer(3, 0);
-  // const [entranceState] = useAtom(entranceBottomsheetAtom);
+  const [waitingDetail, setWaitingDetail] = useState<WaitingDetail | null>(
+    null
+  );
+
+  useEffect(() => {
+    const fetchWaitingDetail = async () => {
+      if (boothID) {
+        const detail = await getWaitingDetail({ waitingID: boothID });
+        setWaitingDetail(detail);
+      }
+    };
+
+    fetchWaitingDetail();
+  }, [boothID]);
 
   return (
     <S.EntranceWrapper>
@@ -33,7 +47,11 @@ export const Entrance = ({ boothID, nextPath }: EntranceProps) => {
           </S.EntranceDescription>
         </S.EntranceTextWrapper>
         <S.EntranceBoothCardWrapper>
-          <BoothCardDetail waitingCount={boothID ? boothID : 100} />
+          {waitingDetail ? (
+            <BoothCardDetail waitingDetail={waitingDetail} />
+          ) : (
+            <span>대기 정보가 없습니다.</span>
+          )}
         </S.EntranceBoothCardWrapper>
       </S.EntranceContentWrapper>
 
@@ -57,7 +75,6 @@ export const Entrance = ({ boothID, nextPath }: EntranceProps) => {
                   navigate(
                     `${nextPath.startsWith("/") ? nextPath : `/${nextPath}`}`
                   );
-                  // jotai 체크 확인
                 },
               },
             })
