@@ -51,7 +51,6 @@ export const getResponse = async <T>(url: string): Promise<T | null> => {
     return data;
   } catch (error) {
     const axiosError = error as AxiosError;
-
     console.error("Response error:", axiosError);
     return null;
   }

@@ -1,13 +1,12 @@
 import styled, { css } from "styled-components";
 import * as A from "@styles/animation";
-import { BoothCardType } from "./BoothCard";
 
 import { Link } from "react-router-dom";
 
 interface BoothCardWrapperProps {
-  type?: BoothCardType;
   $borderBottom?: string;
   padding?: string;
+  onClickButtonAnimation?: boolean;
 }
 
 export const BoothCardWrapper = styled(Link)<BoothCardWrapperProps>`
@@ -18,13 +17,16 @@ export const BoothCardWrapper = styled(Link)<BoothCardWrapperProps>`
   width: 100%;
   box-sizing: border-box;
 
-  ${({ type, theme }) => css`
-    padding: ${type === "detail" ? `1rem` : `0.75rem 0.25rem 1rem 0.25rem`};
-    border-bottom: ${type === "detail"
-      ? `none`
-      : `1px solid ${theme.colors.border.gray075}`};
+  ${({ padding, $borderBottom, onClickButtonAnimation = true, theme }) => css`
+    padding: ${padding || `0.75rem 0.25rem 1rem 0.25rem`};
+    border-bottom: ${$borderBottom ||
+    `1px solid ${theme.colors.border.gray075}`};
 
-    ${type !== "detail" && A.onClickButtonAnimation};
+    ${onClickButtonAnimation &&
+    css`
+      cursor: pointer;
+      animation: ${A.onClickButtonAnimation};
+    `};
   `}
 `;
 
@@ -58,6 +60,10 @@ export const BoothCardInformationNameLabel = styled.div`
   padding-bottom: 0.125rem;
   ${({ theme }) => theme.fonts.h3}
   color:${({ theme }) => theme.colors.font.black};
+
+  :nth-of-type(2) {
+    color: ${({ theme }) => theme.colors.font.gray};
+  }
 `;
 
 export const BoothCardInformationDescriptionLabel = styled.div`

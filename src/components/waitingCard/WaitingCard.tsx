@@ -16,7 +16,7 @@ interface WaitingCardProps {
     | "waitingID"
     | "waitingTeamsAhead"
     | "booth"
-    | "partySize"
+    | "party_size"
     | "waitingStatus"
     | "confirmRemainingTime"
     | "arrivalRemainingTime"
@@ -34,6 +34,8 @@ const WaitingCard = ({ waiting }: WaitingCardProps) => {
         return waiting.confirmRemainingTime;
       case "confirmed":
         return waiting.arrivalRemainingTime;
+      default:
+        return null;
     }
   };
 
@@ -58,14 +60,13 @@ const WaitingCard = ({ waiting }: WaitingCardProps) => {
   };
 
   const { titleContent, button, isValidate } = useWaitingCard({
-    status: waiting.waitingStatus,
+    status: waiting.waitingStatus ? waiting.waitingStatus : "check",
     waitingCount: waiting.waitingTeamsAhead,
-    targetTime: targetTime(),
+    targetTime: targetTime() || "",
   });
 
   return (
     <S.WaitingCardWrapper onClick={handleWaitingCard}>
-      {/* 상단 타이틀 */}
       <S.WaitingCardTitleWrapper>
         <S.WaitingCardTitleLabel>{titleContent}</S.WaitingCardTitleLabel>
         {isValidate ? (
@@ -80,25 +81,25 @@ const WaitingCard = ({ waiting }: WaitingCardProps) => {
       </S.WaitingCardTitleWrapper>
 
       <S.WaitingCardContentWrapper>
-        {/* 부스 정보 */}
         <S.BoothInformationWrapper>
-          <S.BoothInformationImage src={waiting.booth.thumbnail} />
+          <S.BoothInformationImage
+            src={waiting.booth?.thumbnail || "/images/default_thumbnail.png"}
+          />
           <S.BoothInformaitonLabelWrapper>
             <S.BoothInformationNameLabel>
-              <span>{waiting.partySize}명</span>
+              <span>{waiting.party_size || 0}명</span>
               <span>·</span>
-              <span>{waiting.booth.name}</span>
+              <span>{waiting.booth?.name || "부스명 없음"}</span>
             </S.BoothInformationNameLabel>
 
             <IconLabel icon="location_gray_light" iconSize="1rem" gap="0.12rem">
               <S.BoothInformationPositionLabel>
-                {waiting.booth.location}
+                {waiting.booth?.location || "위치 없음"}
               </S.BoothInformationPositionLabel>
             </IconLabel>
           </S.BoothInformaitonLabelWrapper>
         </S.BoothInformationWrapper>
 
-        {/* 추가 엑션 버튼 */}
         {button}
       </S.WaitingCardContentWrapper>
     </S.WaitingCardWrapper>

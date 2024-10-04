@@ -16,16 +16,11 @@ interface LinkButtonProps {
 interface IconProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon: string;
   iconSize: string;
-  touchSize?: string;
+  // touchSize?: string;
 }
 
 type IconLinkButtonProps = IconProps & LinkButtonProps;
-export const IconLinkButton = ({
-  to,
-  icon,
-  iconSize,
-  touchSize = iconSize,
-}: IconLinkButtonProps) => {
+export const IconLinkButton = ({ to, icon, iconSize }: IconLinkButtonProps) => {
   return (
     <Link to={to}>
       <S.IconButtonWrapper $iconSize={iconSize}>
@@ -40,7 +35,6 @@ export const IconButton = ({
   onClick,
   icon,
   iconSize,
-  touchSize = iconSize,
   ...props
 }: IconButtonProps) => {
   return (
