@@ -81,4 +81,8 @@ export const ButtonWrapper = styled.button<ButtonWrapperProps>`
   }}
 
   ${({ theme }) => theme.fonts.btn};
+
+  .blue {
+    color: ${({ theme }) => theme.colors.font.blue};
+  }
 `;
