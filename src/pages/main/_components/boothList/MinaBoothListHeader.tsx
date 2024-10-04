@@ -1,30 +1,34 @@
+import Select, { OptionProps } from "@components/select/Select";
 import * as S from "./MainBoothList.styled";
-import IconLabel from "@components/label/IconLabel";
 
-const MainBoothListHeader = () => {
+interface MainBoothListHeaderProps {
+  sortBoothOptions: OptionProps[];
+  boothCount: number;
+  currentSortBoothOption: string;
+  handleSortBoothOptionChange: (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => void;
+}
+
+const MainBoothListHeader = ({
+  boothCount,
+  sortBoothOptions,
+  currentSortBoothOption,
+  handleSortBoothOptionChange,
+}: MainBoothListHeaderProps) => {
   return (
     <S.MainBoothListHeaderWrapper>
-      <IconLabel
-        iconPosition={"right"}
-        gap={"0.25rem"}
-        icon={"drop_gray"}
-        iconSize={"1.5rem"}
-      >
-        <S.MainBoothListHeaderTitleLabel>
-          2024년 동국대학교 가을 축제
-        </S.MainBoothListHeaderTitleLabel>
-      </IconLabel>
+      <S.MainBoothListHeaderTitleLabel>
+        2024년 동국대학교 가을 축제
+      </S.MainBoothListHeaderTitleLabel>
 
       <S.MainBoothListHeaderOptionWrapper>
-        <p>5개의 부스</p>
-        <IconLabel
-          iconPosition={"right"}
-          gap={"0.25rem"}
-          icon={"down_gray_light"}
-          iconSize={"1rem"}
-        >
-          <p>대기 많은 순</p>
-        </IconLabel>
+        <p>{boothCount}개의 부스</p>
+        <Select
+          options={sortBoothOptions}
+          onChange={handleSortBoothOptionChange}
+          value={currentSortBoothOption}
+        />
       </S.MainBoothListHeaderOptionWrapper>
     </S.MainBoothListHeaderWrapper>
   );

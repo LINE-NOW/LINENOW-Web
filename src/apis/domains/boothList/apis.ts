@@ -5,9 +5,16 @@ import { getResponse } from "@apis/instance";
 import { GetBoothListResponse, BoothList } from "./_interfaces";
 
 // get boothList : 부스 리스트
-export const getBoothList = async (): Promise<BoothList[]> => {
-  const response = await getResponse<BoothList[]>(`/api/v1/booths`);
 
-  console.log(response);
+interface GetBoothRequest {
+  ordering: string;
+}
+export const getBoothList = async ({
+  ordering,
+}: GetBoothRequest): Promise<BoothList[]> => {
+  const response = await getResponse<BoothList[]>(
+    `/api/v1/booths?ordering=${ordering}`
+  );
+
   return response ? response.map(GetBoothListResponse) : [];
 };
