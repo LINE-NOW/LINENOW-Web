@@ -11,9 +11,11 @@ interface MainBoothListProps {
 
 const MainBoothList = forwardRef<HTMLDivElement, MainBoothListProps>(
   ({ boothList = [], isLoading }: MainBoothListProps, ref) => {
-    return isLoading ? (
-      <Spinner />
-    ) : (
+    if (isLoading) {
+      return <Spinner />;
+    }
+
+    return (
       <S.MainBoothListScrollContainer ref={ref}>
         {boothList?.map((booth: BoothList) => (
           <BoothCardMain key={booth.id} booth={booth} />

@@ -90,6 +90,21 @@ const MainNavigation = ({ isFold, isLogin }: MainNavigationProps) => {
     }
   };
 
+  if (isLoading) {
+    return (
+      <S.MainNavigationWrapper
+        style={{
+          height: `${
+            isFold ? MAIN_NAVIGATION_HEIGHT.fold : MAIN_NAVIGATION_HEIGHT.unfold
+          }`,
+          paddingBottom: `${isFold ? "1rem" : "1.5rem"}`,
+        }}
+      >
+        <Spinner />
+      </S.MainNavigationWrapper>
+    );
+  }
+
   return (
     <S.MainNavigationWrapper
       style={{
@@ -99,16 +114,10 @@ const MainNavigation = ({ isFold, isLogin }: MainNavigationProps) => {
         paddingBottom: `${isFold ? "1rem" : "1.5rem"}`,
       }}
     >
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <>
-          <S.MainNavigationTitleWrapper>
-            {renderTitleContent()}
-          </S.MainNavigationTitleWrapper>
-          {renderWaitingCard()}
-        </>
-      )}
+      <S.MainNavigationTitleWrapper>
+        {renderTitleContent()}
+      </S.MainNavigationTitleWrapper>
+      {renderWaitingCard()}
     </S.MainNavigationWrapper>
   );
 };
