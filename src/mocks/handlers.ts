@@ -80,6 +80,24 @@ export const handlers = [
     getDelayedResponse(dummyWaitingDetailResponse)
   ),
 
+  http.post("/api/v1/waitings/:waitingID/cancel", async ({ params }) => {
+    const { waitingID } = params;
+
+    // 토큰 없이 대기 취소 성공 처리
+    return new HttpResponse(
+      JSON.stringify({
+        message: `Waiting with ID ${waitingID} successfully cancelled`,
+        status: "success",
+      }),
+      {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }),
+
   http.post(
     "/api/v1/waitings/:boothId/register",
     async ({ request, params }) => {

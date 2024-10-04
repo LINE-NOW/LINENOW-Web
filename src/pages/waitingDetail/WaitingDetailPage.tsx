@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useGetWaitingDetail } from "@hooks/apis/waitingDetail";
 import * as S from "./WaitingDetailPage.styled";
 import BoothCardDetail from "@components/boothCard/boothCardDetail";
@@ -8,9 +8,11 @@ import Separator from "@components/separator/Separator";
 import WaitingDetailCaution from "./_components/WaitingDetailCaution";
 import useModal from "@hooks/useModal";
 import Spinner from "@components/spinner/Spinner";
+import { postWaitingCancel } from "@apis/domains/waitingCancel/apis";
 
 const WaitingDetailPage = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const waitingData = location.state;
   const waitingID = waitingData ? waitingData.id : null;
 
@@ -19,13 +21,22 @@ const WaitingDetailPage = () => {
     waitingID || 0
   );
 
-  const { openModal } = useModal();
+  const { openModal, closeModal } = useModal();
 
   const waitingCancelModal = {
     title: "정말 대기를 취소하시겠어요?",
     sub: "대기를 취소하면 현재 줄 서기가 사라져요.\n그래도 취소하실건가요?",
     primaryButton: {
       children: "줄 서기 취소하기",
+      onClick: async () => {
+        closeModal();
+        try {
+          await postWaitingCancel({ waitingID });
+          navigate("/");
+        } catch (error) {
+          alert("대기 취소 중 문제가 발생했습니다. 다시 시도해주세요.");
+        }
+      },
     },
     secondButton: {
       children: "이전으로",
