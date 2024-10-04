@@ -7,6 +7,7 @@ import {
 } from "./dummy/waitings";
 import { dummyBoothListResponse } from "./dummy/boothList";
 import { dummyBoothResponse } from "./dummy/booth";
+import { dummyWaitingDetailResponse } from "./dummy/waitingDetail";
 
 const COMMON_DELAY = 0;
 
@@ -74,6 +75,10 @@ export const handlers = [
 
   http.get("/api/v1/booths", getDelayedResponse(dummyBoothListResponse)),
   http.get(`/api/v1/booths/:boothId`, getDelayedResponse(dummyBoothResponse)),
+  http.get(
+    `/api/v1/waitings/:waitingID`,
+    getDelayedResponse(dummyWaitingDetailResponse)
+  ),
 
   http.post(
     "/api/v1/waitings/:boothId/register",
@@ -106,7 +111,7 @@ export const handlers = [
           message: "대기 줄서기 등록 완료",
           code: 200,
           data: {
-            id: 1,
+            id: 3,
             booth: Number(boothId),
             username: "user123",
             party_size: requestBody.party_size,

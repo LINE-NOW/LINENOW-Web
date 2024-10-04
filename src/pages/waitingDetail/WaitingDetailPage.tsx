@@ -1,3 +1,5 @@
+import { useLocation } from "react-router-dom";
+import { useGetWaitingDetail } from "@hooks/apis/waitingDetail";
 import * as S from "./WaitingDetailPage.styled";
 import BoothCardDetail from "@components/boothCard/boothCardDetail";
 import BottomButton from "@components/bottomButton/BottomButton";
@@ -5,8 +7,18 @@ import Button from "@components/button/Button";
 import Separator from "@components/separator/Separator";
 import WaitingDetailCaution from "./_components/WaitingDetailCaution";
 import useModal from "@hooks/useModal";
+import Spinner from "@components/spinner/Spinner";
 
 const WaitingDetailPage = () => {
+  const location = useLocation();
+  const waitingData = location.state;
+  const waitingID = waitingData ? waitingData.id : null;
+
+  // 대기 상세 정보 가져오기
+  const { data: waitingDetail, isLoading } = useGetWaitingDetail(
+    waitingID || 0
+  );
+
   const { openModal } = useModal();
 
   const waitingCancelModal = {
@@ -24,13 +36,19 @@ const WaitingDetailPage = () => {
     openModal(waitingCancelModal);
   };
 
-  const waitingCount = 12;
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (!waitingDetail) {
+    return <div>대기 상세 정보를 찾을 수 없습니다.</div>;
+  }
 
   return (
     <>
       <S.WaitingDetailPageBoothCardWrapper>
         <S.WaitingDetailPageBoothCard>
-          <BoothCardDetail waitingCount={waitingCount} />
+          <BoothCardDetail waitingDetail={waitingDetail} />
         </S.WaitingDetailPageBoothCard>
       </S.WaitingDetailPageBoothCardWrapper>
 
@@ -38,10 +56,14 @@ const WaitingDetailPage = () => {
 
       <WaitingDetailCaution />
 
-      <BottomButton informationTitle="전체 줄" informationSub="123팀">
+      <BottomButton
+        informationTitle="전체 대기"
+        //백엔드 필드 추가 후 수정 필요
+        informationSub={`${waitingDetail?.waiting_teams_ahead || 0}팀`}
+      >
         <Button scheme="blueLight">
           <span>내 앞으로 지금</span>
-          <span>123팀</span>
+          <span>{waitingDetail?.waiting_teams_ahead || 0}팀</span>
         </Button>
         <S.WaitingDetailCancel>
           <span onClick={onWaitingCancelClick}>대기 취소하기</span>

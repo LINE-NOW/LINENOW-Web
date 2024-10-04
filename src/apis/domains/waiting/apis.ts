@@ -9,6 +9,7 @@ import {
   transformGetWaitingResponse,
   transformGetWaitingsResponse,
 } from "./_interfaces";
+import { WaitingCheck } from "@interfaces/waitingCheck";
 
 // get waiting : - 나의 대기 상세 (줄서기 상세)
 export interface GetWaitingRequest {
@@ -45,13 +46,15 @@ export interface RegisterWaitingRequest {
   party_size: number;
 }
 
+// 대기 줄서기 등록
 export const postWaitingRegister = async ({
   boothId,
   party_size,
-}: RegisterWaitingRequest): Promise<Waiting | null> => {
-  const response = await postResponse(`api/v1/waitings/${boothId}/register/`, {
-    party_size,
-  });
+}: RegisterWaitingRequest): Promise<WaitingCheck | null> => {
+  const response = await postResponse<WaitingCheck>(
+    `/api/v1/waitings/${boothId}/register/`,
+    { party_size }
+  );
 
   return response;
 };
