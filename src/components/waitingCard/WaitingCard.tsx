@@ -9,6 +9,7 @@ import { Waiting } from "@interfaces/waiting";
 import { useWaitingCard } from "./_hooks/useWaitingCard";
 import { useNavigate } from "react-router-dom";
 import useModal from "@hooks/useModal";
+import Button from "@components/button/Button";
 
 interface WaitingCardProps {
   waiting: Pick<
@@ -64,17 +65,19 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
     }
   };
 
-  const { titleContent, button, isValidate } = useWaitingCard({
+  const config = useWaitingCard({
     status: waiting.waitingStatus ? waiting.waitingStatus : "check",
     waitingCount: waiting.waitingTeamsAhead,
-    targetTime: targetTime() || "",
+    targetTime: targetTime(),
   });
 
   return (
-    <S.WaitingCardWrapper {...(isValidate && { onClick: handleWaitingCard })}>
+    <S.WaitingCardWrapper
+      {...(config.isValidate && { onClick: handleWaitingCard })}
+    >
       <S.WaitingCardTitleWrapper>
-        <S.WaitingCardTitleLabel>{titleContent}</S.WaitingCardTitleLabel>
-        {isValidate ? (
+        <S.WaitingCardTitleLabel>{config.titleContent}</S.WaitingCardTitleLabel>
+        {config.isValidate ? (
           <ChipButton
             onClick={handleCancelButton}
             scheme="grayLight"
@@ -85,7 +88,9 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
         ) : null}
       </S.WaitingCardTitleWrapper>
 
-      <S.WaitingCardContentWrapper>
+      <S.WaitingCardContentWrapper
+        style={{ opacity: `${config.boothInfoOpacity}` }}
+      >
         <S.BoothInformationWrapper>
           <S.BoothInformationImage
             src={waiting.booth?.thumbnail || "/images/default_thumbnail.png"}
@@ -105,7 +110,9 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
           </S.BoothInformaitonLabelWrapper>
         </S.BoothInformationWrapper>
 
-        {button}
+        {config.button && (
+          <Button size={"large"} shape={"fill"} {...config.button} />
+        )}
       </S.WaitingCardContentWrapper>
     </S.WaitingCardWrapper>
   );
