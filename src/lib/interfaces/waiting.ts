@@ -9,8 +9,8 @@ export interface Waiting {
 
   party_size?: number;
 
-  confirmRemainingTime?: string;
-  arrivalRemainingTime?: string;
+  confirmDueTime?: string;
+  arrivalarrivalDueTime?: string;
 
   booth?: BoothBrief;
 

@@ -4,20 +4,17 @@ import { WaitingStatus } from "@linenow-types/status";
 
 export interface GetWaitingResponse {
   id: number;
-  waiting_status: WaitingStatus;
-  waiting_teams_ahead: number;
-
-  party_size: number;
-
-  confirm_remaining_time: string;
-  arrival_remaining_time: string;
-
+  // username:string;
   booth: Booth;
-
+  party_size: number;
+  waiting_status: WaitingStatus;
   // registered_at: string;
   // ready_to_confirm_at?: string;
   // confirmed_at?: string;
   // canceled_at?: string;
+  waiting_teams_ahead: number;
+  confirm_due_time: string;
+  arrival_due_time: string;
 }
 
 interface Booth {
@@ -40,8 +37,8 @@ export const transformGetWaitingResponse = (
 
     party_size: response.party_size,
 
-    confirmRemainingTime: response.confirm_remaining_time,
-    arrivalRemainingTime: response.arrival_remaining_time,
+    confirmDueTime: response.confirm_due_time,
+    arrivalarrivalDueTime: response.arrival_due_time,
 
     booth: {
       boothID: response.booth.booth_id,

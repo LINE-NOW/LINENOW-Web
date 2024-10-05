@@ -21,7 +21,7 @@ export const dummyWaitingDetailResponse = {
     confirmed_at: null,
     canceled_at: "2024-10-01T23:32:10.843250",
     waiting_teams_ahead: 3,
-    confirm_remaining_time: "00:00",
-    arrival_remaining_time: "00:00",
+    confirm_due_time: "00:00",
+    arrival_due_time: "00:00",
   },
 };

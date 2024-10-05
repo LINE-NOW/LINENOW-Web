@@ -19,8 +19,8 @@ interface WaitingCardProps {
     | "booth"
     | "party_size"
     | "waitingStatus"
-    | "confirmRemainingTime"
-    | "arrivalRemainingTime"
+    | "confirmDueTime"
+    | "arrivalarrivalDueTime"
   >;
   isButton?: boolean;
   disableClick?: boolean;
@@ -33,9 +33,9 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
   const targetTime = () => {
     switch (waiting.waitingStatus) {
       case "ready_to_confirm":
-        return waiting.confirmRemainingTime;
+        return waiting.confirmDueTime;
       case "confirmed":
-        return waiting.arrivalRemainingTime;
+        return waiting.arrivalarrivalDueTime;
       default:
         return null;
     }

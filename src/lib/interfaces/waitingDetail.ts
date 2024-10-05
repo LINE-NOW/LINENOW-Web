@@ -17,6 +17,6 @@ export interface WaitingDetail {
   confirmed_at?: string | null;
   canceled_at?: string | null;
   waiting_teams_ahead?: number;
-  confirm_remaining_time?: "00:00";
-  arrival_remaining_time?: "00:00";
+  confirm_due_time?: "00:00";
+  arrival_due_time?: "00:00";
 }
