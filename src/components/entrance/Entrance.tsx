@@ -9,7 +9,7 @@ import {
   getThreeMinutesLater,
 } from "./entranceUtils";
 import useEntranceBottomsheet from "@hooks/useEntrance";
-import useTimer from "@hooks/useTimer";
+// import useTimer from "@hooks/useTimer";
 import { getWaitingDetail } from "@apis/domains/waitingDetail/apis";
 import { useEffect, useState } from "react";
 import { WaitingDetail } from "@interfaces/waitingDetail";
@@ -27,7 +27,7 @@ export const Entrance = ({ boothID, nextPath }: EntranceProps) => {
   const { closeEntrace } = useEntranceBottomsheet();
   const { openModal, closeModal } = useModal();
 
-//   const { minutes, seconds } = useTimer(3, 0);
+  //   const { minutes, seconds } = useTimer(3, 0);
   const [waitingDetail, setWaitingDetail] = useState<WaitingDetail | null>(
     null
   );
@@ -43,13 +43,13 @@ export const Entrance = ({ boothID, nextPath }: EntranceProps) => {
     fetchWaitingDetail();
   }, [boothID]);
 
+  //추후 확인 후 삭제 예정
   // const targetDate = ;
 
   // targetDate를 useCountdown 훅에 전달
   const { getTime, isCountdownOver } = useCountdown({
     targetDate: getThreeMinutesLater(),
   });
-
 
   return (
     <S.EntranceWrapper>
@@ -75,25 +75,25 @@ export const Entrance = ({ boothID, nextPath }: EntranceProps) => {
           scheme="lime"
           disabled={isCountdownOver} // 타이머 종료 시 버튼 비활성화
           onClick={() =>
-
-//             openModal({
-//               title: "다른 대기가 취소돼요",
-//               sub: "입장을 확정하면 다른 대기는 취소돼요.\n입장을 확정하시겠어요?",
-//               secondButton: {
-//                 children: "이전으로",
-//                 onClick: () => closeModal(),
-//               },
-//               primaryButton: {
-//                 children: "입장 확정하기",
-//                 scheme: "lime",
-//                 onClick: () => {
-//                   closeModal();
-//                   navigate(
-//                     `${nextPath.startsWith("/") ? nextPath : `/${nextPath}`}`
-//                   );
-//                 },
-//               },
-//             })
+            //추후 확인 후 삭제 예정
+            //             openModal({
+            //               title: "다른 대기가 취소돼요",
+            //               sub: "입장을 확정하면 다른 대기는 취소돼요.\n입장을 확정하시겠어요?",
+            //               secondButton: {
+            //                 children: "이전으로",
+            //                 onClick: () => closeModal(),
+            //               },
+            //               primaryButton: {
+            //                 children: "입장 확정하기",
+            //                 scheme: "lime",
+            //                 onClick: () => {
+            //                   closeModal();
+            //                   navigate(
+            //                     `${nextPath.startsWith("/") ? nextPath : `/${nextPath}`}`
+            //                   );
+            //                 },
+            //               },
+            //             })
 
             handleConfirmEntry(
               openModal,
@@ -102,7 +102,6 @@ export const Entrance = ({ boothID, nextPath }: EntranceProps) => {
               navigate,
               nextPath
             )
-
           }
         >
           <span>입장할게요!</span>

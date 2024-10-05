@@ -17,6 +17,7 @@ export interface WaitingDetail {
   confirmed_at?: string | null;
   canceled_at?: string | null;
   waiting_teams_ahead?: number;
+  total_waiting_teams?: number;
   confirm_remaining_time?: "00:00";
   arrival_remaining_time?: "00:00";
 }
@@ -41,6 +42,7 @@ export const GetWaitingDetailResponse = (
     confirmed_at: response.confirmed_at,
     canceled_at: response.canceled_at,
     waiting_teams_ahead: response.waiting_teams_ahead,
+    total_waiting_teams: response.total_waiting_teams,
     confirm_remaining_time: response.confirm_remaining_time,
     arrival_remaining_time: response.arrival_remaining_time,
   };
