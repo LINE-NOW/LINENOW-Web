@@ -71,7 +71,7 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
   });
 
   return (
-    <S.WaitingCardWrapper onClick={handleWaitingCard}>
+    <S.WaitingCardWrapper {...(isValidate && { onClick: handleWaitingCard })}>
       <S.WaitingCardTitleWrapper>
         <S.WaitingCardTitleLabel>{titleContent}</S.WaitingCardTitleLabel>
         {isValidate ? (

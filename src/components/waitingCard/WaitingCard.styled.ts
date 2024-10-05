@@ -13,7 +13,7 @@ export const WaitingCardWrapper = styled.div`
 
   background-color: ${({ theme }) => theme.colors.background.white};
 
-  /* ${A.onClickButtonAnimation} */
+  ${(props) => props.onClick && A.onClickButtonAnimation}
 `;
 
 // WaitingCardTitle
