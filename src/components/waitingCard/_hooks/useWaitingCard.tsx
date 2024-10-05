@@ -3,10 +3,10 @@ import { ReactNode } from "react";
 // components
 import { ButtonProps } from "@components/button/Button";
 
-//types
+// types
 import { WaitingStatus } from "@linenow-types/status";
 
-//hooks
+// hooks
 import useCountdown from "@hooks/useCountdown";
 import useModal from "@hooks/useModal";
 import { ModalProps } from "@components/modal/Modal";
@@ -89,12 +89,10 @@ export const useWaitingCard = ({
       button: {
         scheme: "lime",
         onClick: handleConfirmButton,
-        children: (
-          <>
-            <span>입장 확정하기</span>
-            <span>{getTime("MMSS")}</span>
-          </>
-        ),
+        children: [
+          <span key={1}>입장 확정하기</span>,
+          <span key={2}>{getTime("MMSS")}</span>,
+        ],
       },
     },
 
@@ -107,12 +105,10 @@ export const useWaitingCard = ({
       isValidate: true,
       button: {
         scheme: "limeLight",
-        children: (
-          <>
-            <span>시간 내에 입장 해주세요</span>
-            <span>{getTime("MMSS")}</span>
-          </>
-        ),
+        children: [
+          <span key={1}>시간 내에 입장 해주세요</span>,
+          <span key={2}>{getTime("MMSS")}</span>,
+        ],
       },
     },
 
