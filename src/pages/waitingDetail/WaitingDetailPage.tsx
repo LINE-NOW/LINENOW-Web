@@ -19,7 +19,6 @@ const WaitingDetailPage = () => {
   const { data: waitingDetail, isLoading } = useGetWaitingDetail(
     waitingID || 0
   );
-  console.log("웨이팅아이디", waitingID);
   const { openModal, closeModal } = useModal();
 
   const waitingCancelModal = {

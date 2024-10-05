@@ -37,7 +37,7 @@ const WaitingCheckCautionModal = ({
         navigate(`/waiting/${response.booth}`, { state: response });
       }
     } catch (error) {
-      console.error("대기 줄 서기 실패:", error);
+      // console.error("대기 줄 서기 실패:", error);
     }
   };
 
