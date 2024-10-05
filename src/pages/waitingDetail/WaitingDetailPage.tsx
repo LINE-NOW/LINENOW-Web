@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useGetWaitingDetail } from "@hooks/apis/waitingDetail";
 import * as S from "./WaitingDetailPage.styled";
@@ -30,7 +31,7 @@ const WaitingDetailPage = () => {
         closeModal();
         try {
           await postWaitingCancel({ waitingID });
-          navigate("/");
+          navigate("/", { replace: true });
         } catch (error) {
           alert("대기 취소 중 문제가 발생했습니다. 다시 시도해주세요.");
         }
@@ -44,6 +45,20 @@ const WaitingDetailPage = () => {
   const onWaitingCancelClick = () => {
     openModal(waitingCancelModal);
   };
+
+  //main으로 이동한 후 뒤로가기 막기
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      event.preventDefault();
+      navigate("/", { replace: true });
+    };
+
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [navigate]);
 
   if (isLoading) {
     return <Spinner />;
