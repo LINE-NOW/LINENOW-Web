@@ -9,6 +9,7 @@ import { onClickButtonAnimation } from "@styles/animation";
 interface ButtonWrapperProps {
   $isDisabled?: boolean;
   $size: ButtonSizeType;
+  $width: string;
   $scheme: SchemeType;
   $shape: ShapeType;
 }
@@ -31,19 +32,38 @@ export const ButtonWrapper = styled.button<ButtonWrapperProps>`
   // onClick이 있고 비활성 상태가 아닐 때만 hover 스타일 적용
   ${(props) => props.onClick && !props.$isDisabled && onClickButtonAnimation}
 
+  ${({ $width }) => {
+    return css`
+      width: ${$width};
+    `;
+  }}
+
+
   ${({ $size, theme }) => {
     switch ($size) {
       case "large":
         return css`
           ${theme.fonts.btn}
-          width: 100%;
           height: 3.5rem;
           padding: 0 1.25rem;
           border-radius: 0.5rem;
+
+          img {
+            width: 1.5rem;
+            height: 1.5rem;
+          }
         `;
-      default:
+      case "medium":
         return css`
-          ${theme.fonts.btn}
+          ${theme.fonts.btn2}
+          height: 2.75rem;
+          padding: 0 0.75rem;
+          border-radius: 0.5rem;
+
+          img {
+            width: 1.25rem;
+            height: 1.25rem;
+          }
         `;
     }
   }}
@@ -80,10 +100,4 @@ export const ButtonWrapper = styled.button<ButtonWrapperProps>`
       `;
     }
   }}
-
-  ${({ theme }) => theme.fonts.btn};
-
-  .blue {
-    color: ${({ theme }) => theme.colors.font.blue};
-  }
 `;
