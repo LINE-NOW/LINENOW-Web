@@ -71,6 +71,7 @@ export const InputTextField = styled.div<InputTextFieldProps>`
 
   input:disabled {
     background-color: transparent;
+    color: ${({ theme }) => theme.colors.font.gray};
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.font.grayLight};
@@ -105,7 +106,10 @@ export const InputTextCountLabel = styled.div`
   color: ${({ theme }) => theme.colors.font.gray};
 `;
 
-export const InputTextErrorLable = styled.label`
+export const InputTextErrorLabel = styled.label`
+  flex-grow: 1;
+  white-space: pre-line;
+
   padding: 0rem 0.25rem;
   ${({ theme }) => theme.fonts.caption}
   color: #FD553E;

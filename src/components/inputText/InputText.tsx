@@ -50,19 +50,18 @@ const InputText = ({
         )}
       </S.InputTextFiledWrapper>
 
-      {errorMessage ||
-        (count && (
-          <S.InputTextBottomLabelWrapper>
-            {errorMessage && (
-              <S.InputTextErrorLable>{errorMessage}</S.InputTextErrorLable>
-            )}
-            {count && (
-              <S.InputTextCountLabel>
-                {currentCount}/{count}
-              </S.InputTextCountLabel>
-            )}
-          </S.InputTextBottomLabelWrapper>
-        ))}
+      {(errorMessage || count) && (
+        <S.InputTextBottomLabelWrapper>
+          {errorMessage && (
+            <S.InputTextErrorLabel>{errorMessage}</S.InputTextErrorLabel>
+          )}
+          {count && (
+            <S.InputTextCountLabel>
+              {currentCount}/{count}
+            </S.InputTextCountLabel>
+          )}
+        </S.InputTextBottomLabelWrapper>
+      )}
     </S.InputTextWrapper>
   );
 };
