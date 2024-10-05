@@ -16,37 +16,41 @@ export const initialSignupValues: SignupFormValues = {
   confirmPassword: "",
 };
 
-const signupValidateConfig: ValidateConfig<SignupFormValues>[] = [
-  {
-    name: "name",
+const signupValidateConfig: Record<keyof SignupFormValues, ValidateConfig> = {
+  name: {
     regex: /^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/,
     regexError: "이름을 정확하게 입력해주세요.",
     minLength: 1,
     maxLength: 20,
     lengthError: "이름은 1자 이상 20자 이하로 입력해주세요.",
   },
-  {
-    name: "phonenumber",
+  phonenumber: {
     regex: /^[0-9]+$/,
     regexError: "전화번호는 숫자만 입력이 가능해요.",
     minLength: 10,
     maxLength: 11,
     lengthError: "전화번호는 10~11자리로 입력해주세요.",
   },
-  {
-    name: "password",
+  password: {
     regex: /^[a-zA-Z0-9!@#$%^&*]+$/,
     regexError: "숫자와 문자, 특수기호 !@#$%^&*를 조합해주세요.",
     minLength: 4,
     maxLength: 100,
     lengthError: "비밀번호를 4자 이상 입력해주세요.",
   },
-  {
-    name: "confirmPassword",
+  confirmPassword: {
+    regex: /^[a-zA-Z0-9!@#$%^&*]+$/,
     minLength: 4,
     maxLength: 100,
     lengthError: "비밀번호를 4자 이상 입력해주세요.",
   },
-];
+  verificationCode: {
+    regex: /^[0-9]+$/,
+    regexError: "전화번호는 숫자만 입력이 가능해요.",
+    minLength: 5,
+    maxLength: 5,
+    lengthError: "전화번호는 10~11자리로 입력해주세요.",
+  },
+};
 
 export default signupValidateConfig;

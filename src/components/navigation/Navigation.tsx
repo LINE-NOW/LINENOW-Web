@@ -16,6 +16,10 @@ const Navigation = () => {
         return <S.NavigationLabel>나의 줄서기</S.NavigationLabel>;
       case "/setting":
         return <S.NavigationLabel>설정</S.NavigationLabel>;
+      case "/login":
+        return <S.NavigationLabel>로그인</S.NavigationLabel>;
+      case "/signup":
+        return <S.NavigationLabel>회원가입</S.NavigationLabel>;
       default:
         return null;
     }

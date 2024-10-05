@@ -5,17 +5,16 @@ interface useFormProps<T extends Record<string, any>> {
   checkValidate: (values: T) => { [key in keyof T]?: string };
 }
 
-export interface ValidateConfig<T> {
-  name: keyof T;
-  regex?: RegExp;
+export interface ValidateConfig {
+  regex: RegExp;
   regexError?: string;
   minLength: number;
   maxLength?: number;
-  lengthError: string;
+  lengthError?: string;
 }
 
-export const checkBaseValidate = <T>(
-  config: ValidateConfig<T>,
+export const checkBaseValidate = (
+  config: ValidateConfig,
   value: string
 ): string | undefined => {
   if (value.length === 0) {
