@@ -12,6 +12,7 @@ interface ButtonWrapperProps {
   $scheme: SchemeType;
   $shape: ShapeType;
 }
+
 export const ButtonWrapper = styled.button<ButtonWrapperProps>`
   display: flex;
   align-items: center;

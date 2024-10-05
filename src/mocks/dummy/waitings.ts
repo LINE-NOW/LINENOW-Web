@@ -4,8 +4,8 @@ export const dummyWaitingsResponse = [
     waiting_status: "waiting",
     waiting_teams_ahead: 5,
     party_size: 4,
-    confirm_remaining_time: undefined, // Not applicable
-    arrival_remaining_time: undefined, // Not applicable
+    confirm_due_time: undefined, // Not applicable
+    arrival_due_time: undefined, // Not applicable
     booth: {
       booth_id: 101,
       name: "아늑한 공간",
@@ -20,8 +20,8 @@ export const dummyWaitingsResponse = [
     waiting_status: "ready_to_confirm",
     waiting_teams_ahead: 0,
     party_size: 6,
-    confirm_remaining_time: "2024-10-01T14:45:00Z", // Only applicable here
-    arrival_remaining_time: undefined, // Not applicable
+    confirm_due_time: "2024-10-01T14:45:00Z", // Only applicable here
+    arrival_due_time: undefined, // Not applicable
     booth: {
       booth_id: 102,
       name: "모임의 숲",
@@ -36,8 +36,8 @@ export const dummyWaitingsResponse = [
     waiting_status: "confirmed",
     waiting_teams_ahead: 1,
     party_size: 2,
-    confirm_remaining_time: "2024-10-01T15:00:00Z", // Both applicable here
-    arrival_remaining_time: "2024-10-01T15:05:00Z", // Arrival time
+    confirm_due_time: "2024-10-01T15:00:00Z", // Both applicable here
+    arrival_due_time: "2024-10-01T15:05:00Z", // Arrival time
     booth: {
       booth_id: 103,
       name: "경치 좋은 전망대",
@@ -52,8 +52,8 @@ export const dummyWaitingsResponse = [
     waiting_status: "waiting",
     waiting_teams_ahead: 4,
     party_size: 3,
-    confirm_remaining_time: undefined, // Not applicable
-    arrival_remaining_time: undefined, // Not applicable
+    confirm_due_time: undefined, // Not applicable
+    arrival_due_time: undefined, // Not applicable
     booth: {
       booth_id: 104,
       name: "테크 허브",
@@ -68,8 +68,8 @@ export const dummyWaitingsResponse = [
     waiting_status: "confirmed",
     waiting_teams_ahead: 0,
     party_size: 2,
-    confirm_remaining_time: "2024-10-01T15:20:00Z", // Both applicable here
-    arrival_remaining_time: "2024-10-01T15:25:00Z", // Arrival time
+    confirm_due_time: "2024-10-01T15:20:00Z", // Both applicable here
+    arrival_due_time: "2024-10-01T15:25:00Z", // Arrival time
     booth: {
       booth_id: 105,
       name: "로맨틱 리트리트",
@@ -84,8 +84,8 @@ export const dummyWaitingsResponse = [
     waiting_status: "waiting",
     waiting_teams_ahead: 3,
     party_size: 5,
-    confirm_remaining_time: undefined, // Not applicable
-    arrival_remaining_time: undefined, // Not applicable
+    confirm_due_time: undefined, // Not applicable
+    arrival_due_time: undefined, // Not applicable
     booth: {
       booth_id: 106,
       name: "가족 놀이존",
@@ -100,8 +100,8 @@ export const dummyWaitingsResponse = [
     waiting_status: "confirmed",
     waiting_teams_ahead: 1,
     party_size: 4,
-    confirm_remaining_time: "2024-10-01T15:40:00Z", // Both applicable here
-    arrival_remaining_time: "2024-10-01T15:45:00Z", // Arrival time
+    confirm_due_time: "2024-10-01T15:40:00Z", // Both applicable here
+    arrival_due_time: "2024-10-01T15:45:00Z", // Arrival time
     booth: {
       booth_id: 107,
       name: "비즈니스 라운지",
@@ -116,8 +116,8 @@ export const dummyWaitingsResponse = [
     waiting_status: "waiting",
     waiting_teams_ahead: 2,
     party_size: 8,
-    confirm_remaining_time: undefined, // Not applicable
-    arrival_remaining_time: undefined, // Not applicable
+    confirm_due_time: undefined, // Not applicable
+    arrival_due_time: undefined, // Not applicable
     booth: {
       booth_id: 108,
       name: "오픈 스카이 테라스",
@@ -132,8 +132,8 @@ export const dummyWaitingsResponse = [
     waiting_status: "canceled",
     waiting_teams_ahead: 5,
     party_size: 10,
-    confirm_remaining_time: undefined, // Not applicable
-    arrival_remaining_time: undefined, // Not applicable
+    confirm_due_time: undefined, // Not applicable
+    arrival_due_time: undefined, // Not applicable
     booth: {
       booth_id: 109,
       name: "테마 원더랜드",
@@ -148,8 +148,8 @@ export const dummyWaitingsResponse = [
     waiting_status: "waiting",
     waiting_teams_ahead: 3,
     party_size: 2,
-    confirm_remaining_time: undefined, // Not applicable
-    arrival_remaining_time: undefined, // Not applicable
+    confirm_due_time: undefined, // Not applicable
+    arrival_due_time: undefined, // Not applicable
     booth: {
       booth_id: 110,
       name: "프라이빗 오아시스",
