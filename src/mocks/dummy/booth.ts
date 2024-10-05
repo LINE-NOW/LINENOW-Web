@@ -26,6 +26,6 @@ export const dummyBoothResponse = {
   open_time: "2024-09-20T10:27:56",
   close_time: "2024-09-26T10:27:59",
   waiting_count: 2,
-  is_waiting: true,
+  is_waiting: false,
   waiting_status: "waiting",
 };

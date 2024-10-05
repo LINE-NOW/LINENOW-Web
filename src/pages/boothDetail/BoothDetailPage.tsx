@@ -58,9 +58,16 @@ const BoothDetailPage = () => {
             informationSub={`${booth.waiting_count}팀`}
           >
             {isLogin ? (
-              <Button onClick={openModal}>
-                <span>대기 줄 서기</span>
-              </Button>
+              booth.is_waiting ? (
+                <Button scheme="lime">
+                  <span>내 앞으로 지금</span>
+                  <span className="blue">{booth.waiting_count}팀</span>
+                </Button>
+              ) : (
+                <Button onClick={openModal}>
+                  <span>대기 줄 서기</span>
+                </Button>
+              )
             ) : (
               <Button scheme="lime" onClick={handleLoginButtonClick}>
                 <span>로그인하고 이용하기</span>
