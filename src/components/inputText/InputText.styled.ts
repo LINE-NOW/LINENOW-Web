@@ -20,18 +20,16 @@ export const InputTextLabelWrapper = styled.section`
   flex-direction: column;
   gap: 0.25rem;
 
+  padding: 0rem 0.25rem;
   padding-bottom: 0.5rem;
 `;
 
 export const InputTextLabel = styled.label`
-  padding: 0rem 0.25rem;
   ${({ theme }) => theme.fonts.h3}
   color: ${({ theme }) => theme.colors.font.blue};
 `;
 
 export const InputDescriptionLabel = styled.span`
-  padding: 0rem 0.25rem;
-
   white-space: pre-line;
 
   ${({ theme }) => theme.fonts.caption}
@@ -94,9 +92,12 @@ export const InputTextField = styled.div<InputTextFieldProps>`
 export const InputTextBottomLabelWrapper = styled.section`
   display: flex;
   gap: 0.5rem;
+  justify-content: end;
 
   width: 100%;
-  justify-content: end;
+
+  padding: 0rem 0.25rem;
+  padding-top: 0.5rem;
 `;
 
 export const InputTextCountLabel = styled.div`
@@ -106,7 +107,6 @@ export const InputTextCountLabel = styled.div`
 
 export const InputTextErrorLable = styled.label`
   padding: 0rem 0.25rem;
-  padding-top: 0.5rem;
   ${({ theme }) => theme.fonts.caption}
   color: #FD553E;
 `;

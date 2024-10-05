@@ -1,5 +1,5 @@
-import Button, { ButtonProps } from "@components/button/Button";
 import * as S from "./InputText.styled";
+import Button, { ButtonProps } from "@components/button/Button";
 
 interface InputTextButtonProps extends Omit<ButtonProps, "size" | "shape"> {}
 
@@ -27,12 +27,14 @@ const InputText = ({
 }: InputTextProps) => {
   return (
     <S.InputTextWrapper $width={width}>
-      <S.InputTextLabelWrapper>
-        {label && <S.InputTextLabel>{label}</S.InputTextLabel>}
-        {description && (
-          <S.InputDescriptionLabel>{description}</S.InputDescriptionLabel>
-        )}
-      </S.InputTextLabelWrapper>
+      {(label || description) && (
+        <S.InputTextLabelWrapper>
+          {label && <S.InputTextLabel>{label}</S.InputTextLabel>}
+          {description && (
+            <S.InputDescriptionLabel>{description}</S.InputDescriptionLabel>
+          )}
+        </S.InputTextLabelWrapper>
+      )}
 
       <S.InputTextFiledWrapper>
         <S.InputTextField $disabled={props.disabled || false}>
@@ -44,20 +46,23 @@ const InputText = ({
           />
         </S.InputTextField>
         {button && (
-          <Button style={{ width: "6rem" }} size="medium" {...button} />
+          <Button style={{ width: "auto" }} size="medium" {...button} />
         )}
       </S.InputTextFiledWrapper>
 
-      <S.InputTextBottomLabelWrapper>
-        {errorMessage && (
-          <S.InputTextErrorLable>{errorMessage}</S.InputTextErrorLable>
-        )}
-        {count && (
-          <S.InputTextCountLabel>
-            {currentCount}/{count}
-          </S.InputTextCountLabel>
-        )}
-      </S.InputTextBottomLabelWrapper>
+      {errorMessage ||
+        (count && (
+          <S.InputTextBottomLabelWrapper>
+            {errorMessage && (
+              <S.InputTextErrorLable>{errorMessage}</S.InputTextErrorLable>
+            )}
+            {count && (
+              <S.InputTextCountLabel>
+                {currentCount}/{count}
+              </S.InputTextCountLabel>
+            )}
+          </S.InputTextBottomLabelWrapper>
+        ))}
     </S.InputTextWrapper>
   );
 };
