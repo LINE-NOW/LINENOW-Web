@@ -1,4 +1,4 @@
-import { ButtonProps } from "@components/button/Button";
+import Button, { ButtonProps } from "@components/button/Button";
 import * as S from "./InputText.styled";
 
 interface InputTextButtonProps extends Omit<ButtonProps, "size" | "shape"> {}
@@ -7,7 +7,8 @@ export interface InputTextProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   width?: string;
   label?: string;
-  sub?: string;
+  description?: string;
+  currentCount?: number;
   count?: number;
   button?: InputTextButtonProps;
   errorMessage?: string;
@@ -16,7 +17,8 @@ export interface InputTextProps
 const InputText = ({
   width = "100%",
   label,
-  sub,
+  description,
+  currentCount,
   count,
   button,
   errorMessage,
@@ -25,14 +27,37 @@ const InputText = ({
 }: InputTextProps) => {
   return (
     <S.InputTextWrapper $width={width}>
-      {label && <S.InputTextLable>{label}</S.InputTextLable>}
+      <S.InputTextLabelWrapper>
+        {label && <S.InputTextLabel>{label}</S.InputTextLabel>}
+        {description && (
+          <S.InputDescriptionLabel>{description}</S.InputDescriptionLabel>
+        )}
+      </S.InputTextLabelWrapper>
 
-      <S.InputTextField>
-        <input type={type} placeholder={props.placeholder} {...props} />
-      </S.InputTextField>
-      {errorMessage && (
-        <S.InputTextErrorLable>{errorMessage}</S.InputTextErrorLable>
-      )}
+      <S.InputTextFiledWrapper>
+        <S.InputTextField $disabled={props.disabled || false}>
+          <input
+            disabled={props.disabled}
+            type={type}
+            placeholder={props.placeholder}
+            {...props}
+          />
+        </S.InputTextField>
+        {button && (
+          <Button style={{ width: "6rem" }} size="medium" {...button} />
+        )}
+      </S.InputTextFiledWrapper>
+
+      <S.InputTextBottomLabelWrapper>
+        {errorMessage && (
+          <S.InputTextErrorLable>{errorMessage}</S.InputTextErrorLable>
+        )}
+        {count && (
+          <S.InputTextCountLabel>
+            {currentCount}/{count}
+          </S.InputTextCountLabel>
+        )}
+      </S.InputTextBottomLabelWrapper>
     </S.InputTextWrapper>
   );
 };
