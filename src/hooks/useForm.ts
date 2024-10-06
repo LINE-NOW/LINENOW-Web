@@ -1,38 +1,12 @@
+import { FormData } from "@interfaces/form";
 import { useEffect, useState } from "react";
 
-interface useFormProps<T extends Record<string, any>> {
+interface useFormProps<T extends FormData> {
   initialValues: T;
   checkValidate: (values: T) => { [key in keyof T]?: string };
 }
 
-export interface ValidateConfig {
-  regex: RegExp;
-  regexError?: string;
-  minLength: number;
-  maxLength?: number;
-  lengthError?: string;
-}
-
-export const checkBaseValidate = (
-  config: ValidateConfig,
-  value: string
-): string | undefined => {
-  if (value.length === 0) {
-    return undefined;
-  }
-  if (
-    value.length < config.minLength ||
-    (config.maxLength && value.length > config.maxLength)
-  ) {
-    return config.lengthError;
-  }
-  if (config.regex && !config.regex.test(value)) {
-    return config.regexError;
-  }
-  return undefined;
-};
-
-function useForm<T extends Record<string, any>>({
+function useForm<T extends FormData>({
   initialValues,
   checkValidate,
 }: useFormProps<T>) {

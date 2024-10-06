@@ -1,4 +1,4 @@
-import { ValidateConfig } from "@hooks/useForm";
+import { ValidateConfigs } from "@interfaces/form";
 
 export interface LoginFormValues {
   phonenumber: string;
@@ -10,7 +10,7 @@ export const initialLoginValues: LoginFormValues = {
   password: "",
 };
 
-const loginValidateConfig: Record<keyof LoginFormValues, ValidateConfig> = {
+export const loginValidateConfigs: ValidateConfigs<LoginFormValues> = {
   phonenumber: {
     regex: /^[0-9]+$/,
     minLength: 10,
@@ -22,5 +22,3 @@ const loginValidateConfig: Record<keyof LoginFormValues, ValidateConfig> = {
     maxLength: 100,
   },
 };
-
-export default loginValidateConfig;

@@ -1,36 +1,28 @@
 import BottomButton from "@components/bottomButton/BottomButton";
 import * as S from "./SignupPage.styled";
 import InputText from "@components/inputText/InputText";
-import useForm, { checkBaseValidate } from "@hooks/useForm";
+import useForm from "@hooks/useForm";
 import Button from "@components/button/Button";
 import { useState } from "react";
-import signupValidateConfig, {
+
+import {
   initialSignupValues,
   SignupFormValues,
+  signupValidateConfigs,
 } from "./SignupValidateConfig";
+import validateConfigs from "@utils/validateConfig";
 
 const SignupPage = () => {
   const [isVerificationCodeAble, setIsVerificationCodeAble] = useState<
     boolean | null
   >(null);
-
   const [isVerificationCodeChecked, setIsVerificationCodeChecked] =
     useState<boolean>(false);
 
   const checkValidate = (values: SignupFormValues) => {
-    const errors: Partial<Record<keyof SignupFormValues, string>> = {};
+    const errors = validateConfigs(signupValidateConfigs, values);
 
-    (
-      Object.keys(signupValidateConfig) as Array<keyof SignupFormValues>
-    ).forEach((key) => {
-      const config = signupValidateConfig[key];
-      const value = values[key];
-      const error = checkBaseValidate(config, value);
-      if (error) {
-        errors[key] = error;
-      }
-    });
-
+    // 전화번호 인증 추가 검증
     if (isVerificationCodeAble == null) {
     } else if (!isVerificationCodeAble) {
       errors.phonenumber = "인증번호 발급에 실패했습니다.\n다시 시도해주세요.";
@@ -88,7 +80,7 @@ const SignupPage = () => {
           name="name"
           label="이름"
           placeholder="홍길동"
-          pattern={signupValidateConfig.name.regex.source}
+          pattern={signupValidateConfigs.name.regex.source}
           onChange={handleChange}
           value={values.name}
           currentCount={values.name.length}
@@ -100,7 +92,7 @@ const SignupPage = () => {
           <InputText
             name="phonenumber"
             label="전화번호"
-            pattern={signupValidateConfig.phonenumber.regex.source}
+            pattern={signupValidateConfigs.phonenumber.regex.source}
             disabled={isVerificationCodeAble || false}
             description={`기입하신 전화번호로 고객님께 대기 관련 문자 메세지가 전송됩니다.
             원활한 소통을 위해 신중하게 입력해주세요.`}
@@ -121,7 +113,7 @@ const SignupPage = () => {
           <InputText
             name="verificationCode"
             placeholder="인증번호를 입력해주세요"
-            pattern={signupValidateConfig.verificationCode.regex.source}
+            pattern={signupValidateConfigs.verificationCode.regex.source}
             disabled={!isVerificationCodeAble || isVerificationCodeChecked}
             onChange={handleChange}
             value={values.verificationCode}
@@ -145,7 +137,7 @@ const SignupPage = () => {
             label="비밀번호"
             description="4자 이상의 영문과 숫자를 조합해주세요."
             placeholder="비밀번호를 입력해주세요"
-            pattern={signupValidateConfig.password.regex.source}
+            pattern={signupValidateConfigs.password.regex.source}
             onChange={handleChange}
             value={values.password}
             errorMessage={errors.password}
@@ -154,7 +146,7 @@ const SignupPage = () => {
             name="confirmPassword"
             type="password"
             placeholder="비밀번호를 재입력해주세요"
-            pattern={signupValidateConfig.confirmPassword.regex.source}
+            pattern={signupValidateConfigs.confirmPassword.regex.source}
             onChange={handleChange}
             value={values.confirmPassword}
             errorMessage={errors.confirmPassword}

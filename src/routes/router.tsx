@@ -13,7 +13,7 @@ import WaitingCheckPage from "@pages/waitingCheck/WaitingCheckPage";
 import WaitingDetailPage from "@pages/waitingDetail/WaitingDetailPage";
 import MyWaitingListPage from "@pages/myWaitingList/MyWaitingListPage";
 import SignupPage from "@pages/signup/SignupPage";
-import GuestRoute from "./GuestRout";
+import GuestRoute from "./GuestRoute";
 import LoginPage from "@pages/login/LoginPage";
 
 const router = createBrowserRouter([

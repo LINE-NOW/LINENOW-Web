@@ -1,4 +1,4 @@
-import { ValidateConfig } from "@hooks/useForm";
+import { ValidateConfig, ValidateConfigs } from "@interfaces/form";
 
 export interface SignupFormValues {
   name: string;
@@ -16,7 +16,7 @@ export const initialSignupValues: SignupFormValues = {
   confirmPassword: "",
 };
 
-const signupValidateConfig: Record<keyof SignupFormValues, ValidateConfig> = {
+export const signupValidateConfigs: ValidateConfigs<SignupFormValues> = {
   name: {
     regex: /^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/,
     regexError: "이름을 정확하게 입력해주세요.",
@@ -52,5 +52,3 @@ const signupValidateConfig: Record<keyof SignupFormValues, ValidateConfig> = {
     lengthError: "전화번호는 10~11자리로 입력해주세요.",
   },
 };
-
-export default signupValidateConfig;
