@@ -1,11 +1,11 @@
-import * as S from './SettingPage.styled';
-import SettingItem from './_components/settingItem/SettingItem';
-import SettingDeleteID from './_components/deleteID/SettingDeleteID';
-import useModal from '@hooks/useModal';
-import { postLogout } from '@apis/domains/auth/logout/apis';
-import { useNavigate } from 'react-router-dom';
-import { useAtom } from 'jotai';
-import { languageAtom } from '@atoms/language';
+import * as S from "./SettingPage.styled";
+import SettingItem from "./_components/settingItem/SettingItem";
+import SettingDeleteID from "./_components/deleteID/SettingDeleteID";
+import useModal from "@hooks/useModal";
+import { postLogout } from "@apis/domains/auth/logout/apis";
+import { useNavigate } from "react-router-dom";
+import { useAtom } from "jotai";
+import { languageAtom } from "@atoms/language";
 
 const SettingPage = () => {
   const { openModal, closeModal } = useModal();
@@ -16,15 +16,15 @@ const SettingPage = () => {
   const handleLogout = async () => {
     // TODO: - accessToken 관련 추후에 확인
     // const accessToken = localStorage.getItem('accessToken');
-    const accessToken = '12345';
+    const accessToken = "12345";
 
     if (accessToken) {
       const response = await postLogout();
 
       if (response) {
-        localStorage.removeItem('accessToken');
+        localStorage.removeItem("accessToken");
         closeModal();
-        navigate('/');
+        navigate("/");
       } else {
         // console.log('Logout failed');
       }
@@ -34,14 +34,14 @@ const SettingPage = () => {
   };
 
   const logoutModalProps = {
-    title: '로그아웃',
-    sub: '취소하면 레전드 다시 서야합니다.\n 취소하면 레전드 다시 서야합니다.',
+    title: "로그아웃",
+    sub: "취소하면 레전드 다시 서야합니다.\n 취소하면 레전드 다시 서야합니다.",
     primaryButton: {
-      children: '로그아웃하기',
+      children: "로그아웃하기",
       onClick: handleLogout,
     },
     secondButton: {
-      children: '취소하기',
+      children: "취소하기",
     },
   };
 
@@ -52,37 +52,37 @@ const SettingPage = () => {
 
   // 언어설정 클릭
   const handleLanguageClick = () => {
-    setLanguage(prevLanguage => (prevLanguage === 'ko' ? 'en' : 'ko'));
+    setLanguage((prevLanguage) => (prevLanguage === "ko" ? "en" : "ko"));
     console.log(language);
   };
 
   // 이용약관 클릭
   const handleTermsOfServiceClick = () => {
     window.open(
-      'https://thorn-freesia-96f.notion.site/c645fe5ebb624ca9a7be3e697ecdf8be?pvs=4',
-      '_blank'
+      "https://thorn-freesia-96f.notion.site/c645fe5ebb624ca9a7be3e697ecdf8be?pvs=4",
+      "_blank"
     );
   };
 
   // 1:1 문의 클릭
   const handleInquiryClick = () => {
-    window.open('https://open.kakao.com/o/sDiY4qSg', '_blank');
+    window.open("https://open.kakao.com/o/sDiY4qSg", "_blank");
   };
 
   // 개발자 정보 클릭
   const handleDeveloperInfoClick = () => {
     window.open(
-      'https://thorn-freesia-96f.notion.site/09b2230a514848ec9041518f467f86e4?pvs=4',
-      '_blank'
+      "https://thorn-freesia-96f.notion.site/09b2230a514848ec9041518f467f86e4?pvs=4",
+      "_blank"
     );
   };
 
   const settingItemProps = [
-    { title: '로그아웃', onClick: handleLogoutClick },
-    { title: '언어설정', onClick: handleLanguageClick },
-    { title: '이용약관', onClick: handleTermsOfServiceClick },
-    { title: '1:1 문의', onClick: handleInquiryClick },
-    { title: '개발자 정보', onClick: handleDeveloperInfoClick },
+    { title: "로그아웃", onClick: handleLogoutClick },
+    { title: "언어설정", onClick: handleLanguageClick },
+    { title: "이용약관", onClick: handleTermsOfServiceClick },
+    { title: "1:1 문의", onClick: handleInquiryClick },
+    { title: "개발자 정보", onClick: handleDeveloperInfoClick },
   ];
 
   return (
@@ -95,20 +95,6 @@ const SettingPage = () => {
         </S.SettingContentWrapper>
         <SettingDeleteID />
       </S.SettingComponentsWrapper>
-
-      <S.SettingFooterWrapper>
-        <img src="/images/image_vertical_logo.svg" />
-        <div>대표 : 이경 | 관리자 : 오찬주</div>
-        <div>법인명 : 동국대학교 산학협력단 | 사업자 등록번호 201-82-04468</div>
-        <br />
-        <div>이메일 : linenow2024@gmail.com</div>
-        <div>
-          주소 : 서울특별시 중구 필동로1길 30, 2층 본관 2층(필동3가, 동국대학교)
-        </div>
-        <br />
-
-        <div>Copyright 2024. linenow. All rights reserved.</div>
-      </S.SettingFooterWrapper>
     </S.SettingPageWrapper>
   );
 };

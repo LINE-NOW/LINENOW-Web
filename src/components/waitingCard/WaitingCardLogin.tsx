@@ -17,8 +17,8 @@ interface WaitingCardProps {
     | "booth"
     | "party_size"
     | "waitingStatus"
-    | "confirmRemainingTime"
-    | "arrivalRemainingTime"
+    | "confirmDueTime"
+    | "arrivalarrivalDueTime"
   >;
   isButton?: boolean;
 }
