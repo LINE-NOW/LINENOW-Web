@@ -25,31 +25,32 @@ const LoginPage = () => {
     getErrors,
   });
 
+  const getInputTextProps = (key: keyof LoginFormValues) => {
+    return {
+      name: key,
+      onChange: handleChange,
+      regex: loginValidateConfigs[key].regex,
+      minLength: loginValidateConfigs[key].minLength,
+      maxLength: loginValidateConfigs[key].maxLength,
+      errorMessage: errors[key],
+      valu: values[key],
+    };
+  };
+
   return (
     <S.LoginPageWrapper>
       <S.LoginPageTextInputWrapper>
         <InputText
-          name="phonenumber"
+          {...getInputTextProps("phonenumber")}
           label="전화번호"
-          regex={loginValidateConfigs.phonenumber.regex}
-          minLength={loginValidateConfigs.phonenumber.minLength}
-          maxLength={loginValidateConfigs.phonenumber.maxLength}
           placeholder="01012345678"
           onChange={handleChange}
-          value={values.phonenumber}
-          errorMessage={errors.phonenumber}
         />
         <InputText
-          name="password"
+          {...getInputTextProps("password")}
           type="password"
           label="비밀번호"
           placeholder="비밀번호를 입력해주세요"
-          regex={loginValidateConfigs.password.regex}
-          minLength={loginValidateConfigs.password.minLength}
-          maxLength={loginValidateConfigs.password.maxLength}
-          onChange={handleChange}
-          value={values.password}
-          errorMessage={errors.password}
         />
       </S.LoginPageTextInputWrapper>
       <Button disabled={!isValid} onClick={handleSubmitButton}>

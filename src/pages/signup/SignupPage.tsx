@@ -83,36 +83,36 @@ const SignupPage = () => {
     }
   };
 
+  const getInputTextProps = (key: keyof SignupFormValues) => {
+    return {
+      name: key,
+      onChange: handleChange,
+      regex: signupValidateConfigs[key].regex,
+      minLength: signupValidateConfigs[key].minLength,
+      maxLength: signupValidateConfigs[key].maxLength,
+      errorMessage: errors[key],
+      valu: values[key],
+    };
+  };
+
   return (
     <>
       <S.SignupPageWrapper>
         <InputText
-          name="name"
+          {...getInputTextProps("name")}
           label="이름"
           placeholder="홍길동"
-          regex={signupValidateConfigs.name.regex}
-          minLength={signupValidateConfigs.name.minLength}
-          maxLength={signupValidateConfigs.name.maxLength}
-          onChange={handleChange}
-          value={values.name}
           currentCount={values.name.length}
           count={20}
-          errorMessage={errors.name}
         />
 
         <S.SignupPageTextInputWrapper>
           <InputText
-            name="phonenumber"
-            label="전화번호"
-            regex={signupValidateConfigs.phonenumber.regex}
-            minLength={signupValidateConfigs.phonenumber.minLength}
-            maxLength={signupValidateConfigs.phonenumber.maxLength}
+            {...getInputTextProps("phonenumber")}
             disabled={isVerificationCodeAble || false}
             description={`기입하신 전화번호로 고객님께 대기 관련 문자 메세지가 전송됩니다.
             원활한 소통을 위해 신중하게 입력해주세요.`}
             placeholder="01012345678"
-            onChange={handleChange}
-            value={values.phonenumber}
             button={{
               disabled:
                 isVerificationCodeAble ||
@@ -122,20 +122,14 @@ const SignupPage = () => {
               scheme: "blueLight",
               onClick: getVerificationCode,
             }}
-            errorMessage={errors.phonenumber}
           />
           <InputText
+            {...getInputTextProps("verificationCode")}
             name="verificationCode"
             placeholder="인증번호를 입력해주세요"
-            regex={signupValidateConfigs.verificationCode.regex}
-            minLength={signupValidateConfigs.verificationCode.minLength}
-            maxLength={signupValidateConfigs.verificationCode.maxLength}
             disabled={
               !isVerificationCodeAble || isVerificationCodeChecked || false
             }
-            onChange={handleChange}
-            value={values.verificationCode}
-            errorMessage={errors.verificationCode}
             button={{
               disabled:
                 !isVerificationCodeAble || isVerificationCodeChecked || false,
@@ -148,28 +142,17 @@ const SignupPage = () => {
 
         <S.SignupPageTextInputWrapper>
           <InputText
+            {...getInputTextProps("password")}
             name="password"
             type="password"
             label="비밀번호"
             description={`4자 이상의 영문과 숫자, 특수문자 (!@#$%^&*)를\n조합하여 비밀번호를 작성해주세요.`}
             placeholder="비밀번호를 입력해주세요"
-            regex={signupValidateConfigs.password.regex}
-            minLength={signupValidateConfigs.password.minLength}
-            maxLength={signupValidateConfigs.password.maxLength}
-            onChange={handleChange}
-            value={values.password}
-            errorMessage={errors.password}
           />
           <InputText
-            name="confirmPassword"
+            {...getInputTextProps("confirmPassword")}
             type="password"
             placeholder="비밀번호를 재입력해주세요"
-            regex={signupValidateConfigs.password.regex}
-            minLength={signupValidateConfigs.password.minLength}
-            maxLength={signupValidateConfigs.password.maxLength}
-            onChange={handleChange}
-            value={values.confirmPassword}
-            errorMessage={errors.confirmPassword}
           />
         </S.SignupPageTextInputWrapper>
       </S.SignupPageWrapper>
