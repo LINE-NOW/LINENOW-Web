@@ -60,7 +60,6 @@ export const deleteResponse = async (url: string): Promise<EmptyDTO | null> => {
   } catch (error) {
     const axiosError = error as AxiosError;
     console.error("Response error:", axiosError);
-    console.error("Response error:", axiosError);
     return null;
   }
 };
@@ -79,7 +78,6 @@ export const postResponseNoData = async (
   } catch (error) {
     const axiosError = error as AxiosError;
     console.error("Response error:", axiosError);
-    console.error("Response error:", axiosError);
     return null;
   }
 };
@@ -97,7 +95,6 @@ export const postResponse = async <T>(
     });
 
     console.log("서버 응답:", response); // 응답 내용 로그 추가
-    console.log("서버 응답:", response); // 응답 내용 로그 추가
 
     console.log(
       `[POST] ${url}
@@ -110,7 +107,6 @@ export const postResponse = async <T>(
   } catch (error) {
     const axiosError = error as AxiosError;
 
-    console.error("Response error:", axiosError);
     console.error("Response error:", axiosError);
     return null;
   }

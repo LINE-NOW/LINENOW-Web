@@ -29,6 +29,17 @@ const getDelayedResponse = (responseData: any) => {
   };
 };
 
+const postDelayedResponse = (message: string) => {
+  return async () => {
+    await delay(COMMON_DELAY);
+    return HttpResponse.json({
+      status: true,
+      message: message,
+      code: 200,
+    });
+  };
+};
+
 const deleteDelayedResponse = () => {
   return async () => {
     await delay(COMMON_DELAY);
@@ -80,23 +91,10 @@ export const handlers = [
     getDelayedResponse(dummyWaitingDetailResponse)
   ),
 
-  http.post("/api/v1/waitings/:waitingID/cancel", async ({ params }) => {
-    const { waitingID } = params;
-
-    // 토큰 없이 대기 취소 성공 처리
-    return new HttpResponse(
-      JSON.stringify({
-        message: `Waiting with ID ${waitingID} successfully cancelled`,
-        status: "success",
-      }),
-      {
-        status: 200,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-  }),
+  http.post(
+    "/api/v1/waitings/:waitingID/cancel",
+    postDelayedResponse(`성공적으로 대기가 취소됐습니다.`)
+  ),
 
   http.post(
     "/api/v1/waitings/:boothId/register",

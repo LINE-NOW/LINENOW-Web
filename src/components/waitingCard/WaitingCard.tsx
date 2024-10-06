@@ -48,14 +48,14 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
     primaryButton: {
       children: "줄 서기 취소하기",
       onClick: async () => {
-        if (!waiting.waitingID) {
-          alert("잘못된 대기 번호입니다.");
-          return;
-        }
-
         closeModal();
         try {
-          await postWaitingCancel({ waitingID: waiting.waitingID });
+          if (waiting.waitingID !== undefined) {
+            await postWaitingCancel({ waitingID: waiting.waitingID });
+            navigate("/", { replace: true });
+          } else {
+            alert("대기 ID를 찾을 수 없습니다.");
+          }
         } catch (error) {
           alert("대기 취소 중 문제가 발생했습니다. 다시 시도해주세요.");
         }
