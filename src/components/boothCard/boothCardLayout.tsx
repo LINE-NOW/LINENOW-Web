@@ -23,7 +23,9 @@ const BoothCardLayout = ({
   return (
     <S.BoothCardWrapper to={to || ""} $type={type}>
       <S.BoothCardInformationWrapper>
-        <S.BoothCardInformationImage src={boothImage} />
+        <S.BoothCardInformationImage
+          src={boothImage || "/images/image_waitingNoCard.png"}
+        />
         <S.BoothCardInformationLabelWrapper>
           <S.BoothCardInformationNameLabel>
             {boothTitle}
