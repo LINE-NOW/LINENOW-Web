@@ -2,7 +2,6 @@
 import * as S from './LoginBottomsheetContent.styled';
 import Button from '@components/button/Button';
 import ButtonLayout from '@components/button/ButtonLayout';
-import IconLabel from '@components/label/IconLabel';
 
 // hooks
 import { useNavigate } from 'react-router-dom';
