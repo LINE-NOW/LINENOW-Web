@@ -1,32 +1,10 @@
-import { deleteUser } from '@apis/domains/auth/deleteID/apis';
 import * as S from './SettingDeleteID.styled';
 import useModal from '@hooks/useModal';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { usePostDeleteID } from '@hooks/apis/auth';
 
 const SettingDeleteID = () => {
-  const { openModal, closeModal } = useModal();
-  const navigate = useNavigate();
-
-  const instance = axios.create({
-    baseURL: import.meta.env.VITE_BASE_URL,
-    withCredentials: false,
-  });
-
-  // instance.interceptors.request.use(
-  //   config => {
-  //     const token = localStorage.getItem('accessToken');
-  //     console.log('확인용, ', token);
-
-  //     if (token) {
-  //       config.headers.Authorization = `Bearer ${token}`;
-  //     }
-  //     return config;
-  //   },
-  //   error => {
-  //     return Promise.reject(error);
-  //   }
-  // );
+  const { openModal } = useModal();
+  const { mutate: postDeleteID } = usePostDeleteID();
 
   const handleDeleteIDClick = () => {
     openModal({
@@ -43,39 +21,7 @@ const SettingDeleteID = () => {
   };
 
   const handleDeleteID = async () => {
-    const accessToken = localStorage.getItem('accessToken');
-    const refreshToken = localStorage.getItem('refreshToken');
-
-    try {
-      const response = await instance.post(
-        '/api/v1/accounts/withdraw/',
-        { refresh_token: refreshToken },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-      if (response.data) {
-        localStorage.clear();
-        closeModal();
-        alert('회원탈퇴 성공');
-        navigate('/');
-      } else {
-        alert('회원탈퇴 실패');
-      }
-    } catch (error) {
-      console.log('error:', error);
-      alert('회원탈퇴 중 오류가 발생했습니다.');
-    }
-    // const response = await deleteUser();
-    // console.log('response, ', response);
-
-    // if (response && response.status) {
-    //   // localStorage.clear(); // TODO: - 추후에 확인
-    //   closeModal();
-    //   navigate('/');
-    // }
+    postDeleteID();
   };
 
   return (

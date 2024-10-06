@@ -11,18 +11,9 @@ import {
   signupValidateConfigs,
 } from './SignupValidateConfig';
 import validateConfigs from '@utils/validateConfig';
-import axios from 'axios';
-import { PostSignupRequest } from '@apis/domains/auth/signup/_interfaces';
-import { useNavigate } from 'react-router-dom';
+import { usePostSignup } from '@hooks/apis/auth';
 
 const SignupPage = () => {
-  const navigate = useNavigate();
-
-  const instance = axios.create({
-    baseURL: import.meta.env.VITE_BASE_URL,
-    withCredentials: false,
-  });
-
   const [isVerificationCodeAble, setIsVerificationCodeAble] = useState<
     boolean | null
   >(null);
@@ -52,33 +43,15 @@ const SignupPage = () => {
     return errors;
   };
 
-  const handleSubmitButton = async () => {
-    const requestData: PostSignupRequest = {
+  const { mutate: postSignup } = usePostSignup();
+
+  const handleSubmitButton = () => {
+    postSignup({
       name: values.name,
       phone_number: values.phonenumber,
       password1: values.password,
       password2: values.confirmPassword,
-    };
-
-    try {
-      // API 호출
-      const response = await instance.post(
-        '/api/v1/dj-rest-auth/registration/',
-        requestData
-      );
-
-      if (response.data) {
-        alert('회원가입 성공!');
-        localStorage.setItem('accessToken', response.data.access);
-        localStorage.setItem('refreshToken', response.data.refresh);
-        navigate('/');
-      } else {
-        alert('회원가입 실패');
-      }
-    } catch (error) {
-      console.log('error:', error);
-      alert('회원가입 중 오류가 발생했습니다.');
-    }
+    });
   };
 
   const { values, errors, isValid, handleChange } = useForm<SignupFormValues>({

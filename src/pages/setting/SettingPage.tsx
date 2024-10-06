@@ -2,68 +2,18 @@ import * as S from './SettingPage.styled';
 import SettingItem from './_components/settingItem/SettingItem';
 import SettingDeleteID from './_components/deleteID/SettingDeleteID';
 import useModal from '@hooks/useModal';
-import { postLogout } from '@apis/domains/auth/logout/apis';
-import { useNavigate } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { languageAtom } from '@atoms/language';
-import axios from 'axios';
+import { usePostLogout } from '@hooks/apis/auth';
 
 const SettingPage = () => {
-  const { openModal, closeModal } = useModal();
-  const navigate = useNavigate();
+  const { openModal } = useModal();
+  const { mutate: postLogout } = usePostLogout();
 
-  const instance = axios.create({
-    baseURL: import.meta.env.VITE_BASE_URL,
-    withCredentials: false,
-  });
   const [language, setLanguage] = useAtom(languageAtom);
 
-  // 로그아웃 > 모달창 - 로그아웃하기 클릭
   const handleLogout = async () => {
-    // TODO: - accessToken 관련 추후에 확인
-    // const accessToken = localStorage.getItem('accessToken');
-    // const accessToken = "12345";
-
-    // if (accessToken) {
-    //   const response = await postLogout();
-
-    //   if (response) {
-    //     localStorage.removeItem("accessToken");
-    //     closeModal();
-    //     navigate("/");
-    //   } else {
-    //     // console.log('Logout failed');
-    //   }
-    // } else {
-    //   // console.log('No accessToken found');
-    // }
-
-    const accessToken = localStorage.getItem('accessToken');
-    const refreshToken = localStorage.getItem('refreshToken');
-
-    try {
-      const response = await instance.post(
-        '/api/v1/dj-rest-auth/logout/',
-        { refresh: refreshToken },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-
-      if (response.data) {
-        localStorage.clear();
-        closeModal();
-        alert('로그아웃 성공');
-        navigate('/');
-      } else {
-        alert('로그아웃 실패');
-      }
-    } catch (error) {
-      console.log('error:', error);
-      alert('로그아웃 중 오류가 발생했습니다.');
-    }
+    postLogout();
   };
 
   const logoutModalProps = {

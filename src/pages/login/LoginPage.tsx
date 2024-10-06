@@ -9,48 +9,18 @@ import {
   loginValidateConfigs,
 } from './LoginValidateConfig';
 import validateConfigs from '@utils/validateConfig';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { PostSigninRequest } from '@apis/domains/auth/login/_interfaces';
+import { usePostLogin } from '@hooks/apis/auth';
 
 const LoginPage = () => {
-  const navigate = useNavigate();
-
-  const instance = axios.create({
-    baseURL: import.meta.env.VITE_BASE_URL,
-    withCredentials: false,
-  });
-
   const getErrors = (values: LoginFormValues) => {
     const errors = validateConfigs(loginValidateConfigs, values);
     return errors;
   };
 
-  const handleSubmitButton = async () => {
-    const requestData: PostSigninRequest = {
-      username: values.phonenumber,
-      password: values.password,
-    };
+  const { mutate: postLogin } = usePostLogin();
 
-    try {
-      // API 호출
-      const response = await instance.post(
-        '/api/v1/dj-rest-auth/login/',
-        requestData
-      );
-
-      if (response.data) {
-        alert('로그인 성공!');
-        localStorage.setItem('accessToken', response.data.access);
-        localStorage.setItem('refreshToken', response.data.refresh);
-        navigate('/');
-      } else {
-        alert('로그인 실패');
-      }
-    } catch (error) {
-      console.log('error:', error);
-      alert('회원가입 중 오류가 발생했습니다.');
-    }
+  const handleSubmitButton = () => {
+    postLogin({ username: values.phonenumber, password: values.password });
   };
 
   const { values, errors, isValid, handleChange } = useForm<LoginFormValues>({
