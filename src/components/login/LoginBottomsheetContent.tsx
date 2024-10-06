@@ -1,6 +1,7 @@
 // components
 import * as S from './LoginBottomsheetContent.styled';
 import Button from '@components/button/Button';
+import ButtonLayout from '@components/button/ButtonLayout';
 import IconLabel from '@components/label/IconLabel';
 
 // hooks
@@ -29,24 +30,17 @@ const LoginBottomsheetContent = () => {
         </S.LoginBottomsheetContentTopSubTitle>
       </S.LoginBottomsheetContentTopWrapper>
 
-      <S.ButtonWrapper>
+      <ButtonLayout $col={1}>
         <Button
           onClick={handleLoginButton}
           style={{ backgroundColor: '#D1FF25', color: '#333740' }}
         >
           전화번호로 로그인하기
         </Button>
-        <Button
-          onClick={handleSignipButton}
-          style={{
-            backgroundColor: '#FFFFFF',
-            color: '#B0B4BD',
-            border: '1px solid #E2E6EF',
-          }}
-        >
+        <Button onClick={handleSignipButton} shape="outline" scheme="grayLight">
           라인나우 회원가입하기
         </Button>
-      </S.ButtonWrapper>
+      </ButtonLayout>
     </S.LoginBottomsheetContentWrapper>
   );
 };

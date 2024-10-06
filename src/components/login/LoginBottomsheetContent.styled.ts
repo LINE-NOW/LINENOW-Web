@@ -22,9 +22,3 @@ export const LoginBottomsheetContentTopSubTitle = styled.div`
   ${({ theme }) => theme.fonts.b1}
   color: ${({ theme }) => theme.colors.font.blackLight};
 `;
-
-export const ButtonWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-`;
