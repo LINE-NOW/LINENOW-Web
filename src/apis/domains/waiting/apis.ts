@@ -52,8 +52,8 @@ export const postWaitingRegister = async ({
   party_size,
 }: RegisterWaitingRequest): Promise<WaitingCheck | null> => {
   const response = await postResponse<WaitingCheck>(
-    `/api/v1/waitings/${boothId}/register/`,
-    { party_size }
+    `/api/v1/waitings/${boothId}/register`,
+    { party_size: party_size }
   );
 
   return response;

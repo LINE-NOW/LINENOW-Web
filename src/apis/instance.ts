@@ -41,10 +41,7 @@ export const getResponse = async <T>(url: string): Promise<T | null> => {
       message: ${response.data.message}`
     );
 
-    const data = response.data.data;
-
-    console.log(response);
-    return data;
+    return response.data.data;
   } catch (error) {
     const axiosError = error as AxiosError;
 
@@ -89,11 +86,7 @@ export const postResponse = async <T>(
   body: T
 ): Promise<T | null> => {
   try {
-    const response = await instance.post<BaseDTO<T>>(url, body, {
-      headers: {
-        Authorization: `Bearer `,
-      },
-    });
+    const response = await instance.post<BaseDTO<T>>(url, body);
 
     console.log("서버 응답:", response); // 응답 내용 로그 추가
 
@@ -115,10 +108,6 @@ export const postResponse = async <T>(
 
 // 공통 응답 처리 함수
 const handleResponse = <T>(response: BaseDTO<T>): EmptyDTO => {
-  console.log(
-    `code: ${response.code} (${response.status})\nmessage: ${response.message}`
-  );
-
   return {
     status: response.status,
     message: response.message,

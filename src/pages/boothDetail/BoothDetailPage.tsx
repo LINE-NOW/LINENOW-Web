@@ -59,7 +59,7 @@ const BoothDetailPage = () => {
           >
             {isLogin ? (
               booth.is_waiting ? (
-                <Button scheme="lime">
+                <Button scheme="blueLight">
                   <span>내 앞으로 지금</span>
                   <span className="blue">{booth.waiting_count}팀</span>
                 </Button>
