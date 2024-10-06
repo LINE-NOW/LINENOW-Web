@@ -1,14 +1,15 @@
-import * as S from "./LoginPage.styled";
-import InputText from "@components/inputText/InputText";
-import useForm from "@hooks/useForm";
-import Button from "@components/button/Button";
+import * as S from './LoginPage.styled';
+import InputText from '@components/inputText/InputText';
+import useForm from '@hooks/useForm';
+import Button from '@components/button/Button';
 
 import {
   initialLoginValues,
   LoginFormValues,
   loginValidateConfigs,
-} from "./LoginValidateConfig";
-import validateConfigs from "@utils/validateConfig";
+} from './LoginValidateConfig';
+import validateConfigs from '@utils/validateConfig';
+import { usePostLogin } from '@hooks/apis/auth';
 
 const LoginPage = () => {
   const getErrors = (values: LoginFormValues) => {
@@ -16,8 +17,10 @@ const LoginPage = () => {
     return errors;
   };
 
+  const { mutate: postLogin } = usePostLogin();
+
   const handleSubmitButton = () => {
-    console.log("Form Submitted", values);
+    postLogin({ username: values.phonenumber, password: values.password });
   };
 
   const { values, errors, isValid, handleChange } = useForm<LoginFormValues>({
@@ -41,13 +44,13 @@ const LoginPage = () => {
     <S.LoginPageWrapper>
       <S.LoginPageTextInputWrapper>
         <InputText
-          {...getInputTextProps("phonenumber")}
+          {...getInputTextProps('phonenumber')}
           label="전화번호"
           placeholder="01012345678"
           onChange={handleChange}
         />
         <InputText
-          {...getInputTextProps("password")}
+          {...getInputTextProps('password')}
           type="password"
           label="비밀번호"
           placeholder="비밀번호를 입력해주세요"

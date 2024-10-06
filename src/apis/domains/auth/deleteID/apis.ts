@@ -1,6 +1,14 @@
-import { deleteResponse, EmptyDTO } from '../../../instance';
+import { postNoResponse } from '../../../instance';
+import { DeleteIDRequest } from './_interfaces';
 
-export const deleteUser = async (): Promise<EmptyDTO | null> => {
-  const response = await deleteResponse('/api/v1/deleteID'); // 엔드포인트 임의 작성
-  return response;
+export const postDeleteID = async (resquestBody: DeleteIDRequest) => {
+  try {
+    await postNoResponse<DeleteIDRequest>(
+      '/api/v1/accounts/withdraw',
+      resquestBody
+    );
+  } catch (error) {
+    // TODO: -분기처리 세세하게
+    throw error;
+  }
 };
