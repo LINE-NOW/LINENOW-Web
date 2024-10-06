@@ -16,21 +16,22 @@ const SignupPage = () => {
   const [isVerificationCodeAble, setIsVerificationCodeAble] = useState<
     boolean | null
   >(null);
-  const [isVerificationCodeChecked, setIsVerificationCodeChecked] =
-    useState<boolean>(false);
+  const [isVerificationCodeChecked, setIsVerificationCodeChecked] = useState<
+    boolean | null
+  >(null);
 
   const getErrors = (values: SignupFormValues) => {
     const errors = validateConfigs(signupValidateConfigs, values);
 
     // 전화번호 인증 추가 검증
-    if (isVerificationCodeAble == null) {
-    } else if (!isVerificationCodeAble) {
+    if (isVerificationCodeAble == false) {
       errors.phonenumber = "인증번호 발급에 실패했습니다.\n다시 시도해주세요.";
-    } else {
-      if (isVerificationCodeChecked) {
-        errors.confirmPassword =
-          "인증번호가 일치하지 않습니다.\n정확하게 작성해주세요.";
-      }
+    } else if (
+      isVerificationCodeAble == true &&
+      isVerificationCodeChecked == false
+    ) {
+      errors.verificationCode =
+        "인증번호가 일치하지 않습니다.\n정확하게 작성해주세요.";
     }
 
     // 비밀번호 확인 추가 검증
@@ -51,6 +52,10 @@ const SignupPage = () => {
   });
 
   const getVerificationCode = () => {
+    if (values.phonenumber.length < 10 || values.phonenumber.length > 11) {
+      alert("전화번호를 제대로 입력해주세요!");
+      return;
+    }
     // TODO: - API 연결 필요
     const confirmation = window.confirm("인증코드 확인 하시겠습니까?");
     if (confirmation) {
@@ -63,6 +68,11 @@ const SignupPage = () => {
   };
 
   const checkVerificationCode = () => {
+    if (values.verificationCode.length != 5) {
+      alert("전화번호를 제대로 입력해주세요!");
+      return;
+    }
+
     const confirmation = window.confirm("인증코드 확인 하시겠습니까?");
     if (confirmation) {
       alert("인증코드 확인 성공");
@@ -80,7 +90,9 @@ const SignupPage = () => {
           name="name"
           label="이름"
           placeholder="홍길동"
-          pattern={signupValidateConfigs.name.regex.source}
+          regex={signupValidateConfigs.name.regex}
+          minLength={signupValidateConfigs.name.minLength}
+          maxLength={signupValidateConfigs.name.maxLength}
           onChange={handleChange}
           value={values.name}
           currentCount={values.name.length}
@@ -92,7 +104,9 @@ const SignupPage = () => {
           <InputText
             name="phonenumber"
             label="전화번호"
-            pattern={signupValidateConfigs.phonenumber.regex.source}
+            regex={signupValidateConfigs.phonenumber.regex}
+            minLength={signupValidateConfigs.phonenumber.minLength}
+            maxLength={signupValidateConfigs.phonenumber.maxLength}
             disabled={isVerificationCodeAble || false}
             description={`기입하신 전화번호로 고객님께 대기 관련 문자 메세지가 전송됩니다.
             원활한 소통을 위해 신중하게 입력해주세요.`}
@@ -113,16 +127,18 @@ const SignupPage = () => {
           <InputText
             name="verificationCode"
             placeholder="인증번호를 입력해주세요"
-            pattern={signupValidateConfigs.verificationCode.regex.source}
-            disabled={!isVerificationCodeAble || isVerificationCodeChecked}
+            regex={signupValidateConfigs.verificationCode.regex}
+            minLength={signupValidateConfigs.verificationCode.minLength}
+            maxLength={signupValidateConfigs.verificationCode.maxLength}
+            disabled={
+              !isVerificationCodeAble || isVerificationCodeChecked || false
+            }
             onChange={handleChange}
             value={values.verificationCode}
             errorMessage={errors.verificationCode}
             button={{
               disabled:
-                !isVerificationCodeAble ||
-                isVerificationCodeChecked ||
-                errors.verificationCode != undefined,
+                !isVerificationCodeAble || isVerificationCodeChecked || false,
               children: "인증번호 확인",
               scheme: "blueLight",
               onClick: checkVerificationCode,
@@ -135,9 +151,11 @@ const SignupPage = () => {
             name="password"
             type="password"
             label="비밀번호"
-            description="4자 이상의 영문과 숫자를 조합해주세요."
+            description={`4자 이상의 영문과 숫자, 특수문자 (!@#$%^&*)를\n조합하여 비밀번호를 작성해주세요.`}
             placeholder="비밀번호를 입력해주세요"
-            pattern={signupValidateConfigs.password.regex.source}
+            regex={signupValidateConfigs.password.regex}
+            minLength={signupValidateConfigs.password.minLength}
+            maxLength={signupValidateConfigs.password.maxLength}
             onChange={handleChange}
             value={values.password}
             errorMessage={errors.password}
@@ -146,7 +164,9 @@ const SignupPage = () => {
             name="confirmPassword"
             type="password"
             placeholder="비밀번호를 재입력해주세요"
-            pattern={signupValidateConfigs.confirmPassword.regex.source}
+            regex={signupValidateConfigs.password.regex}
+            minLength={signupValidateConfigs.password.minLength}
+            maxLength={signupValidateConfigs.password.maxLength}
             onChange={handleChange}
             value={values.confirmPassword}
             errorMessage={errors.confirmPassword}

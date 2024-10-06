@@ -21,15 +21,14 @@ function useForm<T extends FormData>({
 
   useEffect(() => {
     setErrors(getErrors(values));
+  }, [values]);
+
+  useEffect(() => {
     const isCurrentValid =
       Object.values(values).every((value) => value != "") &&
       Object.values(errors).every((value) => value == undefined);
     setIsValid(isCurrentValid);
-  }, [values]);
-
-  useEffect(() => {
-    console.log("isValid:", isValid);
-  }, [isValid]);
+  }, [errors]);
 
   return {
     values,

@@ -11,6 +11,7 @@ export interface InputTextProps
   currentCount?: number;
   count?: number;
   button?: InputTextButtonProps;
+  regex?: RegExp;
   errorMessage?: string;
 }
 
@@ -23,8 +24,20 @@ const InputText = ({
   button,
   errorMessage,
   type = "text",
+  regex,
   ...props
 }: InputTextProps) => {
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (regex) {
+      const value = e.target.value;
+      if (!regex.test(value)) {
+        // 패턴에 맞지 않는 마지막 입력 제거
+        e.target.value = value.slice(0, -1);
+      }
+    }
+    props.onInput?.(e);
+  };
+
   return (
     <S.InputTextWrapper $width={width}>
       {(label || description) && (
@@ -42,6 +55,7 @@ const InputText = ({
             disabled={props.disabled}
             type={type}
             placeholder={props.placeholder}
+            onInput={handleInput}
             {...props}
           />
         </S.InputTextField>

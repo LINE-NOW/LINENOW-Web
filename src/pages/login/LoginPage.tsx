@@ -31,7 +31,9 @@ const LoginPage = () => {
         <InputText
           name="phonenumber"
           label="전화번호"
-          pattern={loginValidateConfigs.phonenumber.regex.source}
+          regex={loginValidateConfigs.phonenumber.regex}
+          minLength={loginValidateConfigs.phonenumber.minLength}
+          maxLength={loginValidateConfigs.phonenumber.maxLength}
           placeholder="01012345678"
           onChange={handleChange}
           value={values.phonenumber}
@@ -42,7 +44,9 @@ const LoginPage = () => {
           type="password"
           label="비밀번호"
           placeholder="비밀번호를 입력해주세요"
-          pattern={loginValidateConfigs.password.regex.source}
+          regex={loginValidateConfigs.password.regex}
+          minLength={loginValidateConfigs.password.minLength}
+          maxLength={loginValidateConfigs.password.maxLength}
           onChange={handleChange}
           value={values.password}
           errorMessage={errors.password}

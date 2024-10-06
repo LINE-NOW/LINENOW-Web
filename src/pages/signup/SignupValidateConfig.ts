@@ -18,7 +18,7 @@ export const initialSignupValues: SignupFormValues = {
 
 export const signupValidateConfigs: ValidateConfigs<SignupFormValues> = {
   name: {
-    regex: /^[ㄱ-ㅎ가-힣a-zA-Z0-9]+$/,
+    regex: /^[ㄱ-ㅎ가-힣a-zA-Z]+$/,
     regexError: "이름을 정확하게 입력해주세요.",
     minLength: 1,
     maxLength: 20,
@@ -30,6 +30,13 @@ export const signupValidateConfigs: ValidateConfigs<SignupFormValues> = {
     minLength: 10,
     maxLength: 11,
     lengthError: "전화번호는 10~11자리로 입력해주세요.",
+  },
+  verificationCode: {
+    regex: /^[0-9]+$/,
+    regexError: "인증번호 숫자만 입력이 가능해요.",
+    minLength: 5,
+    maxLength: 5,
+    lengthError: "5자리의 숫자로 된 인증번호를 입력해주세요.",
   },
   password: {
     regex: /^[a-zA-Z0-9!@#$%^&*]+$/,
@@ -43,12 +50,5 @@ export const signupValidateConfigs: ValidateConfigs<SignupFormValues> = {
     minLength: 4,
     maxLength: 100,
     lengthError: "비밀번호를 4자 이상 입력해주세요.",
-  },
-  verificationCode: {
-    regex: /^[0-9]+$/,
-    regexError: "전화번호는 숫자만 입력이 가능해요.",
-    minLength: 5,
-    maxLength: 5,
-    lengthError: "전화번호는 10~11자리로 입력해주세요.",
   },
 };
