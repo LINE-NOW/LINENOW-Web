@@ -62,7 +62,7 @@ const SettingPage = () => {
 
   const settingItemProps = [
     { title: '로그아웃', onClick: handleLogoutClick },
-    { title: '언어설정', onClick: handleLanguageClick },
+    // { title: '언어설정', onClick: handleLanguageClick },
     { title: '이용약관', onClick: handleTermsOfServiceClick },
     { title: '1:1 문의', onClick: handleInquiryClick },
     { title: '개발자 정보', onClick: handleDeveloperInfoClick },
