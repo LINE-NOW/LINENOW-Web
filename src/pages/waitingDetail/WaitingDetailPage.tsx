@@ -13,14 +13,12 @@ import { postWaitingCancel } from "@apis/domains/waitingCancel/apis";
 const WaitingDetailPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const waitingData = location.state;
-  const waitingID = waitingData ? waitingData.id : null;
+  const waitingID = location.state;
 
   // 대기 상세 정보 가져오기
   const { data: waitingDetail, isLoading } = useGetWaitingDetail(
     waitingID || 0
   );
-
   const { openModal, closeModal } = useModal();
 
   const waitingCancelModal = {
