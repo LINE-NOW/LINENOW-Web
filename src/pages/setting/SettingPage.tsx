@@ -49,7 +49,7 @@ const SettingPage = () => {
 
   // 1:1 문의 클릭
   const handleInquiryClick = () => {
-    window.open('https://open.kakao.com/o/sDiY4qSg', '_blank');
+    window.open('https://open.kakao.com/o/gV5NsYSg', '_blank');
   };
 
   // 개발자 정보 클릭
