@@ -28,7 +28,7 @@ i {font-style:normal}
 
 // 폰트설정
 @font-face {
-    font-family:"Pretendard";
+    font-family:"Pretendard",'Apple SD Gothic Neo', Sans-serif;
     src: url("/src/assets/fonts/PretendardVariable.woff2");
 }
 
