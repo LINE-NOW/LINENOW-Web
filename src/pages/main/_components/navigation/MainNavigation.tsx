@@ -22,6 +22,7 @@ import WaitingCardLogin from "@components/waitingCard/WaitingCardLogin";
 
 // types
 import { Waiting } from "@interfaces/waiting";
+import WaitingCardNoCard from "@components/waitingCard/WaitingCardNoCard";
 
 interface MainNavigationProps {
   isFold: boolean;
@@ -38,7 +39,7 @@ const MainNavigation = ({ isFold, isLogin }: MainNavigationProps) => {
 
   const renderWaitingCard = () => {
     if (waitings.length === 0) {
-      return isLogin ? <div>카드 없음</div> : <WaitingCardLogin />;
+      return isLogin ? <WaitingCardNoCard /> : <WaitingCardLogin />;
     } else {
       return (
         <Swiper
