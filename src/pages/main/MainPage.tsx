@@ -18,7 +18,7 @@ const MainPage = () => {
   const { isLogin } = useAuth();
 
   const mainBoothListRef = useRef<HTMLDivElement>(null);
-  const isFold = useMainNavigation(mainBoothListRef);
+  const isFold = useMainNavigation();
 
   // booth list api
   const {

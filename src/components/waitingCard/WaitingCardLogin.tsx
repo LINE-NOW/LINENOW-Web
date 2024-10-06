@@ -1,5 +1,7 @@
-import Button from "@components/button/Button";
 import * as S from "./WaitingCard.styled";
+
+// hooks
+import Button from "@components/button/Button";
 import WaitingCardMypage from "./WaitingCardLayout";
 import useBottomsheet from "@hooks/useBottomsheet";
 import LoginBottomsheetContent from "@components/login/LoginBottomsheetContent";
