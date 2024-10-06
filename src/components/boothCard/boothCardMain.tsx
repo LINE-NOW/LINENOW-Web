@@ -8,6 +8,22 @@ interface BoothCardProps {
 }
 
 const BoothCardMain = ({ booth }: BoothCardProps) => {
+  const getWaitingChip = () => {
+    if (booth.is_waiting) {
+      return <Chip scheme="lime">대기 중</Chip>;
+    }
+  };
+  const getChip = () => {
+    switch (booth.is_operated) {
+      case "not_started":
+        return <Chip scheme="grayLight">운영 전</Chip>;
+      case "finished":
+        return <Chip scheme="grayLight">운영 종료</Chip>;
+      default:
+        //TODO: - API 수정시 total teams 로 바꿔야함
+        return <Chip scheme="blueLight">대기 {booth.waiting_count} 팀</Chip>;
+    }
+  };
   return (
     <BoothCardLayout
       type="main"
@@ -18,8 +34,8 @@ const BoothCardMain = ({ booth }: BoothCardProps) => {
       to={`/booth/${booth.id}`}
     >
       <S.BoothCardChipListWrapper>
-        {booth.is_waiting && <Chip scheme="lime">대기중</Chip>}{" "}
-        <Chip scheme="blueLight">대기 {booth.waiting_count} 팀</Chip>{" "}
+        {getWaitingChip()}
+        {getChip()}
       </S.BoothCardChipListWrapper>
     </BoothCardLayout>
   );

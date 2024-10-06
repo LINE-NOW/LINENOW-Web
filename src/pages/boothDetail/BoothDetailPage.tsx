@@ -43,9 +43,7 @@ const BoothDetailPage = () => {
     switch (booth?.is_operated) {
       case "not_started":
         return "부스 운영 시간";
-      case "operating":
-        return "전체 대기";
-      case "paused":
+      case "operating" || "paused":
         return "전체 대기";
       case "finished":
         return "부스가 종료되었어요";
@@ -59,10 +57,10 @@ const BoothDetailPage = () => {
           hour: "2-digit",
           minute: "2-digit",
         });
-      case "operating":
+      case "operating" || "paused":
+        //TODO: - API 수정시 total teams 로 바꿔야함
         return `${booth.waiting_count}팀`;
-      case "paused":
-        return `${booth.waiting_count}팀`;
+
       case "finished":
         return undefined;
     }
