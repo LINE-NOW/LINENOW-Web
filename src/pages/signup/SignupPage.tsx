@@ -1,18 +1,28 @@
-import BottomButton from "@components/bottomButton/BottomButton";
-import * as S from "./SignupPage.styled";
-import InputText from "@components/inputText/InputText";
-import useForm from "@hooks/useForm";
-import Button from "@components/button/Button";
-import { useState } from "react";
+import BottomButton from '@components/bottomButton/BottomButton';
+import * as S from './SignupPage.styled';
+import InputText from '@components/inputText/InputText';
+import useForm from '@hooks/useForm';
+import Button from '@components/button/Button';
+import { useState } from 'react';
 
 import {
   initialSignupValues,
   SignupFormValues,
   signupValidateConfigs,
-} from "./SignupValidateConfig";
-import validateConfigs from "@utils/validateConfig";
+} from './SignupValidateConfig';
+import validateConfigs from '@utils/validateConfig';
+import axios from 'axios';
+import { PostSignupRequest } from '@apis/domains/auth/signup/_interfaces';
+import { useNavigate } from 'react-router-dom';
 
 const SignupPage = () => {
+  const navigate = useNavigate();
+
+  const instance = axios.create({
+    baseURL: import.meta.env.VITE_BASE_URL,
+    withCredentials: false,
+  });
+
   const [isVerificationCodeAble, setIsVerificationCodeAble] = useState<
     boolean | null
   >(null);
@@ -25,25 +35,50 @@ const SignupPage = () => {
 
     // 전화번호 인증 추가 검증
     if (isVerificationCodeAble == false) {
-      errors.phonenumber = "인증번호 발급에 실패했습니다.\n다시 시도해주세요.";
+      errors.phonenumber = '인증번호 발급에 실패했습니다.\n다시 시도해주세요.';
     } else if (
       isVerificationCodeAble == true &&
       isVerificationCodeChecked == false
     ) {
       errors.verificationCode =
-        "인증번호가 일치하지 않습니다.\n정확하게 작성해주세요.";
+        '인증번호가 일치하지 않습니다.\n정확하게 작성해주세요.';
     }
 
     // 비밀번호 확인 추가 검증
     if (values.password !== values.confirmPassword) {
-      errors.confirmPassword = "비밀번호가 일치하지 않습니다.";
+      errors.confirmPassword = '비밀번호가 일치하지 않습니다.';
     }
 
     return errors;
   };
 
-  const handleSubmitButton = () => {
-    console.log("Form Submitted", values);
+  const handleSubmitButton = async () => {
+    const requestData: PostSignupRequest = {
+      name: values.name,
+      phone_number: values.phonenumber,
+      password1: values.password,
+      password2: values.confirmPassword,
+    };
+
+    try {
+      // API 호출
+      const response = await instance.post(
+        '/api/v1/dj-rest-auth/registration/',
+        requestData
+      );
+
+      if (response.data) {
+        alert('회원가입 성공!');
+        localStorage.setItem('accessToken', response.data.access);
+        localStorage.setItem('refreshToken', response.data.refresh);
+        navigate('/');
+      } else {
+        alert('회원가입 실패');
+      }
+    } catch (error) {
+      console.log('error:', error);
+      alert('회원가입 중 오류가 발생했습니다.');
+    }
   };
 
   const { values, errors, isValid, handleChange } = useForm<SignupFormValues>({
@@ -53,32 +88,32 @@ const SignupPage = () => {
 
   const getVerificationCode = () => {
     if (values.phonenumber.length < 10 || values.phonenumber.length > 11) {
-      alert("전화번호를 제대로 입력해주세요!");
+      alert('전화번호를 제대로 입력해주세요!');
       return;
     }
     // TODO: - API 연결 필요
-    const confirmation = window.confirm("인증코드 확인 하시겠습니까?");
+    const confirmation = window.confirm('인증코드 확인 하시겠습니까?');
     if (confirmation) {
-      alert("인증코드 발송 성공");
+      alert('인증코드 발송 성공');
       setIsVerificationCodeAble(true);
     } else {
-      alert("인증코드 발송 실패");
+      alert('인증코드 발송 실패');
       setIsVerificationCodeAble(false);
     }
   };
 
   const checkVerificationCode = () => {
     if (values.verificationCode.length != 5) {
-      alert("전화번호를 제대로 입력해주세요!");
+      alert('전화번호를 제대로 입력해주세요!');
       return;
     }
 
-    const confirmation = window.confirm("인증코드 확인 하시겠습니까?");
+    const confirmation = window.confirm('인증코드 확인 하시겠습니까?');
     if (confirmation) {
-      alert("인증코드 확인 성공");
+      alert('인증코드 확인 성공');
       setIsVerificationCodeChecked(true);
     } else {
-      alert("인증코드 확인 실패");
+      alert('인증코드 확인 실패');
       setIsVerificationCodeChecked(false);
     }
   };
@@ -99,7 +134,7 @@ const SignupPage = () => {
     <>
       <S.SignupPageWrapper>
         <InputText
-          {...getInputTextProps("name")}
+          {...getInputTextProps('name')}
           label="이름"
           placeholder="홍길동"
           currentCount={values.name.length}
@@ -108,7 +143,7 @@ const SignupPage = () => {
 
         <S.SignupPageTextInputWrapper>
           <InputText
-            {...getInputTextProps("phonenumber")}
+            {...getInputTextProps('phonenumber')}
             disabled={isVerificationCodeAble || false}
             description={`기입하신 전화번호로 고객님께 대기 관련 문자 메세지가 전송됩니다.
             원활한 소통을 위해 신중하게 입력해주세요.`}
@@ -118,13 +153,13 @@ const SignupPage = () => {
                 isVerificationCodeAble ||
                 false ||
                 errors.phonenumber != undefined,
-              children: "인증번호 받기",
-              scheme: "blueLight",
+              children: '인증번호 받기',
+              scheme: 'blueLight',
               onClick: getVerificationCode,
             }}
           />
           <InputText
-            {...getInputTextProps("verificationCode")}
+            {...getInputTextProps('verificationCode')}
             name="verificationCode"
             placeholder="인증번호를 입력해주세요"
             disabled={
@@ -133,8 +168,8 @@ const SignupPage = () => {
             button={{
               disabled:
                 !isVerificationCodeAble || isVerificationCodeChecked || false,
-              children: "인증번호 확인",
-              scheme: "blueLight",
+              children: '인증번호 확인',
+              scheme: 'blueLight',
               onClick: checkVerificationCode,
             }}
           />
@@ -142,7 +177,7 @@ const SignupPage = () => {
 
         <S.SignupPageTextInputWrapper>
           <InputText
-            {...getInputTextProps("password")}
+            {...getInputTextProps('password')}
             name="password"
             type="password"
             label="비밀번호"
@@ -150,7 +185,7 @@ const SignupPage = () => {
             placeholder="비밀번호를 입력해주세요"
           />
           <InputText
-            {...getInputTextProps("confirmPassword")}
+            {...getInputTextProps('confirmPassword')}
             type="password"
             placeholder="비밀번호를 재입력해주세요"
           />
