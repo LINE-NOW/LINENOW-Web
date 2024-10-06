@@ -19,7 +19,7 @@ const SignupPage = () => {
   const [isVerificationCodeChecked, setIsVerificationCodeChecked] =
     useState<boolean>(false);
 
-  const checkValidate = (values: SignupFormValues) => {
+  const getErrors = (values: SignupFormValues) => {
     const errors = validateConfigs(signupValidateConfigs, values);
 
     // 전화번호 인증 추가 검증
@@ -47,7 +47,7 @@ const SignupPage = () => {
 
   const { values, errors, isValid, handleChange } = useForm<SignupFormValues>({
     initialValues: initialSignupValues,
-    checkValidate,
+    getErrors,
   });
 
   const getVerificationCode = () => {

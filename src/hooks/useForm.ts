@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 
 interface useFormProps<T extends FormData> {
   initialValues: T;
-  checkValidate: (values: T) => { [key in keyof T]?: string };
+  getErrors: (values: T) => { [key in keyof T]?: string };
 }
 
 function useForm<T extends FormData>({
   initialValues,
-  checkValidate,
+  getErrors,
 }: useFormProps<T>) {
   const [values, setValues] = useState<T>(initialValues);
   const [isValid, setIsValid] = useState<boolean>(false);
@@ -20,7 +20,7 @@ function useForm<T extends FormData>({
   };
 
   useEffect(() => {
-    setErrors(checkValidate(values));
+    setErrors(getErrors(values));
     const isCurrentValid =
       Object.values(values).every((value) => value != "") &&
       Object.values(errors).every((value) => value == undefined);

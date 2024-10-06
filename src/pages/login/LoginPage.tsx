@@ -11,7 +11,7 @@ import {
 import validateConfigs from "@utils/validateConfig";
 
 const LoginPage = () => {
-  const checkValidate = (values: LoginFormValues) => {
+  const getErrors = (values: LoginFormValues) => {
     const errors = validateConfigs(loginValidateConfigs, values);
     return errors;
   };
@@ -22,7 +22,7 @@ const LoginPage = () => {
 
   const { values, errors, isValid, handleChange } = useForm<LoginFormValues>({
     initialValues: initialLoginValues,
-    checkValidate,
+    getErrors,
   });
 
   return (
