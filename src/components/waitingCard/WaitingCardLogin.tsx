@@ -1,8 +1,5 @@
 import * as S from "./WaitingCard.styled";
 
-// interfaces
-import { Waiting } from "@interfaces/waiting";
-
 // hooks
 
 import Button from "@components/button/Button";
