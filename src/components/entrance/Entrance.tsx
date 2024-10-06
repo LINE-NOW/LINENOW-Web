@@ -75,26 +75,6 @@ export const Entrance = ({ boothID, nextPath }: EntranceProps) => {
           scheme="lime"
           disabled={isCountdownOver} // 타이머 종료 시 버튼 비활성화
           onClick={() =>
-            //추후 확인 후 삭제 예정
-            //             openModal({
-            //               title: "다른 대기가 취소돼요",
-            //               sub: "입장을 확정하면 다른 대기는 취소돼요.\n입장을 확정하시겠어요?",
-            //               secondButton: {
-            //                 children: "이전으로",
-            //                 onClick: () => closeModal(),
-            //               },
-            //               primaryButton: {
-            //                 children: "입장 확정하기",
-            //                 scheme: "lime",
-            //                 onClick: () => {
-            //                   closeModal();
-            //                   navigate(
-            //                     `${nextPath.startsWith("/") ? nextPath : `/${nextPath}`}`
-            //                   );
-            //                 },
-            //               },
-            //             })
-
             handleConfirmEntry(
               openModal,
               closeModal,
