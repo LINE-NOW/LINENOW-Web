@@ -1,11 +1,10 @@
-import { deleteUser } from '@apis/domains/auth/deleteID/apis';
 import * as S from './SettingDeleteID.styled';
 import useModal from '@hooks/useModal';
-import { useNavigate } from 'react-router-dom';
+import { usePostDeleteID } from '@hooks/apis/auth';
 
 const SettingDeleteID = () => {
-  const { openModal, closeModal } = useModal();
-  const navigate = useNavigate();
+  const { openModal } = useModal();
+  const { mutate: postDeleteID } = usePostDeleteID();
 
   const handleDeleteIDClick = () => {
     openModal({
@@ -22,13 +21,7 @@ const SettingDeleteID = () => {
   };
 
   const handleDeleteID = async () => {
-    const response = await deleteUser();
-
-    if (response && response.status) {
-      // localStorage.clear(); // TODO: - 추후에 확인
-      closeModal();
-      navigate('/');
-    }
+    postDeleteID();
   };
 
   return (
