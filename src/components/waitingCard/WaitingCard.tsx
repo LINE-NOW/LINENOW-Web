@@ -10,6 +10,7 @@ import { useWaitingCard } from "./_hooks/useWaitingCard";
 import { useNavigate } from "react-router-dom";
 import useModal from "@hooks/useModal";
 import { postWaitingCancel } from "@apis/domains/waitingCancel/apis";
+import Button from "@components/button/Button";
 
 interface WaitingCardProps {
   waiting: Pick<
@@ -19,8 +20,8 @@ interface WaitingCardProps {
     | "booth"
     | "party_size"
     | "waitingStatus"
-    | "confirmRemainingTime"
-    | "arrivalRemainingTime"
+    | "confirmDueTime"
+    | "arrivalarrivalDueTime"
   >;
   isButton?: boolean;
   disableClick?: boolean;
@@ -33,9 +34,9 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
   const targetTime = () => {
     switch (waiting.waitingStatus) {
       case "ready_to_confirm":
-        return waiting.confirmRemainingTime;
+        return waiting.confirmDueTime;
       case "confirmed":
-        return waiting.arrivalRemainingTime;
+        return waiting.arrivalarrivalDueTime;
       default:
         return null;
     }
@@ -81,17 +82,19 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
     }
   };
 
-  const { titleContent, button, isValidate } = useWaitingCard({
+  const config = useWaitingCard({
     status: waiting.waitingStatus ? waiting.waitingStatus : "check",
     waitingCount: waiting.waitingTeamsAhead,
-    targetTime: targetTime() || "",
+    targetTime: targetTime(),
   });
 
   return (
-    <S.WaitingCardWrapper onClick={handleWaitingCard}>
+    <S.WaitingCardWrapper
+      {...(config.isValidate && { onClick: handleWaitingCard })}
+    >
       <S.WaitingCardTitleWrapper>
-        <S.WaitingCardTitleLabel>{titleContent}</S.WaitingCardTitleLabel>
-        {isValidate ? (
+        <S.WaitingCardTitleLabel>{config.titleContent}</S.WaitingCardTitleLabel>
+        {config.isValidate ? (
           <ChipButton
             onClick={handleCancelButton}
             scheme="grayLight"
@@ -102,7 +105,9 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
         ) : null}
       </S.WaitingCardTitleWrapper>
 
-      <S.WaitingCardContentWrapper>
+      <S.WaitingCardContentWrapper
+        style={{ opacity: `${config.boothInfoOpacity}` }}
+      >
         <S.BoothInformationWrapper>
           <S.BoothInformationImage
             src={waiting.booth?.thumbnail || "/images/default_thumbnail.png"}
@@ -122,7 +127,9 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
           </S.BoothInformaitonLabelWrapper>
         </S.BoothInformationWrapper>
 
-        {button}
+        {config.button && (
+          <Button size={"large"} shape={"fill"} {...config.button} />
+        )}
       </S.WaitingCardContentWrapper>
     </S.WaitingCardWrapper>
   );

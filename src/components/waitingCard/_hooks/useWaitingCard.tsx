@@ -1,25 +1,31 @@
 import { ReactNode } from "react";
 
 // components
-import Button from "@components/button/Button";
+import { ButtonProps } from "@components/button/Button";
 
-//types
+// types
 import { WaitingStatus } from "@linenow-types/status";
 
-//hooks
+// hooks
 import useCountdown from "@hooks/useCountdown";
 import useModal from "@hooks/useModal";
+import { ModalProps } from "@components/modal/Modal";
 
 interface WaitingCardProps {
   status: WaitingStatus;
   waitingCount?: number;
-  targetTime?: string;
+  targetTime?: string | null;
+}
+
+interface WaitingCardButtonProps extends Omit<ButtonProps, "size" | "shape"> {
+  children: ReactNode;
 }
 
 interface WaitingCardConfig {
   titleContent: ReactNode;
-  button?: ReactNode;
   isValidate: boolean;
+  button?: WaitingCardButtonProps;
+  boothInfoOpacity?: string;
 }
 
 export const useWaitingCard = ({
@@ -33,7 +39,7 @@ export const useWaitingCard = ({
 
   const { openModal } = useModal();
 
-  const confirmModal = {
+  const confirmModal: Omit<ModalProps, "isOpen"> = {
     title: "다른 대기가 취소돼요",
     sub: "입장을 확정하면 다른 대기는 취소돼요.\n 입장을 확정하시겠어요?",
     primaryButton: {
@@ -59,64 +65,73 @@ export const useWaitingCard = ({
       ),
       isValidate: false,
     },
-    // waiting: - 대기 중임
+
     waiting: {
       titleContent: (
         <>
           내 앞으로 <span className="blue">{waitingCount}팀</span> 남았어요
         </>
       ),
-      button: (
-        <Button disabled>
-          <span>순서까지 기다려주세요</span>
-        </Button>
-      ),
       isValidate: true,
+      button: {
+        disabled: true,
+        children: <span>순서까지 기다려주세요</span>,
+      },
     },
 
-    // readyToConfirm: - 입장 확정을 받기 위한 3분의 기다림
     ready_to_confirm: {
       titleContent: (
         <>
           <span className="blue">입장</span>하실 수 있어요!
         </>
       ),
-      button: (
-        <Button scheme="lime" onClick={handleConfirmButton}>
-          <span>입장 확정하기</span>
-          <span>{getTime("MMSS")}</span>
-        </Button>
-      ),
       isValidate: true,
+      button: {
+        scheme: "lime",
+        onClick: handleConfirmButton,
+        children: [
+          <span key={1}>입장 확정하기</span>,
+          <span key={2}>{getTime("MMSS")}</span>,
+        ],
+      },
     },
 
-    // confirmed: - 입장 확정 후, 부스 입장을 위한 10분의 기다림
     confirmed: {
       titleContent: (
         <>
           <span className="blue">입장</span>하실 수 있어요!
         </>
       ),
-      button: (
-        <Button scheme="limeLight">
-          <span>시간 내에 입장 해주세요</span>
-          <span>{getTime("MMSS")}</span>
-        </Button>
-      ),
       isValidate: true,
+      button: {
+        scheme: "limeLight",
+        children: [
+          <span key={1}>시간 내에 입장 해주세요</span>,
+          <span key={2}>{getTime("MMSS")}</span>,
+        ],
+      },
     },
 
-    // arrived: 부스에 입장을 완료함
     arrived: {
-      titleContent: <>입장 완료를 축하해요</>,
-
+      titleContent: (
+        <>
+          입장이 <span className="blue">완료</span> 되었어요
+        </>
+      ),
       isValidate: false,
+      boothInfoOpacity: "20%",
     },
 
-    // canceled: - 대기가 취소됨
     canceled: {
       titleContent: <>대기가 취소 됐어요</>,
       isValidate: false,
+      boothInfoOpacity: "20%",
+    },
+
+    time_over_canceled: {
+      titleContent: <>대기 시간이 초과 됐어요</>,
+      isValidate: false,
+      boothInfoOpacity: "20%",
     },
   };
 
