@@ -10,6 +10,7 @@ export const BottomButtonWrapper = styled.section`
   left: 50%;
 
   width: 100%;
+  height: auto;
   max-width: 540px;
 
   padding: 1rem;

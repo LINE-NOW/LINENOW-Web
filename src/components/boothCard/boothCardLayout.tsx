@@ -2,35 +2,26 @@ import IconLabel from "@components/label/IconLabel";
 import * as S from "./BoothCard.styled";
 
 interface BoothCardProps {
+  type: "main" | "waiting";
   boothTitle: React.ReactNode;
   boothSummary: string;
   boothLocationInfo: string;
-  borderBottom?: string;
   boothImage?: string;
   children?: React.ReactNode;
-  padding?: string;
   to?: string;
-  onClickButtonAnimation?: boolean;
 }
 
 const BoothCardLayout = ({
+  type,
   boothTitle,
   boothSummary,
   boothLocationInfo,
   boothImage,
   children,
-  borderBottom,
-  padding,
   to,
-  onClickButtonAnimation,
 }: BoothCardProps) => {
   return (
-    <S.BoothCardWrapper
-      to={to || ""}
-      $borderBottom={borderBottom}
-      padding={padding}
-      onClickButtonAnimation={onClickButtonAnimation}
-    >
+    <S.BoothCardWrapper to={to || ""} $type={type}>
       <S.BoothCardInformationWrapper>
         <S.BoothCardInformationImage src={boothImage} />
         <S.BoothCardInformationLabelWrapper>
