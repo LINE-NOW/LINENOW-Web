@@ -1,6 +1,6 @@
-import { useEffect, useState, RefObject, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 
-const useMainNavigation = (ref: RefObject<HTMLDivElement>) => {
+const useMainNavigation = () => {
   const [isFold, setIsFold] = useState<boolean>(false);
   const lastScrollY = useRef<number>(0);
 

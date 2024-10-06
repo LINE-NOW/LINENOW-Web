@@ -9,20 +9,6 @@ import Button from "@components/button/Button";
 import useBottomsheet from "@hooks/useBottomsheet";
 import LoginBottomsheetContent from "@components/login/LoginBottomsheetContent";
 
-interface WaitingCardProps {
-  waiting: Pick<
-    Waiting,
-    | "waitingID"
-    | "waitingTeamsAhead"
-    | "booth"
-    | "party_size"
-    | "waitingStatus"
-    | "confirmDueTime"
-    | "arrivalarrivalDueTime"
-  >;
-  isButton?: boolean;
-}
-
 const WaitingCardLogin = () => {
   const { openBottomsheet } = useBottomsheet();
 

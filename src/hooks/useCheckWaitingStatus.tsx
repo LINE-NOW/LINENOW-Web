@@ -4,9 +4,11 @@ import useEntranceBottomsheet from "./useEntrance";
 import { Entrance } from "@components/entrance/Entrance";
 import { Waiting } from "@interfaces/waiting"; // Waiting 타입을 가져와 사용
 import { useLocation } from "react-router-dom";
+import useAuth from "./useAuth";
 
 export const useCheckWaitingStatus = () => {
-  const { data: nowWaitings } = useGetNowWaitings();
+  const { isLogin } = useAuth();
+  const { data: nowWaitings } = useGetNowWaitings(isLogin);
 
   const { openEntrance } = useEntranceBottomsheet();
   const location = useLocation(); // 현재 경로를 가져옴

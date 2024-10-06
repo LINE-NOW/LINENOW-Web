@@ -1,4 +1,4 @@
-import { ValidateConfig, ValidateConfigs } from "@interfaces/form";
+import { ValidateConfigs } from "@interfaces/form";
 
 export interface SignupFormValues {
   name: string;
