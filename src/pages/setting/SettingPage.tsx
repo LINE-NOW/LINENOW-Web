@@ -2,15 +2,15 @@ import * as S from './SettingPage.styled';
 import SettingItem from './_components/settingItem/SettingItem';
 import SettingDeleteID from './_components/deleteID/SettingDeleteID';
 import useModal from '@hooks/useModal';
-import { useAtom } from 'jotai';
-import { languageAtom } from '@atoms/language';
+// import { useAtom } from 'jotai';
+// import { languageAtom } from '@atoms/language';
 import { usePostLogout } from '@hooks/apis/auth';
 
 const SettingPage = () => {
   const { openModal } = useModal();
   const { mutate: postLogout } = usePostLogout();
 
-  const [language, setLanguage] = useAtom(languageAtom);
+  // const [language, setLanguage] = useAtom(languageAtom);
 
   const handleLogout = async () => {
     postLogout();
@@ -34,10 +34,10 @@ const SettingPage = () => {
   };
 
   // 언어설정 클릭
-  const handleLanguageClick = () => {
-    setLanguage(prevLanguage => (prevLanguage === 'ko' ? 'en' : 'ko'));
-    console.log(language);
-  };
+  // const handleLanguageClick = () => {
+  //   setLanguage(prevLanguage => (prevLanguage === 'ko' ? 'en' : 'ko'));
+  //   console.log(language);
+  // };
 
   // 이용약관 클릭
   const handleTermsOfServiceClick = () => {
