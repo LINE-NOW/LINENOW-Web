@@ -7,7 +7,7 @@ import { Waiting } from "@interfaces/waiting";
 
 // hooks
 import { useWaitingCard } from "./_hooks/useWaitingCard";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useModal from "@hooks/useModal";
 import { postWaitingCancel } from "@apis/domains/waitingCancel/apis";
 
@@ -51,7 +51,7 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
         try {
           if (waiting.waitingID !== undefined) {
             await postWaitingCancel({ waitingID: waiting.waitingID });
-            return <Navigate to="/" replace={true} />;
+            navigate("/", { replace: true });
           } else {
             alert("대기 ID를 찾을 수 없습니다.");
           }

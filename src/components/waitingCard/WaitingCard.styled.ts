@@ -83,3 +83,25 @@ export const WaitingCardContentWrapper = styled.div`
   flex-direction: column;
   gap: 1rem;
 `;
+
+//WaitingCardNoCard
+
+export const WaitingCardNoCardContent = styled.div`
+  display: flex;
+
+  flex-direction: column;
+  gap: 0.75rem;
+
+  justify-content: center;
+  align-items: center;
+  height: 7.75rem;
+
+  span {
+    color: ${({ theme }) => theme.colors.font.gray};
+  }
+`;
+
+export const WaitingCardNoCardImg = styled.img`
+  width: 3.25rem;
+  height: 3.25rem;
+`;
