@@ -13,11 +13,12 @@ export interface Booth {
   location?: string;
   images?: Image[];
   menu?: { name: string; price: number }[];
-  open_time?: string;
+  open_time: string;
   close_time?: string;
   waiting_count?: number;
   is_waiting?: boolean;
   waiting_status?: WaitingStatus;
+  is_operated?: "operating" | "not_started" | "finished";
 }
 
 // GetBoothResponse 함수 정의
@@ -39,5 +40,6 @@ export const GetBoothResponse = (response: Booth): Booth => {
     waiting_count: response.waiting_count,
     is_waiting: response.is_waiting,
     waiting_status: response.waiting_status,
+    is_operated: response.is_operated,
   };
 };
