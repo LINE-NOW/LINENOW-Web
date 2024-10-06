@@ -10,6 +10,7 @@ const BoothCardDetail = ({ waitingDetail }: BoothCardDetailProps) => {
     <>
       {waitingDetail ? (
         <BoothCardLayout
+          type="waiting"
           boothImage={waitingDetail.booth.thumbnail}
           boothTitle={
             <>
@@ -20,8 +21,6 @@ const BoothCardDetail = ({ waitingDetail }: BoothCardDetailProps) => {
           }
           boothSummary={waitingDetail.booth.description}
           boothLocationInfo={waitingDetail.booth.location}
-          padding="1rem"
-          onClickButtonAnimation={false}
         />
       ) : (
         <div>대기 정보가 없습니다.</div>

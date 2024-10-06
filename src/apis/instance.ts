@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError } from "axios";
 
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
@@ -6,9 +6,9 @@ export const instance = axios.create({
   withCredentials: false, //크로스 도메인 요청 시 쿠키, HTTP 인증 및 클라이언트 SSL 인증서를 사용하도록 허용한다.
 });
 
-instance.interceptors.request.use(config => {
+instance.interceptors.request.use((config) => {
   // TODO: - accessToken 연결
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = localStorage.getItem("accessToken");
 
   if (accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`;
@@ -41,12 +41,20 @@ export const getResponse = async <T>(url: string): Promise<T | null> => {
       message: ${response.data.message}`
     );
 
-    const data = response.data.data;
-    return data;
+    return response.data.data;
   } catch (error) {
     const axiosError = error as AxiosError;
-
-    console.error('Response error:', axiosError);
+    console.error("Response error:", axiosError);
+    if (axiosError.status == 401) {
+      console.log(
+        `[GET] ${url}
+        error: accessToken에 문제가 있습니다.`
+      );
+      // 로그아웃 처리하기
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+      history.go(0);
+    }
     return null;
   }
 };
@@ -58,7 +66,7 @@ export const deleteResponse = async (url: string): Promise<EmptyDTO | null> => {
     return handleResponse(response.data);
   } catch (error) {
     const axiosError = error as AxiosError;
-    console.error('Response error:', axiosError);
+    console.error("Response error:", axiosError);
     return null;
   }
 };
@@ -76,7 +84,7 @@ export const postResponseNoData = async (
     return handleResponse(response.data);
   } catch (error) {
     const axiosError = error as AxiosError;
-    console.error('Response error:', axiosError);
+    console.error("Response error:", axiosError);
     return null;
   }
 };
@@ -87,13 +95,9 @@ export const postResponse = async <T>(
   body: T
 ): Promise<T | null> => {
   try {
-    const response = await instance.post<BaseDTO<T>>(url, body, {
-      headers: {
-        Authorization: `Bearer `,
-      },
-    });
+    const response = await instance.post<BaseDTO<T>>(url, body);
 
-    console.log('서버 응답:', response); // 응답 내용 로그 추가
+    console.log("서버 응답:", response); // 응답 내용 로그 추가
 
     console.log(
       `[POST] ${url}
@@ -105,18 +109,13 @@ export const postResponse = async <T>(
     return data;
   } catch (error) {
     const axiosError = error as AxiosError;
-
-    console.error('Response error:', axiosError);
+    console.error("Response error:", axiosError);
     return null;
   }
 };
 
 // 공통 응답 처리 함수
 const handleResponse = <T>(response: BaseDTO<T>): EmptyDTO => {
-  console.log(
-    `code: ${response.code} (${response.status})\nmessage: ${response.message}`
-  );
-
   return {
     status: response.status,
     message: response.message,
@@ -136,7 +135,7 @@ export const postResponseNew = async <TRequest, TResponse>(
   } catch (error) {
     const axiosError = error as AxiosError;
     console.log(`[POST] ${url} - Data:`, data);
-    console.error('Response error:', axiosError);
+    console.error("Response error:", axiosError);
     return null;
   }
 };

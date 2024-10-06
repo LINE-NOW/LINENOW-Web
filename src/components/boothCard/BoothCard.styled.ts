@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 interface BoothCardWrapperProps {
   $borderBottom?: string;
   padding?: string;
-  onClickButtonAnimation?: boolean;
+  $type: string;
 }
 
 export const BoothCardWrapper = styled(Link)<BoothCardWrapperProps>`
@@ -17,17 +17,22 @@ export const BoothCardWrapper = styled(Link)<BoothCardWrapperProps>`
   width: 100%;
   box-sizing: border-box;
 
-  ${({ padding, $borderBottom, onClickButtonAnimation = true, theme }) => css`
-    padding: ${padding || `0.75rem 0.25rem 1rem 0.25rem`};
-    border-bottom: ${$borderBottom ||
-    `1px solid ${theme.colors.border.gray075}`};
-
-    ${onClickButtonAnimation &&
-    css`
-      cursor: pointer;
-      animation: ${A.onClickButtonAnimation};
-    `};
-  `}
+  ${({ theme, $type }) => {
+    switch ($type) {
+      case "main":
+        return css`
+          padding: 0.75rem 0.25rem 1rem 0.25rem;
+          border-bottom: 1px solid ${theme.colors.border.gray075};
+          cursor: pointer;
+          animation: ${A.onClickButtonAnimation};
+        `;
+      case "waiting":
+        return css`
+          cursor: default;
+          padding: 1rem;
+        `;
+    }
+  }}
 `;
 
 export const BoothCardInformationWrapper = styled.div`

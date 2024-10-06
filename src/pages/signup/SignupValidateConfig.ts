@@ -3,7 +3,7 @@ import { ValidateConfigs } from "@interfaces/form";
 export interface SignupFormValues {
   name: string;
   phonenumber: string;
-  verificationCode: string;
+  // verificationCode: string;
   password: string;
   confirmPassword: string;
 }
@@ -11,7 +11,7 @@ export interface SignupFormValues {
 export const initialSignupValues: SignupFormValues = {
   name: "",
   phonenumber: "",
-  verificationCode: "",
+  // verificationCode: "",
   password: "",
   confirmPassword: "",
 };
@@ -31,13 +31,13 @@ export const signupValidateConfigs: ValidateConfigs<SignupFormValues> = {
     maxLength: 11,
     lengthError: "전화번호는 10~11자리로 입력해주세요.",
   },
-  verificationCode: {
-    regex: /^[0-9]+$/,
-    regexError: "인증번호 숫자만 입력이 가능해요.",
-    minLength: 5,
-    maxLength: 5,
-    lengthError: "5자리의 숫자로 된 인증번호를 입력해주세요.",
-  },
+  // verificationCode: {
+  //   regex: /^[0-9]+$/,
+  //   regexError: "인증번호 숫자만 입력이 가능해요.",
+  //   minLength: 5,
+  //   maxLength: 5,
+  //   lengthError: "5자리의 숫자로 된 인증번호를 입력해주세요.",
+  // },
   password: {
     regex: /^[a-zA-Z0-9!@#$%^&*]+$/,
     regexError: "숫자와 문자, 특수기호 !@#$%^&*를 조합해주세요.",

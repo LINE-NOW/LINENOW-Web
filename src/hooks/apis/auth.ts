@@ -1,14 +1,14 @@
-import { postDeleteID } from '@apis/domains/auth/deleteID/apis';
-import { LoginResponse } from '@apis/domains/auth/login/_interfaces';
-import { postLogin } from '@apis/domains/auth/login/apis';
-import { postLogout } from '@apis/domains/auth/logout/apis';
-import { SignupResponse } from '@apis/domains/auth/signup/_interfaces';
-import { postSignup } from '@apis/domains/auth/signup/apis';
-import useAuth from '@hooks/useAuth';
-import useIsLoading from '@hooks/useIsLoading';
-import useModal from '@hooks/useModal';
-import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { postDeleteID } from "@apis/domains/auth/deleteID/apis";
+import { LoginResponse } from "@apis/domains/auth/login/_interfaces";
+import { postLogin } from "@apis/domains/auth/login/apis";
+import { postLogout } from "@apis/domains/auth/logout/apis";
+import { SignupResponse } from "@apis/domains/auth/signup/_interfaces";
+import { postSignup } from "@apis/domains/auth/signup/apis";
+import useAuth from "@hooks/useAuth";
+import useIsLoading from "@hooks/useIsLoading";
+import useModal from "@hooks/useModal";
+import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 export const usePostLogout = () => {
   const navigate = useNavigate();
@@ -17,17 +17,17 @@ export const usePostLogout = () => {
   const { setLoadings } = useIsLoading();
 
   return useMutation<void, Error, void>({
-    mutationKey: ['auth_logout'],
-    mutationFn: () => postLogout({ refresh: auth?.refreshToken || '' }),
+    mutationKey: ["auth_logout"],
+    mutationFn: () => postLogout({ refresh: auth?.refreshToken || "" }),
     onSuccess: async () => {
       logout();
       setLoadings({ isFullLoading: false });
       closeModal();
-      navigate('/');
+      navigate("/");
     },
     onError: () => {
       setLoadings({ isFullLoading: false });
-      alert('로그아웃 중 오류가 발생했어요.\n다시 시도해주세요.');
+      alert("로그아웃 중 오류가 발생했어요.\n다시 시도해주세요.");
     },
   });
 };
@@ -39,17 +39,17 @@ export const usePostDeleteID = () => {
   const { setLoadings } = useIsLoading();
 
   return useMutation<void, Error, void>({
-    mutationKey: ['auth_deleteID'],
-    mutationFn: () => postDeleteID({ refresh_token: auth?.refreshToken || '' }),
+    mutationKey: ["auth_deleteID"],
+    mutationFn: () => postDeleteID({ refresh_token: auth?.refreshToken || "" }),
     onSuccess: async () => {
       logout();
       setLoadings({ isFullLoading: false });
       closeModal();
-      navigate('/');
+      navigate("/");
     },
     onError: () => {
       setLoadings({ isFullLoading: false });
-      alert('회원탈퇴 중 오류가 발생했어요.\n다시 시도해주세요.');
+      alert("회원탈퇴 중 오류가 발생했어요.\n다시 시도해주세요.");
     },
   });
 };
@@ -64,7 +64,7 @@ export const usePostLogin = () => {
   const { setLoadings } = useIsLoading();
 
   return useMutation({
-    mutationKey: ['auth_login'],
+    mutationKey: ["auth_login"],
     mutationFn: (requestBody: UsePostLoginProps) =>
       postLogin({
         username: requestBody.username,
@@ -79,7 +79,7 @@ export const usePostLogin = () => {
     },
     onError: () => {
       setLoadings({ isFullLoading: false });
-      alert('로그인 중 오류가 발생했어요.\n다시 시도해주세요.');
+      alert("전화번호와 비밀번호를 다시한번 확인해주세요.");
     },
   });
 };
@@ -96,7 +96,7 @@ export const usePostSignup = () => {
   const { setLoadings } = useIsLoading();
 
   return useMutation({
-    mutationKey: ['auth_signup'],
+    mutationKey: ["auth_signup"],
     mutationFn: (requestBody: UsePostSignupProps) =>
       postSignup({
         name: requestBody.name,
@@ -113,7 +113,7 @@ export const usePostSignup = () => {
     },
     onError: () => {
       setLoadings({ isFullLoading: false });
-      alert('회원가입 중 오류가 발생했어요.\n다시 시도해주세요.');
+      alert("회원가입 중 오류가 발생했어요.\n다시 시도해주세요.");
     },
   });
 };

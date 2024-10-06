@@ -34,7 +34,7 @@ const WaitingCheckCautionModal = ({
       });
 
       if (response) {
-        navigate(`/waiting/${response.booth}`, {
+        navigate(`/waiting/${response.id}`, {
           state: response,
           replace: true,
         });
