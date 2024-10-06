@@ -9,6 +9,7 @@ import { Waiting } from "@interfaces/waiting";
 import { useWaitingCard } from "./_hooks/useWaitingCard";
 import { useNavigate } from "react-router-dom";
 import useModal from "@hooks/useModal";
+import { postWaitingCancel } from "@apis/domains/waitingCancel/apis";
 import Button from "@components/button/Button";
 
 interface WaitingCardProps {
@@ -28,7 +29,7 @@ interface WaitingCardProps {
 
 const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
   const navigate = useNavigate();
-  const { openModal } = useModal();
+  const { openModal, closeModal } = useModal();
 
   const targetTime = () => {
     switch (waiting.waitingStatus) {
@@ -46,7 +47,21 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
     sub: "대기를 취소하면 현재 줄 서기가 사라져요.\n그래도 취소하실건가요?",
     primaryButton: {
       children: "줄 서기 취소하기",
+      onClick: async () => {
+        if (!waiting.waitingID) {
+          alert("잘못된 대기 번호입니다.");
+          return;
+        }
+
+        closeModal();
+        try {
+          await postWaitingCancel({ waitingID: waiting.waitingID });
+        } catch (error) {
+          alert("대기 취소 중 문제가 발생했습니다. 다시 시도해주세요.");
+        }
+      },
     },
+
     secondButton: {
       children: "이전으로",
     },
@@ -59,7 +74,9 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
 
   const handleWaitingCard = (event: React.MouseEvent<HTMLDivElement>) => {
     if (!disableClick) {
-      navigate(`/waiting/${waiting.waitingID}`);
+      navigate(`/waiting/${waiting.waitingID}`, {
+        state: waiting.waitingID,
+      });
     } else {
       event.stopPropagation();
     }
