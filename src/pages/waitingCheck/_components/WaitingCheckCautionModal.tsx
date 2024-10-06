@@ -47,7 +47,8 @@ const WaitingCheckCautionModal = ({
   return (
     <InfoBottomButton
       informationTitle="유의사항을 꼭 숙지해주세요"
-      informationSub="입장 순서가 되면 입장 확정 알림이 가요. 3분 내로 미확정 시 줄 서기가 자동 취소될 수 있어요."
+      informationSub="입장 순서가 되면 입장 확정 알림이 가요.
+      3분 내로 미확정 시 줄 서기가 자동 취소돼요."
     >
       <S.CheckBoxWrapper onClick={() => setChecked(!checked)}>
         <S.CheckBoxImage
