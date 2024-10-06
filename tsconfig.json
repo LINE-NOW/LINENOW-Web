@@ -12,7 +12,8 @@
       "@linenow-types/*": ["src/lib/types/*"],
       "@interfaces/*": ["src/lib/interfaces/*"],
       "@routes/*": ["src/routes/*"],
-      "@styles/*": ["src/styles/*"]
+      "@styles/*": ["src/styles/*"],
+      "@utils/*": ["src/utils/*"]
     },
 
     "target": "ES2020",

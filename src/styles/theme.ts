@@ -46,11 +46,13 @@ const theme = {
       blackLight: colorScale.gray600,
 
       gray: colorScale.gray300,
+      grayLight: colorScale.gray075,
     },
 
     border: {
-      gray075: colorScale.gray075,
+      gray075: colorScale.gray050,
       gray100: colorScale.gray100,
+      blue: colorScale.blue500,
     },
 
     background: {
@@ -116,8 +118,9 @@ const theme = {
 
     // etc
     btn: fontGenerator("Pretendard", "1rem", "700", "1.5rem", "-0.2px"),
+    btn2: fontGenerator("Pretendard", "0.875rem", "700", "1.25rem", "-0.2px"),
     chip: fontGenerator("Pretendard", "0.75rem", "700", "1rem", "-0.5px"),
-    caption: fontGenerator("Pretendard", "0.625rem", "500", "0.75rem"),
+    caption: fontGenerator("Pretendard", "0.625rem", "500", "0.875rem"),
   },
 };
 
