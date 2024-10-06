@@ -14,7 +14,7 @@ import { postWaitingCancel } from "@apis/domains/waitingCancel/apis";
 const WaitingDetailPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const waitingID = location.state;
+  const waitingID = location.state.id;
 
   // 대기 상세 정보 가져오기
   const { data: waitingDetail, isLoading } = useGetWaitingDetail(
