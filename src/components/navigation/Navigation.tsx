@@ -1,10 +1,11 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import * as S from "./Navigation.styled";
 import { IconButton } from "@components/button/CustomButton";
 
 const Navigation = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const getNavigationTitle = () => {
     if (location.pathname.startsWith("/waiting/")) {
@@ -26,7 +27,12 @@ const Navigation = () => {
   };
 
   const handleBackButton = () => {
-    window.history.back();
+    // location.key가 없으면 이전 페이지가 없다고 판단하고, 홈으로 이동
+    if (location.key !== "default") {
+      window.history.back();
+    } else {
+      navigate("");
+    }
   };
 
   return (

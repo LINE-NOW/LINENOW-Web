@@ -17,7 +17,7 @@ import {
   RegisterWaitingRequest,
 } from "@apis/domains/waiting/_interfaces";
 
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const useGetWaiting = ({ ...props }: GetWaitingRequest) => {
   return useQuery({
@@ -44,6 +44,9 @@ export const useGetNowWaitings = (isLogin: boolean, query?: string) => {
 export const usePostWaitingCancel = () => {
   const { closeModal } = useModal();
   const { setLoadings } = useIsLoading();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return useMutation({
     mutationKey: ["waiting_cancel"],
     mutationFn: (waitingID: number) => {
@@ -52,9 +55,14 @@ export const usePostWaitingCancel = () => {
     },
     onSuccess: () => {
       alert("대기가 취소 되었습니다.");
-      history.go(0);
       setLoadings({ isFullLoading: false });
       closeModal();
+
+      if (location.pathname.startsWith("/waiting")) {
+        navigate("/", { replace: true });
+      } else {
+        window.history.go(0);
+      }
     },
     onError: () => {
       alert("대기 취소에 실패했어요.\n잠시 후 다시 시도해주세요.");
