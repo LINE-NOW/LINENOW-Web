@@ -35,22 +35,10 @@ export const getResponse = async <T>(url: string): Promise<T | null> => {
   try {
     const response = await instance.get<BaseDTO<T>>(url);
 
-    console.log(
-      `[GET] ${url}
-      code: ${response.data.code} (${response.data.status})
-      message: ${response.data.message}`
-    );
-
-    console.log(response);
     return response.data.data;
   } catch (error) {
     const axiosError = error as AxiosError;
-    console.error("Response error:", axiosError);
     if (axiosError.status == 401) {
-      console.log(
-        `[GET] ${url}
-        error: accessToken에 문제가 있습니다.`
-      );
       // 로그아웃 처리하기
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
@@ -66,8 +54,6 @@ export const deleteResponse = async (url: string): Promise<EmptyDTO | null> => {
 
     return handleResponse(response.data);
   } catch (error) {
-    const axiosError = error as AxiosError;
-    console.error("Response error:", axiosError);
     return null;
   }
 };
@@ -84,8 +70,6 @@ export const postResponseNoData = async (
 
     return handleResponse(response.data);
   } catch (error) {
-    const axiosError = error as AxiosError;
-    console.error("Response error:", axiosError);
     return null;
   }
 };
@@ -98,19 +82,9 @@ export const postResponse = async <T>(
   try {
     const response = await instance.post<BaseDTO<T>>(url, body);
 
-    console.log("서버 응답:", response); // 응답 내용 로그 추가
-
-    console.log(
-      `[POST] ${url}
-      code: ${response.data.code} (${response.data.status})
-      message: ${response.data.message}`
-    );
-
     const data = response.data.data;
     return data;
   } catch (error) {
-    const axiosError = error as AxiosError;
-    console.error("Response error:", axiosError);
     return null;
   }
 };
@@ -129,14 +103,10 @@ export const postResponseNew = async <TRequest, TResponse>(
   data: TRequest
 ): Promise<TResponse | null> => {
   try {
-    console.log(`[POST] ${url}`);
     const response = await instance.post(url, data);
 
     return response.data;
   } catch (error) {
-    const axiosError = error as AxiosError;
-    console.log(`[POST] ${url} - Data:`, data);
-    console.error("Response error:", axiosError);
     return null;
   }
 };
@@ -146,17 +116,17 @@ export const postNoResponse = async <TRequest>(
   requestBody: TRequest
 ) => {
   try {
-    const response = await instance.post<EmptyDTO>(url, requestBody);
-
-    console.log(
-      `[POST] ${url}
-      code: ${response.data.code} (${response.data.status})
-      message: ${response.data.message}`
-    );
+    // const response = await instance.post<EmptyDTO>(url, requestBody);
+    await instance.post<EmptyDTO>(url, requestBody);
+    // console.log(
+    //   `[POST] ${url}
+    //   code: ${response.data.code} (${response.data.status})
+    //   message: ${response.data.message}`
+    // );
   } catch (error) {
-    const axiosError = error as AxiosError;
-    console.log(`[POST] ${url}
-      code: ${axiosError.status}`);
-    throw axiosError;
+    // const axiosError = error as AxiosError;
+    // console.log(`[POST] ${url}
+    //   code: ${axiosError.status}`);
+    // throw axiosError;
   }
 };

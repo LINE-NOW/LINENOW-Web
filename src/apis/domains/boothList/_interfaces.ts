@@ -10,6 +10,7 @@ export interface BoothList {
   waiting_count: number;
   is_waiting: boolean;
   waiting_status: WaitingStatus | null;
+  total_waiting_teams: number;
 }
 
 export const GetBoothListResponse = (response: BoothList) => {
@@ -23,5 +24,6 @@ export const GetBoothListResponse = (response: BoothList) => {
     waiting_count: response.waiting_count,
     is_waiting: response.is_waiting,
     waiting_status: response.waiting_status,
+    total_waiting_teams: response.total_waiting_teams,
   };
 };

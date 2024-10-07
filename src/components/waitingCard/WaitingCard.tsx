@@ -109,7 +109,7 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
       >
         <S.BoothInformationWrapper>
           <S.BoothInformationImage
-            src={waiting.booth?.thumbnail || "/images/default_thumbnail.png"}
+            src={waiting.booth?.thumbnail || "/images/image_waitingNoCard.png"}
           />
           <S.BoothInformaitonLabelWrapper>
             <S.BoothInformationNameLabel>
