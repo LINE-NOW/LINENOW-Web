@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
 *{box-sizing:border-box}
 body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol, p, select, table, td, textarea, th, ul {margin:0;padding:0}
 body, button, input, select, table, textarea {font-size:12px;line-height:16px;color:#202020;font-family:-apple-system, BlinkMacSystemFont, "Malgun Gothic", "맑은 고딕", helvetica, "Apple SD Gothic Neo", sans-serif}
@@ -28,7 +29,7 @@ i {font-style:normal}
 
 // 폰트설정
 
-@font-face {
+/* @font-face {
     font-family:"Pretendard-Semibold";
     src: url("/src/assets/fonts/Pretendard-SemiBold.woff") format("woff"),
     url("/src/assets/fonts/Pretendard-SemiBold.ttf") format("truetype");
@@ -44,7 +45,7 @@ i {font-style:normal}
     font-family:"Pretendard-Medium";
     src: url("/src/assets/fonts/Pretendard-Medium.woff") format("woff"),
     url("/src/assets/fonts/Pretendard-Medium.ttf") format("truetype");
-}
+} */
 
 // 초기 html 설정
 html {

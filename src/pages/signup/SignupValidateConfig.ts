@@ -21,8 +21,8 @@ export const signupValidateConfigs: ValidateConfigs<SignupFormValues> = {
     regex: /^[ㄱ-ㅎ가-힣a-zA-Z]+$/,
     regexError: "이름을 정확하게 입력해주세요.",
     minLength: 1,
-    maxLength: 20,
-    lengthError: "이름은 1자 이상 20자 이하로 입력해주세요.",
+    maxLength: 4,
+    lengthError: "이름은 1자 이상 4자 이하로 입력해주세요.",
   },
   phonenumber: {
     regex: /^[0-9]+$/,
@@ -41,14 +41,14 @@ export const signupValidateConfigs: ValidateConfigs<SignupFormValues> = {
   password: {
     regex: /^[a-zA-Z0-9!@#$%^&*]+$/,
     regexError: "숫자와 문자, 특수기호 !@#$%^&*를 조합해주세요.",
-    minLength: 4,
+    minLength: 8,
     maxLength: 100,
-    lengthError: "비밀번호를 4자 이상 입력해주세요.",
+    lengthError: "비밀번호를 8자 이상 입력해주세요.",
   },
   confirmPassword: {
     regex: /^[a-zA-Z0-9!@#$%^&*]+$/,
     minLength: 4,
     maxLength: 100,
-    lengthError: "비밀번호를 4자 이상 입력해주세요.",
+    lengthError: "비밀번호를 8자 이상 입력해주세요.",
   },
 };
