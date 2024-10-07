@@ -24,7 +24,7 @@ export const BoothCardWrapper = styled(Link)<BoothCardWrapperProps>`
           padding: 0.75rem 0.25rem 1rem 0.25rem;
           border-bottom: 1px solid ${theme.colors.border.gray075};
           cursor: pointer;
-          animation: ${A.onClickButtonAnimation};
+          /* animation: ${A.onClickButtonAnimation}; */
         `;
       case "waiting":
         return css`

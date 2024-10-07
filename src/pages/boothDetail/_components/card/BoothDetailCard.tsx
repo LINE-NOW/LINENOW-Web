@@ -11,7 +11,7 @@ interface BoothDetailContentProps {
 export const BoothDetailCard = ({ booth }: BoothDetailContentProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  return (
+  return booth.images?.length ? (
     <S.BoothDetailCardWrapper>
       <Swiper
         cssMode={true}
@@ -42,5 +42,5 @@ export const BoothDetailCard = ({ booth }: BoothDetailContentProps) => {
         ))}
       </S.BoothDetailCardIndicatorWrapper>
     </S.BoothDetailCardWrapper>
-  );
+  ) : null;
 };
