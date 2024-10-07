@@ -20,8 +20,9 @@ const BoothCardMain = ({ booth }: BoothCardProps) => {
       case "finished":
         return <Chip scheme="grayLight">운영 종료</Chip>;
       default:
-        //TODO: - API 수정시 total teams 로 바꿔야함
-        return <Chip scheme="blueLight">대기 {booth.waiting_count} 팀</Chip>;
+        return (
+          <Chip scheme="blueLight">대기 {booth.total_waiting_teams} 팀</Chip>
+        );
     }
   };
   return (
