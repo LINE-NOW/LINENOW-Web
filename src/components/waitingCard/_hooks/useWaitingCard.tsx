@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 
 // components
 import { ButtonProps } from "@components/button/Button";
@@ -11,12 +11,11 @@ import useCountdown from "@hooks/useCountdown";
 import useModal from "@hooks/useModal";
 import { ModalProps } from "@components/modal/Modal";
 import { usePostConfirm } from "@hooks/apis/entry";
-import useIsLoading from "@hooks/useIsLoading";
 
 interface WaitingCardProps {
   waitingID: number;
   status: WaitingStatus;
-  waitingCount?: number;
+  waitingTeamsAhead?: number;
   targetTime?: string | null;
 }
 
@@ -34,7 +33,7 @@ interface WaitingCardConfig {
 export const useWaitingCard = ({
   waitingID,
   status,
-  waitingCount,
+  waitingTeamsAhead,
   targetTime,
 }: WaitingCardProps) => {
   const { getTime } = useCountdown({
@@ -43,14 +42,9 @@ export const useWaitingCard = ({
 
   const { openModal } = useModal();
 
-  const { mutate: postConfirm, isPending } = usePostConfirm({
+  const { mutate: postConfirm } = usePostConfirm({
     waitingID: waitingID,
   });
-  const { setLoadings } = useIsLoading();
-
-  useEffect(() => {
-    setLoadings({ isFullLoading: isPending });
-  }, [isPending]);
 
   const confirmModal: Omit<ModalProps, "isOpen"> = {
     title: "다른 대기가 취소돼요",
@@ -76,7 +70,7 @@ export const useWaitingCard = ({
     check: {
       titleContent: (
         <>
-          내 앞으로 <span className="blue">{waitingCount}팀</span> 남았어요
+          내 앞으로 <span className="blue">{waitingTeamsAhead}팀</span> 남았어요
         </>
       ),
       isValidate: false,
@@ -85,7 +79,7 @@ export const useWaitingCard = ({
     waiting: {
       titleContent: (
         <>
-          내 앞으로 <span className="blue">{waitingCount}팀</span> 남았어요
+          내 앞으로 <span className="blue">{waitingTeamsAhead}팀</span> 남았어요
         </>
       ),
       isValidate: true,

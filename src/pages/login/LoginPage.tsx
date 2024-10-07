@@ -10,8 +10,6 @@ import {
 } from "./LoginValidateConfig";
 import validateConfigs from "@utils/validateConfig";
 import { usePostLogin } from "@hooks/apis/auth";
-import useIsLoading from "@hooks/useIsLoading";
-import { useEffect } from "react";
 
 const LoginPage = () => {
   const getErrors = (values: LoginFormValues) => {
@@ -19,13 +17,7 @@ const LoginPage = () => {
     return errors;
   };
 
-  const { mutate: postLogin, isPending } = usePostLogin();
-
-  const { setLoadings } = useIsLoading();
-
-  useEffect(() => {
-    setLoadings({ isFullLoading: isPending });
-  }, [isPending]);
+  const { mutate: postLogin } = usePostLogin();
 
   const handleSubmitButton = () => {
     postLogin({ username: values.phonenumber, password: values.password });

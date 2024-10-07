@@ -29,17 +29,11 @@ const SignupPage = () => {
     return errors;
   };
 
-  const { mutate: postSignup, isPending } = usePostSignup();
-
-  const { setLoadings } = useIsLoading();
-
-  useEffect(() => {
-    setLoadings({ isFullLoading: isPending });
-  }, [isPending]);
+  const { mutate: postSignup } = usePostSignup();
 
   const handleSubmitButton = () => {
     if (!turnstileToken) {
-      alert("Turnstile 검증을 완료해주세요."); // Turnstile 토큰 검증 확인
+      alert("인증번호를 다시 입력해주세요!"); // Turnstile 토큰 검증 확인
       return;
     }
 

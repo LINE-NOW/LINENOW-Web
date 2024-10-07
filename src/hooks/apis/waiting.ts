@@ -10,6 +10,14 @@ import {
 
 import { postWaitingCancel } from "@apis/domains/waitingCancel/apis";
 import useModal from "@hooks/useModal";
+import useIsLoading from "@hooks/useIsLoading";
+import {
+  postWaitingRegister,
+  PostWaitingRegisterProps,
+  RegisterWaitingRequest,
+} from "@apis/domains/waiting/_interfaces";
+
+import { useNavigate } from "react-router-dom";
 
 export const useGetWaiting = ({ ...props }: GetWaitingRequest) => {
   return useQuery({
@@ -35,16 +43,55 @@ export const useGetNowWaitings = (isLogin: boolean, query?: string) => {
 
 export const usePostWaitingCancel = () => {
   const { closeModal } = useModal();
+  const { setLoadings } = useIsLoading();
   return useMutation({
     mutationKey: ["waiting_cancel"],
-    mutationFn: (waitingID: number) =>
-      postWaitingCancel({ waitingID: waitingID }),
+    mutationFn: (waitingID: number) => {
+      setLoadings({ isFullLoading: true });
+      return postWaitingCancel({ waitingID: waitingID });
+    },
     onSuccess: () => {
+      alert("대기가 취소 되었습니다.");
       history.go(0);
+      setLoadings({ isFullLoading: false });
       closeModal();
     },
     onError: () => {
       alert("대기 취소에 실패했어요.\n잠시 후 다시 시도해주세요.");
+      setLoadings({ isFullLoading: false });
+    },
+  });
+};
+
+export const usePostWaitingRegister = () => {
+  const { closeModal } = useModal();
+  const { setLoadings } = useIsLoading();
+  const navigate = useNavigate();
+  return useMutation({
+    mutationKey: ["waiting_register"],
+    mutationFn: async ({
+      boothId,
+      party_size,
+    }: RegisterWaitingRequest): Promise<PostWaitingRegisterProps | null> => {
+      try {
+        setLoadings({ isFullLoading: true });
+        return await postWaitingRegister({ boothId, party_size });
+      } catch (error) {
+        throw error;
+      }
+    },
+    onSuccess: (response) => {
+      alert("대기 걸기에 성공했어요!");
+      navigate(`/waiting/${response?.id}`, {
+        state: response,
+        replace: true,
+      });
+      setLoadings({ isFullLoading: false });
+      closeModal();
+    },
+    onError: () => {
+      alert("대기 걸기에 실패했어요.\n잠시 후 다시 시도해주세요.");
+      setLoadings({ isFullLoading: false });
     },
   });
 };
