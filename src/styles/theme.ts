@@ -1,5 +1,5 @@
 const fontGenerator = (
-  fontFamily = "Pretendard-Semibold",
+  fontFamily = "Pretendard",
   fontSize = "1.6rem",
   fontWeight = "normal",
   lineHeight = "normal",
@@ -102,55 +102,76 @@ const theme = {
     },
   },
 
+  // fonts: {
+  //   // head
+  //   h1: fontGenerator(
+  //     "Pretendard-Semibold",
+  //     "1.5rem",
+  //     "500",
+  //     "1.75rem",
+  //     "-0.24px"
+  //   ),
+  //   h2: fontGenerator(
+  //     "Pretendard-Semibold",
+  //     "1.25rem",
+  //     "550",
+  //     "1.5rem",
+  //     "-0.1px"
+  //   ),
+  //   h2_b: fontGenerator(
+  //     "Pretendard-Bold",
+  //     "1.25rem",
+  //     "570",
+  //     "1.5rem",
+  //     "-0.1px"
+  //   ),
+  //   h3: fontGenerator(
+  //     "Pretendard-Semibold",
+  //     "1rem",
+  //     "500",
+  //     "1.25rem",
+  //     "-0.16px"
+  //   ),
+
+  //   // body
+  //   b1: fontGenerator("Pretendard-Medium", "1rem", "400", "1.5rem", "-0.25px"),
+  //   b2: fontGenerator("Pretendard-Medium", "0.875rem", "400", "-0.25px"),
+  //   b2_b: fontGenerator("Pretendard-Semibold", "0.875rem", "500", "-0.5px"),
+  //   b3: fontGenerator("Pretendard-Medium", "0.75rem", "400", "1rem"),
+  //   b3_b: fontGenerator("Pretendard-Semibold", "0.75rem", "500", "1rem"),
+
+  //   // etc
+  //   btn: fontGenerator("Pretendard-Bold", "1rem", "570", "1.5rem", "-0.2px"),
+  //   btn2: fontGenerator(
+  //     "Pretendard-Bold",
+  //     "0.875rem",
+  //     "570",
+  //     "1.25rem",
+  //     "-0.2px"
+  //   ),
+  //   chip: fontGenerator("Pretendard-Bold", "0.75rem", "570", "1rem", "-0.5px"),
+  //   caption: fontGenerator("Pretendard-Medium", "0.625rem", "400", "0.875rem"),
+  // },
   fonts: {
     // head
-    h1: fontGenerator(
-      "Pretendard-Semibold",
-      "1.5rem",
-      "500",
-      "1.75rem",
-      "-0.24px"
-    ),
-    h2: fontGenerator(
-      "Pretendard-Semibold",
-      "1.25rem",
-      "550",
-      "1.5rem",
-      "-0.1px"
-    ),
-    h2_b: fontGenerator(
-      "Pretendard-Bold",
-      "1.25rem",
-      "570",
-      "1.5rem",
-      "-0.1px"
-    ),
-    h3: fontGenerator(
-      "Pretendard-Semibold",
-      "1rem",
-      "500",
-      "1.25rem",
-      "-0.16px"
-    ),
+    h1: fontGenerator("sans-serif", "1.5rem", "600", "1.75rem", "-0.24px"),
+    h2: fontGenerator("sans-serif", "1.25rem", "600", "1.5rem", "-0.1px"),
+    h2_b: fontGenerator("sans-serif", "1.25rem", "700", "1.5rem", "-0.1px"),
+    h3: fontGenerator("sans-serif", "1rem", "600", "1.25rem", "-0.16px"),
+    h3_b: fontGenerator("sans-serif", "1rem", "700", "1.25rem", "-0.16px"),
 
     // body
-    b1: fontGenerator("Pretendard-Medium", "1rem", "400", "1.5rem", "-0.25px"),
-    b2: fontGenerator("Pretendard-Medium", "0.875rem", "400", "-0.25px"),
-    b2_b: fontGenerator("Pretendard-Semibold", "0.875rem", "500", "-0.5px"),
-    b3: fontGenerator("Pretendard-Medium", "0.75rem", "400", "1rem"),
-    b3_b: fontGenerator("Pretendard-Semibold", "0.75rem", "500", "1rem"),
+    b1: fontGenerator("sans-serif", "1rem", "500", "1.5rem", "-0.25px"),
+    b2: fontGenerator("sans-serif", "0.875rem", "500", "-0.25px"),
+    b2_b: fontGenerator("sans-serif", "0.875rem", "600", "-0.5px"),
+    b3: fontGenerator("sans-serif", "0.75rem", "500", "1rem"),
+    b3_b: fontGenerator("sans-serif", "0.75rem", "600", "1rem"),
 
     // etc
-    btn: fontGenerator("Pretendard-Bold", "1rem", "570", "1.5rem", "-0.2px"),
-    btn2: fontGenerator(
-      "Pretendard-Bold",
-      "0.875rem",
-      "570",
-      "1.25rem",
-      "-0.2px"
-    ),
-    chip: fontGenerator("Pretendard-Bold", "0.75rem", "570", "1rem", "-0.5px"),
-    caption: fontGenerator("Pretendard-Medium", "0.625rem", "400", "0.875rem"),
+    btn: fontGenerator("sans-serif", "1rem", "700", "1.5rem", "-0.2px"),
+    btn2: fontGenerator("sans-serif", "0.875rem", "700", "1.25rem", "-0.2px"),
+    chip: fontGenerator("sans-serif", "0.75rem", "700", "1rem", "-0.5px"),
+    caption: fontGenerator("sans-serif", "0.625rem", "600", "0.875rem"),
   },
 };
 
