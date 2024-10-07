@@ -36,8 +36,9 @@ const WaitingCheckCautionModal = ({
       informationSub="입장 순서가 되면 입장 확정 알림이 가요.
       3분 내로 미확정 시 줄 서기가 자동 취소돼요."
     >
-      <S.CheckBoxWrapper onClick={() => setChecked(!checked)}>
+      <S.CheckBoxWrapper>
         <S.CheckBoxImage
+          onClick={() => setChecked(!checked)}
           src={checked ? iconAfter : iconBefore}
           alt="체크 박스"
         />
