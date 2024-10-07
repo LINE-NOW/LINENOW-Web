@@ -15,6 +15,9 @@ import WaitingCheckModal from "@pages/waitingCheck/_components/WaitingCheckModal
 import useAuth from "@hooks/useAuth";
 import useBottomsheet from "@hooks/useBottomsheet";
 import LoginBottomsheetContent from "@components/login/LoginBottomsheetContent";
+import useModal from "@hooks/useModal";
+import { WaitingDetailCancel } from "@pages/waitingCheck/WaitingCheckPage.styled";
+import { postWaitingCancel } from "@apis/domains/waitingCancel/apis";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();
@@ -27,16 +30,34 @@ const BoothDetailPage = () => {
   const boothNumber = boothId ? parseInt(boothId, 10) : null;
 
   const { data: booth, isLoading } = useGetBooth(boothNumber || 0);
+  console.log("부스정보:", booth);
 
   // TODO:- 이거 누군가는 고쳐주세요... atom쓰는걸로...
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { openModal } = useModal();
 
-  const openModal = () => {
+  const openCheckModal = () => {
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
+  const closeCheckModal = () => {
     setIsModalOpen(false);
+  };
+
+  const onWaitingCancelClick = () => {
+    openModal(waitingCancelModal);
+  };
+
+  const waitingCancelModal = {
+    title: "정말 대기를 취소하시겠어요?",
+    sub: "대기를 취소하면 현재 줄 서기가 사라져요.\n그래도 취소하실건가요?",
+    primaryButton: {
+      //TODO: - API 수정시 booth의 waitingID 로 바꿔야함
+      onClick: () => postWaitingCancel({ waitingID: booth?.id || 0 }),
+    },
+    secondButton: {
+      children: "이전으로",
+    },
   };
 
   const getInformationTitle = () => {
@@ -75,6 +96,9 @@ const BoothDetailPage = () => {
             <span>내 앞으로 지금</span>
             <span className="blue">{booth.waiting_count}팀</span>
           </Button>
+          <WaitingDetailCancel>
+            <span onClick={onWaitingCancelClick}> 대기 취소하기</span>
+          </WaitingDetailCancel>
         </>
       );
     }
@@ -87,7 +111,7 @@ const BoothDetailPage = () => {
         );
       case "operating":
         return (
-          <Button onClick={openModal}>
+          <Button onClick={openCheckModal}>
             <span>대기 줄 서기</span>
           </Button>
         );
@@ -130,11 +154,11 @@ const BoothDetailPage = () => {
             )}
 
             {isModalOpen && (
-              <WaitingCheckModal booth={booth} onClose={closeModal} />
+              <WaitingCheckModal booth={booth} onClose={closeCheckModal} />
             )}
           </BottomButton>
           {isModalOpen && (
-            <WaitingCheckModal booth={booth} onClose={closeModal} />
+            <WaitingCheckModal booth={booth} onClose={closeCheckModal} />
           )}
         </>
       )}
