@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 
 // components
 import { ButtonProps } from "@components/button/Button";
@@ -10,8 +10,11 @@ import { WaitingStatus } from "@linenow-types/status";
 import useCountdown from "@hooks/useCountdown";
 import useModal from "@hooks/useModal";
 import { ModalProps } from "@components/modal/Modal";
+import { usePostConfirm } from "@hooks/apis/entry";
+import useIsLoading from "@hooks/useIsLoading";
 
 interface WaitingCardProps {
+  waitingID: number;
   status: WaitingStatus;
   waitingCount?: number;
   targetTime?: string | null;
@@ -29,6 +32,7 @@ interface WaitingCardConfig {
 }
 
 export const useWaitingCard = ({
+  waitingID,
   status,
   waitingCount,
   targetTime,
@@ -39,12 +43,24 @@ export const useWaitingCard = ({
 
   const { openModal } = useModal();
 
+  const { mutate: postConfirm, isPending } = usePostConfirm({
+    waitingID: waitingID,
+  });
+  const { setLoadings } = useIsLoading();
+
+  useEffect(() => {
+    setLoadings({ isFullLoading: isPending });
+  }, [isPending]);
+
   const confirmModal: Omit<ModalProps, "isOpen"> = {
     title: "다른 대기가 취소돼요",
     sub: "입장을 확정하면 다른 대기는 취소돼요.\n 입장을 확정하시겠어요?",
     primaryButton: {
       scheme: "lime",
       children: "입장 확정하기",
+      onClick: () => {
+        postConfirm();
+      },
     },
     secondButton: {
       children: "이전으로",

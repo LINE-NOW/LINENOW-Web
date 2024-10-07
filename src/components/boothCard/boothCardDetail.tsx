@@ -23,6 +23,7 @@ const BoothCardDetail = ({ waitingDetail }: BoothCardDetailProps) => {
           boothLocationInfo={waitingDetail.booth.location}
         />
       ) : (
+        //TODO:- 엠티뷰 만들기
         <div>대기 정보가 없습니다.</div>
       )}
     </>

@@ -28,7 +28,7 @@ const BottomButton = ({
         {(informationTitle || informationSub) && (
           <S.BottomButtonInformationWrapper>
             <span>{informationTitle}</span>
-            <span className="blue">{informationSub}</span>
+            {informationSub && <span className="blue">{informationSub}</span>}
           </S.BottomButtonInformationWrapper>
         )}
         <ButtonLayout $col={1}>{children}</ButtonLayout>

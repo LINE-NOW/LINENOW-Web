@@ -1,10 +1,18 @@
 import * as S from "./SettingDeleteID.styled";
 import useModal from "@hooks/useModal";
 import { usePostDeleteID } from "@hooks/apis/auth";
+import useIsLoading from "@hooks/useIsLoading";
+import { useEffect } from "react";
 
 const SettingDeleteID = () => {
   const { openModal } = useModal();
-  const { mutate: postDeleteID } = usePostDeleteID();
+  const { mutate: postDeleteID, isPending } = usePostDeleteID();
+
+  const { setLoadings } = useIsLoading();
+
+  useEffect(() => {
+    setLoadings({ isFullLoading: isPending });
+  }, [isPending]);
 
   const handleDeleteIDClick = () => {
     openModal({
