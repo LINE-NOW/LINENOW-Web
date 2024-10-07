@@ -1,12 +1,12 @@
 import InfoBottomButton from "@components/infobottomButton/InfoBottomButton";
 import Button from "@components/button/Button";
 import ButtonLayout from "@components/button/ButtonLayout";
-import { useNavigate } from "react-router-dom";
+
 import { useState } from "react";
 import * as S from "./WaitingCheckPeople.styled";
 import iconBefore from "/icons/icon_checkBox_before.svg";
 import iconAfter from "/icons/icon_checkBox_after.svg";
-import { postWaitingRegister } from "@apis/domains/waiting/apis";
+import { usePostWaitingRegister } from "@hooks/apis/waiting";
 
 interface WaitingCheckModalProps {
   onClose: () => void;
@@ -19,29 +19,15 @@ const WaitingCheckCautionModal = ({
   checkedPeople,
   boothId,
 }: WaitingCheckModalProps) => {
-  const navigate = useNavigate();
   const [checked, setChecked] = useState(false);
 
   const handleCancel = () => {
     onClose();
   };
 
-  const handleConfirm = async () => {
-    try {
-      const response = await postWaitingRegister({
-        boothId,
-        party_size: checkedPeople,
-      });
-
-      if (response) {
-        navigate(`/waiting/${response.id}`, {
-          state: response,
-          replace: true,
-        });
-      }
-    } catch (error) {
-      // console.error("대기 줄 서기 실패:", error);
-    }
+  const { mutate: postWaitingRegister } = usePostWaitingRegister();
+  const handleConfirm = () => {
+    postWaitingRegister({ boothId, party_size: checkedPeople });
   };
 
   return (

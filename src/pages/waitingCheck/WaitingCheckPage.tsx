@@ -31,7 +31,7 @@ const WaitingCheckPage = () => {
         <WaitingCard
           waiting={{
             waitingStatus: "check",
-            waitingTeamsAhead: booth.waiting_count,
+            waitingTeamsAhead: booth.total_waiting_teams,
             booth: {
               name: booth.name,
               boothID: booth.id,

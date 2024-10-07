@@ -28,7 +28,7 @@ export const Circle = styled.div<{ $isChecked: boolean }>`
   border-radius: 2.5rem;
 
   ${({ $isChecked, theme }) => css`
-    border: 1px solid ${theme.colors.scheme.blue.border};
+    box-shadow: 0 0 0 1px inset ${theme.colors.scheme.blue.border};
     background-color: ${$isChecked ? theme.colors.scheme.blue.background : ""};
     color: ${$isChecked
       ? theme.colors.scheme.blue.font
