@@ -17,7 +17,6 @@ export const WaitingDetailPageBoothCardWrapper = styled.div`
   width: 100%;
 
   padding: 16px 20px 20px 20px;
-  border: 1px solid red;
 `;
 
 export const WaitingDetailPageBoothCard = styled.div`
