@@ -27,30 +27,23 @@ i {font-style:normal}
 }
 
 // 폰트설정
-@font-face {
-    font-family:"Pretendard Variable";
-    src: url("/src/assets/fonts/PretendardVariable.woff2");
-}
 
 @font-face {
     font-family:"Pretendard-Semibold";
-    src: url("/src/assets/fonts/Pretendard-SemiBold.woff") format("woff2"),
-		url("/src/assets/fonts/Pretendard-SemiBold.woff") format("woff"),
-    url("/src/assets/fonts/Pretendard-SemiBold.woff") format("truetype");
+    src: url("/src/assets/fonts/Pretendard-SemiBold.woff") format("woff"),
+    url("/src/assets/fonts/Pretendard-SemiBold.ttf") format("truetype");
 }
 
 @font-face {
     font-family:"Pretendard-Bold";
-    src: url("/src/assets/fonts/Pretendard-Bold.woff") format("woff2"),
-		url("/src/assets/fonts/Pretendard-Bold.woff") format("woff"),
-    url("/src/assets/fonts/Pretendard-Bold.woff") format("truetype");
+    src: url("/src/assets/fonts/Pretendard-Bold.woff") format("woff"),
+    url("/src/assets/fonts/Pretendard-Bold.ttf") format("truetype");
 }
 
 @font-face {
     font-family:"Pretendard-Medium";
-    src: url("/src/assets/fonts/Pretendard-Medium.woff") format("woff2"),
-		url("/src/assets/fonts/Pretendard-Medium.woff") format("woff"),
-    url("/src/assets/fonts/Pretendard-Medium.woff") format("truetype");
+    src: url("/src/assets/fonts/Pretendard-Medium.woff") format("woff"),
+    url("/src/assets/fonts/Pretendard-Medium.ttf") format("truetype");
 }
 
 // 초기 html 설정
