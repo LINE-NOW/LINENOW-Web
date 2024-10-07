@@ -1,15 +1,17 @@
-import * as S from './LoginPage.styled';
-import InputText from '@components/inputText/InputText';
-import useForm from '@hooks/useForm';
-import Button from '@components/button/Button';
+import * as S from "./LoginPage.styled";
+import InputText from "@components/inputText/InputText";
+import useForm from "@hooks/useForm";
+import Button from "@components/button/Button";
 
 import {
   initialLoginValues,
   LoginFormValues,
   loginValidateConfigs,
-} from './LoginValidateConfig';
-import validateConfigs from '@utils/validateConfig';
-import { usePostLogin } from '@hooks/apis/auth';
+} from "./LoginValidateConfig";
+import validateConfigs from "@utils/validateConfig";
+import { usePostLogin } from "@hooks/apis/auth";
+import useIsLoading from "@hooks/useIsLoading";
+import { useEffect } from "react";
 
 const LoginPage = () => {
   const getErrors = (values: LoginFormValues) => {
@@ -17,7 +19,13 @@ const LoginPage = () => {
     return errors;
   };
 
-  const { mutate: postLogin } = usePostLogin();
+  const { mutate: postLogin, isPending } = usePostLogin();
+
+  const { setLoadings } = useIsLoading();
+
+  useEffect(() => {
+    setLoadings({ isFullLoading: isPending });
+  }, [isPending]);
 
   const handleSubmitButton = () => {
     postLogin({ username: values.phonenumber, password: values.password });
@@ -44,13 +52,13 @@ const LoginPage = () => {
     <S.LoginPageWrapper>
       <S.LoginPageTextInputWrapper>
         <InputText
-          {...getInputTextProps('phonenumber')}
+          {...getInputTextProps("phonenumber")}
           label="전화번호"
           placeholder="01012345678"
           onChange={handleChange}
         />
         <InputText
-          {...getInputTextProps('password')}
+          {...getInputTextProps("password")}
           type="password"
           label="비밀번호"
           placeholder="비밀번호를 입력해주세요"

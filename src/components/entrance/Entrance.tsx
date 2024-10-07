@@ -1,54 +1,56 @@
-import { useNavigate } from "react-router-dom";
 import Button from "@components/button/Button";
 import ButtonLayout from "@components/button/ButtonLayout";
 import BoothCardDetail from "@components/boothCard/boothCardDetail";
 import * as S from "./Entrance.styled";
-import {
-  handleConfirmEntry,
-  handleCancelEntry,
-  getThreeMinutesLater,
-} from "./entranceUtils";
-import useEntranceBottomsheet from "@hooks/useEntrance";
+import { handleConfirmEntry, handleCancelEntry } from "./entranceUtils";
+
 // import useTimer from "@hooks/useTimer";
 import { getWaitingDetail } from "@apis/domains/waitingDetail/apis";
 import { useEffect, useState } from "react";
 import { WaitingDetail } from "@interfaces/waitingDetail";
 import useModal from "@hooks/useModal";
 import useCountdown from "@hooks/useCountdown";
+import { usePostConfirm } from "@hooks/apis/entry";
+import { usePostWaitingCancel } from "@hooks/apis/waiting";
+import useIsLoading from "@hooks/useIsLoading";
 
 export interface EntranceProps {
-  boothID?: number;
+  targetTime: string;
+  waitingID?: number;
   isOpen?: boolean;
-  nextPath: string;
 }
 
-export const Entrance = ({ boothID, nextPath }: EntranceProps) => {
-  const navigate = useNavigate();
-  const { closeEntrace } = useEntranceBottomsheet();
+export const Entrance = ({ waitingID, targetTime }: EntranceProps) => {
+  const { mutate: postConfirm, isPending: isConfrimPending } = usePostConfirm({
+    waitingID: waitingID || 0,
+  });
+  const { mutate: postCancel, isPending: isCancelPending } =
+    usePostWaitingCancel();
+
+  const { setLoadings } = useIsLoading();
+  useEffect(() => {
+    setLoadings({ isFullLoading: isCancelPending || isConfrimPending });
+  }, [isConfrimPending, isCancelPending]);
+
   const { openModal, closeModal } = useModal();
 
-  //   const { minutes, seconds } = useTimer(3, 0);
   const [waitingDetail, setWaitingDetail] = useState<WaitingDetail | null>(
     null
   );
 
   useEffect(() => {
     const fetchWaitingDetail = async () => {
-      if (boothID) {
-        const detail = await getWaitingDetail({ waitingID: boothID });
+      if (waitingID) {
+        const detail = await getWaitingDetail({ waitingID: waitingID });
         setWaitingDetail(detail);
       }
     };
 
     fetchWaitingDetail();
-  }, [boothID]);
+  }, [waitingID]);
 
-  //추후 확인 후 삭제 예정
-  // const targetDate = ;
-
-  // targetDate를 useCountdown 훅에 전달
-  const { getTime, isCountdownOver } = useCountdown({
-    targetDate: getThreeMinutesLater(),
+  const { getTime } = useCountdown({
+    targetDate: targetTime,
   });
 
   return (
@@ -73,16 +75,7 @@ export const Entrance = ({ boothID, nextPath }: EntranceProps) => {
       <ButtonLayout $col={1}>
         <Button
           scheme="lime"
-          disabled={isCountdownOver} // 타이머 종료 시 버튼 비활성화
-          onClick={() =>
-            handleConfirmEntry(
-              openModal,
-              closeModal,
-              closeEntrace,
-              navigate,
-              nextPath
-            )
-          }
+          onClick={() => handleConfirmEntry(openModal, closeModal, postConfirm)}
         >
           <span>입장할게요!</span>
           <span>{getTime("MMSS")}</span>
@@ -91,7 +84,11 @@ export const Entrance = ({ boothID, nextPath }: EntranceProps) => {
           scheme="grayLight"
           disabled={false}
           shape="outline"
-          onClick={() => handleCancelEntry(openModal, closeModal, closeEntrace)}
+          onClick={() =>
+            handleCancelEntry(openModal, closeModal, () => {
+              postCancel(waitingID || 0);
+            })
+          }
         >
           <span>입장 취소하기</span>
         </Button>
