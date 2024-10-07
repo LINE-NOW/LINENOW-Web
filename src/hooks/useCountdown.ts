@@ -26,6 +26,7 @@ const useCountdown = ({ targetDate }: useCountdownProps) => {
         setCountdown(newCountdown);
 
         if (newCountdown.leftTotal <= 0) {
+          console.log("count");
           clearInterval(intervalId);
           setIsCountDownOver(true);
           history.go(0);
