@@ -12,8 +12,7 @@ import {
 } from "./SignupValidateConfig";
 import validateConfigs from "@utils/validateConfig";
 import { usePostSignup } from "@hooks/apis/auth";
-import { useEffect, useState } from "react";
-import useIsLoading from "@hooks/useIsLoading";
+import { useState } from "react";
 
 const SignupPage = () => {
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null); // Turnstile 토큰 상태
@@ -104,7 +103,6 @@ const SignupPage = () => {
           onSuccess={(token) => setTurnstileToken(token)} // Turnstile 검증 성공 시 토큰 저장
           onError={() => setTurnstileToken(null)} // 실패 시 토큰 초기화
         />
-
       </S.SignupPageWrapper>
       <BottomButton>
         <Button disabled={!isValid} onClick={handleSubmitButton}>
