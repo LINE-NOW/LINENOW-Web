@@ -30,7 +30,6 @@ const BoothDetailPage = () => {
   const boothNumber = boothId ? parseInt(boothId, 10) : null;
 
   const { data: booth, isLoading } = useGetBooth(boothNumber || 0);
-  console.log("부스정보:", booth);
 
   // TODO:- 이거 누군가는 고쳐주세요... atom쓰는걸로...
   const [isModalOpen, setIsModalOpen] = useState(false);
