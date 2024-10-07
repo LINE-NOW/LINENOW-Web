@@ -6,8 +6,8 @@ const fontGenerator = (
   letterSpacing = "normal"
 ) => ({
   "font-family": fontFamily,
-  "font-weight": fontWeight,
   "font-size": fontSize,
+  "font-weight": fontWeight,
   "line-height": lineHeight,
   "letter-spacing": letterSpacing,
 });
@@ -114,14 +114,14 @@ const theme = {
     h2: fontGenerator(
       "Pretendard-Semibold",
       "1.25rem",
-      "500",
+      "550",
       "1.5rem",
       "-0.1px"
     ),
     h2_b: fontGenerator(
       "Pretendard-Bold",
       "1.25rem",
-      "600",
+      "570",
       "1.5rem",
       "-0.1px"
     ),
@@ -134,23 +134,23 @@ const theme = {
     ),
 
     // body
-    b1: fontGenerator("Pretendard-Medium", "1rem", "500", "1.5rem", "-0.25px"),
-    b2: fontGenerator("Pretendard-Medium", "0.875rem", "500", "-0.25px"),
+    b1: fontGenerator("Pretendard-Medium", "1rem", "400", "1.5rem", "-0.25px"),
+    b2: fontGenerator("Pretendard-Medium", "0.875rem", "400", "-0.25px"),
     b2_b: fontGenerator("Pretendard-Semibold", "0.875rem", "500", "-0.5px"),
-    b3: fontGenerator("Pretendard-Medium", "0.75rem", "500", "1rem"),
+    b3: fontGenerator("Pretendard-Medium", "0.75rem", "400", "1rem"),
     b3_b: fontGenerator("Pretendard-Semibold", "0.75rem", "500", "1rem"),
 
     // etc
-    btn: fontGenerator("Pretendard-Bold", "1rem", "500", "1.5rem", "-0.2px"),
+    btn: fontGenerator("Pretendard-Bold", "1rem", "570", "1.5rem", "-0.2px"),
     btn2: fontGenerator(
       "Pretendard-Bold",
       "0.875rem",
-      "600",
+      "570",
       "1.25rem",
       "-0.2px"
     ),
-    chip: fontGenerator("Pretendard-Bold", "0.75rem", "500", "1rem", "-0.5px"),
-    caption: fontGenerator("Pretendard-Medium", "0.625rem", "500", "0.875rem"),
+    chip: fontGenerator("Pretendard-Bold", "0.75rem", "570", "1rem", "-0.5px"),
+    caption: fontGenerator("Pretendard-Medium", "0.625rem", "400", "0.875rem"),
   },
 };
 
