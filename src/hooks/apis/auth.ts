@@ -97,6 +97,7 @@ interface UsePostSignupProps {
   phone_number: string;
   password1: string;
   password2: string;
+  turnstile_token: string;
 }
 
 export const usePostSignup = () => {
@@ -112,7 +113,8 @@ export const usePostSignup = () => {
         phone_number: requestBody.phone_number,
         password1: requestBody.password1,
         password2: requestBody.password2,
-      });
+        turnstile_token: requestBody.turnstile_token,
+      })
     },
     onSuccess: async (response: SignupResponse) => {
       login({
