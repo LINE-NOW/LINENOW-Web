@@ -26,7 +26,7 @@ const SettingPage = () => {
 
   const logoutModalProps = {
     title: "로그아웃",
-    sub: "취소하면 레전드 다시 서야합니다.\n 취소하면 레전드 다시 서야합니다.",
+    sub: "로그아웃하시겠습니까? \n 대기를 등록하려면 다시 로그인해야 합니다.",
     primaryButton: {
       children: "로그아웃하기",
       onClick: handleLogout,

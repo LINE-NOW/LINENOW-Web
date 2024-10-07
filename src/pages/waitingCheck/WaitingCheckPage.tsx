@@ -36,7 +36,7 @@ const WaitingCheckPage = () => {
               name: booth.name,
               boothID: booth.id,
               location: booth.location,
-              thumbnail: booth.images[0] || "/images/default_thumbnail.png",
+              thumbnail: booth.images[0] || "/images/image_waitingNoCard.png",
             },
 
             party_size: checkedPeople,

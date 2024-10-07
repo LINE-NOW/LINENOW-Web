@@ -1,5 +1,5 @@
 const fontGenerator = (
-  fontFamily = "Pretendard",
+  fontFamily = "Pretendard-Semibold",
   fontSize = "1.6rem",
   fontWeight = "normal",
   lineHeight = "normal",
@@ -104,23 +104,53 @@ const theme = {
 
   fonts: {
     // head
-    h1: fontGenerator("Pretendard", "1.5rem", "600", "1.75rem", "-0.24px"),
-    h2: fontGenerator("Pretendard", "1.25rem", "600", "1.5rem", "-0.1px"),
-    h2_b: fontGenerator("Pretendard", "1.25rem", "700", "1.5rem", "-0.1px"),
-    h3: fontGenerator("Pretendard", "1rem", "600", "1.25rem", "-0.16px"),
+    h1: fontGenerator(
+      "Pretendard-Semibold",
+      "1.5rem",
+      "500",
+      "1.75rem",
+      "-0.24px"
+    ),
+    h2: fontGenerator(
+      "Pretendard-Semibold",
+      "1.25rem",
+      "500",
+      "1.5rem",
+      "-0.1px"
+    ),
+    h2_b: fontGenerator(
+      "Pretendard-Bold",
+      "1.25rem",
+      "600",
+      "1.5rem",
+      "-0.1px"
+    ),
+    h3: fontGenerator(
+      "Pretendard-Semibold",
+      "1rem",
+      "500",
+      "1.25rem",
+      "-0.16px"
+    ),
 
     // body
-    b1: fontGenerator("Pretendard", "1rem", "500", "1.5rem", "-0.25px"),
-    b2: fontGenerator("Pretendard", "0.875rem", "500", "-0.25px"),
-    b2_b: fontGenerator("Pretendard", "0.875rem", "600", "-0.5px"),
-    b3: fontGenerator("Pretendard", "0.75rem", "500", "1rem"),
-    b3_b: fontGenerator("Pretendard", "0.75rem", "600", "1rem"),
+    b1: fontGenerator("Pretendard-Medium", "1rem", "500", "1.5rem", "-0.25px"),
+    b2: fontGenerator("Pretendard-Medium", "0.875rem", "500", "-0.25px"),
+    b2_b: fontGenerator("Pretendard-Semibold", "0.875rem", "500", "-0.5px"),
+    b3: fontGenerator("Pretendard-Medium", "0.75rem", "500", "1rem"),
+    b3_b: fontGenerator("Pretendard-Semibold", "0.75rem", "500", "1rem"),
 
     // etc
-    btn: fontGenerator("Pretendard", "1rem", "700", "1.5rem", "-0.2px"),
-    btn2: fontGenerator("Pretendard", "0.875rem", "700", "1.25rem", "-0.2px"),
-    chip: fontGenerator("Pretendard", "0.75rem", "700", "1rem", "-0.5px"),
-    caption: fontGenerator("Pretendard", "0.625rem", "500", "0.875rem"),
+    btn: fontGenerator("Pretendard-Bold", "1rem", "500", "1.5rem", "-0.2px"),
+    btn2: fontGenerator(
+      "Pretendard-Bold",
+      "0.875rem",
+      "600",
+      "1.25rem",
+      "-0.2px"
+    ),
+    chip: fontGenerator("Pretendard-Bold", "0.75rem", "500", "1rem", "-0.5px"),
+    caption: fontGenerator("Pretendard-Medium", "0.625rem", "500", "0.875rem"),
   },
 };
 
