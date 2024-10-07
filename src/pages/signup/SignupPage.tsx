@@ -70,7 +70,7 @@ const SignupPage = () => {
           label="이름"
           placeholder="홍길동"
           currentCount={values.name.length}
-          count={20}
+          count={4}
         />
 
         <InputText
@@ -87,7 +87,7 @@ const SignupPage = () => {
             name="password"
             type="password"
             label="비밀번호"
-            description={`4자 이상의 영문과 숫자, 특수문자 (!@#$%^&*)를\n조합하여 비밀번호를 작성해주세요.`}
+            description={`8자 이상의 영문과 숫자, 특수문자 !@#$%^&*를\n조합하여 비밀번호를 작성해주세요.`}
             placeholder="비밀번호를 입력해주세요"
           />
           <InputText
