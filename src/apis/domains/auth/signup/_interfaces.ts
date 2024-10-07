@@ -5,6 +5,7 @@ export interface SignupRequest {
   phone_number: string;
   password1: string;
   password2: string;
+  turnstile_token: string;
 }
 
 export interface SignupResponse {

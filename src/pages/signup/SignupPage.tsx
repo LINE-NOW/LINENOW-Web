@@ -3,6 +3,7 @@ import * as S from "./SignupPage.styled";
 import InputText from "@components/inputText/InputText";
 import useForm from "@hooks/useForm";
 import Button from "@components/button/Button";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 import {
   initialSignupValues,
@@ -11,10 +12,12 @@ import {
 } from "./SignupValidateConfig";
 import validateConfigs from "@utils/validateConfig";
 import { usePostSignup } from "@hooks/apis/auth";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useIsLoading from "@hooks/useIsLoading";
 
 const SignupPage = () => {
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null); // Turnstile 토큰 상태
+
   const getErrors = (values: SignupFormValues) => {
     const errors = validateConfigs(signupValidateConfigs, values);
 
@@ -35,11 +38,17 @@ const SignupPage = () => {
   }, [isPending]);
 
   const handleSubmitButton = () => {
+    if (!turnstileToken) {
+      alert("Turnstile 검증을 완료해주세요."); // Turnstile 토큰 검증 확인
+      return;
+    }
+
     postSignup({
       name: values.name,
       phone_number: values.phonenumber,
       password1: values.password,
       password2: values.confirmPassword,
+      turnstile_token: turnstileToken,
     });
   };
 
@@ -56,7 +65,7 @@ const SignupPage = () => {
       minLength: signupValidateConfigs[key].minLength,
       maxLength: signupValidateConfigs[key].maxLength,
       errorMessage: errors[key],
-      valu: values[key],
+      value: values[key],
     };
   };
 
@@ -94,6 +103,14 @@ const SignupPage = () => {
             placeholder="비밀번호를 재입력해주세요"
           />
         </S.SignupPageTextInputWrapper>
+
+        {/* Turnstile 컴포넌트 추가 */}
+        <Turnstile
+          siteKey={import.meta.env.VITE_TURNSTILE_SITE_KEY} // Cloudflare에서 발급받은 Site Key 입력
+          onSuccess={(token) => setTurnstileToken(token)} // Turnstile 검증 성공 시 토큰 저장
+          onError={() => setTurnstileToken(null)} // 실패 시 토큰 초기화
+        />
+
       </S.SignupPageWrapper>
       <BottomButton>
         <Button disabled={!isValid} onClick={handleSubmitButton}>
