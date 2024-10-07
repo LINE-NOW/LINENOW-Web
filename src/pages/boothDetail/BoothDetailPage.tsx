@@ -39,6 +39,69 @@ const BoothDetailPage = () => {
     setIsModalOpen(false);
   };
 
+  const getInformationTitle = () => {
+    switch (booth?.is_operated) {
+      case "not_started":
+        return "부스 운영 시간";
+      case "operating" || "paused":
+        return "전체 대기";
+      case "finished":
+        return "부스가 종료되었어요";
+    }
+  };
+
+  const getInformationSub = () => {
+    switch (booth?.is_operated) {
+      case "not_started":
+        return new Date(booth.open_time).toLocaleTimeString("ko-KR", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+      case "operating" || "paused":
+        //TODO: - API 수정시 total teams 로 바꿔야함
+        return `${booth.waiting_count}팀`;
+
+      case "finished":
+        return undefined;
+    }
+  };
+
+  const getInformationButton = () => {
+    if (booth?.is_waiting) {
+      return (
+        <>
+          {/* TODO: - 대기 취소 버튼 */}
+          <Button scheme="blueLight">
+            <span>내 앞으로 지금</span>
+            <span className="blue">{booth.waiting_count}팀</span>
+          </Button>
+        </>
+      );
+    }
+    switch (booth?.is_operated) {
+      case "not_started":
+        return (
+          <Button disabled>
+            <span>부스 운영 전이에요.</span>
+          </Button>
+        );
+      case "operating":
+        return (
+          <Button onClick={openModal}>
+            <span>대기 줄 서기</span>
+          </Button>
+        );
+      case "paused":
+        return (
+          <Button disabled>
+            <span>대기 줄 서기가 중지 되었어요</span>
+          </Button>
+        );
+      case "finished":
+        return undefined;
+    }
+  };
+
   if (isLoading) {
     return <Spinner />;
   }
@@ -54,40 +117,11 @@ const BoothDetailPage = () => {
           <BoothDetailMenu booth={booth} />
 
           <BottomButton
-            informationTitle={
-              booth.is_operated === "not_started" ? "부스 운영 시간" : "전체 줄"
-            }
-            informationSub={
-              booth.is_operated === "not_started"
-                ? new Date(booth.open_time).toLocaleTimeString("ko-KR", {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })
-                : `${booth.waiting_count}팀`
-            }
+            informationTitle={getInformationTitle()}
+            informationSub={getInformationSub()}
           >
             {isLogin ? (
-              // 로그인 한 경우
-              booth.is_operated === "operating" ? (
-                booth.is_waiting ? (
-                  <Button scheme="blueLight">
-                    <span>내 앞으로 지금</span>
-                    <span className="blue">{booth.waiting_count}팀</span>
-                  </Button>
-                ) : (
-                  <Button onClick={openModal}>
-                    <span>대기 줄 서기</span>
-                  </Button>
-                )
-              ) : booth.is_operated === "not_started" ? (
-                <Button disabled>
-                  <span>부스 운영 전이에요.</span>
-                </Button>
-              ) : (
-                <Button disabled>
-                  <span>대기 줄 서기가 마감되었어요</span>
-                </Button>
-              )
+              getInformationButton()
             ) : (
               // 로그인 하지 않은 경우
               <Button scheme="lime" onClick={handleLoginButtonClick}>

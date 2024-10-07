@@ -3,7 +3,7 @@ import { postResponse } from "@apis/instance";
 import { transformPostConfirm } from "./_interface";
 
 export interface PostConfirmRequest {
-  waitingID: string;
+  waitingID: number;
 }
 
 export const postEntryConfirm = async ({

@@ -14,4 +14,5 @@ export const SelectWrapper = styled.select`
   &:focus {
     outline: none;
   }
+  background-color: transparent;
 `;

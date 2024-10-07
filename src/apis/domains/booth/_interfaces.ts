@@ -1,4 +1,4 @@
-import { WaitingStatus } from "@linenow-types/status";
+import { BoothStatus, WaitingStatus } from "@linenow-types/status";
 
 export interface Image {
   image: string;
@@ -6,11 +6,12 @@ export interface Image {
 
 // Booth 인터페이스 정의
 export interface Booth {
-  id?: number;
+  id: number;
   name?: string;
   description?: string;
-  caution?: string;
   location?: string;
+  caution?: string;
+  is_operated: BoothStatus;
   images?: Image[];
   menu?: { name: string; price: number }[];
   open_time: string;
@@ -18,7 +19,6 @@ export interface Booth {
   waiting_count?: number;
   is_waiting?: boolean;
   waiting_status?: WaitingStatus;
-  is_operated?: "operating" | "not_started" | "finished";
 }
 
 // GetBoothResponse 함수 정의

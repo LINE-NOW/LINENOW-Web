@@ -1,11 +1,11 @@
-import { WaitingStatus } from "@linenow-types/status";
+import { BoothStatus, WaitingStatus } from "@linenow-types/status";
 
 export interface BoothList {
   id: number;
   name: string;
   description: string;
   location: string;
-  // is_operated: Choice(operating, not_started, finished),
+  is_operated: BoothStatus;
   thumbnail: string;
   waiting_count: number;
   is_waiting: boolean;
@@ -18,6 +18,7 @@ export const GetBoothListResponse = (response: BoothList) => {
     name: response.name,
     description: response.description,
     location: response.location,
+    is_operated: response.is_operated,
     thumbnail: response.thumbnail,
     waiting_count: response.waiting_count,
     is_waiting: response.is_waiting,

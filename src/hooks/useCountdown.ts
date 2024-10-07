@@ -20,18 +20,20 @@ const useCountdown = ({ targetDate }: useCountdownProps) => {
   const [isCountdownOver, setIsCountDownOver] = useState<boolean>(false);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      const newCountdown = calculateTime(targetDate);
-      setCountdown(newCountdown);
+    if (calculateTime(targetDate).leftTotal > 0) {
+      const intervalId = setInterval(() => {
+        const newCountdown = calculateTime(targetDate);
+        setCountdown(newCountdown);
 
-      if (newCountdown.leftTotal <= 0) {
-        clearInterval(intervalId);
-        setIsCountDownOver(true);
-        return;
-      }
-    }, 1000);
-
-    return () => clearInterval(intervalId);
+        if (newCountdown.leftTotal <= 0) {
+          clearInterval(intervalId);
+          setIsCountDownOver(true);
+          history.go(0);
+          return;
+        }
+      }, 1000);
+      return () => clearInterval(intervalId);
+    }
   }, [targetDate]);
 
   const getTime = (format: countdownFormat) => {

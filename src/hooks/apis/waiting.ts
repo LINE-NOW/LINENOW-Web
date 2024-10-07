@@ -25,9 +25,9 @@ export const useGetWaitings = () => {
   });
 };
 
-export const useGetNowWaitings = (isLogin: boolean) => {
+export const useGetNowWaitings = (isLogin: boolean, query?: string) => {
   return useQuery({
-    queryKey: [WAITING_QUERY_KEY.NOW_WAITINGS],
+    queryKey: [WAITING_QUERY_KEY.NOW_WAITINGS, query],
     queryFn: () => getNowWaitings(),
     enabled: isLogin,
   });

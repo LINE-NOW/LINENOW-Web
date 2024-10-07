@@ -9,6 +9,9 @@ import router from "@routes/router";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+//components
+import FullSpinner from "@components/spinner/FullSpinner";
+
 // test
 // import TestTool from "./mocks/_components/TestTool";
 
@@ -19,6 +22,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       {/* <TestTool /> */}
       <ThemeProvider theme={theme}>
+        <FullSpinner />
         <GlobalStyle />
         <RouterProvider router={router} />
       </ThemeProvider>
