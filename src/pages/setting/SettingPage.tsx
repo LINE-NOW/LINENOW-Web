@@ -5,18 +5,10 @@ import useModal from "@hooks/useModal";
 // import { useAtom } from 'jotai';
 // import { languageAtom } from '@atoms/language';
 import { usePostLogout } from "@hooks/apis/auth";
-import { useEffect } from "react";
-import useIsLoading from "@hooks/useIsLoading";
 
 const SettingPage = () => {
   const { openModal } = useModal();
-  const { mutate: postLogout, isPending } = usePostLogout();
-
-  const { setLoadings } = useIsLoading();
-
-  useEffect(() => {
-    setLoadings({ isFullLoading: isPending });
-  }, [isPending]);
+  const { mutate: postLogout } = usePostLogout();
 
   // const [language, setLanguage] = useAtom(languageAtom);
 

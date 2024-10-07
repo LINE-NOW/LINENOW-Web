@@ -10,7 +10,6 @@ import WaitingDetailCaution from "./_components/WaitingDetailCaution";
 import useModal from "@hooks/useModal";
 import Spinner from "@components/spinner/Spinner";
 import { usePostWaitingCancel } from "@hooks/apis/waiting";
-import useIsLoading from "@hooks/useIsLoading";
 
 const WaitingDetailPage = () => {
   const navigate = useNavigate();
@@ -21,12 +20,7 @@ const WaitingDetailPage = () => {
   const { data: waitingDetail, isLoading } = useGetWaitingDetail(waitingID);
   const { openModal } = useModal();
 
-  const { mutate: postWaitingCancel, isPending } = usePostWaitingCancel();
-  const { setLoadings } = useIsLoading();
-
-  useEffect(() => {
-    setLoadings({ isFullLoading: isPending });
-  }, [isPending]);
+  const { mutate: postWaitingCancel } = usePostWaitingCancel();
 
   const waitingCancelModal = {
     title: "정말 대기를 취소하시겠어요?",

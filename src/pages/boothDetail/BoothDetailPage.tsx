@@ -17,7 +17,7 @@ import useBottomsheet from "@hooks/useBottomsheet";
 import LoginBottomsheetContent from "@components/login/LoginBottomsheetContent";
 import useModal from "@hooks/useModal";
 import { WaitingDetailCancel } from "@pages/waitingCheck/WaitingCheckPage.styled";
-import { postWaitingCancel } from "@apis/domains/waitingCancel/apis";
+import { usePostWaitingCancel } from "@hooks/apis/waiting";
 
 const BoothDetailPage = () => {
   const { isLogin } = useAuth();
@@ -47,11 +47,12 @@ const BoothDetailPage = () => {
     openModal(waitingCancelModal);
   };
 
+  const { mutate: postWaitingCancel } = usePostWaitingCancel();
   const waitingCancelModal = {
     title: "정말 대기를 취소하시겠어요?",
     sub: "대기를 취소하면 현재 줄 서기가 사라져요.\n그래도 취소하실건가요?",
     primaryButton: {
-      onClick: () => postWaitingCancel({ waitingID: booth?.waiting_id || 0 }),
+      onClick: () => postWaitingCancel(booth?.waiting_id || 0),
     },
     secondButton: {
       children: "이전으로",

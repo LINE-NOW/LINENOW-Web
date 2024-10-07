@@ -67,12 +67,15 @@ export interface RegisterWaitingRequest {
   party_size: number;
 }
 
+export interface PostWaitingRegisterProps extends Waiting {
+  id?: number;
+}
 // 대기 줄서기 등록 함수
 export const postWaitingRegister = async ({
   boothId,
   party_size,
-}: RegisterWaitingRequest): Promise<Waiting | null> => {
-  const response = await postResponse<Waiting>(
+}: RegisterWaitingRequest): Promise<PostWaitingRegisterProps | null> => {
+  const response = await postResponse<PostWaitingRegisterProps>(
     `api/v1/waitings/${boothId}/register`,
     { party_size }
   );

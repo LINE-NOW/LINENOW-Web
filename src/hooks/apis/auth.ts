@@ -18,7 +18,10 @@ export const usePostLogout = () => {
 
   return useMutation<void, Error, void>({
     mutationKey: ["auth_logout"],
-    mutationFn: () => postLogout({ refresh: auth?.refreshToken || "" }),
+    mutationFn: () => {
+      setLoadings({ isFullLoading: true });
+      return postLogout({ refresh: auth?.refreshToken || "" });
+    },
     onSuccess: async () => {
       logout();
       setLoadings({ isFullLoading: false });
@@ -40,7 +43,10 @@ export const usePostDeleteID = () => {
 
   return useMutation<void, Error, void>({
     mutationKey: ["auth_deleteID"],
-    mutationFn: () => postDeleteID({ refresh_token: auth?.refreshToken || "" }),
+    mutationFn: () => {
+      setLoadings({ isFullLoading: true });
+      return postDeleteID({ refresh_token: auth?.refreshToken || "" });
+    },
     onSuccess: async () => {
       logout();
       setLoadings({ isFullLoading: false });
@@ -65,11 +71,13 @@ export const usePostLogin = () => {
 
   return useMutation({
     mutationKey: ["auth_login"],
-    mutationFn: (requestBody: UsePostLoginProps) =>
-      postLogin({
+    mutationFn: (requestBody: UsePostLoginProps) => {
+      setLoadings({ isFullLoading: true });
+      return postLogin({
         username: requestBody.username,
         password: requestBody.password,
-      }),
+      });
+    },
     onSuccess: async (response: LoginResponse) => {
       login({
         accessToken: response.access,
@@ -97,13 +105,15 @@ export const usePostSignup = () => {
 
   return useMutation({
     mutationKey: ["auth_signup"],
-    mutationFn: (requestBody: UsePostSignupProps) =>
-      postSignup({
+    mutationFn: (requestBody: UsePostSignupProps) => {
+      setLoadings({ isFullLoading: true });
+      return postSignup({
         name: requestBody.name,
         phone_number: requestBody.phone_number,
         password1: requestBody.password1,
         password2: requestBody.password2,
-      }),
+      });
+    },
     onSuccess: async (response: SignupResponse) => {
       login({
         accessToken: response.access,

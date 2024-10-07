@@ -12,7 +12,6 @@ import useModal from "@hooks/useModal";
 import useCountdown from "@hooks/useCountdown";
 import { usePostConfirm } from "@hooks/apis/entry";
 import { usePostWaitingCancel } from "@hooks/apis/waiting";
-import useIsLoading from "@hooks/useIsLoading";
 
 export interface EntranceProps {
   targetTime: string;
@@ -21,16 +20,10 @@ export interface EntranceProps {
 }
 
 export const Entrance = ({ waitingID, targetTime }: EntranceProps) => {
-  const { mutate: postConfirm, isPending: isConfrimPending } = usePostConfirm({
+  const { mutate: postConfirm } = usePostConfirm({
     waitingID: waitingID || 0,
   });
-  const { mutate: postCancel, isPending: isCancelPending } =
-    usePostWaitingCancel();
-
-  const { setLoadings } = useIsLoading();
-  useEffect(() => {
-    setLoadings({ isFullLoading: isCancelPending || isConfrimPending });
-  }, [isConfrimPending, isCancelPending]);
+  const { mutate: postCancel } = usePostWaitingCancel();
 
   const { openModal, closeModal } = useModal();
 

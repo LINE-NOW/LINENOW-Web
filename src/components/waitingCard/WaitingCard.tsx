@@ -11,8 +11,6 @@ import { useNavigate } from "react-router-dom";
 import useModal from "@hooks/useModal";
 import Button from "@components/button/Button";
 import { usePostWaitingCancel } from "@hooks/apis/waiting";
-import { useEffect } from "react";
-import useIsLoading from "@hooks/useIsLoading";
 
 interface WaitingCardProps {
   waiting: Pick<
@@ -32,12 +30,7 @@ interface WaitingCardProps {
 const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
   const navigate = useNavigate();
   const { openModal } = useModal();
-  const { mutate: postWaitingCancel, isPending } = usePostWaitingCancel();
-  const { setLoadings } = useIsLoading();
-
-  useEffect(() => {
-    setLoadings({ isFullLoading: isPending });
-  }, [isPending]);
+  const { mutate: postWaitingCancel } = usePostWaitingCancel();
 
   const targetTime = () => {
     switch (waiting.waitingStatus) {
@@ -83,7 +76,7 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
   const config = useWaitingCard({
     waitingID: waiting.waitingID || 0,
     status: waiting.waitingStatus ? waiting.waitingStatus : "check",
-    waitingCount: waiting.waitingTeamsAhead,
+    waitingTeamsAhead: waiting.waitingTeamsAhead,
     targetTime: targetTime(),
   });
 

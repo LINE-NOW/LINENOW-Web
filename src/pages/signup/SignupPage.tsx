@@ -11,8 +11,6 @@ import {
 } from "./SignupValidateConfig";
 import validateConfigs from "@utils/validateConfig";
 import { usePostSignup } from "@hooks/apis/auth";
-import { useEffect } from "react";
-import useIsLoading from "@hooks/useIsLoading";
 
 const SignupPage = () => {
   const getErrors = (values: SignupFormValues) => {
@@ -26,13 +24,7 @@ const SignupPage = () => {
     return errors;
   };
 
-  const { mutate: postSignup, isPending } = usePostSignup();
-
-  const { setLoadings } = useIsLoading();
-
-  useEffect(() => {
-    setLoadings({ isFullLoading: isPending });
-  }, [isPending]);
+  const { mutate: postSignup } = usePostSignup();
 
   const handleSubmitButton = () => {
     postSignup({
