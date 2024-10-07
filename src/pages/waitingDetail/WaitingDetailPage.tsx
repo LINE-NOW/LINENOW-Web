@@ -63,8 +63,11 @@ const WaitingDetailPage = () => {
   }
 
   if (!waitingDetail) {
-    //TODO:-대기 상세 정보를 찾을 수 없습니다
-    return <div>대기 상세 정보를 찾을 수 없습니다.</div>;
+    return (
+      <S.WaitingDetailNoInfo>
+        대기 상세 정보를 찾을 수 없습니다.
+      </S.WaitingDetailNoInfo>
+    );
   }
 
   return (

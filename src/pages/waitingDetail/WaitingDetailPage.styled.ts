@@ -1,9 +1,23 @@
 import styled from "styled-components";
 
+export const WaitingDetailNoInfo = styled.h1`
+  display: flex;
+  align-items: end;
+  justify-content: center;
+
+  transform: translate(-50%, -50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  ${({ theme }) => theme.fonts.b1}
+`;
+
 export const WaitingDetailPageBoothCardWrapper = styled.div`
   width: 100%;
 
   padding: 16px 20px 20px 20px;
+  border: 1px solid red;
 `;
 
 export const WaitingDetailPageBoothCard = styled.div`
