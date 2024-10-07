@@ -19,6 +19,9 @@ export interface Booth {
   waiting_count?: number;
   is_waiting?: boolean;
   waiting_status?: WaitingStatus;
+  waiting_id?: number;
+  total_waiting_teams?: number;
+  waiting_teams_ahead?: number;
 }
 
 // GetBoothResponse 함수 정의
@@ -41,5 +44,8 @@ export const GetBoothResponse = (response: Booth): Booth => {
     is_waiting: response.is_waiting,
     waiting_status: response.waiting_status,
     is_operated: response.is_operated,
+    waiting_id: response.waiting_id,
+    total_waiting_teams: response.total_waiting_teams,
+    waiting_teams_ahead: response.waiting_teams_ahead,
   };
 };

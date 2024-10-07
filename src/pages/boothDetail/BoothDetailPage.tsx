@@ -52,8 +52,7 @@ const BoothDetailPage = () => {
     title: "정말 대기를 취소하시겠어요?",
     sub: "대기를 취소하면 현재 줄 서기가 사라져요.\n그래도 취소하실건가요?",
     primaryButton: {
-      //TODO: - API 수정시 booth의 waitingID 로 바꿔야함
-      onClick: () => postWaitingCancel({ waitingID: booth?.id || 0 }),
+      onClick: () => postWaitingCancel({ waitingID: booth?.waiting_id || 0 }),
     },
     secondButton: {
       children: "이전으로",
@@ -82,8 +81,7 @@ const BoothDetailPage = () => {
       case "finished":
         return undefined;
       default:
-        //TODO: - API 수정시 total teams 로 바꿔야함
-        return `${booth?.waiting_count || 0}팀`;
+        return `${booth?.total_waiting_teams || 0}팀`;
     }
   };
 
@@ -91,10 +89,9 @@ const BoothDetailPage = () => {
     if (booth?.is_waiting) {
       return (
         <>
-          {/* TODO: - 대기 취소 버튼 */}
           <Button scheme="blueLight">
             <span>내 앞으로 지금</span>
-            <span className="blue">{booth.waiting_count}팀</span>
+            <span className="blue">{booth.waiting_teams_ahead}팀</span>
           </Button>
           <WaitingDetailCancel>
             <span onClick={onWaitingCancelClick}> 대기 취소하기</span>
