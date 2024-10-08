@@ -62,7 +62,7 @@ const BoothDetailPage = () => {
   const getInformationTitle = () => {
     switch (booth?.is_operated) {
       case "not_started":
-        return "부스 운영 시간";
+        return "부스 운영 예상 시간";
       case "finished":
         return "부스가 종료되었어요";
       default:

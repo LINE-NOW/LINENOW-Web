@@ -14,7 +14,9 @@ export const BoothDetailMenu = ({ booth }: BoothDetailContentProps) => {
         {booth.menu?.map((menu, index) => (
           <S.BoothDetailMenuArticleWrapper key={index}>
             <S.BoothDetailMenuArticle>{menu.name}</S.BoothDetailMenuArticle>
-            <S.BoothDetailMenuArticle>{menu.price}</S.BoothDetailMenuArticle>
+            <S.BoothDetailMenuArticle>
+              {menu.price.toLocaleString("ko-KR")}
+            </S.BoothDetailMenuArticle>
           </S.BoothDetailMenuArticleWrapper>
         ))}
       </S.BoothDetailMenuWrapper>
