@@ -36,7 +36,10 @@ const WaitingCheckPage = () => {
               name: booth.name,
               boothID: booth.id,
               location: booth.location,
-              thumbnail: booth.images[0] || "/images/image_waitingNoCard.png",
+              thumbnail:
+                typeof booth.images[0] === "string"
+                  ? booth.images[0]
+                  : "/images/image_waitingNoCard.png",
             },
 
             party_size: checkedPeople,
