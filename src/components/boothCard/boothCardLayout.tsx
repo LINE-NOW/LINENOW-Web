@@ -5,7 +5,7 @@ interface BoothCardProps {
   type: "main" | "waiting";
   boothTitle: React.ReactNode;
   boothSummary?: string;
-  boothLocationInfo: string;
+  boothLocationInfo?: string;
   boothImage?: string;
   children?: React.ReactNode;
   to?: string;
