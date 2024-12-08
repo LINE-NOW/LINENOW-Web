@@ -2,8 +2,13 @@
 import { getResponse } from "@apis/instance";
 
 // types
-import { Booth } from "@interfaces/booth";
-import { GetBoothResponse, transformGetBoothResponse } from "./_interfaces";
+import { Booth, BoothsElement } from "@interfaces/booth";
+import {
+  GetBoothResponse,
+  GetBoothsResponse,
+  transformGetBoothResponse,
+  transformgetBoothsResponse,
+} from "./_interfaces";
 
 // get booth : - 부스 상세
 export interface GetBoothRequest {
@@ -18,4 +23,19 @@ export const getBooth = async ({
   );
 
   return response ? transformGetBoothResponse(response) : null;
+};
+
+// get booths : - 부스 리스트
+export interface GetBoothsRequest {
+  ordering: string;
+}
+
+export const getBoothList = async ({
+  ...props
+}: GetBoothsRequest): Promise<BoothsElement[]> => {
+  const response = await getResponse<GetBoothsResponse>(
+    `/api/v1/booths?ordering=${props.ordering}`
+  );
+
+  return response ? transformgetBoothsResponse(response) : [];
 };

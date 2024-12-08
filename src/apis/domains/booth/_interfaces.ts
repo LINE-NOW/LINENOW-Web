@@ -1,4 +1,4 @@
-import { Booth } from "@interfaces/booth";
+import { Booth, BoothsElement } from "@interfaces/booth";
 import { BoothStatus, WaitingStatus } from "@linenow-types/status";
 
 interface Image {
@@ -10,7 +10,6 @@ interface Menu {
   price: string;
 }
 
-// Booth 인터페이스 정의
 export interface GetBoothResponse {
   id: number;
   name: string;
@@ -34,7 +33,23 @@ export interface GetBoothResponse {
   waiting_status: WaitingStatus;
 }
 
-// GetBoothResponse 함수 정의
+export interface GetBoothsResponse
+  extends Array<{
+    id: number;
+    name: string;
+    description: string;
+    location: string;
+
+    is_operated: BoothStatus;
+    thumbnail: string;
+
+    waiting_count: number;
+    total_waiting_teams: number;
+
+    is_waiting: boolean;
+    waiting_status: WaitingStatus | null;
+  }> {}
+
 export const transformGetBoothResponse = (
   response: GetBoothResponse
 ): Booth => {
@@ -60,4 +75,21 @@ export const transformGetBoothResponse = (
     totalWaitingTeams: response.total_waiting_teams,
     waitingTeamsAhead: response.waiting_teams_ahead,
   };
+};
+
+export const transformgetBoothsResponse = (
+  response: GetBoothsResponse
+): BoothsElement[] => {
+  return response.map((item) => ({
+    boothID: item.id,
+    name: item.name,
+    thumbnail: item.thumbnail,
+    description: item.description,
+    location: item.location,
+    isOperated: item.is_operated,
+    waitingCount: item.waiting_count,
+    totalWaitingTeams: item.total_waiting_teams,
+    isWaiting: item.is_waiting,
+    waitingStatus: item.waiting_status,
+  }));
 };

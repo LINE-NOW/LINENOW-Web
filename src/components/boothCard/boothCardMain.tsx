@@ -1,27 +1,27 @@
 import * as S from "./BoothCard.styled";
 import Chip from "@components/chip/Chip";
 import BoothCardLayout from "./boothCardLayout";
-import { BoothList } from "@apis/domains/boothList/_interfaces";
+import { BoothsElement } from "@interfaces/booth";
 
 interface BoothCardProps {
-  booth: BoothList;
+  booth: BoothsElement;
 }
 
 const BoothCardMain = ({ booth }: BoothCardProps) => {
   const getWaitingChip = () => {
-    if (booth.is_waiting) {
+    if (booth.isWaiting) {
       return <Chip scheme="lime">대기 중</Chip>;
     }
   };
   const getChip = () => {
-    switch (booth.is_operated) {
+    switch (booth.isOperated) {
       case "not_started":
         return <Chip scheme="grayLight">운영 전</Chip>;
       case "finished":
         return <Chip scheme="grayLight">운영 종료</Chip>;
       default:
         return (
-          <Chip scheme="blueLight">대기 {booth.total_waiting_teams} 팀</Chip>
+          <Chip scheme="blueLight">대기 {booth.totalWaitingTeams} 팀</Chip>
         );
     }
   };
@@ -32,7 +32,7 @@ const BoothCardMain = ({ booth }: BoothCardProps) => {
       boothTitle={booth.name}
       boothSummary={booth.description}
       boothLocationInfo={booth.location}
-      to={`/booth/${booth.id}`}
+      to={`/booth/${booth.boothID}`}
     >
       <S.BoothCardChipListWrapper>
         {getWaitingChip()}

@@ -19,10 +19,10 @@ export interface Booth {
   images: BoothImage[];
   menu: Menu[];
 
-  isOperated: BoothStatus;
-
   openTime: string;
   closeTime: string;
+
+  isOperated: BoothStatus;
 
   waitingCount: number;
   totalWaitingTeams: number;
@@ -33,9 +33,18 @@ export interface Booth {
   waitingStatus: WaitingStatus;
 }
 
-export interface BoothBrief
+export interface BoothSummary
   extends Pick<Booth, "boothID" | "name" | "description" | "location"> {
   thumbnail: string;
+}
+
+export interface BoothsElement
+  extends BoothSummary,
+    Pick<
+      Booth,
+      "isOperated" | "waitingCount" | "totalWaitingTeams" | "isWaiting"
+    > {
+  waitingStatus: WaitingStatus | null;
 }
 
 export interface Menu {

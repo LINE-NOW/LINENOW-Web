@@ -4,7 +4,7 @@ import * as S from "./BoothCard.styled";
 interface BoothCardProps {
   type: "main" | "waiting";
   boothTitle: React.ReactNode;
-  boothSummary: string;
+  boothSummary?: string;
   boothLocationInfo: string;
   boothImage?: string;
   children?: React.ReactNode;

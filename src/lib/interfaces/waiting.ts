@@ -1,5 +1,5 @@
 import { WaitingStatus } from "@linenow-types/status";
-import { BoothBrief } from "@interfaces/booth";
+import { BoothSummary } from "@interfaces/booth";
 
 export interface Waiting {
   waitingID?: number;
@@ -12,7 +12,7 @@ export interface Waiting {
   confirmDueTime?: string;
   arrivalarrivalDueTime?: string;
 
-  booth?: BoothBrief;
+  booth?: BoothSummary;
 
   // registeredAt: string;
   readyToConfirmAt?: string;

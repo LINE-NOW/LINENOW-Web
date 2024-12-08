@@ -31,7 +31,7 @@ const MainPage = () => {
     data: boothList,
     isLoading: getBoothListIsLoading,
     refetch: getBoothListRefetch,
-  } = useGetBoothList(currentSortBoothOption);
+  } = useGetBoothList({ ordering: currentSortBoothOption });
 
   useEffect(() => {
     getBoothListRefetch();
