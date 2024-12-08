@@ -1,14 +1,21 @@
+// api method
 import { getResponse } from "@apis/instance";
-import { Booth, GetBoothResponse } from "./_interfaces";
 
+// types
+import { Booth } from "@interfaces/booth";
+import { GetBoothResponse, transformGetBoothResponse } from "./_interfaces";
+
+// get booth : - 부스 상세
 export interface GetBoothRequest {
-  boothId: number;
+  boothID: number;
 }
 
 export const getBooth = async ({
-  boothId,
+  ...props
 }: GetBoothRequest): Promise<Booth | null> => {
-  const response = await getResponse<Booth>(`/api/v1/booths/${boothId}`);
+  const response = await getResponse<GetBoothResponse>(
+    `/api/v1/booths/${props.boothID}`
+  );
 
-  return response ? GetBoothResponse(response) : null;
+  return response ? transformGetBoothResponse(response) : null;
 };

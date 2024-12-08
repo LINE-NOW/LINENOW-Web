@@ -1,4 +1,4 @@
-import { Booth } from "@apis/domains/booth/_interfaces";
+import { Booth } from "@interfaces/booth";
 import { Title } from "../common/style";
 import * as S from "./BoothDetailMenu.styled";
 
@@ -15,7 +15,7 @@ export const BoothDetailMenu = ({ booth }: BoothDetailContentProps) => {
           <S.BoothDetailMenuArticleWrapper key={index}>
             <S.BoothDetailMenuArticle>{menu.name}</S.BoothDetailMenuArticle>
             <S.BoothDetailMenuArticle>
-              {menu.price.toLocaleString("ko-KR")}
+              {menu.price.toLocaleString()}
             </S.BoothDetailMenuArticle>
           </S.BoothDetailMenuArticleWrapper>
         ))}

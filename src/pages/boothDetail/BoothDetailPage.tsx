@@ -29,7 +29,7 @@ const BoothDetailPage = () => {
 
   const boothNumber = boothId ? parseInt(boothId, 10) : null;
 
-  const { data: booth, isLoading } = useGetBooth(boothNumber || 0);
+  const { data: booth, isLoading } = useGetBooth({ boothID: boothNumber || 0 });
 
   // TODO:- 이거 누군가는 고쳐주세요... atom쓰는걸로...
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -52,7 +52,7 @@ const BoothDetailPage = () => {
     title: "정말 대기를 취소하시겠어요?",
     sub: "대기를 취소하면 현재 줄 서기가 사라져요.\n그래도 취소하실건가요?",
     primaryButton: {
-      onClick: () => postWaitingCancel(booth?.waiting_id || 0),
+      onClick: () => postWaitingCancel(booth?.waitingID || 0),
     },
     secondButton: {
       children: "이전으로",
@@ -60,7 +60,7 @@ const BoothDetailPage = () => {
   };
 
   const getInformationTitle = () => {
-    switch (booth?.is_operated) {
+    switch (booth?.isOperated) {
       case "not_started":
         return "부스 운영 예상 시간";
       case "finished":
@@ -71,9 +71,9 @@ const BoothDetailPage = () => {
   };
 
   const getInformationSub = () => {
-    switch (booth?.is_operated) {
+    switch (booth?.isOperated) {
       case "not_started":
-        return new Date(booth.open_time).toLocaleTimeString("ko-KR", {
+        return new Date(booth.openTime).toLocaleTimeString("ko-KR", {
           hour: "2-digit",
           minute: "2-digit",
         });
@@ -81,17 +81,17 @@ const BoothDetailPage = () => {
       case "finished":
         return undefined;
       default:
-        return `${booth?.total_waiting_teams || 0}팀`;
+        return `${booth?.totalWaitingTeams || 0}팀`;
     }
   };
 
   const getInformationButton = () => {
-    if (booth?.is_waiting) {
+    if (booth?.isWaiting) {
       return (
         <>
           <Button scheme="blueLight">
             <span>내 앞으로 지금</span>
-            <span className="blue">{booth.waiting_teams_ahead}팀</span>
+            <span className="blue">{booth.waitingTeamsAhead}팀</span>
           </Button>
           <WaitingDetailCancel>
             <span onClick={onWaitingCancelClick}> 대기 취소하기</span>
@@ -99,7 +99,7 @@ const BoothDetailPage = () => {
         </>
       );
     }
-    switch (booth?.is_operated) {
+    switch (booth?.isOperated) {
       case "not_started":
         return (
           <Button disabled>

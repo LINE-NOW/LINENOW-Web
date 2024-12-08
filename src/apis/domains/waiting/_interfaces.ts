@@ -70,6 +70,7 @@ export interface RegisterWaitingRequest {
 export interface PostWaitingRegisterProps extends Waiting {
   id?: number;
 }
+
 // 대기 줄서기 등록 함수
 export const postWaitingRegister = async ({
   boothId,

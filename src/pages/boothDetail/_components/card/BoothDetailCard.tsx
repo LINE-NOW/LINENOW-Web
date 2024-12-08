@@ -1,9 +1,10 @@
-import { Booth } from "@apis/domains/booth/_interfaces";
+import { Booth } from "@interfaces/booth";
 import * as S from "./BoothDeatilCard.styled";
 import { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 
+// TODO: - 간략화 필요
 interface BoothDetailContentProps {
   booth: Booth;
 }

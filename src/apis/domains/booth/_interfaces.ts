@@ -1,33 +1,45 @@
+import { Booth } from "@interfaces/booth";
 import { BoothStatus, WaitingStatus } from "@linenow-types/status";
 
-export interface Image {
+interface Image {
   image: string;
 }
 
+interface Menu {
+  name: string;
+  price: string;
+}
+
 // Booth 인터페이스 정의
-export interface Booth {
+export interface GetBoothResponse {
   id: number;
-  name?: string;
-  description?: string;
-  location?: string;
-  caution?: string;
+  name: string;
+  description: string;
+  location: string;
+  caution: string;
+
   is_operated: BoothStatus;
-  images?: Image[];
-  menu?: { name: string; price: number }[];
+  images: Image[];
+  menu: Menu[];
+
   open_time: string;
-  close_time?: string;
-  waiting_count?: number;
-  is_waiting?: boolean;
-  waiting_status?: WaitingStatus;
+  close_time: string;
+
+  waiting_count: number;
+  total_waiting_teams: number;
+  waiting_teams_ahead: number;
+
+  is_waiting: boolean;
   waiting_id?: number;
-  total_waiting_teams?: number;
-  waiting_teams_ahead?: number;
+  waiting_status: WaitingStatus;
 }
 
 // GetBoothResponse 함수 정의
-export const GetBoothResponse = (response: Booth): Booth => {
+export const transformGetBoothResponse = (
+  response: GetBoothResponse
+): Booth => {
   return {
-    id: response.id,
+    boothID: response.id,
     name: response.name,
     description: response.description,
     location: response.location,
@@ -38,14 +50,14 @@ export const GetBoothResponse = (response: Booth): Booth => {
         name: item.name,
         price: item.price,
       })) || [],
-    open_time: response.open_time,
-    close_time: response.close_time,
-    waiting_count: response.waiting_count,
-    is_waiting: response.is_waiting,
-    waiting_status: response.waiting_status,
-    is_operated: response.is_operated,
-    waiting_id: response.waiting_id,
-    total_waiting_teams: response.total_waiting_teams,
-    waiting_teams_ahead: response.waiting_teams_ahead,
+    openTime: response.open_time,
+    closeTime: response.close_time,
+    waitingCount: response.waiting_count,
+    isWaiting: response.is_waiting,
+    waitingStatus: response.waiting_status,
+    isOperated: response.is_operated,
+    waitingID: response.waiting_id,
+    totalWaitingTeams: response.total_waiting_teams,
+    waitingTeamsAhead: response.waiting_teams_ahead,
   };
 };
