@@ -27,7 +27,7 @@ const WaitingCheckCautionModal = ({
 
   const { mutate: postWaitingRegister } = usePostWaitingRegister();
   const handleConfirm = () => {
-    postWaitingRegister({ boothId, party_size: checkedPeople });
+    postWaitingRegister({ boothID: boothId, partySize: checkedPeople });
   };
 
   return (

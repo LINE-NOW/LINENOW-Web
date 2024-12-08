@@ -1,4 +1,4 @@
-import { Booth } from "@apis/domains/booth/_interfaces";
+import { Booth } from "@interfaces/booth";
 import * as S from "./BoothDetailContent.styled";
 import IconLabel from "@components/label/IconLabel";
 

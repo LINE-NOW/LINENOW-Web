@@ -1,18 +1,22 @@
 import { WaitingStatus } from "@linenow-types/status";
-import { BoothBrief } from "@interfaces/booth";
+import { BoothSummary } from "@interfaces/booth";
+
+export interface WaitingSummary {}
 
 export interface Waiting {
   waitingID?: number;
   waitingStatus?: WaitingStatus;
-  waitingTeamsAhead?: number;
-  waitingCount?: number;
 
-  party_size?: number;
+  waitingCount?: number;
+  totalWaitingTeams?: number;
+  waitingTeamsAhead?: number;
+
+  partySize?: number;
 
   confirmDueTime?: string;
   arrivalarrivalDueTime?: string;
 
-  booth?: BoothBrief;
+  booth?: BoothSummary;
 
   // registeredAt: string;
   readyToConfirmAt?: string;

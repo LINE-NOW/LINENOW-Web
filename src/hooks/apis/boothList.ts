@@ -1,11 +1,10 @@
+import { BOOTH_QUERY_KEY } from "@apis/domains/booth/queries";
 import { useQuery } from "@tanstack/react-query";
+import { getBoothList, GetBoothsRequest } from "@apis/domains/booth/apis";
 
-import { BOOTH_QUERY_KEY } from "@apis/domains/boothList/queries";
-import { getBoothList } from "@apis/domains/boothList/apis";
-
-export const useGetBoothList = (ordering: string) => {
+export const useGetBoothList = ({ ...props }: GetBoothsRequest) => {
   return useQuery({
-    queryKey: [BOOTH_QUERY_KEY.BOOTH_LIST, ordering],
-    queryFn: () => getBoothList({ ordering }),
+    queryKey: [BOOTH_QUERY_KEY.BOOTHS, props.ordering],
+    queryFn: () => getBoothList(props),
   });
 };

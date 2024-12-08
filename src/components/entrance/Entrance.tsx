@@ -5,13 +5,13 @@ import * as S from "./Entrance.styled";
 import { handleConfirmEntry, handleCancelEntry } from "./entranceUtils";
 
 // import useTimer from "@hooks/useTimer";
-import { getWaitingDetail } from "@apis/domains/waitingDetail/apis";
 import { useEffect, useState } from "react";
-import { WaitingDetail } from "@interfaces/waitingDetail";
 import useModal from "@hooks/useModal";
 import useCountdown from "@hooks/useCountdown";
 import { usePostConfirm } from "@hooks/apis/entry";
 import { usePostWaitingCancel } from "@hooks/apis/waiting";
+import { Waiting } from "@interfaces/waiting";
+import { getWaiting } from "@apis/domains/waiting/apis";
 
 export interface EntranceProps {
   targetTime: string;
@@ -27,14 +27,12 @@ export const Entrance = ({ waitingID, targetTime }: EntranceProps) => {
 
   const { openModal, closeModal } = useModal();
 
-  const [waitingDetail, setWaitingDetail] = useState<WaitingDetail | null>(
-    null
-  );
+  const [waitingDetail, setWaitingDetail] = useState<Waiting | null>(null);
 
   useEffect(() => {
     const fetchWaitingDetail = async () => {
       if (waitingID) {
-        const detail = await getWaitingDetail({ waitingID: waitingID });
+        const detail = await getWaiting({ waitingID: waitingID });
         setWaitingDetail(detail);
       }
     };

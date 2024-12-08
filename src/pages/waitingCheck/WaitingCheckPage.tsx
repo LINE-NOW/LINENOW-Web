@@ -42,7 +42,7 @@ const WaitingCheckPage = () => {
                   : "/images/image_waitingNoCard.png",
             },
 
-            party_size: checkedPeople,
+            partySize: checkedPeople,
           }}
           isButton={false}
           disableClick={true}

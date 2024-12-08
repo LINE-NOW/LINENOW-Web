@@ -18,7 +18,7 @@ interface WaitingCardProps {
     | "waitingID"
     | "waitingTeamsAhead"
     | "booth"
-    | "party_size"
+    | "partySize"
     | "waitingStatus"
     | "confirmDueTime"
     | "arrivalarrivalDueTime"
@@ -106,7 +106,7 @@ const WaitingCard = ({ waiting, disableClick = false }: WaitingCardProps) => {
           />
           <S.BoothInformaitonLabelWrapper>
             <S.BoothInformationNameLabel>
-              <span>{waiting.party_size || 0}명</span>
+              <span>{waiting.partySize || 0}명</span>
               <span>·</span>
               <span>{waiting.booth?.name || "부스명 없음"}</span>
             </S.BoothInformationNameLabel>

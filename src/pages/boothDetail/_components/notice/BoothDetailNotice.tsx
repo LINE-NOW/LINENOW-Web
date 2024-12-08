@@ -1,6 +1,6 @@
 import * as S from "./BoothDetailNotice.styled";
 import { Title } from "../common/style";
-import { Booth } from "@apis/domains/booth/_interfaces";
+import { Booth } from "@interfaces/booth";
 
 interface BoothDetailContentProps {
   booth: Booth;

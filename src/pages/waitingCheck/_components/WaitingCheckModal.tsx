@@ -4,7 +4,7 @@ import WaitingCheckPeople from "./WaitingCheckPeople";
 import Button from "@components/button/Button";
 import ButtonLayout from "@components/button/ButtonLayout";
 import { useNavigate } from "react-router-dom";
-import { Booth } from "@apis/domains/booth/_interfaces";
+import { Booth } from "@interfaces/booth";
 
 interface WaitingCheckModalProps {
   onClose: () => void;

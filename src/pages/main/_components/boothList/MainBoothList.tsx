@@ -1,11 +1,12 @@
 import { forwardRef } from "react";
 import * as S from "./MainBoothList.styled";
-import BoothCardMain from "@components/boothCard/boothCardMain";
-import { BoothList } from "@apis/domains/boothList/_interfaces";
+
 import Spinner from "@components/spinner/Spinner";
+import { BoothsElement } from "@interfaces/booth";
+import BoothCardMain from "@components/boothCard/boothCardMain";
 
 interface MainBoothListProps {
-  boothList?: BoothList[];
+  boothList?: BoothsElement[];
   isLoading: boolean;
 }
 
@@ -17,8 +18,8 @@ const MainBoothList = forwardRef<HTMLDivElement, MainBoothListProps>(
 
     return (
       <S.MainBoothListScrollContainer ref={ref}>
-        {boothList?.map((booth: BoothList) => (
-          <BoothCardMain key={booth.id} booth={booth} />
+        {boothList?.map((booth: BoothsElement) => (
+          <BoothCardMain key={booth.boothID} booth={booth} />
         ))}
       </S.MainBoothListScrollContainer>
     );

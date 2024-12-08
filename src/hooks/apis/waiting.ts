@@ -13,7 +13,7 @@ import useModal from "@hooks/useModal";
 import useIsLoading from "@hooks/useIsLoading";
 import {
   postWaitingRegister,
-  PostWaitingRegisterProps,
+  PostWaitingRegisterResponse,
   RegisterWaitingRequest,
 } from "@apis/domains/waiting/_interfaces";
 
@@ -78,12 +78,12 @@ export const usePostWaitingRegister = () => {
   return useMutation({
     mutationKey: ["waiting_register"],
     mutationFn: async ({
-      boothId,
-      party_size,
-    }: RegisterWaitingRequest): Promise<PostWaitingRegisterProps | null> => {
+      boothID,
+      partySize,
+    }: RegisterWaitingRequest): Promise<PostWaitingRegisterResponse | null> => {
       try {
         setLoadings({ isFullLoading: true });
-        return await postWaitingRegister({ boothId, party_size });
+        return await postWaitingRegister({ boothID, partySize });
       } catch (error) {
         throw error;
       }

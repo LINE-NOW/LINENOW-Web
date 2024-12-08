@@ -1,33 +1,60 @@
+import { Booth, BoothsElement } from "@interfaces/booth";
 import { BoothStatus, WaitingStatus } from "@linenow-types/status";
 
-export interface Image {
+interface Image {
   image: string;
 }
 
-// Booth 인터페이스 정의
-export interface Booth {
-  id: number;
-  name?: string;
-  description?: string;
-  location?: string;
-  caution?: string;
-  is_operated: BoothStatus;
-  images?: Image[];
-  menu?: { name: string; price: number }[];
-  open_time: string;
-  close_time?: string;
-  waiting_count?: number;
-  is_waiting?: boolean;
-  waiting_status?: WaitingStatus;
-  waiting_id?: number;
-  total_waiting_teams?: number;
-  waiting_teams_ahead?: number;
+interface Menu {
+  name: string;
+  price: string;
 }
 
-// GetBoothResponse 함수 정의
-export const GetBoothResponse = (response: Booth): Booth => {
+export interface GetBoothResponse {
+  id: number;
+  name: string;
+  description: string;
+  location: string;
+  caution: string;
+
+  is_operated: BoothStatus;
+  images: Image[];
+  menu: Menu[];
+
+  open_time: string;
+  close_time: string;
+
+  waiting_count: number;
+  total_waiting_teams: number;
+  waiting_teams_ahead: number;
+
+  is_waiting: boolean;
+  waiting_id?: number;
+  waiting_status: WaitingStatus;
+}
+
+export interface GetBoothsResponse
+  extends Array<{
+    id: number;
+    name: string;
+    description: string;
+    location: string;
+
+    is_operated: BoothStatus;
+    thumbnail: string;
+
+    waiting_count: number;
+    total_waiting_teams: number;
+
+    is_waiting: boolean;
+    waiting_status: WaitingStatus | null;
+  }> {}
+
+export const transformGetBoothResponse = (
+  response: GetBoothResponse
+): Booth => {
   return {
-    id: response.id,
+    boothID: response.id,
     name: response.name,
     description: response.description,
     location: response.location,
@@ -38,14 +65,31 @@ export const GetBoothResponse = (response: Booth): Booth => {
         name: item.name,
         price: item.price,
       })) || [],
-    open_time: response.open_time,
-    close_time: response.close_time,
-    waiting_count: response.waiting_count,
-    is_waiting: response.is_waiting,
-    waiting_status: response.waiting_status,
-    is_operated: response.is_operated,
-    waiting_id: response.waiting_id,
-    total_waiting_teams: response.total_waiting_teams,
-    waiting_teams_ahead: response.waiting_teams_ahead,
+    openTime: response.open_time,
+    closeTime: response.close_time,
+    waitingCount: response.waiting_count,
+    isWaiting: response.is_waiting,
+    waitingStatus: response.waiting_status,
+    isOperated: response.is_operated,
+    waitingID: response.waiting_id,
+    totalWaitingTeams: response.total_waiting_teams,
+    waitingTeamsAhead: response.waiting_teams_ahead,
   };
+};
+
+export const transformgetBoothsResponse = (
+  response: GetBoothsResponse
+): BoothsElement[] => {
+  return response.map((item) => ({
+    boothID: item.id,
+    name: item.name,
+    thumbnail: item.thumbnail,
+    description: item.description,
+    location: item.location,
+    isOperated: item.is_operated,
+    waitingCount: item.waiting_count,
+    totalWaitingTeams: item.total_waiting_teams,
+    isWaiting: item.is_waiting,
+    waitingStatus: item.waiting_status,
+  }));
 };
